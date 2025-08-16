@@ -1,68 +1,565 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@import url('https://fonts.adobe.com/fonts/handsome-pro');
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+@import 'tailwindcss';
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@font-face {
+  font-family: 'Pretendard Variable';
+  src: url('/fonts/PretendardVariable.ttf') format('opentype');
+  font-style: normal;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+/* tailwindCSS에서 해당 color들을 사용할 수 있도록 변경 */
+/* :root에 선언된 애들을 사용하고 있어서 그대로 뒀습니다. 아래와 같이 @theme에 선언해주면 tailwindcss처럼 사용할 수 있어서 @theme도 만들었습니다. */
+@theme {
+  --color-red-50: #FCF1F0;
+  --color-red-100: #F9DFDF;
+  --color-red-200: #EEAEAC;
+  --color-red-400: #E57570;
+  --color-red-500: #E1574E;
+  --color-red-600: #CD4F47;
+
+  --color-blue-50: #EEF7FF;
+  --color-blue-100: #DFEEFE;
+  --color-blue-200: #ADD2FC;
+  --color-blue-300: #89BDFB;
+  --color-blue-400: #74B1FA;
+  --color-blue-500: #579DFA;
+  --color-blue-600: #4182D8;
+  --color-blue-700: #3373D0;
+  --color-blue-800: #154785;
+  --color-blue-900: #0F3565;
+
+  --color-gray-50: #FCFDFF;
+  --color-gray-100: #F3F4F6;
+  --color-gray-200: #E2E6EB;
+  --color-gray-300: #CCD0D6;
+  --color-gray-400: #9CA0A6;
+  --color-gray-500: #62666D;
+  --color-gray-600: #484C54;
+  --color-gray-700: #393F4E;
+  --color-gray-800: #262A34;
+  --color-gray-900: #0A0C1A;
+
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  --shadow-middlemodal: 0px 4px 50px 0px #0000000d;
+  --shadow-location-search: 0px 4px 28px 0px #0000000d;
 }
 
+/* 전역 폰트 스타일 */
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  font-family: 'Handsome Pro', Pretendard, 'Pretendard Variable', sans-serif;
+  background-color: #151619;
+  color: #ffffff;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+@utility title-lg-bold {
+  /* Title/lg/bold */
+  font-family: Pretendard, serif;
+  font-size: var(--scale-lg, 60px);
+  font-style: normal;
+  font-weight: var(--weight-bold, 700);
+  line-height: var(--lh-display, 72px); /* 120% */
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+@utility title-lg-semibold {
+  /* Title/lg/semibold */
+  font-family: var(--font-family, Pretendard);
+  font-size: var(--scale-lg, 60px);
+  font-style: normal;
+  font-weight: var(--weight-semibold, 700);
+  line-height: var(--lh-display, 72px); /* 120% */
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+@utility title-lg-medium {
+  /* Title/lg/medium */
+  font-family: var(--font-family, Pretendard);
+  font-size: var(--scale-lg, 60px);
+  font-style: normal;
+  font-weight: var(--weight-medium, 500);
+  line-height: var(--lh-display, 72px); /* 120% */
+}
+
+@utility title-lg-regular {
+  /* Title/lg/regular */
+  font-family: var(--font-family, Pretendard);
+  font-size: var(--scale-lg, 60px);
+  font-style: normal;
+  font-weight: var(--weight-regular, 500);
+  line-height: var(--lh-display, 72px); /* 120% */
+}
+
+@utility title-md-bold {
+  /* Title/md/bold */
+  font-family: var(--font-family, Pretendard);
+  font-size: var(--scale-md, 48px);
+  font-style: normal;
+  font-weight: var(--weight-bold, 700);
+  line-height: var(--lh-heading-lg, 56px); /* 116.667% */
+}
+@utility title-md-semibold {
+  /* Title/md/semibold */
+  font-family: var(--font-family, Pretendard);
+  font-size: var(--scale-md, 48px);
+  font-style: normal;
+  font-weight: var(--weight-semibold, 700);
+  line-height: var(--lh-heading-lg, 56px); /* 116.667% */
+}
+@utility title-md-medium {
+  /* Title/md/medium */
+  font-family: var(--font-family, Pretendard);
+  font-size: var(--scale-md, 48px);
+  font-style: normal;
+  font-weight: var(--weight-medium, 500);
+  line-height: var(--lh-heading-lg, 56px); /* 116.667% */
+}
+@utility title-md-regular {
+  /* Title/md/regular */
+  font-family: var(--font-family, Pretendard);
+  font-size: var(--scale-md, 48px);
+  font-style: normal;
+  font-weight: var(--weight-regular, 500);
+  line-height: var(--lh-heading-lg, 56px); /* 116.667% */
+}
+@utility title-sm-bold {
+  /* Title/sm/bold */
+  font-family: var(--font-family, Pretendard);
+  font-size: var(--scale-sm, 40px);
+  font-style: normal;
+  font-weight: var(--weight-bold, 700);
+  line-height: var(--lh-heading-3xl, 52px); /* 130% */
+}
+@utility title-sm-semibold {
+  /* Title/sm/semibold */
+  font-family: var(--font-family, Pretendard);
+  font-size: var(--scale-sm, 40px);
+  font-style: normal;
+  font-weight: var(--weight-semibold, 700);
+  line-height: var(--lh-heading-3xl, 52px); /* 130% */
+}
+@utility title-sm-medium {
+  /* Title/sm/medium */
+  font-family: var(--font-family, Pretendard);
+  font-size: var(--scale-sm, 40px);
+  font-style: normal;
+  font-weight: var(--weight-medium, 500);
+  line-height: var(--lh-heading-3xl, 52px); /* 130% */
+}
+@utility title-sm-regular {
+  /* Title/sm/regular */
+  font-family: var(--font-family, Pretendard);
+  font-size: var(--scale-sm, 40px);
+  font-style: normal;
+  font-weight: var(--weight-regular, 500);
+  line-height: var(--lh-heading-3xl, 52px); /* 130% */
+}
+
+{/* Heading */}
+@utility heading-3xl-bold {
+  /* Heading/3xl/bold */
+  font-family: var(--font-family, Pretendard);
+  font-size: var(--scale-3xl, 36px);
+  font-style: normal;
+  font-weight: var(--weight-bold, 700);
+  line-height: var(--lh-heading-3xl, 52px); /* 144.444% */
+}
+@utility heading-3xl-semibold {
+  /* Heading/3xl/semibold */
+  font-family: var(--font-family, Pretendard);
+  font-size: var(--scale-3xl, 36px);
+  font-style: normal;
+  font-weight: var(--weight-semibold, 700);
+  line-height: var(--lh-heading-3xl, 52px); /* 144.444% */
+}
+@utility heading-3xl-medium {
+  /* Heading/3xl/medium */
+  font-family: var(--font-family, Pretendard);
+  font-size: var(--scale-3xl, 36px);
+  font-style: normal;
+  font-weight: var(--weight-medium, 500);
+  line-height: var(--lh-heading-3xl, 52px); /* 144.444% */
+}
+@utility heading-3xl-regular {
+  /* Heading/3xl/regular */
+  font-family: var(--font-family, Pretendard);
+  font-size: var(--scale-3xl, 36px);
+  font-style: normal;
+  font-weight: var(--weight-regular, 500);
+  line-height: var(--lh-heading-3xl, 52px); /* 144.444% */
+}
+@utility heading-2xl-bold {
+  /* Heading/2xl/bold */
+  font-family: var(--font-family, Pretendard);
+  font-size: var(--scale-2xl, 32px);
+  font-style: normal;
+  font-weight: var(--weight-bold, 700);
+  line-height: var(--lh-heading-2xl, 48px); /* 150% */
+}
+@utility heading-2xl-semibold {
+  /* Heading/2xl/semibold */
+  font-family: var(--font-family, Pretendard);
+  font-size: var(--scale-2xl, 32px);
+  font-style: normal;
+  font-weight: var(--weight-semibold, 700);
+  line-height: var(--lh-heading-2xl, 48px); /* 150% */
+}
+@utility heading-2xl-medium {
+  /* Heading/2xl/medium */
+  font-family: var(--font-family, Pretendard);
+  font-size: var(--scale-2xl, 32px);
+  font-style: normal;
+  font-weight: var(--weight-medium, 500);
+  line-height: var(--lh-heading-2xl, 48px); /* 150% */
+}
+@utility heading-2xl-regular {
+  /* Heading/2xl/regular */
+  font-family: var(--font-family, Pretendard);
+  font-size: var(--scale-2xl, 32px);
+  font-style: normal;
+  font-weight: var(--weight-regular, 500);
+  line-height: var(--lh-heading-2xl, 48px); /* 150% */
+}
+@utility heading-xl-bold {
+  /* Heading/1xl/bold */
+  font-family: var(--font-family, Pretendard);
+  font-size: var(--scale-1xl, 28px);
+  font-style: normal;
+  font-weight: var(--weight-bold, 700);
+  line-height: var(--lh-heading-1xl, 36px); /* 128.571% */
+}
+@utility heading-1xl-semibold {
+  /* Heading/1xl/semibold */
+  font-family: var(--font-family, Pretendard);
+  font-size: var(--scale-1xl, 28px);
+  font-style: normal;
+  font-weight: var(--weight-semibold, 700);
+  line-height: var(--lh-heading-1xl, 36px); /* 128.571% */
+}
+@utility heading-1xl-medium {
+  /* Heading/1xl/medium */
+  font-family: var(--font-family, Pretendard);
+  font-size: var(--scale-1xl, 28px);
+  font-style: normal;
+  font-weight: var(--weight-medium, 500);
+  line-height: var(--lh-heading-1xl, 36px); /* 128.571% */
+}
+@utility heading-1xl-regular {
+  /* Heading/1xl/regular */
+  font-family: var(--font-family, Pretendard);
+  font-size: var(--scale-1xl, 28px);
+  font-style: normal;
+  font-weight: var(--weight-regular, 500);
+  line-height: var(--lh-heading-1xl, 36px); /* 128.571% */
+}
+@utility heading-lg-bold {
+  /* Heading/lg/bold */
+  font-family: var(--font-family, Pretendard);
+  font-size: var(--scale-heading-lg, 24px);
+  font-style: normal;
+  font-weight: var(--weight-bold, 700);
+  line-height: var(--lh-body-2xl, 28px); /* 116.667% */
+}
+@utility heading-lg-semibold {
+  /* Heading/lg/semibold */
+  font-family: var(--Heading-font-family, Pretendard);
+  font-size: var(--Heading-lg-font-size, 24px);
+  font-style: normal;
+  font-weight: var(--Heading-font-weight-semi-bold, 700);
+  line-height: var(--Heading-lg-line-height, 28px); /* 116.667% */
+  letter-spacing: var(--Heading-letter-spacing, 0);
+}
+@utility heading-lg-medium {
+  /* Heading/lg/medium */
+  font-family: var(--font-family, Pretendard);
+  font-size: var(--scale-heading-lg, 24px);
+  font-style: normal;
+  font-weight: var(--weight-medium, 500);
+  line-height: var(--lh-body-2xl, 28px); /* 116.667% */
+}
+@utility heading-lg-regular {
+  /* Heading/lg/regular */
+  font-family: var(--font-family, Pretendard);
+  font-size: var(--scale-heading-lg, 24px);
+  font-style: normal;
+  font-weight: var(--weight-regular, 500);
+  line-height: var(--lh-body-2xl, 28px); /* 116.667% */
+}
+@utility heading-md-bold {
+  /* Heading/md/bold */
+  font-family: var(--font-family, Pretendard);
+  font-size: var(--scale-heading-md, 22px);
+  font-style: normal;
+  font-weight: var(--weight-bold, 700);
+  line-height: var(--lh-heading-md, 32px); /* 145.455% */
+}
+@utility heading-md-semibold {
+  /* Heading/md/semibold */
+  font-family: var(--font-family, Pretendard);
+  font-size: var(--scale-heading-md, 22px);
+  font-style: normal;
+  font-weight: var(--weight-semibold, 700);
+  line-height: var(--lh-heading-md, 32px); /* 145.455% */
+}
+@utility heading-md-medium {
+  /* Heading/md/medium */
+  font-family: var(--font-family, Pretendard);
+  font-size: var(--scale-heading-md, 22px);
+  font-style: normal;
+  font-weight: var(--weight-medium, 500);
+  line-height: var(--lh-heading-md, 32px); /* 145.455% */
+}
+@utility heading-md-regular {
+  /* Heading/md/regular */
+  font-family: var(--font-family, Pretendard);
+  font-size: var(--scale-heading-md, 22px);
+  font-style: normal;
+  font-weight: var(--weight-regular, 500);
+  line-height: var(--lh-heading-md, 32px); /* 145.455% */
+}
+@utility heading-sm-bold {
+  /* Heading/sm/bold */
+  font-family: var(--font-family, Pretendard);
+  font-size: var(--scale-heading-sm, 20px);
+  font-style: normal;
+  font-weight: var(--weight-bold, 700);
+  line-height: var(--lh-heading-md, 32px); /* 160% */
+}
+@utility heading-sm-semibold {
+  /* Heading/sm/semibold */
+  font-family: var(--font-family, Pretendard);
+  font-size: var(--scale-heading-sm, 20px);
+  font-style: normal;
+  font-weight: var(--weight-semibold, 700);
+  line-height: var(--lh-heading-md, 32px); /* 160% */
+}
+@utility heading-sm-medium {
+  /* Heading/sm/medium */
+  font-family: var(--font-family, Pretendard);
+  font-size: var(--scale-heading-sm, 20px);
+  font-style: normal;
+  font-weight: var(--weight-medium, 500);
+  line-height: var(--lh-heading-md, 32px); /* 160% */
+}
+@utility heading-sm-regular {
+  /* Heading/sm/regular */
+  font-family: var(--font-family, Pretendard);
+  font-size: var(--scale-heading-sm, 20px);
+  font-style: normal;
+  font-weight: var(--weight-regular, 500);
+  line-height: var(--lh-heading-md, 32px); /* 160% */
+}
+
+{/* body */}
+@utility body-2xl-bold {
+  /* Body/2xl/bold */
+  font-family: var(--font-family, Pretendard);
+  font-size: var(--scale-body-2xl, 18px);
+  font-style: normal;
+  font-weight: var(--weight-bold, 700);
+  line-height: var(--lh-body-2xl, 28px); /* 155.556% */
+}
+@utility body-2xl-semibold {
+  /* Body/2xl/semibold */
+  font-family: var(--font-family, Pretendard);
+  font-size: var(--scale-body-2xl, 18px);
+  font-style: normal;
+  font-weight: var(--weight-semibold, 700);
+  line-height: var(--lh-body-2xl, 28px); /* 155.556% */
+}
+@utility body-2xl-medium {
+  /* Body/2xl/medium */
+  font-family: var(--font-family, Pretendard);
+  font-size: var(--scale-body-2xl, 18px);
+  font-style: normal;
+  font-weight: var(--weight-medium, 500);
+  line-height: var(--lh-body-2xl, 28px); /* 155.556% */
+}
+@utility body-2xl-regular {
+  /* Body/2xl/regular */
+  font-family: var(--font-family, Pretendard);
+  font-size: var(--scale-body-2xl, 18px);
+  font-style: normal;
+  font-weight: var(--weight-regular, 500);
+  line-height: var(--lh-body-2xl, 28px); /* 155.556% */
+}
+@utility body-read {
+  /* Body/read */
+  font-family: var(--font-family, Pretendard);
+  font-size: var(--scale-read, 17px);
+  font-style: normal;
+  font-weight: var(--weight-regular, 500);
+  line-height: var(--lh-body-read, 32px); /* 188.235% */
+}
+@utility body-xl-bold {
+  /* Body/xl/bold */
+  font-family: var(--font-family, Pretendard);
+  font-size: var(--scale-body-xl, 17px);
+  font-style: normal;
+  font-weight: var(--weight-bold, 700);
+  line-height: var(--lh-body-xl, 28px); /* 164.706% */
+}
+@utility body-xl-semibold {
+  /* Body/xl/semibold */
+  font-family: var(--font-family, Pretendard);
+  font-size: var(--scale-body-xl, 17px);
+  font-style: normal;
+  font-weight: var(--weight-semibold, 700);
+  line-height: var(--lh-body-xl, 28px); /* 164.706% */
+}
+@utility body-xl-medium {
+  /* Body/xl/medium */
+  font-family: var(--font-family, Pretendard);
+  font-size: var(--scale-body-xl, 17px);
+  font-style: normal;
+  font-weight: var(--weight-medium, 500);
+  line-height: var(--lh-body-xl, 28px); /* 164.706% */
+}
+@utility body-xl-regular {
+  /* Body/xl/regular */
+  font-family: var(--font-family, Pretendard);
+  font-size: var(--scale-body-xl, 17px);
+  font-style: normal;
+  font-weight: var(--weight-regular, 500);
+  line-height: var(--lh-body-xl, 28px); /* 164.706% */
+}
+@utility body-lg-bold {
+  /* Body/lg/bold */
+  font-family: var(--font-family, Pretendard);
+  font-size: var(--scale-body-lg, 16px);
+  font-style: normal;
+  font-weight: var(--weight-bold, 700);
+  line-height: var(--lh-body-lg, 24px); /* 150% */
+}
+@utility body-lg-semibold {
+  /* Body/lg/semibold */
+  font-family: var(--font-family, Pretendard);
+  font-size: var(--scale-body-lg, 16px);
+  font-style: normal;
+  font-weight: var(--weight-semibold, 700);
+  line-height: var(--lh-body-lg, 24px); /* 150% */
+}
+@utility body-lg-medium {
+  /* Body/lg/medium */
+  font-family: var(--font-family, Pretendard);
+  font-size: var(--scale-body-lg, 16px);
+  font-style: normal;
+  font-weight: var(--weight-medium, 500);
+  line-height: var(--lh-body-lg, 24px); /* 150% */
+}
+@utility body-lg-regular {
+  /* Body/lg/regular */
+  font-family: var(--font-family, Pretendard);
+  font-size: var(--scale-body-lg, 16px);
+  font-style: normal;
+  font-weight: var(--weight-regular, 500);
+  line-height: var(--lh-body-lg, 24px); /* 150% */
+}
+@utility body-md-bold {
+  /* Body/md/bold */
+  font-family: var(--font-family, Pretendard);
+  font-size: var(--scale-body-md, 15px);
+  font-style: normal;
+  font-weight: var(--weight-bold, 700);
+  line-height: var(--lh-body-md, 24px); /* 160% */
+}
+@utility body-md-semibold {
+  /* Body/md/semibold */
+  font-family: var(--font-family, Pretendard);
+  font-size: var(--scale-body-md, 15px);
+  font-style: normal;
+  font-weight: var(--weight-semibold, 700);
+  line-height: var(--lh-body-md, 24px); /* 160% */
+}
+@utility body-md-medium {
+  /* Body/md/medium */
+  font-family: var(--font-family, Pretendard);
+  font-size: var(--scale-body-md, 15px);
+  font-style: normal;
+  font-weight: var(--weight-medium, 500);
+  line-height: var(--lh-body-md, 24px); /* 160% */
+}
+@utility body-md-regular {
+  /* Body/md/regular */
+  font-family: var(--font-family, Pretendard);
+  font-size: var(--scale-body-md, 15px);
+  font-style: normal;
+  font-weight: var(--weight-regular, 500);
+  line-height: var(--lh-body-md, 24px); /* 160% */
+}
+@utility body-sm-bold {
+  /* Body/sm/bold */
+  font-family: var(--font-family, Pretendard);
+  font-size: var(--scale-body-sm, 14px);
+  font-style: normal;
+  font-weight: var(--weight-bold, 700);
+  line-height: var(--lh-body-sm, 20px); /* 142.857% */
+}
+@utility body-sm-semibold {
+  /* Body/sm/semibold */
+  font-family: var(--font-family, Pretendard);
+  font-size: var(--scale-body-sm, 14px);
+  font-style: normal;
+  font-weight: var(--weight-semibold, 700);
+  line-height: var(--lh-body-sm, 20px); /* 142.857% */
+}
+@utility body-sm-medium {
+  /* Body/sm/medium */
+  font-family: var(--font-family, Pretendard);
+  font-size: var(--scale-body-sm, 14px);
+  font-style: normal;
+  font-weight: var(--weight-medium, 500);
+  line-height: var(--lh-body-sm, 20px); /* 142.857% */
+}
+@utility body-sm-regular {
+  /* Body/sm/regular */
+  font-family: var(--font-family, Pretendard);
+  font-size: var(--scale-body-sm, 14px);
+  font-style: normal;
+  font-weight: var(--weight-regular, 500);
+  line-height: var(--lh-body-sm, 20px); /* 142.857% */
+}
+
+{/* caption */}
+@utility caption-md-bold {
+  /* Caption/md/bold */
+  font-family: var(--font-family, Pretendard);
+  font-size: var(--scale-caption-md, 13px);
+  font-style: normal;
+  font-weight: var(--weight-bold, 700);
+  line-height: var(--lh-caption-md, 16px); /* 123.077% */
+}
+@utility caption-md-semibold {
+  /* Caption/md/semibold */
+  font-family: var(--font-family, Pretendard);
+  font-size: var(--scale-caption-md, 13px);
+  font-style: normal;
+  font-weight: var(--weight-semibold, 700);
+  line-height: var(--lh-caption-md, 16px); /* 123.077% */
+}
+@utility caption-md-medium {
+  /* Caption/md/medium */
+  font-family: var(--font-family, Pretendard);
+  font-size: var(--scale-caption-md, 13px);
+  font-style: normal;
+  font-weight: var(--weight-medium, 500);
+  line-height: var(--lh-caption-md, 16px); /* 123.077% */
+}
+@utility caption-sm-medium {
+  /* Caption/sm/medium */
+  font-family: var(--font-family, Pretendard);
+  font-size: var(--scale-caption-sm, 12px);
+  font-style: normal;
+  font-weight: var(--weight-medium, 500);
+  line-height: var(--lh-caption-sm, 16px); /* 133.333% */
+}
+
+@theme {
+  --breakpoint-*: initial;
+  --breakpoint-desktop: 1416px;
+  --breakpoint-laptop: 1025px;
+  --breakpoint-tablet: 766px;
+  --breakpoint-mobile: 320px;
+  --breakpoint-wide: 1440px;
 }

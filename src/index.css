@@ -17,6 +17,7 @@
   --color-red-200: #EEAEAC;
   --color-red-400: #E57570;
   --color-red-500: #E1574E;
+  --color-red-500a: #F54747;
   --color-red-600: #CD4F47;
 
   --color-blue-50: #EEF7FF;
@@ -43,6 +44,19 @@
 
   --color-white: #ffffff;
   --color-black: #000000;
+
+  --button-transparent-bg:       #0A0C1A14;
+  --button-translucent-hovered-bg:#06081033;
+
+  --button-primary-disabled-icon: #06081033;
+  --button-primary-disabled-text: #06081033;
+
+  --toast-translucent-bg:         #060810BF;
+
+  --ui-transparent-dark:          #070A1314; 
+  --ui-transparent-darker:        #06081033;
+  --ui-transparent-light:         #FFFFFF1F;
+  --ui-transparent-lighter:       #FFFFFF80;
 
   --shadow-middlemodal: 0px 4px 50px 0px #0000000d;
   --shadow-location-search: 0px 4px 28px 0px #0000000d;

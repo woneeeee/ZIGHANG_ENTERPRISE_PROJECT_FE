@@ -1,13 +1,17 @@
 import './App.css'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+
+import Login from '@/pages/Login'
+import Redirect from '@/pages/Redirect'
 
 function App() {
-
   return (
-    <>
-      <div className="title-lg-semibold">하이</div>
-      <div className="title-lg-bold text-red-50">하이</div>
-
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/kakao/oauth" element={<Redirect />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 

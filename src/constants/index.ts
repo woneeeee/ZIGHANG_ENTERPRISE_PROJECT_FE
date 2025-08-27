@@ -1,2 +1,2 @@
 export * from './HeaderMenu'
-export * from './JobCategory'
+export * from './JobBox'

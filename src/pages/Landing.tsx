@@ -1,7 +1,7 @@
 import Footer from '@/components/common/Footer'
 import Header from '@/components/common/Header'
 import SearchInput from '@/components/landing/SearchInput'
-import JobCategory from '@/components/landing/JobCategory'
+import JobBox from '@/components/landing/JobBox'
 import { useNavigate } from 'react-router-dom'
 import { ChevronRightIcon } from '@/assets/svgComponents'
 import Carousel from '@/components/landing/Carousel'
@@ -54,7 +54,7 @@ const Landing = () => {
         </div>
       </div>
       <div className="flex flex-col items-center gap-9">
-        <JobCategory />
+        <JobBox />
         <Carousel />
       </div>
       <Footer />

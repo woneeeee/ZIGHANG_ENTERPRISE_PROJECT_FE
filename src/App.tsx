@@ -3,8 +3,6 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 import Landing from '@/pages/Landing'
 import Profile from '@/pages/Profile'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-
 import Login from '@/pages/Login'
 import Redirect from '@/pages/Redirect'
 

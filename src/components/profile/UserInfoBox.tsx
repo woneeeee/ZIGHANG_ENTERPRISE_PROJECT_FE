@@ -18,36 +18,36 @@ const mockProfile: Profile = {
 const UserInfoBox = () => {
   return (
     <div className="flex flex-col gap-[12px]">
-      <div className="tablet:w-[702px] laptop:w-[929px] desktop:w-[866px] flex w-[866px] rounded-[10px] border-1 border-neutral-200 px-[16px] py-[12px]">
-        <div className="body-md-bold w-[99px] gap-[10px] pr-[60px]">이름</div>
+      <div className="tablet:w-[702px] laptop:w-[929px] desktop:w-[866px] flex w-[288px] rounded-[10px] border-1 border-neutral-200 px-[16px] py-[12px]">
+        <div className="body-sm-bold tablet:body-md-bold w-[99px] gap-[10px] pr-[60px]">이름</div>
         <div className="body-md-medium text-neutral-700">{mockProfile.name}</div>
       </div>
-      <div className="tablet:w-[702px] laptop:w-[929px] desktop:w-[866px] flex rounded-[10px] border-1 border-neutral-200 px-[16px] py-[12px]">
-        <div className="body-md-bold w-[99px] gap-[10px] pr-[60px]">이메일</div>
+      <div className="tablet:w-[702px] laptop:w-[929px] desktop:w-[866px] flex w-[288px] rounded-[10px] border-1 border-neutral-200 px-[16px] py-[12px]">
+        <div className="body-sm-bold tablet:body-md-bold w-[99px] gap-[10px]">이메일</div>
         <div className="body-md-medium text-neutral-700">{mockProfile.email}</div>
       </div>
-      <div className="tablet:w-[702px] laptop:w-[929px] desktop:w-[866px] flex flex-col gap-[23px] rounded-[10px] border-1 border-neutral-200 px-[16px] py-[12px]">
-        <div className="flex">
+      <div className="tablet:w-[702px] laptop:w-[929px] desktop:w-[866px] flex w-[288px] flex-col gap-[23px] rounded-[10px] border-1 border-neutral-200 px-[16px] py-[12px]">
+        <div className="tablet:flex-row flex flex-col">
           <div className="body-md-bold w-[99px] gap-[10px] pr-[60px]">직군</div>
           <div className="body-md-medium text-neutral-700">{mockProfile.jobGroup}</div>
         </div>
-        <div className="flex">
+        <div className="tablet:flex-row flex flex-col">
           <div className="body-md-bold w-[99px] gap-[10px] pr-[60px]">직무</div>
           <div className="body-md-medium text-neutral-700">{mockProfile.jobRoles}</div>
         </div>
-        <div className="flex">
+        <div className="tablet:flex-row flex flex-col">
           <div className="body-md-bold w-[99px] gap-[10px] pr-[60px]">규모</div>
           <div className="body-md-medium text-neutral-700">{mockProfile.companyScale}</div>
         </div>
-        <div className="flex">
+        <div className="tablet:flex-row flex flex-col">
           <div className="body-md-bold w-[99px] gap-[10px]">학력 조건</div>
           <div className="body-md-medium text-neutral-700">{mockProfile.education}</div>
         </div>
-        <div className="flex">
+        <div className="tablet:flex-row flex flex-col">
           <div className="body-md-bold w-[99px] gap-[10px]">경력 조건</div>
           <div className="body-md-medium text-neutral-700">{mockProfile.career}</div>
         </div>
-        <div className="flex">
+        <div className="tablet:flex-row flex flex-col">
           <div className="body-md-bold w-[99px] gap-[10px]">수신 이메일</div>
           <div className="body-md-medium text-neutral-700">{mockProfile.recvEmail}</div>
         </div>

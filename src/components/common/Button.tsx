@@ -34,7 +34,7 @@ const sizes = {
   'round-sm': 'rounded-full h-[32px] px-4',
 }
 
-export interface Button1Props {
+export interface ButtonProps {
   style?: 'filled' | 'neutral' | 'transparent' | 'inversed' | 'outlined' | 'translucent'
   type?: 'primary' | 'secondary' | 'disabled'
   size?: 'lg' | 'md' | 'sm' | 'round-sm'
@@ -58,24 +58,22 @@ export default function Button({
   disabled = false,
   rightIcon,
   leftIcon,
-}: Button1Props) {
+}: ButtonProps) {
   const base = `${type === 'disabled' ? 'cursor-not-allowed' : 'cursor-pointer'} flex gap-x-2 items-center justify-center rounded`
   const styleClass = styles[type][style]
   const sizeClass = sizes[size]
-  const className = [base, styleClass, sizeClass].join(' ')
+  const className = [base, sizeClass, styleClass].join(' ')
 
   return (
-    <div className="">
-      <button
-        disabled={disabled}
-        type={buttonType}
-        onClick={onClick}
-        className={`${className} ${customClassName}`}
-      >
-        {leftIcon ? leftIcon : null}
-        {children}
-        {rightIcon ? rightIcon : null}
-      </button>
-    </div>
+    <button
+      disabled={disabled}
+      type={buttonType}
+      onClick={onClick}
+      className={`${className} ${customClassName}`}
+    >
+      {leftIcon ? leftIcon : null}
+      {children}
+      {rightIcon ? rightIcon : null}
+    </button>
   )
 }

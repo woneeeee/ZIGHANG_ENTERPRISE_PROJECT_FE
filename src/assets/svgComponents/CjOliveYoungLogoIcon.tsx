@@ -1,5 +1,5 @@
 import type { SVGProps } from 'react'
-const SvgCgOliveYoungLogoIcon = (props: SVGProps<SVGSVGElement>) => (
+const SvgCjOliveYoungLogoIcon = (props: SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="1em"
@@ -8,7 +8,7 @@ const SvgCgOliveYoungLogoIcon = (props: SVGProps<SVGSVGElement>) => (
     viewBox="0 0 82 35"
     {...props}
   >
-    <g clipPath="url(#cg-olive-young-logo-icon_svg__a)">
+    <g clipPath="url(#cj-olive-young-logo-icon_svg__a)">
       <path
         fill="#FF9700"
         d="M35.313 12.335c-4.064-1.609-8.169-1.437-9.21.446-1.05 1.899.48 6.394 3.368 10.127 2.89 3.73 6.972 3.608 9.225-.466 2.217-4.062.67-8.504-3.383-10.107"
@@ -27,10 +27,10 @@ const SvgCgOliveYoungLogoIcon = (props: SVGProps<SVGSVGElement>) => (
       />
     </g>
     <defs>
-      <clipPath id="cg-olive-young-logo-icon_svg__a">
+      <clipPath id="cj-olive-young-logo-icon_svg__a">
         <path fill="#fff" d="M.12.855H81.88v33.683H.12z" />
       </clipPath>
     </defs>
   </svg>
 )
-export default SvgCgOliveYoungLogoIcon
+export default SvgCjOliveYoungLogoIcon

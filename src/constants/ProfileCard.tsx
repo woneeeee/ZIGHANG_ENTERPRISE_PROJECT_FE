@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { WlbIcon } from '../assets/svgComponents'
+import { WlbIcon } from '@/assets/svgComponents'
 
 export type ProfileCardItem = {
   id: string

@@ -1,16 +1,70 @@
-import { LogoIcon } from '@/assets/svgComponents'
 import NavMenu from './NavMenu'
 import { useNavigate } from 'react-router-dom'
 import NavSide from './NavSide'
-import { UserProfileIcon } from '@/assets/svgComponents'
+import { UserProfileIcon, OnboardingLogoIcon, LogoIcon } from '@/assets/svgComponents'
 
-const Header = () => {
+import { cn } from '@/utils/cn'
+
+type HeaderVariant = 'main' | 'space' | 'white'
+
+type HeaderProps = {
+  variant?: HeaderVariant
+  className?: string
+}
+
+export default function Header({ variant = 'main', className }: HeaderProps) {
+  if (variant === 'space') return <SpaceHeader className={className} />
+  if (variant === 'white') return <WhiteHeader className={className} />
+  return <MainHeader className={className} />
+}
+
+function SpaceHeader({ className }: { className?: string }) {
   const nav = useNavigate()
 
+  return (
+    <section
+      className={cn(
+        'tablet:items-center tablet:justify-center tablet:px-[40px] tablet:h-[82px] sticky inset-x-0 top-0 z-50 flex h-[46px] w-full items-center justify-start bg-gradient-to-r from-[#172241] to-[#0D142B] px-[23px]',
+        className,
+      )}
+    >
+      <OnboardingLogoIcon
+        className="tablet:h-[36px] tablet:w-[81px] h-[21px] w-[47px]"
+        onClick={() => nav('/')}
+      />
+    </section>
+  )
+}
+
+function WhiteHeader({ className }: { className?: string }) {
+  const nav = useNavigate()
+
+  return (
+    <section
+      className={cn(
+        'tablet:items-center tablet:justify-center tablet:px-[40px] tablet:h-[82px] sticky inset-x-0 top-0 z-50 flex h-[46px] w-full items-center justify-start bg-white px-[23px]',
+        className,
+      )}
+    >
+      <LogoIcon
+        className="tablet:h-[36px] tablet:w-[81px] h-[21px] w-[47px]"
+        onClick={() => nav('/')}
+      />
+    </section>
+  )
+}
+
+function MainHeader({ className }: { className?: string }) {
+  const nav = useNavigate()
   const accessToken = localStorage.getItem('accessToken')
 
   return (
-    <header className="tablet:px-8 laptop:px-8 mx-auto flex w-full items-center justify-between px-8 py-3">
+    <header
+      className={cn(
+        'tablet:px-8 laptop:px-8 mx-auto flex w-full items-center justify-between px-8 py-3',
+        className,
+      )}
+    >
       <div className="flex items-center gap-[25px]">
         <LogoIcon width={0} height={0} className="h-[56px] w-[101px]" onClick={() => nav('/')} />
         <NavMenu className="tablet:flex hidden" />
@@ -53,5 +107,3 @@ const Header = () => {
     </header>
   )
 }
-
-export default Header

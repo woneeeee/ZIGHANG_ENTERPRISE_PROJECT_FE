@@ -389,8 +389,8 @@ body {
   /* Body/2xl/semibold */
   font-family: var(--font-family, Pretendard);
   font-size: var(--scale-body-2xl, 18px);
-  font-style: normal;
-  font-weight: var(--weight-semibold, 700);
+  font-style: semibold;
+  font-weight: var(--weight-semibold, 600);
   line-height: var(--lh-body-2xl, 28px); /* 155.556% */
 }
 @utility body-2xl-medium {
@@ -445,8 +445,8 @@ body {
   /* Body/xl/regular */
   font-family: var(--font-family, Pretendard);
   font-size: var(--scale-body-xl, 17px);
-  font-style: normal;
-  font-weight: var(--weight-regular, 500);
+  font-style: regular;
+  font-weight: var(--weight-regular, 400);
   line-height: var(--lh-body-xl, 28px); /* 164.706% */
 }
 @utility body-lg-bold {
@@ -576,7 +576,7 @@ body {
   font-family: var(--font-family, Pretendard);
   font-size: var(--scale-caption-sm, 12px);
   font-style: normal;
-  font-weight: var(--weight-medium, 500);
+  font-weight: var(--weight-medium, 400);
   line-height: var(--lh-caption-sm, 16px); /* 133.333% */
 }
 

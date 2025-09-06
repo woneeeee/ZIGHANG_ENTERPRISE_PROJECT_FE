@@ -5,6 +5,8 @@ import Landing from '@/pages/Landing'
 import Profile from '@/pages/Profile'
 import Login from '@/pages/Login'
 import Redirect from '@/pages/Redirect'
+import Result from '@/pages/onboarding/Result'
+import RootLayout from './layouts/RootLayout'
 
 function App() {
   return (
@@ -14,6 +16,9 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/login" element={<Login />} />
         <Route path="/kakao/oauth" element={<Redirect />} />
+        <Route element={<RootLayout />}>
+          <Route path="/onboarding/result" element={<Result />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   )

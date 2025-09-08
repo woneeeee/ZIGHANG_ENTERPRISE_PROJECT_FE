@@ -90,7 +90,10 @@ function MainHeader({ className }: { className?: string }) {
           <div className="tablet:flex hidden items-center gap-5">
             <div className="flex items-center gap-4">
               <button className="h-[40px] w-[84px]">기업회원</button>
-              <button className="body-md-semibold flex h-[40px] cursor-pointer items-center justify-center gap-3 rounded-[8px] border border-neutral-300 px-4 py-[10px] text-purple-600">
+              <button
+                className="body-md-semibold flex h-[40px] cursor-pointer items-center justify-center gap-3 rounded-[8px] border border-neutral-300 px-4 py-[10px] text-purple-600"
+                onClick={() => nav('/login')}
+              >
                 로그인 / 회원가입
               </button>
             </div>

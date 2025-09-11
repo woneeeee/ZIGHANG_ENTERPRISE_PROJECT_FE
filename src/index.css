@@ -430,7 +430,7 @@ body {
   font-family: var(--font-family, Pretendard);
   font-size: var(--scale-body-xl, 17px);
   font-style: normal;
-  font-weight: var(--weight-semibold, 700);
+  font-weight: var(--weight-semibold, 600);
   line-height: var(--lh-body-xl, 28px); /* 164.706% */
 }
 @utility body-xl-medium {

@@ -1,4 +1,4 @@
-import { type ProfileCardItem } from '../../constants/ProfileCard'
+import { type ProfileCardItem } from '@/constants/ProfileCard'
 
 type CardProps = {
   item: ProfileCardItem

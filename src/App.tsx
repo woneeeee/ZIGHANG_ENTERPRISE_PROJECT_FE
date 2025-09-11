@@ -8,6 +8,7 @@ import Redirect from '@/pages/Redirect'
 import Result from '@/pages/onboarding/Result'
 import RootLayout from '@/layouts/RootLayout'
 import OnboardingLogin from '@/pages/onboarding/OnboardingLogin'
+import Start from '@/pages/onboarding/Start'
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/kakao/oauth" element={<Redirect />} />
         <Route element={<RootLayout />}>
+          <Route path="/onboarding/start" element={<Start />} />
           <Route path="/onboarding/login" element={<OnboardingLogin />} />
           <Route path="/onboarding/result" element={<Result />} />
         </Route>

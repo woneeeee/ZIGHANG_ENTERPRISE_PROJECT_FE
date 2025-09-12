@@ -11,11 +11,15 @@ const UserInfoBox = ({ profile }: Props) => {
   return (
     <div className="flex flex-col gap-[12px]">
       <div className="tablet:w-[702px] laptop:w-[929px] desktop:w-[866px] flex w-[288px] rounded-[10px] border-1 border-neutral-200 px-[16px] py-[12px]">
-        <div className="body-sm-bold tablet:body-md-bold w-[99px] gap-[10px] pr-[60px]">이름</div>
+        <div className="body-sm-bold tablet:body-md-bold tablet:w-[99px] w-[58px] gap-[10px]">
+          이름
+        </div>
         <div className="body-md-medium text-neutral-700">{profile.name || '-'}</div>
       </div>
       <div className="tablet:w-[702px] laptop:w-[929px] desktop:w-[866px] flex w-[288px] rounded-[10px] border-1 border-neutral-200 px-[16px] py-[12px]">
-        <div className="body-sm-bold tablet:body-md-bold w-[99px] gap-[10px]">이메일</div>
+        <div className="body-sm-bold tablet:body-md-bold tablet:w-[99px] w-[58px] gap-[10px]">
+          이메일
+        </div>
         <div className="body-md-medium text-neutral-700">{profile.email || '-'}</div>
       </div>
       <div className="tablet:w-[702px] laptop:w-[929px] desktop:w-[866px] flex w-[288px] flex-col gap-[23px] rounded-[10px] border-1 border-neutral-200 px-[16px] py-[12px]">
@@ -45,7 +49,7 @@ const UserInfoBox = ({ profile }: Props) => {
         </div>
         <div className="tablet:flex-row flex flex-col">
           <div className="body-md-bold w-[99px] gap-[10px]">선호 거리</div>
-          <div className="body-md-medium text-neutral-700">{u.maxCommuteMinutes || '-'}</div>
+          <div className="body-md-medium text-neutral-700">{u.maxCommuteMinutes || '-'}분 이내</div>
         </div>
         <div className="tablet:flex-row flex flex-col">
           <div className="body-md-bold w-[99px] gap-[10px]">교통 수단</div>

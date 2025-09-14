@@ -20,7 +20,7 @@ const Redirect: React.FC = () => {
           if (res.data.code === '200') {
             localStorage.setItem('accessToken', accessToken)
             localStorage.setItem('refreshToken', refreshToken)
-            navigate('/profile')
+            navigate('/')
           } else {
             navigate('/login')
           }

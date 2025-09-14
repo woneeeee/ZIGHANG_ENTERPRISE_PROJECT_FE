@@ -8,6 +8,8 @@ import GrowingTextButton from './GrowingTextButton'
 import { ICON_MAP, ONBOARDINGRESULT, type CharacterKey } from '@/constants/OnboardingResult'
 import { renderWithHighlight } from '@/utils/renderWithHighlight'
 import { usePngExport } from '@/hooks/usePngExport'
+import { ChevronRightIcon } from '@/assets/svgComponents'
+import { useNavigate } from 'react-router-dom'
 
 const characterKey: CharacterKey = 'WLB'
 const description = ONBOARDINGRESULT[characterKey]
@@ -15,6 +17,7 @@ const OnboardingIcon = ICON_MAP[description.iconKey]
 
 const Card = () => {
   const accessToken = localStorage.getItem('accessToken')
+  const nav = useNavigate()
   const ctaContainerRef = useRef<HTMLDivElement | null>(null)
   const ctaInView = useInView(ctaContainerRef, {
     amount: 0.6,
@@ -28,6 +31,9 @@ const Card = () => {
     background: '#212642',
     scale: 2,
   })
+  const handleEntire = () => {
+    nav('/job')
+  }
 
   return (
     <main
@@ -76,7 +82,15 @@ const Card = () => {
         </section>
       </div>
       <div className="tablet:px-[81px] laptop:px-[50px] flex flex-col gap-[22px] px-[15px]">
-        <span className="heading-md-semibold text-white">나와 딱 맞는 공고</span>
+        <div className="flex items-center justify-between">
+          <span className="heading-md-semibold text-white">나와 딱 맞는 공고</span>
+          <div
+            className="body-xl-semibold pointer-cursor inline-flex items-center whitespace-nowrap text-white"
+            onClick={handleEntire}
+          >
+            전체보기 <ChevronRightIcon className="fill-white" />
+          </div>
+        </div>
         <div className="tablet:rounded-[16px] relative overflow-hidden rounded-[8px]">
           <div
             ref={ctaContainerRef}

@@ -7,6 +7,7 @@ import { useRef } from 'react'
 import GrowingTextButton from './GrowingTextButton'
 import { ICON_MAP, ONBOARDINGRESULT, type CharacterKey } from '@/constants/OnboardingResult'
 import { renderWithHighlight } from '@/utils/renderWithHighlight'
+import { usePngExport } from '@/hooks/usePngExport'
 
 const characterKey: CharacterKey = 'WLB'
 const description = ONBOARDINGRESULT[characterKey]
@@ -21,8 +22,18 @@ const Card = () => {
     once: true,
   })
 
+  const wrapperRef = useRef<HTMLDivElement | null>(null)
+  const handleSave = usePngExport(wrapperRef, {
+    filename: 'onboarding-card.png',
+    background: '#212642',
+    scale: 2,
+  })
+
   return (
-    <main className="[border-image:linear-gradient(90deg, rgba(120,112,158,.8) 0%, rgba(96,65,255,0) 50%, rgba(113,104,144,.8) 100% )_1] tablet:py-[60px] tablet:max-w-[702px] laptop:max-w-[894px] desktop:max-w-[900px] mx-auto flex max-w-[288px] flex-col justify-center gap-[60px] rounded-[30px] border-[1px] border-transparent bg-[#c8c2e5]/[0.07] py-[45px] backdrop-blur-[15px]">
+    <main
+      ref={wrapperRef}
+      className="[border-image:linear-gradient(90deg, rgba(120,112,158,.8) 0%, rgba(96,65,255,0) 50%, rgba(113,104,144,.8) 100% )_1] tablet:py-[60px] tablet:max-w-[702px] laptop:max-w-[894px] desktop:max-w-[900px] mx-auto flex max-w-[288px] flex-col justify-center gap-[60px] rounded-[30px] border-[1px] border-transparent bg-[#c8c2e5]/[0.07] py-[45px] backdrop-blur-[15px]"
+    >
       <div className="flex flex-col gap-[40px]">
         <section className="flex flex-col gap-[56px]">
           <div className="flex flex-col gap-[8px] text-center">
@@ -37,7 +48,7 @@ const Card = () => {
               <OnboardingIcon className="tablet:w-[299px] h-[220px] w-[228px]" />
               <Button
                 className="caption-sm-medium tablet:caption-md-medium rounded-[4px] bg-[#fff]/[.12] p-[10px] text-white"
-                onClick={() => {}}
+                onClick={handleSave}
               >
                 이미지 저장하기
               </Button>

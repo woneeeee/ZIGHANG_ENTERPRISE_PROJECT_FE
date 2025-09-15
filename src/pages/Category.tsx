@@ -1,4 +1,4 @@
-import JobCard from '@/components/job/JobCard.tsx'
+// import JobCard from '@/components/job/JobCard.tsx'
 import Header from '@/components/common/Header.tsx'
 
 export default function Category() {
@@ -11,17 +11,17 @@ export default function Category() {
         <MainFilter />
         <SecondFilter />
         <section className="desktop:grid-cols-2 desktop:mt-[32px] laptop:mt-[16px] grid w-full gap-4">
-          <JobCard hasTag={false} />
-          <JobCard hasTag={false} />
-          <JobCard hasTag={false} />
-          <JobCard hasTag={false} />
-          <JobCard hasTag={false} />
-          <JobCard hasTag={false} />
-          <JobCard hasTag={false} />
-          <JobCard hasTag={false} />
-          <JobCard hasTag={false} />
-          <JobCard hasTag={false} />
-          <JobCard hasTag={false} />
+          {/*<JobCard hasTag={false} />*/}
+          {/*<JobCard hasTag={false} />*/}
+          {/*<JobCard hasTag={false} />*/}
+          {/*<JobCard hasTag={false} />*/}
+          {/*<JobCard hasTag={false} />*/}
+          {/*<JobCard hasTag={false} />*/}
+          {/*<JobCard hasTag={false} />*/}
+          {/*<JobCard hasTag={false} />*/}
+          {/*<JobCard hasTag={false} />*/}
+          {/*<JobCard hasTag={false} />*/}
+          {/*<JobCard hasTag={false} />*/}
         </section>
       </div>
     </main>

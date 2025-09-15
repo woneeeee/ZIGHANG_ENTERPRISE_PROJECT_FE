@@ -120,12 +120,15 @@ const Card = () => {
       <div className="tablet:px-[81px] laptop:px-[50px] flex flex-col gap-[22px] px-[15px]">
         <div className="flex items-center justify-between">
           <span className="heading-md-semibold text-white">나와 딱 맞는 공고</span>
-          <div
-            className="caption-sm-medium tablet:body-xl-semibold inline-flex cursor-pointer items-center whitespace-nowrap text-white"
-            onClick={handleEntire}
-          >
-            전체보기 <ChevronRightIcon className="fill-white" />
-          </div>
+          {isLoggedIn && (
+            <button
+              type="button"
+              className="caption-sm-medium tablet:body-xl-semibold inline-flex cursor-pointer items-center whitespace-nowrap text-white"
+              onClick={handleEntire}
+            >
+              전체보기 <ChevronRightIcon className="ml-1 fill-white" />
+            </button>
+          )}
         </div>
         <div className="tablet:rounded-[16px] relative overflow-hidden rounded-[8px]">
           <div

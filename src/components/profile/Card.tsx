@@ -1,4 +1,5 @@
 import { type ProfileCardItem } from '@/constants/ProfileCard'
+import { useNavigate } from 'react-router-dom'
 
 type CardProps = {
   item: ProfileCardItem
@@ -6,6 +7,7 @@ type CardProps = {
 
 const Card = ({ item }: CardProps) => {
   const CharacterIcon = item.icon
+  const nav = useNavigate()
 
   return (
     <div className="bg-profile-card tablet:w-[298px] tablet:h-[530px] tablet:rounded-[14px] h-[400px] w-[224px] rounded-[10px] text-center shadow-[0_0_20px_0_rgba(0,0,0,0.12)]">
@@ -28,7 +30,9 @@ const Card = ({ item }: CardProps) => {
       <div className="tablet:h-[54px] tablet:py-[17px] tablet:px-[36px] tablet:gap-[30px] tablet:rounded-[14px] tablet:rounded-t-none flex h-[41px] items-center justify-center gap-[18px] rounded-[10px] rounded-t-none bg-white py-[12px]">
         <p
           className="caption-sm-medium tablet:body-sm-medium cursor-pointer whitespace-nowrap text-purple-500"
-          onClick={() => {}}
+          onClick={() => {
+            nav('/onboarding/result')
+          }}
         >
           결과 전체보기
         </p>

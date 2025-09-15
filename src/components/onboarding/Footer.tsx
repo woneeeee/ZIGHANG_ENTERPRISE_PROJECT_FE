@@ -1,24 +1,53 @@
 import { DownloadIcon, RefreshIcon } from '@/assets/svgComponents'
 import Button from './Button'
-
-const FOOTER_H = 108
+import { useNavigate } from 'react-router-dom'
 
 const Footer = () => {
+  const nav = useNavigate()
+
+  const handleRefresh = () => {
+    nav('/onboarding/start')
+  }
+
+  const handleShare = async () => {
+    const url = new URL('/onboarding/start', window.location.origin).toString()
+    const title = 'Onboarding Test'
+    const text = '온보딩 테스트 링크 공유할게!'
+
+    try {
+      if (navigator.share) {
+        await navigator.share({ title, text, url })
+        return
+      }
+      if ('clipboard' in navigator && window.isSecureContext) {
+        await navigator.clipboard.writeText(url)
+        alert('링크가 클립보드에 복사됐어요.')
+        return
+      }
+      window.prompt('아래 링크를 복사하세요:', url)
+    } catch (e) {
+      console.error('[share] failed:', e)
+      window.prompt('아래 링크를 복사하세요:', url)
+    }
+  }
+
   return (
     <footer className="fixed inset-x-0 bottom-0 z-50">
-      <div
-        aria-hidden
-        className="absolute inset-x-0 -top-[108px] h-[108px] items-center justify-center bg-gradient-to-b from-[#181C31]/0 to-[#1F2242]"
-      >
+      <div className="absolute inset-x-0 -top-[108px] h-[108px] items-center justify-center bg-gradient-to-b from-[#181C31]/0 to-[#1F2242]">
         <div className="mx-auto w-full max-w-[900px]">
-          <div
-            className={`flex h-[${FOOTER_H}px] tablet:gap-[18px] items-center justify-center gap-[14px]`}
-          >
-            <Button className="tablet:h-[48px] tablet:w-[48px] flex h-[40px] w-[40px] items-center justify-center rounded-[9999px] border border-neutral-200 bg-neutral-100">
+          <div className="tablet:gap-[18px] flex h-[108px] items-center justify-center gap-[14px]">
+            <Button
+              onClick={handleRefresh}
+              className="tablet:h-[48px] tablet:w-[48px] flex h-[40px] w-[40px] items-center justify-center rounded-full border border-neutral-200 bg-neutral-100"
+            >
               <RefreshIcon className="h-[24px] w-[24px]" />
             </Button>
-            <Button className="tablet:px-[60px] tablet:py-[12px] tablet:w-[240px] tablet:h-[46px] body-sm-semibold flex h-[39px] w-[210px] items-center gap-[8px] rounded-[6px] border border-purple-500 bg-neutral-50 px-[50px] py-[10px] text-purple-500">
-              <DownloadIcon className="tablet:h-[21px] tablet:w-[21px] h-[21px] w-[21px]" />
+
+            <Button
+              onClick={handleShare}
+              className="tablet:px-[60px] tablet:py-[12px] tablet:w-[240px] tablet:h-[46px] body-sm-semibold flex h-[39px] w-[210px] items-center gap-[8px] rounded-[6px] border border-purple-500 bg-neutral-50 px-[50px] py-[10px] text-purple-500"
+            >
+              <DownloadIcon className="h-[21px] w-[21px]" />
               테스트 공유하기
             </Button>
           </div>

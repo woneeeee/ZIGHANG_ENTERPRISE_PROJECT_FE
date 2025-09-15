@@ -11,6 +11,7 @@ import OnboardingLogin from '@/pages/onboarding/OnboardingLogin'
 import Start from '@/pages/onboarding/Start'
 import OnboardingTest from '@/pages/onboarding/OnboardingTest.tsx'
 import Job from '@/pages/Job.tsx'
+import Category from '@/pages/Category.tsx'
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path="/onboarding/login" element={<OnboardingLogin />} />
           <Route path="/onboarding/result" element={<Result />} />
         </Route>
+        <Route path="/:category" element={<Category />} />
       </Routes>
     </BrowserRouter>
   )

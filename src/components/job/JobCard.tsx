@@ -1,7 +1,7 @@
 import { BookmarkIcon, BusIcon } from '@/assets/svgComponents'
 
 interface JobCardProps {
-  hasTag: boolean
+  hasTag?: boolean
 }
 export default function JobCard({ hasTag = true }: JobCardProps) {
   return (

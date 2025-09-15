@@ -1,4 +1,4 @@
-import JobCard from '@/components/job/JobCard.tsx'
+// import JobCard from '@/components/job/JobCard.tsx'
 import Header from '@/components/common/Header.tsx'
 import RocketAssistant from '@/components/rocket/RocketAssistant'
 import { useEffect } from 'react'
@@ -11,23 +11,23 @@ export default function Category() {
 
   return (
     <main className="flex flex-col items-center justify-center">
-      <Header />
-      <div className="desktop:w-[1150px] laptop:w-[850px] tablet:w-[630px] flex w-[300px] flex-col items-start">
+      <Header></Header>
+      <div className="desktop:w-[1230px] laptop:w-[930px] tablet:w-[700px] flex w-[300px] flex-col items-start">
         <Menu />
         <MainFilter />
         <SecondFilter />
         <section className="desktop:grid-cols-2 desktop:mt-[32px] laptop:mt-[16px] grid w-full gap-4">
-          <JobCard hasTag={false} />
-          <JobCard hasTag={false} />
-          <JobCard hasTag={false} />
-          <JobCard hasTag={false} />
-          <JobCard hasTag={false} />
-          <JobCard hasTag={false} />
-          <JobCard hasTag={false} />
-          <JobCard hasTag={false} />
-          <JobCard hasTag={false} />
-          <JobCard hasTag={false} />
-          <JobCard hasTag={false} />
+          {/*<JobCard hasTag={false} />*/}
+          {/*<JobCard hasTag={false} />*/}
+          {/*<JobCard hasTag={false} />*/}
+          {/*<JobCard hasTag={false} />*/}
+          {/*<JobCard hasTag={false} />*/}
+          {/*<JobCard hasTag={false} />*/}
+          {/*<JobCard hasTag={false} />*/}
+          {/*<JobCard hasTag={false} />*/}
+          {/*<JobCard hasTag={false} />*/}
+          {/*<JobCard hasTag={false} />*/}
+          {/*<JobCard hasTag={false} />*/}
         </section>
       </div>
       <RocketAssistant

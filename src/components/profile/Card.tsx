@@ -12,7 +12,10 @@ const Card = ({ item }: CardProps) => {
 
   const handleDelete = async () => {
     try {
-      await deleteReOnboarding()
+      const res = await deleteReOnboarding()
+      if (res.name) {
+        nav('/onboarding/start')
+      }
     } catch (e) {
       console.error(e)
     }

@@ -6,7 +6,7 @@ export default function Category() {
     <main className="flex flex-col items-center justify-center">
       <Header></Header>
       <div className="flex flex-col items-start">
-        <section className="flex gap-x-4">
+        <section className="mt-8 flex gap-x-4">
           <button className="heading-md-medium border-b-[2px] pb-4">전체 공고</button>
           <button className="heading-md-medium text-neutral-500 pb-4">저장한 공고</button>
         </section>

@@ -1,14 +1,19 @@
 import JobCard from '@/components/job/JobCard.tsx'
 import Header from '@/components/common/Header.tsx'
 import RocketAssistant from '@/components/rocket/RocketAssistant'
+import { useEffect } from 'react'
 
 export default function Category() {
+  useEffect(() => {
+    const el = document.querySelector('#filter-itdev')
+    el?.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'auto' })
+  }, [])
+
   return (
     <main className="flex flex-col items-center justify-center">
-      <Header></Header>
+      <Header />
       <div className="desktop:w-[1150px] laptop:w-[850px] tablet:w-[630px] flex w-[300px] flex-col items-start">
         <Menu />
-        {/* 필터 */}
         <MainFilter />
         <SecondFilter />
         <section className="desktop:grid-cols-2 desktop:mt-[32px] laptop:mt-[16px] grid w-full gap-4">
@@ -28,7 +33,7 @@ export default function Category() {
       <RocketAssistant
         waypointSelector="#filter-itdev"
         endLeft={50}
-        endBottom={100}
+        endBottom={60}
         autoLaunch={true}
       />
     </main>
@@ -109,7 +114,10 @@ function MainFilter() {
             src="https://zighang.com/icon/expand_more.svg"
           />
         </div>
-        <div className="desktop:px-4 desktop:py-[10px] laptop:px-4 laptop:py-[10px] flex h-fit flex-shrink-0 flex-row items-center rounded-[10px] border border-purple-500 bg-purple-50 px-2 py-[6px]">
+        <div
+          id="filter-itdev"
+          className="desktop:px-4 desktop:py-[10px] laptop:px-4 laptop:py-[10px] flex h-fit flex-shrink-0 flex-row items-center rounded-[10px] border border-purple-500 bg-purple-50 px-2 py-[6px]"
+        >
           <div className="desktop:body-lg-regular laptop:body-lg-regular body-sm-regular text-purple-500">
             IT·개발
           </div>

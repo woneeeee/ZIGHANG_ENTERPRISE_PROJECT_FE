@@ -47,8 +47,6 @@ const Profile = () => {
       <div className="desktop:flex-row desktop:items-start tablet:gap-[60px] laptop:gap-[60px] desktop:gap-[48px] tablet:pt-[60px] laptop:pt-[60px] desktop:py-[90px] flex flex-col items-center gap-[30px] pt-[24px] pb-[82px]">
         {item ? (
           isUntested ? (
-            <Card item={item} />
-          ) : (
             <div className="bg-profile-card tablet:w-[298px] tablet:h-[530px] tablet:gap-[44px] tablet:rounded-[14px] tablet:px-[22px] tablet:py-[63px] flex h-[400px] w-[224px] flex-col items-center justify-center gap-[34px] rounded-[10px] px-[16px] py-[48px] text-center">
               <StartPlanetIcon className="tablet:w-[247px] tablet:h-[222px] h-[166px] w-[185px]" />
               <div className="tablet:gap-[30px] flex flex-col items-center justify-center gap-[22px]">
@@ -65,6 +63,8 @@ const Profile = () => {
                 </Button>
               </div>
             </div>
+          ) : (
+            <Card item={item} />
           )
         ) : (
           <div className="text-neutral-400">매칭되는 카드가 없어요</div>

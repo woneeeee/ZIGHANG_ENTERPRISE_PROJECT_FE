@@ -8,11 +8,12 @@ const Redirect: React.FC = () => {
   useEffect(() => {
     const queryParams = new URLSearchParams(window.location.search)
     const code = queryParams.get('code')
-    console.log(code)
 
     if (code) {
       api
-        .post('/auth/login/kakao', null, { params: { code } })
+        .post('/auth/login/kakao', null, {
+          params: { code, redirectUri: import.meta.env.VITE_KAKAO_REDIRECT_URI },
+        })
         .then((res) => {
           const { userId, accessToken, refreshToken } = res.data.result
           localStorage.setItem('userId', userId)

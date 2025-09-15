@@ -20,9 +20,10 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/login" element={<Login />} />
         <Route path="/job" element={<Job />} />
+        <Route path="/kakao/oauth" element={<Redirect />} />
         <Route path="/auth/login/kakao" element={<Redirect />} />
         <Route element={<RootLayout />}>
-          <Route path="/onboarding/test" element={<OnboardingTest/>}></Route>
+          <Route path="/onboarding/test" element={<OnboardingTest />}></Route>
           <Route path="/onboarding/start" element={<Start />} />
           <Route path="/onboarding/login" element={<OnboardingLogin />} />
           <Route path="/onboarding/result" element={<Result />} />

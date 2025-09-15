@@ -1,9 +1,7 @@
 import { KakaoLoginIcon, NaverLoginIcon, GoogleLoginIcon } from '@/assets/svgComponents'
 
 const CLIENT_ID = import.meta.env.VITE_KAKAO_CLIENT_ID
-const KAKAO_BASE_URL = import.meta.env.VITE_KAKAO_BASE_URL
 const KAKAO_REDIRECT_URI = import.meta.env.VITE_KAKAO_REDIRECT_URI
-const REDIRECT_URI = KAKAO_BASE_URL + KAKAO_REDIRECT_URI
 
 const LoginButton = ({ type = 'space' }) => {
   const baseClasses =
@@ -14,7 +12,7 @@ const LoginButton = ({ type = 'space' }) => {
       : 'bg-white/[0.12] border border-white/50 text-neutral-300'
   const buttonClasses = `${baseClasses} ${themeClasses}`
 
-  const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code`
+  const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${KAKAO_REDIRECT_URI}&response_type=code`
 
   return (
     <div className="flex flex-col gap-[10px]">

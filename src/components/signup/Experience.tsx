@@ -1,11 +1,11 @@
-import { useState } from 'react'
+import { type ChangeEvent, useState } from 'react'
+import { useSignUpStore } from '@/store/signupStore.ts'
 
 export default function Experience() {
-
   return (
     <main
       id="experience-section"
-      className="flex flex-col justify-start pt-[84px] px-4 gap-y-4 tablet:bg-[#FAFBFE] laptop:bg-[#FAFBFE] desktop:bg-[#FAFBFE] min-h-screen">
+      className="flex flex-col justify-start pt-[120px] px-4 gap-y-4 tablet:bg-[#FAFBFE] laptop:bg-[#FAFBFE] desktop:bg-[#FAFBFE] min-h-screen">
       <h1
         className="body-md-semibold tablet:heading-md-semibold desktop:heading-md-semibold laptop:heading-md-semibold">
         현재까지의 경력을 알려주세요</h1>
@@ -16,39 +16,48 @@ export default function Experience() {
     </main>
   )
 }
+
 function CustomRangeSlider () {
+  const setState = useSignUpStore((state) => state.setState)
+  const signUpData = useSignUpStore((state) => state.signUpData)
   // 단일 값으로 경력을 관리 (0: 신입, 1-10: N년, 11: 10년 이상)
-  const [experience, setExperience] = useState(0);
+  // const [experience, setExperience] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
 
   // 경력 값을 텍스트로 변환하는 함수
-  const getExperienceText = (value: number) => {
-    if (value === 0) return "신입";
-    if (value >= 1 && value <= 10) return `${value}년`;
-    if (value >= 11) return "10년 이상";
+  const getExperienceText = (value: number | undefined) => {
+    const safeValue = value ?? 0;
+
+    if (safeValue === 0) return "신입";
+    if (safeValue >= 1 && safeValue <= 10) return `${safeValue}년`;
+    if (safeValue >= 11) return "10년 이상";
     return "신입";
   };
 
-  const progressPercentage = (experience / 11) * 100;
+  const progressPercentage = ((signUpData?.workExperience ?? 0) / 11) * 100;
 
   // thumb 위치 계산 - "10년+"의 경우 오른쪽 여백을 줄임
   const getThumbPosition = () => {
-    if (experience >= 11) {
-      // "10년+"일 때 더 오른쪽으로 이동 (여백 최소화)
+    const workExperience = signUpData?.workExperience ?? 0;
+
+    if (workExperience >= 11) {
       return `calc(${progressPercentage}% - 10px)`;
     }
-    if (experience === 0) {
-      // "신입"일 때 더 왼쪽으로 이동
+    if (workExperience === 0) {
       return `calc(${progressPercentage}% + 5px)`;
     }
-    // 나머지는 기본 계산
     return `calc(${progressPercentage}% + ${10 - progressPercentage * 0.2}px)`;
   };
 
 
-  const handleExperienceClick = (jobCategory) => {
-    // 1. 상태 저장
-
+  const handleExperienceClick = (workExperience: number | undefined) => {
+    // 1. 상태 저장 - setState 구조 수정
+    setState({
+      signUpData: {
+        ...signUpData,
+        workExperience: workExperience
+      }
+    })
     // 2. Category 섹션으로 부드러운 스크롤
     const categorySection = document.getElementById('commute-section')
     if (categorySection) {
@@ -68,13 +77,18 @@ function CustomRangeSlider () {
   const handleMouseUp = () => {
     if (isDragging) {
       setIsDragging(false);
-      handleExperienceClick(experience);
+      handleExperienceClick(signUpData?.workExperience);
     }
   }
 
-  // 슬라이더 값 변경
-  const handleSliderChange = (e) => {
-    setExperience(parseInt(e.target.value));
+  // 슬라이더 값 변경 - setState 구조 수정
+  const handleSliderChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setState({
+      signUpData: {
+        ...signUpData,
+        workExperience: parseInt(e.target.value)
+      }
+    })
   }
 
 
@@ -86,7 +100,7 @@ function CustomRangeSlider () {
           min={0}
           max={11}
           step={1}
-          value={experience}
+          value={signUpData?.workExperience ?? 0}
           onChange={handleSliderChange}
           onMouseDown={handleMouseDown}
           onMouseUp={handleMouseUp}
@@ -104,7 +118,7 @@ function CustomRangeSlider () {
           className="absolute top-[35px] caption-md-medium transform -translate-x-1/2 transition-all duration-200 ease-out whitespace-nowrap"
           style={{ left: getThumbPosition() }}
         >
-          {getExperienceText(experience)}
+          {getExperienceText(signUpData?.workExperience)}
         </div>
       </div>
     </div>

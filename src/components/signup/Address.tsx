@@ -1,10 +1,12 @@
 import { useState } from 'react'
+import { useSignUpStore } from '@/store/signupStore.ts'
+import { AnimatedSpeechBubble } from '@/components/signup/AnimatedSpeechBubble.tsx'
 
 export default function Address() {
   return (
     <main
       id="address-section"
-      className="tablet:bg-[#FAFBFE] laptop:bg-[#FAFBFE] desktop:bg-[#FAFBFE] flex min-h-screen flex-col gap-y-4 px-4 pt-[84px]"
+      className="tablet:bg-[#FAFBFE] laptop:bg-[#FAFBFE] desktop:bg-[#FAFBFE] flex min-h-screen flex-col gap-y-4 px-4 pt-[120px]"
     >
       <h1 className="body-md-semibold tablet:heading-md-semibold desktop:heading-md-semibold laptop:heading-md-semibold">
         더 정확한 맞춤 공고를 위해, 거주하시는 곳을 알려주세요
@@ -14,10 +16,37 @@ export default function Address() {
   )
 }
 
+interface AddressType {
+  roadAddr: string
+  jibunAddr: string
+  zipNo: string
+  // 필요한 경우 다른 속성들도 추가
+}
+
 function CustomAddressSearch() {
+  const setState = useSignUpStore((state) => state.setState)
+  const signUpData = useSignUpStore((state) => state.signUpData)
+
   const [keyword, setKeyword] = useState('')
-  const [results, setResults] = useState([])
-  const [selectedAddress, setSelectedAddress] = useState(undefined)
+  const [results, setResults] = useState<AddressType[]>([])
+
+  // 모든 필수 값이 입력되었는지 확인하는 함수
+  const isFormComplete = () => {
+    if (!signUpData) return false
+
+    return (
+      signUpData.workExperience !== undefined &&
+      signUpData.education !== undefined &&
+      signUpData.jobGroupEnum !== undefined &&
+      signUpData.jobPositionEnum !== undefined &&
+      signUpData.jobPositionEnum.length > 0 &&
+      signUpData.maxCommuteMinutes !== undefined &&
+      signUpData.transport !== undefined &&
+      signUpData.address !== undefined
+    )
+  }
+
+  const formComplete = isFormComplete()
 
   const searchAddress = async () => {
     try {
@@ -32,10 +61,17 @@ function CustomAddressSearch() {
     }
   }
 
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      searchAddress()
+    }
+  }
+
   return (
     <div className="flex w-full flex-col">
       <div className="flex gap-1">
         <input
+          onKeyPress={handleKeyPress}
           type="text"
           value={keyword}
           onChange={(e) => setKeyword(e.target.value)}
@@ -51,14 +87,14 @@ function CustomAddressSearch() {
       </div>
 
       <div className="mt-[9px] space-y-2">
-        {selectedAddress ? (
+        {signUpData?.address ? (
           <div className="flex flex-col gap-y-[9px]">
             <div className="caption-sm-medium rounded-[4px] bg-neutral-100 p-2 text-neutral-400">
-              {selectedAddress}
+              {signUpData?.address}
             </div>
             <button
               onClick={() => {
-                setSelectedAddress(undefined)
+                setState({ ...signUpData, signUpData: { ...signUpData, address: undefined } })
               }}
               className="caption-sm-medium h-[32px] w-fit cursor-pointer rounded-[4px] border border-neutral-300 bg-neutral-100 px-2"
             >
@@ -74,12 +110,20 @@ function CustomAddressSearch() {
                   <br />
                   검색어를 상세히 입력해보세요.
                 </div>
-                <div className="flex flex-col h-[194px] overflow-y-scroll">
+                <div className="flex h-[194px] flex-col overflow-y-scroll">
                   {results.map((address, index) => (
-                    <div className="flex items-start justify-between gap-x-[14px] pb-[18px] pt-[16px] border-b border-neutral-300" key={index}>
+                    <div
+                      className="flex items-start justify-between gap-x-[14px] border-b border-neutral-300 pt-[16px] pb-[18px]"
+                      key={index}
+                    >
                       <div
                         className="flex cursor-pointer flex-col gap-y-4"
-                        onClick={() => console.log('선택된 주소:', address.roadAddr)}
+                        onClick={() => {
+                          setState({
+                            ...signUpData,
+                            signUpData: { ...signUpData, address: address.roadAddr },
+                          })
+                        }}
                       >
                         <div className="caption-sm-medium">{address.roadAddr}</div>
                         <div className="flex flex-col gap-y-1">
@@ -101,7 +145,10 @@ function CustomAddressSearch() {
                       </div>
                       <button
                         onClick={() => {
-                          setSelectedAddress(address.roadAddr)
+                          setState({
+                            ...signUpData,
+                            signUpData: { ...signUpData, address: address.roadAddr },
+                          })
                         }}
                         className="caption-sm-medium h-[24px] cursor-pointer rounded-[2px] bg-purple-200 px-[6px] whitespace-nowrap"
                       >
@@ -110,14 +157,18 @@ function CustomAddressSearch() {
                     </div>
                   ))}
                 </div>
-
               </div>
             ) : results.length !== 0 ? (
               results.map((address, index) => (
                 <div className="flex items-start justify-between gap-x-[14px]" key={index}>
                   <div
                     className="flex cursor-pointer flex-col gap-y-4"
-                    onClick={() => console.log('선택된 주소:', address.roadAddr)}
+                    onClick={() => {
+                      setState({
+                        ...signUpData,
+                        signUpData: { ...signUpData, address: address.roadAddr },
+                      })
+                    }}
                   >
                     <div className="caption-sm-medium">{address.roadAddr}</div>
                     <div className="flex flex-col gap-y-1">
@@ -139,7 +190,10 @@ function CustomAddressSearch() {
                   </div>
                   <button
                     onClick={() => {
-                      setSelectedAddress(address.roadAddr)
+                      setState({
+                        ...signUpData,
+                        signUpData: { ...signUpData, address: address.roadAddr },
+                      })
                     }}
                     className="caption-sm-medium h-[24px] cursor-pointer rounded-[2px] bg-purple-200 px-[6px] whitespace-nowrap"
                   >
@@ -148,22 +202,51 @@ function CustomAddressSearch() {
                 </div>
               ))
             ) : (
-              <div className="flex flex-col gap-y-2 mt-6">
-                <p className="caption-md-semibold text-purple-500 ">이렇게 검색하면 좋아요</p>
+              <div className="mt-6 flex flex-col gap-y-2">
+                <p className="caption-md-semibold text-purple-500">이렇게 검색하면 좋아요</p>
                 <div className="flex flex-col gap-y-1">
                   <div className="flex flex-col">
-                    <p className="text-neutral-800 caption-sm-medium">도로명 + 건물번호</p>
-                    <p className="caption-md-medium text-neutral-400">예) 양재대로 1300, 왕십리로 222</p>
+                    <p className="caption-sm-medium text-neutral-800">도로명 + 건물번호</p>
+                    <p className="caption-md-medium text-neutral-400">
+                      예) 양재대로 1300, 왕십리로 222
+                    </p>
                   </div>
                   <div className="flex flex-col">
-                    <p className="text-neutral-800 caption-sm-medium">동/읍/면리 + 번지</p>
-                    <p className="caption-md-medium text-neutral-400">예) 백현동 532, 정자동 178-4</p>
+                    <p className="caption-sm-medium text-neutral-800">동/읍/면리 + 번지</p>
+                    <p className="caption-md-medium text-neutral-400">
+                      예) 백현동 532, 정자동 178-4
+                    </p>
                   </div>
                 </div>
               </div>
             )}
           </div>
         )}
+      </div>
+
+      <div className="flex flex-col items-center justify-center fixed bottom-[30px] left-1/2 -translate-x-1/2 ">
+        {formComplete ? (
+          <AnimatedSpeechBubble floatingType="gentle">
+            <p className="text-purple-500">프로필 정보에 맞는 맞춤 공고로 이동해요</p>
+          </AnimatedSpeechBubble>
+        ) : null}
+
+        <button
+          className={`mt-5 flex h-[36px] w-[55px] items-center justify-center rounded-[6px] text-white transition-colors ${
+            formComplete
+              ? 'cursor-pointer bg-purple-500 hover:bg-purple-600'
+              : 'cursor-not-allowed bg-neutral-400'
+          }`}
+          disabled={!formComplete}
+          onClick={() => {
+            if (formComplete) {
+              // 완료 처리 로직
+              console.log('회원가입 완료!')
+            }
+          }}
+        >
+          완료
+        </button>
       </div>
     </div>
   )

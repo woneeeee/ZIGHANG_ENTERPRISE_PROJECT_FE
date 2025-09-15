@@ -1,8 +1,19 @@
 import { commutingTimeConstants } from '@/constants/SignUp.ts'
+import { useSignUpStore } from '@/store/signupStore.ts'
 
 export default function CommutingTime() {
-  const handleCommutingTimeClick = (commutingTime) => {
+  const setState = useSignUpStore((state) => state.setState)
+  const signUpData = useSignUpStore((state) => state.signUpData)
+
+  const handleCommutingTimeClick = (commutingTime: number) => {
     // 1. 상태 저장
+    setState({
+      ...signUpData,
+      signUpData: {
+        ...signUpData,
+        maxCommuteMinutes: commutingTime, // 객체가 아닌 commute 값 직접 할당
+      },
+    })
 
     // 2. Category 섹션으로 부드러운 스크롤
     const categorySection = document.getElementById('address-section')
@@ -16,7 +27,7 @@ export default function CommutingTime() {
   return (
     <main
       id="commuting-time-section"
-      className="tablet:bg-[#FAFBFE] laptop:bg-[#FAFBFE] desktop:bg-[#FAFBFE] flex min-h-screen flex-col gap-y-4 px-4 pt-[84px]"
+      className="tablet:bg-[#FAFBFE] laptop:bg-[#FAFBFE] desktop:bg-[#FAFBFE] flex min-h-screen flex-col gap-y-4 px-4 pt-[120px]"
     >
       <h1 className="body-md-semibold tablet:heading-md-semibold desktop:heading-md-semibold laptop:heading-md-semibold">
         출퇴근 시간은 어느정도가 괜찮으신가요?
@@ -25,9 +36,9 @@ export default function CommutingTime() {
         {commutingTimeConstants.map((commutingTime) => {
           return (
             <button
-              onClick={() => handleCommutingTimeClick(commutingTime)}
+              onClick={() => handleCommutingTimeClick(commutingTime.enum)}
               key={commutingTime.kor}
-              className={`caption-sm-medium flex h-[36px] cursor-pointer items-center justify-center rounded-[6px] border border-neutral-400 px-[12px] py-[10px] hover:border-purple-300 hover:bg-purple-50`}
+              className={`${signUpData?.maxCommuteMinutes === commutingTime.enum ? 'bg-purple-500 text-white' : 'border border-neutral-400'} caption-sm-medium flex h-[36px] cursor-pointer items-center justify-center rounded-[6px] px-[12px] py-[10px] hover:border-purple-300 hover:bg-purple-50`}
             >
               {commutingTime.kor}
             </button>

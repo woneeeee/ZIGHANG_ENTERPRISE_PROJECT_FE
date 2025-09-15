@@ -12,6 +12,7 @@ import Start from '@/pages/onboarding/Start'
 import OnboardingTest from '@/pages/onboarding/OnboardingTest.tsx'
 import Job from '@/pages/Job.tsx'
 import Category from '@/pages/Category.tsx'
+import SignUp from '@/pages/SignUp.tsx'
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/job" element={<Job />} />
         <Route path="/kakao/oauth" element={<Redirect />} />
         <Route path="/auth/login/kakao" element={<Redirect />} />
+        <Route path="/sign-up" element={<SignUp/>}></Route>
         <Route element={<RootLayout />}>
           <Route path="/onboarding/test" element={<OnboardingTest />}></Route>
           <Route path="/onboarding/start" element={<Start />} />

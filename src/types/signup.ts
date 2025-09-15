@@ -1,18 +1,18 @@
 export interface SignUpDataType {
-  workExperience: number
-  education: EducationEnumType
-  jobGroupEnum: JobGroupEnumType
-  jobPositionEnum: JobPositionEnumType[]
-  maxCommuteMinutes: number
-  transport: TransportEnumType
-  address: string
-  characterId: number
-  companyList: CompanyEnumType[]
-  welfareList: string[]
-  companyRatio: {
-    additionalProp1: 0
-    additionalProp2: 0
-    additionalProp3: 0
+  workExperience?: number
+  education?: EducationEnumType
+  jobGroupEnum?: JobGroupEnumType
+  jobPositionEnum?: JobPositionEnumType[]
+  maxCommuteMinutes?: number
+  transport?: TransportEnumType
+  address?: string
+  characterId?: number
+  companyList?: CompanyEnumType[]
+  welfareList?: string[]
+  companyRatio?: {
+    additionalProp1?: 0
+    additionalProp2?: 0
+    additionalProp3?: 0
   }
 }
 
@@ -24,6 +24,7 @@ export type EducationEnumType =
   | 'BACHELOR'
   | 'MASTER'
   | 'DOCTOR'
+
 export type JobGroupEnumType =
   | 'IT_개발'
   | 'AI_데이터'

@@ -1,18 +1,21 @@
-export const levelOfEducationConstants = [
-  { kor: '고졸', enum: '고졸' },
-  { kor: '초대졸', enum: '초대졸' },
-  { kor: '학사', enum: '학사' },
-  { kor: '석사', enum: '석사' },
-  { kor: '박사', enum: '박사' },
+import type { EducationEnumType, JobGroupEnumType, JobPositionEnumType, TransportEnumType } from '@/types/signup.ts'
+
+export const levelOfEducationConstants: {kor: string; enum: EducationEnumType}[] = [
+  { kor: '고졸', enum: 'HIGH_SCHOOL' },
+  { kor: '초대졸', enum: 'JUNIOR_COLLEGE' },
+  { kor: '학사', enum: 'BACHELOR' },
+  { kor: '석사', enum: 'MASTER' },
+  { kor: '박사', enum: 'DOCTOR' },
+  { kor: '무관', enum: 'IRRELEVANT' },
 ]
-export const category1Constants = [
+export const category1Constants: {kor: string; enum: JobGroupEnumType}[] = [
   { kor: 'IT·개발', enum: 'IT_개발' },
   { kor: 'AI·데이터', enum: 'AI_데이터' },
   { kor: '엔지니어링·R&D', enum: '엔지니어링_R&D' },
   { kor: '건설·건축', enum: '건설_건축' },
   { kor: '생산·기능직', enum: '생산_기능직' },
 ]
-export const category2Constants = [
+export const category2Constants: {kor: string; enum: JobGroupEnumType}[] = [
   { kor: '법률·법무', enum: '법률_법무' },
   { kor: '증권·운용', enum: '증권_운용' },
   { kor: '은행·카드·보험', enum: '은행_카드_보험' },
@@ -21,7 +24,7 @@ export const category2Constants = [
   { kor: '교육', enum: '교육' },
   { kor: '식음료', enum: '식음료' },
 ]
-export const category3Constants = [
+export const category3Constants: {kor: string; enum: JobGroupEnumType}[] = [
   { kor: '마케팅·광고', enum: '마케팅_광고' },
   { kor: '디자인', enum: '디자인' },
   { kor: '게임', enum: '게임' },
@@ -29,7 +32,7 @@ export const category3Constants = [
   { kor: '고객상담·TM', enum: '고객상담_TM' },
   { kor: '서비스', enum: '서비스' },
 ]
-export const category4Constants = [
+export const category4Constants: {kor: string; enum: JobGroupEnumType}[] = [
   { kor: '기획·전략', enum: '기획_전략' },
   { kor: '상품기획·MD', enum: '상품기획_MD' },
   { kor: '영업', enum: '영업' },
@@ -44,7 +47,7 @@ export const category4Constants = [
 /**
  * IT_개발
  */
-export const ITConstants = [
+export const ITConstants: {kor: string; enum: JobPositionEnumType}[] = [
     { kor: '전체', enum: '전체' },
     { kor: '서버·백엔드', enum: '서버_백엔드' },
     { kor: '프론트엔드', enum: '프론트엔드' },
@@ -72,7 +75,7 @@ export const ITConstants = [
     { kor: '하드웨어엔지니어', enum: '하드웨어엔지니어' },
     { kor: '기타IT·개발', enum: '기타IT_개발' },
   ]
-export const AIConstants = [
+export const AIConstants: {kor: string; enum: JobPositionEnumType}[] = [
     { kor: '전체', enum: '전체' },
     { kor: '데이터 분석가', enum: '데이터_분석가' },
     { kor: '데이터 사이언티스트', enum: '데이터_사이언티스트' },
@@ -92,7 +95,7 @@ export const AIConstants = [
     { kor: 'RAG', enum: 'RAG' },
     { kor: '기타AI·데이터', enum: '기타AI_데이터' },
   ]
-export const engineeringConstants = [
+export const engineeringConstants: {kor: string; enum: JobPositionEnumType}[] = [
     { kor: '전체', enum: '전체' },
     { kor: '반도체·디스플레이', enum: '반도체_디스플레이' },
     { kor: '전기·전자·제어', enum: '전기_전자_제어' },
@@ -110,7 +113,7 @@ export const engineeringConstants = [
     { kor: '환경', enum: '환경' },
     { kor: '기타엔지니어링·R&D', enum: '기타엔지니어링_R&D' },
   ]
-export const architectureConstants = [
+export const architectureConstants: {kor: string; enum: JobPositionEnumType}[] = [
     { kor: '전체', enum: '전체' },
     { kor: '건축설계·시공', enum: '건축설계_시공' },
     { kor: '토목·측량·조경·환경', enum: '토목_측량_조경_환경' },
@@ -124,7 +127,7 @@ export const architectureConstants = [
 /**
  * 생산·기능직
  */
-export const manufacturingConstants = [
+export const manufacturingConstants: {kor: string; enum: JobPositionEnumType}[] = [
   { kor: '전체', enum: '전체' },
   { kor: '생산', enum: '생산' },
   { kor: '공무', enum: '공무' },
@@ -141,7 +144,7 @@ export const manufacturingConstants = [
 /**
  * 법률·법무
  */
-export const legalConstants = [
+export const legalConstants: {kor: string; enum: JobPositionEnumType}[] = [
   { kor: '전체', enum: '전체' },
   { kor: '변호사', enum: '변호사' },
   { kor: '변리사', enum: '변리사' },
@@ -156,7 +159,7 @@ export const legalConstants = [
 /**
  * 증권·운용
  */
-export const securitiesConstants = [
+export const securitiesConstants: {kor: string; enum: JobPositionEnumType}[] = [
   { kor: '전체', enum: '전체' },
   { kor: '운용·트레이딩', enum: '운용_트레이딩' },
   { kor: '리스크·준법·심사', enum: '리스크_준법_심사' },
@@ -172,7 +175,7 @@ export const securitiesConstants = [
 /**
  * 은행·카드·보험
  */
-export const financeConstants = [
+export const financeConstants: {kor: string; enum: JobPositionEnumType}[] = [
   { kor: '전체', enum: '전체' },
   { kor: '은행', enum: '은행' },
   { kor: '카드사', enum: '카드사' },
@@ -189,7 +192,7 @@ export const financeConstants = [
 /**
  * 의료·보건
  */
-export const medicalConstants = [
+export const medicalConstants: {kor: string; enum: JobPositionEnumType}[] = [
   { kor: '전체', enum: '전체' },
   { kor: '의사', enum: '의사' },
   { kor: '한의사', enum: '한의사' },
@@ -213,7 +216,7 @@ export const medicalConstants = [
 /**
  * 공공·복지
  */
-export const publicServiceConstants = [
+export const publicServiceConstants: {kor: string; enum: JobPositionEnumType}[] = [
   { kor: '전체', enum: '전체' },
   { kor: '행정·사무·운영', enum: '행정_사무_운영' },
   { kor: '기술·전산·시설', enum: '기술_전산_시설' },
@@ -231,7 +234,7 @@ export const publicServiceConstants = [
 /**
  * 교육
  */
-export const educationConstants = [
+export const educationConstants: {kor: string; enum: JobPositionEnumType}[] = [
   { kor: '전체', enum: '전체' },
   { kor: '유치원·보육교사', enum: '유치원_보육교사' },
   { kor: '기간제·사립교사', enum: '기간제_사립교사' },
@@ -250,7 +253,7 @@ export const educationConstants = [
 /**
  * 식음료
  */
-export const foodAndBeverageConstants = [
+export const foodAndBeverageConstants: {kor: string; enum: JobPositionEnumType}[] = [
   { kor: '전체', enum: '전체' },
   { kor: '식품가공·개발', enum: '식품가공_개발' },
   { kor: '주방조리', enum: '주방조리' },
@@ -265,7 +268,7 @@ export const foodAndBeverageConstants = [
 /**
  * 마케팅·광고
  */
-export const marketingConstants = [
+export const marketingConstants: {kor: string; enum: JobPositionEnumType}[] = [
   { kor: '전체', enum: '전체' },
   { kor: '마케팅기획·전략', enum: '마케팅기획_전략' },
   { kor: '퍼포먼스 마케팅', enum: '퍼포먼스마케팅' },
@@ -283,7 +286,7 @@ export const marketingConstants = [
 /**
  * 디자인
  */
-export const designConstants = [
+export const designConstants: {kor: string; enum: JobPositionEnumType}[] = [
   { kor: '전체', enum: '전체' },
   { kor: 'UIUX·프로덕트', enum: 'UIUX_프로덕트' },
   { kor: '웹디자인', enum: '웹디자인' },
@@ -306,7 +309,7 @@ export const designConstants = [
 /**
  * 게임
  */
-export const gameConstants = [
+export const gameConstants: {kor: string; enum: JobPositionEnumType}[] = [
   { kor: '전체', enum: '전체' },
   { kor: '게임기획·PM', enum: '게임기획_PM' },
   { kor: '게임운영', enum: '게임운영' },
@@ -328,7 +331,7 @@ export const gameConstants = [
 /**
  * 미디어·엔터
  */
-export const mediaAndEntertainmentConstants = [
+export const mediaAndEntertainmentConstants: {kor: string; enum: JobPositionEnumType}[] = [
   { kor: '전체', enum: '전체' },
   { kor: 'PD·감독', enum: 'PD_감독' },
   { kor: '콘텐츠기획·에디터', enum: '콘텐츠기획_에디터' },
@@ -357,7 +360,7 @@ export const mediaAndEntertainmentConstants = [
 /**
  * 고객상담·TM
  */
-export const customerServiceConstants = [
+export const customerServiceConstants: {kor: string; enum: JobPositionEnumType}[] = [
   { kor: '전체', enum: '전체' },
   { kor: '직행수집', enum: '직행수집' },
   { kor: '원티드', enum: '원티드' },
@@ -393,7 +396,7 @@ export const customerServiceConstants = [
 /**
  * 서비스
  */
-export const serviceConstants = [
+export const serviceConstants: {kor: string; enum: JobPositionEnumType}[] = [
   { kor: '전체', enum: '전체' },
   { kor: '설치·수리기사', enum: '설치_수리기사' },
   { kor: '주차·주유', enum: '주차_주유' },
@@ -417,7 +420,7 @@ export const serviceConstants = [
 /**
  * 기획·전략
  */
-export const planningAndStrategyConstants = [
+export const planningAndStrategyConstants: {kor: string; enum: JobPositionEnumType}[] = [
   { kor: '전체', enum: '전체' },
   { kor: 'PM·PO', enum: 'PM_PO' },
   { kor: '서비스·상품기획', enum: '서비스_상품기획' },
@@ -434,7 +437,7 @@ export const planningAndStrategyConstants = [
 /**
  * 상품기획·MD
  */
-export const productPlanningAndMDConstants = [
+export const productPlanningAndMDConstants: {kor: string; enum: JobPositionEnumType}[] = [
   { kor: '전체', enum: '전체' },
   { kor: '상품기획', enum: '상품기획' },
   { kor: '온라인MD', enum: '온라인MD' },
@@ -449,7 +452,7 @@ export const productPlanningAndMDConstants = [
 /**
  * 영업
  */
-export const salesConstants = [
+export const salesConstants: {kor: string; enum: JobPositionEnumType}[] = [
   { kor: '전체', enum: '전체' },
   { kor: 'B2C영업', enum: 'B2C영업' },
   { kor: 'B2B영업', enum: 'B2B영업' },
@@ -465,7 +468,7 @@ export const salesConstants = [
 /**
  * 무역·물류
  */
-export const tradeAndLogisticsConstants = [
+export const tradeAndLogisticsConstants: {kor: string; enum: JobPositionEnumType}[] = [
   { kor: '전체', enum: '전체' },
   { kor: '해외·상사영업', enum: '해외_상사영업' },
   { kor: '수출입관리·사무', enum: '수출입관리_사무' },
@@ -485,7 +488,7 @@ export const tradeAndLogisticsConstants = [
 /**
  * 운송·배송
  */
-export const transportationConstants = [
+export const transportationConstants: {kor: string; enum: JobPositionEnumType}[] = [
   { kor: '전체', enum: '전체' },
   { kor: '배송·배달', enum: '배송_배달' },
   { kor: '승객운송', enum: '승객운송' },
@@ -498,7 +501,7 @@ export const transportationConstants = [
 /**
  * 회계·재무·세무
  */
-export const accountingConstants = [
+export const accountingConstants: {kor: string; enum: JobPositionEnumType}[] = [
   { kor: '전체', enum: '전체' },
   { kor: '직행수집', enum: '직행수집' },
   { kor: '원티드', enum: '원티드' },
@@ -534,7 +537,7 @@ export const accountingConstants = [
 /**
  * HR·총무
  */
-export const hrConstants = [
+export const hrConstants: {kor: string; enum: JobPositionEnumType}[] = [
   { kor: '전체', enum: '전체' },
   { kor: '인사기획', enum: '인사기획' },
   { kor: '평가·보상', enum: '평가_보상' },
@@ -546,12 +549,12 @@ export const hrConstants = [
 ]
 
 
-export const commuteConstants = [
-  { kor: '자가용', enum: '자가용' },
-  { kor: '대중교통', enum: '대중교통' },
+export const commuteConstants: {kor: string; enum: TransportEnumType}[] = [
+  { kor: '자가용', enum: 'CAR' },
+  { kor: '대중교통', enum: 'TRANSIT' },
 ]
 
-export const commutingTimeConstants = [
+export const commutingTimeConstants: {kor: string; enum: number}[] = [
   { kor: '30분 이내', enum: 30 },
   { kor: '1시간 이내', enum: 60 },
   { kor: '1시간 30분 이내', enum: 90 },

@@ -22,7 +22,7 @@ export default function Education() {
   return (
     <main
       id={"education-section"}
-      className="tablet:bg-[#FAFBFE] laptop:bg-[#FAFBFE] desktop:bg-[#FAFBFE] flex min-h-screen flex-col gap-y-4 px-4 pt-[84px]">
+      className="tablet:bg-[#FAFBFE] laptop:bg-[#FAFBFE] desktop:bg-[#FAFBFE] flex min-h-screen flex-col gap-y-4 px-4 desktop:pt-[150px] laptop:pt-[150px] tablet:pt-[120px] pt-[84px]">
       <h1 className="body-md-semibold tablet:heading-md-semibold desktop:heading-md-semibold laptop:heading-md-semibold">
         최종학력이 어떻게 되시나요?
       </h1>
@@ -32,7 +32,7 @@ export default function Education() {
             <button
               onClick={() => handleEducationClick(education.enum)}
               key={education.kor}
-              className={`${signUpData?.education === education.enum ? 'bg-purple-500 text-white' : 'border border-neutral-400'} caption-sm-medium flex h-[36px] cursor-pointer items-center justify-center rounded-[6px] px-[12px] py-[10px] hover:border-purple-300 hover:bg-purple-50`}
+              className={`${signUpData?.education === education.enum ? 'bg-purple-500 text-white' : 'border border-neutral-400'} desktop:body-md-medium laptop:body-md-medium tablet:body-md-medium caption-sm-medium flex h-[36px] cursor-pointer items-center justify-center rounded-[6px] desktop:px-[24px] desktop:py-[12px] laptop:px-[24px] laptop:py-[12px] tablet:px-[24px] tablet:py-[12px] px-[12px] py-[10px] hover:border-purple-300 hover:bg-purple-50`}
             >
               {education.kor}
             </button>

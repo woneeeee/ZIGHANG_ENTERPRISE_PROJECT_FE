@@ -6,7 +6,7 @@ export default function Address() {
   return (
     <main
       id="address-section"
-      className="tablet:bg-[#FAFBFE] laptop:bg-[#FAFBFE] desktop:bg-[#FAFBFE] flex min-h-screen flex-col gap-y-4 px-4 pt-[120px]"
+      className="tablet:bg-[#FAFBFE] laptop:bg-[#FAFBFE] desktop:bg-[#FAFBFE] flex min-h-screen flex-col gap-y-4 px-4 desktop:pt-[220px] laptop:pt-[220px] tablet:pt-[180px] pt-[150px]"
     >
       <h1 className="body-md-semibold tablet:heading-md-semibold desktop:heading-md-semibold laptop:heading-md-semibold">
         더 정확한 맞춤 공고를 위해, 거주하시는 곳을 알려주세요
@@ -69,18 +69,18 @@ function CustomAddressSearch() {
 
   return (
     <div className="flex w-full flex-col">
-      <div className="flex gap-1">
+      <div className="desktop:w-[477px] laptop:w-[477px] tablet:w-[477px] flex gap-1">
         <input
           onKeyPress={handleKeyPress}
           type="text"
           value={keyword}
           onChange={(e) => setKeyword(e.target.value)}
           placeholder="도로명, 지번, 건물명 검색"
-          className="caption-sm-medium w-full rounded-[4px] bg-neutral-100 p-2 outline-purple-500 placeholder:text-neutral-400"
+          className="desktop:body-md-medium laptop:body-md-medium tablet:body-md-medium caption-sm-medium w-full rounded-[4px] bg-neutral-100 p-2 outline-purple-500 placeholder:text-neutral-400"
         />
         <button
           onClick={searchAddress}
-          className="caption-sm-medium flex h-[32px] items-center justify-center rounded-[4px] bg-purple-500 px-2 whitespace-nowrap text-white hover:bg-purple-600"
+          className="desktop:body-md-medium laptop:body-md-medium tablet:body-md-medium caption-sm-medium desktop:h-[48px] laptop:h-[48px] tablet:h-[48px] desktop:rounded-[6px] laptop:rounded-[6px] tablet:rounded-[6px] desktop:px-3 laptop:px-3 tablet:px-3 flex h-[32px] items-center justify-center rounded-[4px] bg-purple-500 px-2 whitespace-nowrap text-white hover:bg-purple-600"
         >
           검색
         </button>
@@ -88,15 +88,15 @@ function CustomAddressSearch() {
 
       <div className="mt-[9px] space-y-2">
         {signUpData?.address ? (
-          <div className="flex flex-col gap-y-[9px]">
-            <div className="caption-sm-medium rounded-[4px] bg-neutral-100 p-2 text-neutral-400">
+          <div className="desktop:w-[477px] laptop:w-[477px] tablet:w-[477px] flex flex-col gap-y-[9px]">
+            <div className="desktop:body-lg-medium laptop:body-lg-medium tablet:body-lg-medium caption-sm-medium rounded-[4px] bg-neutral-100 p-2 text-neutral-400">
               {signUpData?.address}
             </div>
             <button
               onClick={() => {
                 setState({ ...signUpData, signUpData: { ...signUpData, address: undefined } })
               }}
-              className="caption-sm-medium h-[32px] w-fit cursor-pointer rounded-[4px] border border-neutral-300 bg-neutral-100 px-2"
+              className="desktop:body-md-medium laptop:body-md-medium tablet:body-md-medium caption-sm-medium desktop:h-[48px] laptop:h-[48px] tablet:h-[48px] h-[32px] w-fit cursor-pointer desktop:rounded-[6px] laptop:rounded-[6px] tablet:rounded-[6px] rounded-[4px] border border-neutral-300 bg-neutral-100 desktop:px-3 laptop:px-3 tablet:px-3 px-2"
             >
               초기화
             </button>
@@ -105,7 +105,7 @@ function CustomAddressSearch() {
           <div className="">
             {results.length === 10 ? (
               <div>
-                <div className="caption-sm-medium flex flex-col items-center justify-center border-b border-neutral-300 py-[30px] text-center">
+                <div className="desktop:body-xl-medium laptop:body-xl-medium tablet:body-xl-medium caption-sm-medium flex flex-col items-center justify-center border-b border-neutral-300 py-[30px] text-center">
                   검색 결과가 너무 많습니다.
                   <br />
                   검색어를 상세히 입력해보세요.
@@ -113,7 +113,7 @@ function CustomAddressSearch() {
                 <div className="flex h-[194px] flex-col overflow-y-scroll">
                   {results.map((address, index) => (
                     <div
-                      className="flex items-start justify-between gap-x-[14px] border-b border-neutral-300 pt-[16px] pb-[18px]"
+                      className="desktop:w-[477px] laptop:w-[477px] tablet:w-[477px] flex items-start justify-between gap-x-[14px]"
                       key={index}
                     >
                       <div
@@ -125,21 +125,21 @@ function CustomAddressSearch() {
                           })
                         }}
                       >
-                        <div className="caption-sm-medium">{address.roadAddr}</div>
+                        <div className="desktop:body-xl-medium laptop:body-xl-medium tablet:body-xl-medium caption-sm-medium">{address.roadAddr}</div>
                         <div className="flex flex-col gap-y-1">
                           <div className="flex gap-x-[2px]">
-                            <div className="caption-sm-medium w-fit rounded-[1.3px] border border-neutral-300 px-[2.68px] text-neutral-400">
+                            <div className="desktop:body-md-regular laptop:body-md-regular tablet:body-md-regular caption-sm-medium desktop:px-1 laptop:px-1 tablet:px-1 w-fit rounded-[1.3px] border border-neutral-300 px-[2.68px] text-neutral-400">
                               지번
                             </div>
-                            <div className="caption-sm-medium text-neutral-400">
+                            <div className="desktop:body-md-regular laptop:body-md-regular tablet:body-md-regular caption-sm-medium text-neutral-400">
                               {address.jibunAddr}
                             </div>
                           </div>
                           <div className="flex items-center gap-x-[2px]">
-                            <div className="caption-sm-medium w-fit rounded-[1.3px] border border-neutral-300 px-[2.68px] text-neutral-400">
+                            <div className="desktop:body-md-regular laptop:body-md-regular tablet:body-md-regular caption-sm-medium desktop:px-1 laptop:px-1 tablet:px-1 w-fit rounded-[1.3px] border border-neutral-300 px-[2.68px] text-neutral-400">
                               우편번호
                             </div>
-                            <p className="caption-sm-medium text-neutral-400">{address.zipNo}</p>
+                            <p className="desktop:body-md-regular laptop:body-md-regular tablet:body-md-regular caption-sm-medium text-neutral-400">{address.zipNo}</p>
                           </div>
                         </div>
                       </div>
@@ -150,7 +150,7 @@ function CustomAddressSearch() {
                             signUpData: { ...signUpData, address: address.roadAddr },
                           })
                         }}
-                        className="caption-sm-medium h-[24px] cursor-pointer rounded-[2px] bg-purple-200 px-[6px] whitespace-nowrap"
+                        className="desktop:body-md-medium laptop:body-md-medium tablet:body-md-medium caption-sm-medium desktop:h-[28px] laptop:h-[28px] tablet:h-[28px] desktop:rounded-[4px] laptop:rounded-[4px] tablet:rounded-[4px] desktop:px-[10px] laptop:px-[10px] tablet:px-[10px] h-[24px] cursor-pointer rounded-[2px] bg-purple-200 px-[6px] whitespace-nowrap"
                       >
                         선택
                       </button>
@@ -160,7 +160,10 @@ function CustomAddressSearch() {
               </div>
             ) : results.length !== 0 ? (
               results.map((address, index) => (
-                <div className="flex items-start justify-between gap-x-[14px]" key={index}>
+                <div
+                  className="desktop:w-[477px] laptop:w-[477px] tablet:w-[477px] flex items-start justify-between gap-x-[14px]"
+                  key={index}
+                >
                   <div
                     className="flex cursor-pointer flex-col gap-y-4"
                     onClick={() => {
@@ -170,21 +173,25 @@ function CustomAddressSearch() {
                       })
                     }}
                   >
-                    <div className="caption-sm-medium">{address.roadAddr}</div>
+                    <div className="desktop:body-xl-medium laptop:body-xl-medium tablet:body-xl-medium caption-sm-medium">
+                      {address.roadAddr}
+                    </div>
                     <div className="flex flex-col gap-y-1">
-                      <div className="flex gap-x-[2px]">
-                        <div className="caption-sm-medium w-fit rounded-[1.3px] border border-neutral-300 px-[2.68px] text-neutral-400">
+                      <div className="desktop:gap-x-1 laptop:gap-x-1 tablet:gap-x-1 flex gap-x-[2px]">
+                        <div className="desktop:body-md-regular laptop:body-md-regular tablet:body-md-regular caption-sm-medium desktop:px-1 laptop:px-1 tablet:px-1 w-fit rounded-[1.3px] border border-neutral-300 px-[2.68px] text-neutral-400">
                           지번
                         </div>
-                        <div className="caption-sm-medium text-neutral-400">
+                        <div className="desktop:body-md-regular laptop:body-md-regular tablet:body-md-regular caption-sm-medium text-neutral-400">
                           {address.jibunAddr}
                         </div>
                       </div>
                       <div className="flex items-center gap-x-[2px]">
-                        <div className="caption-sm-medium w-fit rounded-[1.3px] border border-neutral-300 px-[2.68px] text-neutral-400">
+                        <div className="desktop:body-md-regular laptop:body-md-regular tablet:body-md-regular caption-sm-medium desktop:px-1 laptop:px-1 tablet:px-1 w-fit rounded-[1.3px] border border-neutral-300 px-[2.68px] text-neutral-400">
                           우편번호
                         </div>
-                        <p className="caption-sm-medium text-neutral-400">{address.zipNo}</p>
+                        <p className="desktop:body-md-regular laptop:body-md-regular tablet:body-md-regular caption-sm-medium text-neutral-400">
+                          {address.zipNo}
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -195,7 +202,7 @@ function CustomAddressSearch() {
                         signUpData: { ...signUpData, address: address.roadAddr },
                       })
                     }}
-                    className="caption-sm-medium h-[24px] cursor-pointer rounded-[2px] bg-purple-200 px-[6px] whitespace-nowrap"
+                    className="desktop:body-md-medium laptop:body-md-medium tablet:body-md-medium caption-sm-medium desktop:h-[28px] laptop:h-[28px] tablet:h-[28px] desktop:rounded-[4px] laptop:rounded-[4px] tablet:rounded-[4px] desktop:px-[10px] laptop:px-[10px] tablet:px-[10px] h-[24px] cursor-pointer rounded-[2px] bg-purple-200 px-[6px] whitespace-nowrap"
                   >
                     선택
                   </button>
@@ -203,17 +210,23 @@ function CustomAddressSearch() {
               ))
             ) : (
               <div className="mt-6 flex flex-col gap-y-2">
-                <p className="caption-md-semibold text-purple-500">이렇게 검색하면 좋아요</p>
+                <p className="desktop:body-2xl-semibold laptop:body-2xl-semibold tablet:body-2xl-semibold caption-md-semibold text-purple-500">
+                  이렇게 검색하면 좋아요
+                </p>
                 <div className="flex flex-col gap-y-1">
                   <div className="flex flex-col">
-                    <p className="caption-sm-medium text-neutral-800">도로명 + 건물번호</p>
-                    <p className="caption-md-medium text-neutral-400">
+                    <p className="desktop:body-lg-medium laptop:body-lg-medium tablet:body-lg-medium caption-sm-medium text-neutral-800">
+                      도로명 + 건물번호
+                    </p>
+                    <p className="desktop:body-md-medium laptop:body-md-medium tablet:body-md-medium caption-md-medium text-neutral-400">
                       예) 양재대로 1300, 왕십리로 222
                     </p>
                   </div>
                   <div className="flex flex-col">
-                    <p className="caption-sm-medium text-neutral-800">동/읍/면리 + 번지</p>
-                    <p className="caption-md-medium text-neutral-400">
+                    <p className="desktop:body-lg-medium laptop:body-lg-medium tablet:body-lg-medium caption-sm-medium text-neutral-800">
+                      동/읍/면리 + 번지
+                    </p>
+                    <p className="desktop:body-md-medium laptop:body-md-medium tablet:body-md-medium caption-md-medium text-neutral-400">
                       예) 백현동 532, 정자동 178-4
                     </p>
                   </div>
@@ -224,15 +237,17 @@ function CustomAddressSearch() {
         )}
       </div>
 
-      <div className="flex flex-col items-center justify-center fixed bottom-[30px] left-1/2 -translate-x-1/2 ">
+      <div className="fixed bottom-[30px] left-1/2 flex -translate-x-1/2 flex-col items-center justify-center">
         {formComplete ? (
           <AnimatedSpeechBubble floatingType="gentle">
-            <p className="text-purple-500">프로필 정보에 맞는 맞춤 공고로 이동해요</p>
+            <p className="desktop:caption-md-medium laptop:caption-md-medium tablet:caption-md-medium text-purple-500">
+              프로필 정보에 맞는 맞춤 공고로 이동해요
+            </p>
           </AnimatedSpeechBubble>
         ) : null}
 
         <button
-          className={`mt-5 flex h-[36px] w-[55px] items-center justify-center rounded-[6px] text-white transition-colors ${
+          className={`desktop:h-[48px] desktop:w-[96px] laptop:h-[48px] laptop:w-[96px] tablet:h-[48px] tablet:w-[96px] desktop:body-lg-semibold laptop:body-lg-semibold tablet:body-lg-semibold mt-5 flex h-[36px] w-[55px] items-center justify-center rounded-[6px] text-white transition-colors ${
             formComplete
               ? 'cursor-pointer bg-purple-500 hover:bg-purple-600'
               : 'cursor-not-allowed bg-neutral-400'

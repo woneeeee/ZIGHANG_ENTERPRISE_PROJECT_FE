@@ -27,7 +27,7 @@ export default function CommutingTime() {
   return (
     <main
       id="commuting-time-section"
-      className="tablet:bg-[#FAFBFE] laptop:bg-[#FAFBFE] desktop:bg-[#FAFBFE] flex min-h-screen flex-col gap-y-4 px-4 pt-[120px]"
+      className="tablet:bg-[#FAFBFE] laptop:bg-[#FAFBFE] desktop:bg-[#FAFBFE] flex min-h-screen flex-col gap-y-4 px-4 desktop:pt-[220px] laptop:pt-[220px] tablet:pt-[180px] pt-[150px]"
     >
       <h1 className="body-md-semibold tablet:heading-md-semibold desktop:heading-md-semibold laptop:heading-md-semibold">
         출퇴근 시간은 어느정도가 괜찮으신가요?
@@ -38,7 +38,7 @@ export default function CommutingTime() {
             <button
               onClick={() => handleCommutingTimeClick(commutingTime.enum)}
               key={commutingTime.kor}
-              className={`${signUpData?.maxCommuteMinutes === commutingTime.enum ? 'bg-purple-500 text-white' : 'border border-neutral-400'} caption-sm-medium flex h-[36px] cursor-pointer items-center justify-center rounded-[6px] px-[12px] py-[10px] hover:border-purple-300 hover:bg-purple-50`}
+              className={`${signUpData?.maxCommuteMinutes === commutingTime.enum ? 'bg-purple-500 text-white' : 'border border-neutral-400'} desktop:body-md-medium laptop:body-md-medium tablet:body-md-medium caption-sm-medium flex h-[36px] cursor-pointer items-center justify-center rounded-[6px] px-[12px] py-[10px] hover:border-purple-300 hover:bg-purple-50`}
             >
               {commutingTime.kor}
             </button>

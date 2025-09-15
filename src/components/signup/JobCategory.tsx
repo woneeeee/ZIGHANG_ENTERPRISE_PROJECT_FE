@@ -190,7 +190,7 @@ export default function JobCategory() {
   return (
     <main
       id="job-category-section"
-      className="flex flex-col pt-[120px] px-4 gap-y-4 tablet:bg-[#FAFBFE] laptop:bg-[#FAFBFE] desktop:bg-[#FAFBFE] min-h-screen">
+      className="flex flex-col desktop:pt-[220px] laptop:pt-[220px] tablet:pt-[180px] pt-[150px] px-4 gap-y-4 tablet:bg-[#FAFBFE] laptop:bg-[#FAFBFE] desktop:bg-[#FAFBFE] min-h-screen">
       <h1
         className="body-md-semibold tablet:heading-md-semibold desktop:heading-md-semibold laptop:heading-md-semibold"><span className="text-purple-500">{changeCategoryEnumToKor(signUpData?.jobGroupEnum)}</span> 분야의 희망하는 직무를 선택해주세요</h1>
 
@@ -202,7 +202,7 @@ export default function JobCategory() {
             <button
               onClick={() => handleJobCategoryClick(jobCategory.enum)}
               key={jobCategory.kor}
-              className={`flex items-center justify-center h-[36px] py-[10px] px-[12px] caption-sm-medium rounded-[6px] border cursor-pointer transition-colors
+              className={`flex items-center justify-center h-[36px] py-[10px] px-[12px] desktop:body-md-medium laptop:body-md-medium tablet:body-md-medium caption-sm-medium rounded-[6px] border cursor-pointer transition-colors
                 ${selected
                 ? 'bg-purple-500 text-white'
                 : 'border-neutral-400 hover:border-purple-300 hover:bg-purple-50'

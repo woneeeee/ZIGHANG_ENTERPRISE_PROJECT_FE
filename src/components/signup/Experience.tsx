@@ -5,7 +5,7 @@ export default function Experience() {
   return (
     <main
       id="experience-section"
-      className="flex flex-col justify-start pt-[120px] px-4 gap-y-4 tablet:bg-[#FAFBFE] laptop:bg-[#FAFBFE] desktop:bg-[#FAFBFE] min-h-screen">
+      className="flex flex-col justify-start desktop:pt-[220px] laptop:pt-[220px] tablet:pt-[180px] pt-[150px] px-4 gap-y-4 tablet:bg-[#FAFBFE] laptop:bg-[#FAFBFE] desktop:bg-[#FAFBFE] min-h-screen">
       <h1
         className="body-md-semibold tablet:heading-md-semibold desktop:heading-md-semibold laptop:heading-md-semibold">
         현재까지의 경력을 알려주세요</h1>
@@ -115,7 +115,7 @@ function CustomRangeSlider () {
         />
 
         <div
-          className="absolute top-[35px] caption-md-medium transform -translate-x-1/2 transition-all duration-200 ease-out whitespace-nowrap"
+          className="absolute top-[35px] desktop:body-sm-medium laptop:body-sm-medium tablet:body-sm-medium caption-md-medium transform -translate-x-1/2 transition-all duration-200 ease-out whitespace-nowrap"
           style={{ left: getThumbPosition() }}
         >
           {getExperienceText(signUpData?.workExperience)}

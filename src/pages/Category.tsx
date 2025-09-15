@@ -5,7 +5,7 @@ export default function Category() {
   return (
     <main className="flex flex-col items-center justify-center">
       <Header></Header>
-      <div className="desktop:w-[1150px] laptop:w-[850px] tablet:w-[630px] flex w-[300px] flex-col items-start">
+      <div className="desktop:w-[1230px] laptop:w-[930px] tablet:w-[700px] flex w-[300px] flex-col items-start">
         <Menu />
         {/* 필터 */}
         <MainFilter />

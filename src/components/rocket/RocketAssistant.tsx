@@ -7,6 +7,7 @@ import rocketIdle from '@/assets/lotties/rocket_idle_float.json'
 import rocketHover from '@/assets/lotties/rocket_hover_blink.json'
 import rocketFlying from '@/assets/lotties/rocket_flying.json'
 import RocketText from './RocketText'
+import { useNavigate } from 'react-router-dom'
 
 type Phase = 'flying' | 'idle' | 'hover'
 
@@ -106,14 +107,16 @@ export default function RocketAssistant({
     transition = { type: 'spring', stiffness: 120, damping: 16 }
   }
 
-  const BASE_H = 1200
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const compH = (currentLottie as any)?.h ?? BASE_H
-  const scaleFix = BASE_H / compH
+  const nav = useNavigate()
+
+  const handleClick = () => {
+    nav('/onboarding/start')
+  }
 
   return (
     <motion.button
-      className="fixed z-40 select-none"
+      className="fixed z-40 cursor-pointer select-none"
+      onClick={handleClick}
       style={{ left: startLeft, top: START_TOP, transformOrigin: '50% 50%' }}
       aria-label="rocket assistant"
       animate={animate}
@@ -137,20 +140,18 @@ export default function RocketAssistant({
 
       {/* 구름: 착륙 후에만 */}
       {phase !== 'flying' && (
-        <div className="absolute -bottom-10 -left-3 w-[140px] opacity-90">
+        <div className="absolute -bottom-25 left-1 z-90 w-[140px] opacity-90">
           <Lottie lottieRef={cloudRef} animationData={cloudDefault} loop autoplay />
         </div>
       )}
-      <div
-        className="relative h-[120px] w-[120px]"
-        style={{ transform: `scale(${1 / scaleFix})`, transformOrigin: 'center' }}
-      >
+
+      <div className="relative h-[150px] w-[150px]">
         <Lottie
           lottieRef={lottieRef}
           animationData={currentLottie}
-          loop={phase !== 'hover'}
+          loop={phase !== 'hover' ? true : false}
           autoplay
-          style={{ width: 120, height: 120 }}
+          className="h-full w-full"
         />
       </div>
     </motion.button>

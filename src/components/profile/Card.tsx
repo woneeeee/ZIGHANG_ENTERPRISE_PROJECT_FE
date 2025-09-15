@@ -1,3 +1,4 @@
+import { deleteReOnboarding } from '@/apis/deleteMypageTest'
 import { type ProfileCardItem } from '@/constants/ProfileCard'
 import { useNavigate } from 'react-router-dom'
 
@@ -8,6 +9,14 @@ type CardProps = {
 const Card = ({ item }: CardProps) => {
   const CharacterIcon = item.icon
   const nav = useNavigate()
+
+  const handleDelete = async () => {
+    try {
+      await deleteReOnboarding()
+    } catch (e) {
+      console.error(e)
+    }
+  }
 
   return (
     <div className="bg-profile-card tablet:w-[298px] tablet:h-[530px] tablet:rounded-[14px] h-[400px] w-[224px] rounded-[10px] text-center shadow-[0_0_20px_0_rgba(0,0,0,0.12)]">
@@ -39,7 +48,7 @@ const Card = ({ item }: CardProps) => {
         <p className="text-neutral-300">|</p>
         <p
           className="caption-sm-medium text-netural-500 tablet:body-sm-medium cursor-pointer whitespace-nowrap"
-          onClick={() => {}}
+          onClick={handleDelete}
         >
           테스트 다시 하기
         </p>

@@ -1,13 +1,19 @@
 import JobCard from '@/components/job/JobCard.tsx'
 import Header from '@/components/common/Header.tsx'
+import RocketAssistant from '@/components/rocket/RocketAssistant'
+import { useEffect } from 'react'
 
 export default function Category() {
+  useEffect(() => {
+    const el = document.querySelector('#filter-itdev')
+    el?.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'auto' })
+  }, [])
+
   return (
     <main className="flex flex-col items-center justify-center">
-      <Header></Header>
+      <Header />
       <div className="desktop:w-[1150px] laptop:w-[850px] tablet:w-[630px] flex w-[300px] flex-col items-start">
         <Menu />
-        {/* 필터 */}
         <MainFilter />
         <SecondFilter />
         <section className="desktop:grid-cols-2 desktop:mt-[32px] laptop:mt-[16px] grid w-full gap-4">
@@ -24,6 +30,12 @@ export default function Category() {
           <JobCard hasTag={false} />
         </section>
       </div>
+      <RocketAssistant
+        waypointSelector="#filter-itdev"
+        endLeft={50}
+        endBottom={60}
+        autoLaunch={true}
+      />
     </main>
   )
 }
@@ -45,8 +57,8 @@ function Menu() {
 
 function MainFilter() {
   return (
-    <section className="mt-[24px] flex items-center gap-2 desktop:w-[1150px] laptop:w-[850px] tablet:w-[630px] w-[300px]">
-      <section className="flex items-center gap-2 items-center">
+    <section className="desktop:w-[1150px] laptop:w-[850px] tablet:w-[630px] mt-[24px] flex w-[300px] items-center gap-2">
+      <section className="flex items-center gap-2">
         <button
           className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#EFEAFF] text-[#71717A] active:bg-[#E4DAFF] md:h-11 md:w-11 md:hover:bg-gray-100"
           aria-label="필터 초기화"
@@ -86,9 +98,11 @@ function MainFilter() {
         </button>
       </section>
 
-      <section className="scrollbar-hide flex gap-x-2 overflow-x-auto items-center">
-        <div className="flex flex-shrink-0 flex-row items-center rounded-[8px] border border-neutral-200 desktop:px-4 desktop:py-[10px] laptop:px-4 laptop:py-[10px] px-2 py-[6px] h-fit">
-          <div className="desktop:body-lg-regular laptop:body-lg-regular body-sm-regular">플랫폼</div>
+      <section className="scrollbar-hide flex items-center gap-x-2 overflow-x-auto">
+        <div className="desktop:px-4 desktop:py-[10px] laptop:px-4 laptop:py-[10px] flex h-fit flex-shrink-0 flex-row items-center rounded-[8px] border border-neutral-200 px-2 py-[6px]">
+          <div className="desktop:body-lg-regular laptop:body-lg-regular body-sm-regular">
+            플랫폼
+          </div>
           <img
             alt="아래 화살표 아이콘"
             loading="lazy"
@@ -100,8 +114,13 @@ function MainFilter() {
             src="https://zighang.com/icon/expand_more.svg"
           />
         </div>
-        <div className="flex flex-shrink-0 flex-row items-center rounded-[10px] border border-purple-500 bg-purple-50 desktop:px-4 desktop:py-[10px] laptop:px-4 laptop:py-[10px] px-2 py-[6px] h-fit">
-          <div className="desktop:body-lg-regular laptop:body-lg-regular body-sm-regular text-purple-500">IT·개발</div>
+        <div
+          id="filter-itdev"
+          className="desktop:px-4 desktop:py-[10px] laptop:px-4 laptop:py-[10px] flex h-fit flex-shrink-0 flex-row items-center rounded-[10px] border border-purple-500 bg-purple-50 px-2 py-[6px]"
+        >
+          <div className="desktop:body-lg-regular laptop:body-lg-regular body-sm-regular text-purple-500">
+            IT·개발
+          </div>
           <img
             alt="아래 화살표 아이콘"
             loading="lazy"
@@ -113,7 +132,7 @@ function MainFilter() {
             src="https://zighang.com/icon/expand_more.svg"
           />
         </div>
-        <div className="flex flex-shrink-0 flex-row items-center rounded-[8px] border border-neutral-200 desktop:px-4 desktop:py-[10px] laptop:px-4 laptop:py-[10px] px-2 py-[6px] h-fit">
+        <div className="desktop:px-4 desktop:py-[10px] laptop:px-4 laptop:py-[10px] flex h-fit flex-shrink-0 flex-row items-center rounded-[8px] border border-neutral-200 px-2 py-[6px]">
           <div className="desktop:body-lg-regular laptop:body-lg-regular body-sm-regular">직무</div>
           <img
             alt="아래 화살표 아이콘"
@@ -126,11 +145,15 @@ function MainFilter() {
             src="https://zighang.com/icon/expand_more.svg"
           />
         </div>
-        <div className="flex flex-shrink-0 flex-row items-center rounded-[8px] border border-neutral-200 desktop:px-4 desktop:py-[10px] laptop:px-4 laptop:py-[10px] px-2 py-[6px] h-fit">
-          <div className="desktop:body-lg-regular laptop:body-lg-regular body-sm-regular">네카라쿠배.. 공고만</div>
+        <div className="desktop:px-4 desktop:py-[10px] laptop:px-4 laptop:py-[10px] flex h-fit flex-shrink-0 flex-row items-center rounded-[8px] border border-neutral-200 px-2 py-[6px]">
+          <div className="desktop:body-lg-regular laptop:body-lg-regular body-sm-regular">
+            네카라쿠배.. 공고만
+          </div>
         </div>
         <div className="flex flex-shrink-0 flex-row items-center rounded-[10px] border border-purple-500 bg-purple-50 py-[10px] pr-3 pl-4">
-          <div className="desktop:body-lg-regular laptop:body-lg-regular body-sm-regular text-purple-500">정규직</div>
+          <div className="desktop:body-lg-regular laptop:body-lg-regular body-sm-regular text-purple-500">
+            정규직
+          </div>
           <img
             alt="아래 화살표 아이콘"
             loading="lazy"
@@ -142,8 +165,10 @@ function MainFilter() {
             src="https://zighang.com/icon/expand_more.svg"
           />
         </div>
-        <div className="flex flex-shrink-0 flex-row items-center rounded-[8px] border border-neutral-200 desktop:px-4 desktop:py-[10px] laptop:px-4 laptop:py-[10px] px-2 py-[6px] h-fit">
-          <div className="desktop:body-lg-regular laptop:body-lg-regular body-sm-regular">학력 조건</div>
+        <div className="desktop:px-4 desktop:py-[10px] laptop:px-4 laptop:py-[10px] flex h-fit flex-shrink-0 flex-row items-center rounded-[8px] border border-neutral-200 px-2 py-[6px]">
+          <div className="desktop:body-lg-regular laptop:body-lg-regular body-sm-regular">
+            학력 조건
+          </div>
           <img
             alt="아래 화살표 아이콘"
             loading="lazy"
@@ -155,8 +180,10 @@ function MainFilter() {
             src="https://zighang.com/icon/expand_more.svg"
           />
         </div>
-        <div className="flex flex-shrink-0 flex-row items-center rounded-[10px] border border-purple-500 bg-purple-50 desktop:px-4 desktop:py-[10px] laptop:px-4 laptop:py-[10px] px-2 py-[6px] h-fit">
-          <div className="desktop:body-lg-regular laptop:body-lg-regular body-sm-regular text-purple-500">5~10년차</div>
+        <div className="desktop:px-4 desktop:py-[10px] laptop:px-4 laptop:py-[10px] flex h-fit flex-shrink-0 flex-row items-center rounded-[10px] border border-purple-500 bg-purple-50 px-2 py-[6px]">
+          <div className="desktop:body-lg-regular laptop:body-lg-regular body-sm-regular text-purple-500">
+            5~10년차
+          </div>
           <img
             alt="아래 화살표 아이콘"
             loading="lazy"
@@ -168,8 +195,10 @@ function MainFilter() {
             src="https://zighang.com/icon/expand_more.svg"
           />
         </div>
-        <div className="flex flex-shrink-0 flex-row items-center rounded-[10px] border border-purple-500 bg-purple-50desktop:px-4 desktop:py-[10px] laptop:px-4 laptop:py-[10px] px-2 py-[6px] h-fit">
-          <div className="desktop:body-lg-regular laptop:body-lg-regular body-sm-regular text-purple-500">상시 채용 외 2건</div>
+        <div className="bg-purple-50desktop:px-4 desktop:py-[10px] laptop:px-4 laptop:py-[10px] flex h-fit flex-shrink-0 flex-row items-center rounded-[10px] border border-purple-500 px-2 py-[6px]">
+          <div className="desktop:body-lg-regular laptop:body-lg-regular body-sm-regular text-purple-500">
+            상시 채용 외 2건
+          </div>
           <img
             alt="아래 화살표 아이콘"
             loading="lazy"
@@ -189,7 +218,7 @@ function MainFilter() {
 function SecondFilter() {
   return (
     <div className="mt-[24px] flex w-full items-center justify-between text-sm font-semibold text-[#363636] md:flex-row md:pt-0 md:pb-8">
-      <p className="whitespace-nowrap desktop:body-2xl-semibold laptop:body-2xl-semibold body-sm-semibold">
+      <p className="desktop:body-2xl-semibold laptop:body-2xl-semibold body-sm-semibold whitespace-nowrap">
         총 <span className="text-purple-500">1609</span>건
       </p>
       <section className="flex items-center gap-3">

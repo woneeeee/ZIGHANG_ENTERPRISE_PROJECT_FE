@@ -21,7 +21,7 @@ const Card = () => {
         <Button
           className="caption-md-semibold tablet:body-xl-semibold rounded-[6px] bg-purple-400 px-[14px] py-[12px] text-white"
           onClick={() => {
-            nav('/')
+            nav('/onboarding/test')
           }}
         >
           커리어 성향 테스트 시작하기

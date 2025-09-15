@@ -68,7 +68,7 @@ const Card = () => {
       return
     }
     setCkey(preSignupCharacterName ? toCharacterKey(preSignupCharacterName) : '워라밸 신봉자')
-    setItems([])
+    setItems(RECOMMENDJOBLIST)
   }, [isLoggedIn, preSignupCharacterName])
 
   return (

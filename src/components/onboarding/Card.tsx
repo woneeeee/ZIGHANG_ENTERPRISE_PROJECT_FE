@@ -1,19 +1,26 @@
 import Button from './Button'
 import RecommendJobBox from './RecommendJobBox'
-import { RECOMMENDJOBLIST } from '@/constants/RecommendJob'
+import { RECOMMENDJOBLIST, type RecommendJobItem } from '@/constants/RecommendJob'
 import { cn } from '@/utils/cn'
 import { motion, AnimatePresence, useInView } from 'framer-motion'
-import { useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import GrowingTextButton from './GrowingTextButton'
-import { ICON_MAP, ONBOARDINGRESULT, type CharacterKey } from '@/constants/OnboardingResult'
+import {
+  ICON_MAP,
+  ONBOARDINGRESULT,
+  toCharacterKey,
+  type CharacterKey,
+} from '@/constants/OnboardingResult'
 import { renderWithHighlight } from '@/utils/renderWithHighlight'
-
-const characterKey: CharacterKey = 'WLB'
-const description = ONBOARDINGRESULT[characterKey]
-const OnboardingIcon = ICON_MAP[description.iconKey]
+import { usePngExport } from '@/hooks/usePngExport'
+import { ChevronRightIcon } from '@/assets/svgComponents'
+import { useNavigate } from 'react-router-dom'
+import { getMyPageAll } from '@/apis/getOnboardingResultAll'
+import { adaptSearchToRecommend } from '@/constants/companyAssetMap'
 
 const Card = () => {
   const accessToken = localStorage.getItem('accessToken')
+  const nav = useNavigate()
   const ctaContainerRef = useRef<HTMLDivElement | null>(null)
   const ctaInView = useInView(ctaContainerRef, {
     amount: 0.6,
@@ -21,8 +28,48 @@ const Card = () => {
     once: true,
   })
 
+  const wrapperRef = useRef<HTMLDivElement | null>(null)
+  const handleSave = usePngExport(wrapperRef, {
+    filename: 'onboarding-card.png',
+    background: '#212642',
+    scale: 2,
+  })
+  const handleEntire = () => {
+    nav('/job')
+  }
+
+  const [items, setItems] = useState<RecommendJobItem[]>([])
+  const [ckey, setCkey] = useState<CharacterKey>('워라밸 신봉자')
+  const description = ONBOARDINGRESULT[ckey]
+  const OnboardingIcon =
+    ICON_MAP[description.iconKey as keyof typeof ICON_MAP] ?? ICON_MAP.OnboardingWlbIcon
+
+  useEffect(() => {
+    if (!accessToken) {
+      setItems(RECOMMENDJOBLIST)
+      setCkey('워라밸 신봉자')
+      return
+    }
+    ;(async () => {
+      try {
+        const data = await getMyPageAll()
+        setCkey(toCharacterKey(data.characterName))
+
+        const mapped = adaptSearchToRecommend(data.searchResponses ?? [])
+        setItems(mapped.length ? mapped : RECOMMENDJOBLIST)
+      } catch (e) {
+        console.error('[my-page/all] failed:', e)
+        setItems(RECOMMENDJOBLIST)
+        setCkey('워라밸 신봉자')
+      }
+    })()
+  }, [accessToken])
+
   return (
-    <main className="[border-image:linear-gradient(90deg, rgba(120,112,158,.8) 0%, rgba(96,65,255,0) 50%, rgba(113,104,144,.8) 100% )_1] tablet:py-[60px] tablet:max-w-[702px] laptop:max-w-[894px] desktop:max-w-[900px] mx-auto flex max-w-[288px] flex-col justify-center gap-[60px] rounded-[30px] border-[1px] border-transparent bg-[#c8c2e5]/[0.07] py-[45px] backdrop-blur-[15px]">
+    <main
+      ref={wrapperRef}
+      className="[border-image:linear-gradient(90deg, rgba(120,112,158,.8) 0%, rgba(96,65,255,0) 50%, rgba(113,104,144,.8) 100% )_1] tablet:py-[60px] tablet:max-w-[702px] laptop:max-w-[894px] desktop:max-w-[900px] mx-auto flex max-w-[288px] flex-col justify-center gap-[60px] rounded-[30px] border-[1px] border-transparent bg-[#c8c2e5]/[0.07] py-[45px] backdrop-blur-[15px]"
+    >
       <div className="flex flex-col gap-[40px]">
         <section className="flex flex-col gap-[56px]">
           <div className="flex flex-col gap-[8px] text-center">
@@ -37,7 +84,7 @@ const Card = () => {
               <OnboardingIcon className="tablet:w-[299px] h-[220px] w-[228px]" />
               <Button
                 className="caption-sm-medium tablet:caption-md-medium rounded-[4px] bg-[#fff]/[.12] p-[10px] text-white"
-                onClick={() => {}}
+                onClick={handleSave}
               >
                 이미지 저장하기
               </Button>
@@ -65,7 +112,15 @@ const Card = () => {
         </section>
       </div>
       <div className="tablet:px-[81px] laptop:px-[50px] flex flex-col gap-[22px] px-[15px]">
-        <span className="heading-md-semibold text-white">나와 딱 맞는 공고</span>
+        <div className="flex items-center justify-between">
+          <span className="heading-md-semibold text-white">나와 딱 맞는 공고</span>
+          <div
+            className="caption-sm-medium tablet:body-xl-semibold inline-flex cursor-pointer items-center whitespace-nowrap text-white"
+            onClick={handleEntire}
+          >
+            전체보기 <ChevronRightIcon className="fill-white" />
+          </div>
+        </div>
         <div className="tablet:rounded-[16px] relative overflow-hidden rounded-[8px]">
           <div
             ref={ctaContainerRef}
@@ -74,7 +129,7 @@ const Card = () => {
               !accessToken && 'blur-[7px]',
             )}
           >
-            {RECOMMENDJOBLIST.map((item) => (
+            {items.map((item) => (
               <RecommendJobBox key={item.id} item={item} />
             ))}
           </div>

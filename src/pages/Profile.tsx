@@ -8,12 +8,14 @@ import { useProfileStore } from '@/stores/profileStore'
 import { PROFILECARD_BY_TITLE } from '@/utils/profileCards'
 import { StartPlanetIcon } from '@/assets/svgComponents'
 import Button from '@/components/onboarding/Button'
+import { useNavigate } from 'react-router-dom'
 
 const normalize = (s?: string | null) => (s ?? '').trim().toLowerCase().replace(/\s+/g, '')
 
 const Profile = () => {
   const [loading, setLoading] = useState(true)
   const { profile, setProfile } = useProfileStore()
+  const nav = useNavigate()
 
   useEffect(() => {
     ;(async () => {
@@ -35,6 +37,10 @@ const Profile = () => {
 
   const item = PROFILECARD_BY_TITLE.get(normalize(profile.characterName))
 
+  const handleTest = () => {
+    nav('/onboarding/start')
+  }
+
   return (
     <main className="flex flex-col items-center justify-center">
       <Header />
@@ -51,7 +57,10 @@ const Profile = () => {
                   <br />
                   맞춤 공고 받기
                 </p>
-                <Button className="tablet:body-sm-semibold caption-md-semibold tablet:rounded-[8px] tablet:px-[16px] tablet:py-[12px] rounded-[5px] bg-purple-400 px-[11px] py-[9px] text-white">
+                <Button
+                  onClick={handleTest}
+                  className="tablet:body-sm-semibold caption-md-semibold tablet:rounded-[8px] tablet:px-[16px] tablet:py-[12px] rounded-[5px] bg-purple-400 px-[11px] py-[9px] text-white"
+                >
                   테스트 하러 가기
                 </Button>
               </div>

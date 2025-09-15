@@ -1,5 +1,16 @@
 import type { ReactNode } from 'react'
-import { WlbIcon } from '@/assets/svgComponents'
+import {
+  BabsimChampionIcon,
+  CommutingNinjaIcon,
+  OfficeEscaperIcon,
+  RocketGrowthrIcon,
+  SkillupManiaIcon,
+  TheEnduringWarriorIcon,
+  VacationHunterIcon,
+  VacationWizardIcon,
+  WlbIcon,
+  WorkLifeBalanceWarriorIcon,
+} from '@/assets/svgComponents'
 
 export type ProfileCardItem = {
   id: number
@@ -37,13 +48,13 @@ export const PROFILECARD: ProfileCardItem[] = [
   },
   {
     id: 3,
-    icon: WlbIcon,
+    icon: BabsimChampionIcon,
     title: '밥심 챔피언',
     subtitle: '#밥심파워 #든든러',
     description: (
       <>
-        밥이 곧 힘이라 믿고, <br />
-        사내 식당의 충실한 후원자입니다.
+        밥이 곧 힘이라 믿고, 사내 식당의 <br />
+        충실한 후원자입니다.
       </>
     ),
   },
@@ -73,7 +84,7 @@ export const PROFILECARD: ProfileCardItem[] = [
   },
   {
     id: 6,
-    icon: WlbIcon,
+    icon: VacationHunterIcon,
     title: '휴가 헌터',
     subtitle: '#연차 사냥꾼 # 휴가탐지기',
     description: (
@@ -109,13 +120,13 @@ export const PROFILECARD: ProfileCardItem[] = [
   },
   {
     id: 9,
-    icon: WlbIcon,
+    icon: CommutingNinjaIcon,
     title: '출퇴근 닌자',
-    subtitle: '#순간이동 #출퇴근고수',
+    subtitle: '#순간이동 #출퇴근_고수',
     description: (
       <>
-        출퇴근길을 기가 막히게 피하며
-        <br /> 시간을 아끼는 전략가입니다.
+        붐비는 출퇴근길을 기가 막히게 <br />
+        피하며 시간을 아끼는 전략가입니다.
       </>
     ),
   },
@@ -193,26 +204,25 @@ export const PROFILECARD: ProfileCardItem[] = [
   },
   {
     id: 16,
-    icon: WlbIcon,
+    icon: WorkLifeBalanceWarriorIcon,
     title: '워라밸 용사',
     subtitle: '#주말챙김 #힐링충전',
     description: (
       <>
-        빠른 성장 속에서도 <br />
-        균형을 찾으며 <br />
+        빠른 성장 속에서도 균형을 찾으며 <br />
         번아웃을 막는 전사입니다.
       </>
     ),
   },
   {
     id: 17,
-    icon: WlbIcon,
+    icon: RocketGrowthrIcon,
     title: '로켓 성장러',
-    subtitle: '#커리어발사 #업무스피드업',
+    subtitle: '#커리어_발사 #업무_스피드업',
     description: (
       <>
-        다양한 일을 경험하며 <br />
-        빠른 속도로 성장하는 스타일입니다.
+        다양한 일을 경험하며 빠른 속도로 <br />
+        성장하는 스타일입니다.
       </>
     ),
   },
@@ -242,26 +252,25 @@ export const PROFILECARD: ProfileCardItem[] = [
   },
   {
     id: 20,
-    icon: WlbIcon,
+    icon: TheEnduringWarriorIcon,
     title: '버티는 용사',
-    subtitle: '#버티기정신 #도전',
+    subtitle: '#버티기_정신 #도전',
     description: (
       <>
-        빠른 성장과 혼란 속에서도 <br />
-        끝까지 버티는 용사입니다.
+        빠른 성장과 혼란 속에서도 끝까지 <br />
+        버티는 용사입니다.
       </>
     ),
   },
   {
     id: 21,
-    icon: WlbIcon,
+    icon: OfficeEscaperIcon,
     title: '오피스 탈출러',
     subtitle: '#야근 탈출 #자유영혼',
     description: (
       <>
-        사무실보단 세상 밖에서 <br />더 많은 영감을 얻는
-        <br />
-        자유 영혼입니다.
+        사무실보단 세상 밖에서 더 많은 <br />
+        영감을 얻는 자유 영혼입니다.
       </>
     ),
   },
@@ -362,7 +371,7 @@ export const PROFILECARD: ProfileCardItem[] = [
       <>
         출퇴근 시간을 점프하듯 <br />
         단축하며 효율을 극대화하는 <br />
-        점핑러입니다.{' '}
+        점핑러입니다.
       </>
     ),
   },
@@ -381,7 +390,7 @@ export const PROFILECARD: ProfileCardItem[] = [
   },
   {
     id: 31,
-    icon: WlbIcon,
+    icon: VacationWizardIcon,
     title: '바캉스 마법사',
     subtitle: '#쉼이곧성장 #휴가매직',
     description: (
@@ -393,14 +402,12 @@ export const PROFILECARD: ProfileCardItem[] = [
   },
   {
     id: 32,
-    icon: WlbIcon,
+    icon: SkillupManiaIcon,
     title: '스킬업 매니아',
-    subtitle: '#계속배우는자 #레벨업장인',
+    subtitle: '#계속_배우는_자 #레벨업_장인',
     description: (
       <>
-        다양한 기업의 기회를 활용해
-        <br /> 스킬을 무한히 성장시키는 <br />
-        매니아입니다.{' '}
+        다양한 기업의 기회를 활용해 스킬을 <br /> 무한히 성장시키는 매니아입니다.
       </>
     ),
   },

@@ -1,12 +1,22 @@
 import type { Dispatch, SetStateAction } from 'react'
 import Card from '@/components/onboarding/test/Card.tsx'
+import type { CompanyType } from '@/types/onboarding-test.ts'
+import { useOnboardingTestStore } from '@/stores/onboardingTestStore.ts'
 
 interface AvoidSituationCardProps {
   step: number
   setStep: Dispatch<SetStateAction<number>>
 }
 export default function AvoidSituationCard ({step, setStep}: AvoidSituationCardProps) {
-  const contentList = ['갑작스러운 장비 고장', '부족한 임무 정보', '예고 없는 궤도 변경', '바닥난 연료와 보급품']
+  const contentList: { kor: string; enum: CompanyType }[] = [
+    { kor: '갑작스러운 장비 고장', enum: 'MID_SIZE' },
+    { kor: '부족한 임무 정보', enum: 'SMALL_MEDIUM' },
+    { kor: '예고 없는 궤도 변경', enum: 'UNICORN' },
+    { kor: '바닥난 연료와 보급품', enum: 'STARTUP' },
+  ]
+  const setState = useOnboardingTestStore((state) => state.setState)
+  const onboardingTestData = useOnboardingTestStore((state) => state.onboardingTestData)
+
   return (
     <Card step={step} setStep={setStep}>
       <div className="mt-[17px] flex flex-col items-center justify-center">
@@ -26,12 +36,16 @@ export default function AvoidSituationCard ({step, setStep}: AvoidSituationCardP
             return (
               <button
                 onClick={() => {
+                  setState({
+                    ...onboardingTestData,
+                    onboardingTestData: { ...onboardingTestData, q3: content.enum },
+                  })
                   setStep(4)
                 }}
-                key={content}
+                key={content.enum}
                 className="bg-[#EEF0F9] hover:bg-purple-200 transition laptop:body-2xl-medium desktop:body-2xl-medium tablet:body-2xl-medium caption-md-medium desktop:h-[60px] laptop:h-[60px] tablet:h-[60px] desktop:px-[30px] desktop:py-[16px] laptop:px-[30px] laptop:py-[16px] tablet:px-[30px] tablet:py-[16px] flex h-[36px] w-full items-center rounded-[5px] px-[16px] py-[10px]"
               >
-                {content}
+                {content.kor}
               </button>
             )
           })}

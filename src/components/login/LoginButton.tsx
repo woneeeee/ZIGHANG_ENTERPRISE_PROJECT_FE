@@ -1,9 +1,9 @@
 import { KakaoLoginIcon, NaverLoginIcon, GoogleLoginIcon } from '@/assets/svgComponents'
 
 const CLIENT_ID = import.meta.env.VITE_KAKAO_CLIENT_ID
-const BASE_URL = window.location.origin
+const KAKAO_BASE_URL = import.meta.env.VITE_KAKAO_BASE_URL
 const KAKAO_REDIRECT_URI = import.meta.env.VITE_KAKAO_REDIRECT_URI
-const REDIRECT_URI = BASE_URL + KAKAO_REDIRECT_URI
+const REDIRECT_URI = KAKAO_BASE_URL + KAKAO_REDIRECT_URI
 
 const LoginButton = ({ type = 'space' }) => {
   const baseClasses =

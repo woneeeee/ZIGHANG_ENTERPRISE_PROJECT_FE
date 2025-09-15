@@ -11,7 +11,6 @@ const SvgResultFullOptionDreamerIcon = (props: SVGProps<SVGSVGElement>) => (
   >
     <foreignObject width={223.866} height={203.794} x={33.278} y={9.534}>
       <div
-        xmlns="http://www.w3.org/1999/xhtml"
         style={{
           backdropFilter: 'blur(2.17px)',
           clipPath: 'url(#result-Full-option-Dreamer-icon_svg__a)',

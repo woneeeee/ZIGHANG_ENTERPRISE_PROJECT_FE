@@ -1,4 +1,3 @@
-import * as React from "react";
 import type { SVGProps } from "react";
 const SvgCarIcon = (props: SVGProps<SVGSVGElement>) => <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 14 14" {...props}><path fill="#0057FF" d="M9.034 2.849c.729 0 1.387.44 1.667 1.112l.82 1.967c.58.253.988.833.988 1.507v2.669h-.96v.478a.958.958 0 0 1-1.915 0v-.479h-5.27v.479a.958.958 0 0 1-1.916 0v-.479H1.49V7.436c0-.673.405-1.253.985-1.506l.82-1.968a1.81 1.81 0 0 1 1.669-1.112zM3.406 6.75a.958.958 0 1 0 0 1.916.958.958 0 0 0 0-1.916m7.186-.001a.96.96 0 1 0 .002 1.918.96.96 0 0 0-.002-1.918M4.964 3.944a.71.71 0 0 0-.657.438l-.587 1.41h6.558l-.588-1.41a.71.71 0 0 0-.656-.438z" /></svg>;
 export default SvgCarIcon;

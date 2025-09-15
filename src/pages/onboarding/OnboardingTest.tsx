@@ -5,7 +5,6 @@ import AvoidSituationCard from '@/components/onboarding/test/AvoidSituationCard.
 import MotivationCard from '@/components/onboarding/test/MotivationCard.tsx'
 import AfterWorkChoiceCard from '@/components/onboarding/test/AfterWorkChoiceCard.tsx'
 import RewardChoiceCard from '@/components/onboarding/test/RewardChoiceCard.tsx'
-import Header from '@/components/common/Header.tsx'
 
 export default function OnboardingTest() {
   const [step, setStep] = useState<number>(1)

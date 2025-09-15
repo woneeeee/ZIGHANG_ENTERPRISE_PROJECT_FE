@@ -1,4 +1,3 @@
-import * as React from "react";
 import type { SVGProps } from "react";
 const SvgBusIcon = (props: SVGProps<SVGSVGElement>) => <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 14 14" {...props}><g clipPath="url(#bus-icon_svg__a)"><path fill="#0057FF" d="M11.91 4.083c.885 0 1.602.718 1.602 1.603v3.523c0 .442-.359.8-.801.8h-.52c-.222.467-.697.79-1.248.79a1.39 1.39 0 0 1-1.248-.79H4.29c-.222.467-.697.79-1.248.79a1.39 1.39 0 0 1-1.248-.79h-.519a.805.805 0 0 1-.801-.8V5.686c0-.884.719-1.601 1.602-1.603zM3.046 8.824a.593.593 0 1 0 0 1.187.593.593 0 0 0 0-1.187m7.905 0a.593.593 0 1 0 0 1.186.593.593 0 0 0 0-1.186m-8.883-3.95a.8.8 0 0 0-.801.8V6.85h1.976V4.874zM4.033 6.85h2.371V4.874h-2.37zm3.16 0h2.37V4.874h-2.37zm3.159 0h2.37V5.675c0-.443-.359-.801-.801-.801h-1.57z" /></g><defs><clipPath id="bus-icon_svg__a"><path fill="#fff" d="M0 0h14v14H0z" /></clipPath></defs></svg>;
 export default SvgBusIcon;

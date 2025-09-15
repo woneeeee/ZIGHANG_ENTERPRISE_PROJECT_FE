@@ -106,6 +106,11 @@ export default function RocketAssistant({
     transition = { type: 'spring', stiffness: 120, damping: 16 }
   }
 
+  const BASE_H = 1200
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const compH = (currentLottie as any)?.h ?? BASE_H
+  const scaleFix = BASE_H / compH
+
   return (
     <motion.button
       className="fixed z-40 select-none"
@@ -136,13 +141,16 @@ export default function RocketAssistant({
           <Lottie lottieRef={cloudRef} animationData={cloudDefault} loop autoplay />
         </div>
       )}
-
-      <div className="relative w-[120px]">
+      <div
+        className="relative h-[120px] w-[120px]"
+        style={{ transform: `scale(${1 / scaleFix})`, transformOrigin: 'center' }}
+      >
         <Lottie
           lottieRef={lottieRef}
           animationData={currentLottie}
-          loop={phase !== 'hover' ? true : false}
+          loop={phase !== 'hover'}
           autoplay
+          style={{ width: 120, height: 120 }}
         />
       </div>
     </motion.button>

@@ -23,7 +23,6 @@ function App() {
         <Route path="/job" element={<Job />} />
         <Route path="/kakao/oauth" element={<Redirect />} />
         <Route path="/auth/login/kakao" element={<Redirect />} />
-        <Route path="/kakao/oauth" element={<Redirect />} />
         <Route element={<RootLayout />}>
           <Route path="/onboarding/test" element={<OnboardingTest />}></Route>
           <Route path="/onboarding/start" element={<Start />} />

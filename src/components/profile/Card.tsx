@@ -1,4 +1,6 @@
-import { type ProfileCardItem } from '../../constants/ProfileCard'
+import { deleteReOnboarding } from '@/apis/deleteMypageTest'
+import { type ProfileCardItem } from '@/constants/ProfileCard'
+import { useNavigate } from 'react-router-dom'
 
 type CardProps = {
   item: ProfileCardItem
@@ -6,14 +8,26 @@ type CardProps = {
 
 const Card = ({ item }: CardProps) => {
   const CharacterIcon = item.icon
+  const nav = useNavigate()
+
+  const handleDelete = async () => {
+    try {
+      const res = await deleteReOnboarding()
+      if (res.name) {
+        nav('/onboarding/start')
+      }
+    } catch (e) {
+      console.error(e)
+    }
+  }
 
   return (
-    <div className="bg-profile-card tablet:w-[298px] tablet:h-[498px] h-[360px] w-[208px] rounded-[14px] text-center">
-      <div className="tablet:w-[298px] tablet:h-[256px] h-[178px] w-[208px] object-cover">
+    <div className="bg-profile-card tablet:w-[298px] tablet:h-[530px] tablet:rounded-[14px] h-[400px] w-[224px] rounded-[10px] text-center shadow-[0_0_20px_0_rgba(0,0,0,0.12)]">
+      <div className="tablet:w-[298px] tablet:h-[274px] h-[200px] w-[224px] object-cover">
         <CharacterIcon className="h-full w-full" />
       </div>
-      <div className="tablet:px-[16px] tablet:pb-[22px] tablet:gap-[20px] flex flex-col gap-[10px] px-[11px] pb-[15px]">
-        <div className="tablet:gap-[7px] tablet:px-[42px] flex flex-col gap-[2px] px-[29px]">
+      <div className="tablet:px-[16px] tablet:pb-[31px] tablet:gap-[20px] flex flex-col gap-[15px] px-[12px] pb-[23px]">
+        <div className="tablet:gap-[7px] tablet:px-[42px] flex flex-col gap-[5px] px-[31px]">
           <span className="body-xl-semibold tablet:heading-lg-semibold text-white">
             {item.title}
           </span>
@@ -21,9 +35,26 @@ const Card = ({ item }: CardProps) => {
             {item.subtitle}
           </span>
         </div>
-        <div className="caption-sm-medium tablet:body-sm-regular tablet:w-[266px] tablet:px-[32px] w-[185px] gap-[10px] rounded-[10px] bg-[#6374B8]/20 px-[10px] py-[10px] text-neutral-100">
+        <div className="caption-sm-medium tablet:body-sm-regular tablet:w-[266px] tablet:h-[92px] tablet:px-[32px] tablet:py-[16px] tablet:gap-[10px] tablet:rounded-[10px] flex h-[72px] w-[200px] items-center justify-center gap-[10px] rounded-[7px] bg-[#6374B8]/20 px-[20px] py-[12px] text-neutral-100">
           {item.description}
         </div>
+      </div>
+      <div className="tablet:h-[54px] tablet:py-[17px] tablet:px-[36px] tablet:gap-[30px] tablet:rounded-[14px] tablet:rounded-t-none flex h-[41px] items-center justify-center gap-[18px] rounded-[10px] rounded-t-none bg-white py-[12px]">
+        <p
+          className="caption-sm-medium tablet:body-sm-medium cursor-pointer whitespace-nowrap text-purple-500"
+          onClick={() => {
+            nav('/onboarding/result')
+          }}
+        >
+          결과 전체보기
+        </p>
+        <p className="text-neutral-300">|</p>
+        <p
+          className="caption-sm-medium text-netural-500 tablet:body-sm-medium cursor-pointer whitespace-nowrap"
+          onClick={handleDelete}
+        >
+          테스트 다시 하기
+        </p>
       </div>
     </div>
   )

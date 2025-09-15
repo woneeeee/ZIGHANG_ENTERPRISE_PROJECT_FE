@@ -40,7 +40,7 @@ const Landing = () => {
                 <span className="text-[#6F00B6]">111111개 기업</span>
                 <span className="text-[#646464]"> 전체 보기</span>
               </p>
-              <ChevronRightIcon className="h-4 w-4 text-[#646464]" />
+              <ChevronRightIcon className="h-4 w-4 fill-[#646464]" />
             </div>
             <div
               className="relative inline-flex flex-[0_0_auto] cursor-pointer items-center gap-1"
@@ -50,7 +50,7 @@ const Landing = () => {
                 <span className="text-[#6F00B6]">11111개 공고</span>
                 <span className="text-[#646464]"> 전체 보기</span>
               </p>
-              <ChevronRightIcon className="h-4 w-4 text-[#646464]" />
+              <ChevronRightIcon className="h-4 w-4 fill-[#646464]" />
             </div>
           </div>
         </div>

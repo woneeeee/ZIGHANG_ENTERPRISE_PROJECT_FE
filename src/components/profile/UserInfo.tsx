@@ -1,13 +1,27 @@
+import type { Profile } from '@/types/profile'
 import Button from './Button'
 import UserInfoBox from './UserInfoBox'
+import logout from '@/apis/logout'
+import { useNavigate } from 'react-router-dom'
 
-const UserInfo = () => {
+type UserProps = { profile: Profile }
+
+const UserInfo = ({ profile }: UserProps) => {
+  const nav = useNavigate()
+
+  const handleClick = () => {
+    const check = void logout
+    if (check) {
+      nav('/', { replace: true })
+    }
+  }
+
   return (
     <div className="flex flex-col gap-[14px] text-start">
       <span className="heading-lg-bold">유저 정보</span>
-      <UserInfoBox />
+      <UserInfoBox profile={profile} />
       <div className="flex w-full justify-end gap-[20px]">
-        <Button bg="#F3F4F6" color="black" onClick={() => {}}>
+        <Button bg="#F3F4F6" color="black" onClick={handleClick}>
           회원탈퇴
         </Button>
         <Button bg="#7A51FF" color="white" onClick={() => {}}>

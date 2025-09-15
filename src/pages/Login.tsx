@@ -1,25 +1,24 @@
-import { KakaoIcon } from '@/assets/svgComponents'
+import LoginButton from '@/components/login/LoginButton'
 
-const Login = () => {
-  const CLIENT_ID = import.meta.env.VITE_KAKAO_CLIENT_ID
-  const BASE_URL = window.location.origin
-  const KAKAO_REDIRECT_URI = import.meta.env.VITE_KAKAO_REDIRECT_URI
-  const REDIRECT_URI = BASE_URL + KAKAO_REDIRECT_URI
-
-  const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code`
-
+const OnboardingLogin = () => {
   return (
-    <div>
-      <button
-        className="body-lg-medium flex items-center justify-center rounded-[8px] bg-[#FEE500] px-[240px] py-[13px] text-black"
-        onClick={() => {
-          window.location.href = kakaoURL
-        }}
-      >
-        <KakaoIcon className="mr-[10px]" /> 카카오 로그인
-      </button>
-    </div>
+    <main className="flex min-h-[100svh] flex-col items-center justify-center gap-[50px]">
+      <div className="flex flex-col items-center gap-[15px]">
+        <p className="heading-3xl-bold">
+          <span className="text-purple-300">내 직군의 채용 공고</span>
+          <span className="text-neutral-900">를 매일 받아보세요</span>
+        </p>
+        <p className="heading-sm-semibold text-neutral-600">
+          오늘 올라온 채용공고 10개를 매일 아침 이메일로 보내드립니다
+        </p>
+      </div>
+      <LoginButton type="white" />
+      <div className="caption-md-medium flex gap-[10px] text-neutral-600">
+        <p className="cursor-pointer">개인정보 처리 방침</p>
+        <p>&#124;</p> <p className="cursor-pointer">이용 약관</p>
+      </div>
+    </main>
   )
 }
 
-export default Login
+export default OnboardingLogin

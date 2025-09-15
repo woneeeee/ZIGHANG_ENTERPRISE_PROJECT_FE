@@ -17,7 +17,7 @@ function App() {
         <Route path="/" element={<Landing />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/auth/login/kakao" element={<Redirect />} />
+        <Route path="/kakao/oauth" element={<Redirect />} />
         <Route element={<RootLayout />}>
           <Route path="/onboarding/start" element={<Start />} />
           <Route path="/onboarding/login" element={<OnboardingLogin />} />

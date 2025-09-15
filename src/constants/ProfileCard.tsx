@@ -1,14 +1,39 @@
 import type { ReactNode } from 'react'
 import {
   BabsimChampionIcon,
+  BabsimInnovatorIcon,
+  CareerChameleonIcon,
+  CareerRocketIcon,
+  ChallengeFanaticIcon,
+  CommuterRacerIcon,
+  CommutingGamblerIcon,
   CommutingNinjaIcon,
+  FreeWorkerIcon,
+  FullOptionDreamerIcon,
+  InHouseFoodLoverIcon,
+  KaltoeMasterIcon,
+  LevelUpCraftsmanIcon,
+  LunchPowererIcon,
+  LunchWorldTourerIcon,
+  MealSupportersIcon,
+  MenuAdventurerIcon,
   OfficeEscaperIcon,
+  PioneerOfGreedIcon,
+  PracticalChampionIcon,
+  RefreshExplorerIcon,
   RocketGrowthrIcon,
+  SeminarTranscriptionIcon,
+  ShuttleJumperIcon,
+  SkillMasterIcon,
   SkillupManiaIcon,
+  SurvivalMasterIcon,
+  TeleportationArtisanIcon,
   TheEnduringWarriorIcon,
+  TranscendentCommuterIcon,
   VacationHunterIcon,
   VacationWizardIcon,
   WlbIcon,
+  WorkationMasterIcon,
   WorkLifeBalanceWarriorIcon,
 } from '@/assets/svgComponents'
 
@@ -36,7 +61,7 @@ export const PROFILECARD: ProfileCardItem[] = [
   },
   {
     id: 2,
-    icon: WlbIcon,
+    icon: CareerRocketIcon,
     title: '커리어 로켓',
     subtitle: '#커리어 패스 #안정사다리',
     description: (
@@ -60,7 +85,7 @@ export const PROFILECARD: ProfileCardItem[] = [
   },
   {
     id: 4,
-    icon: WlbIcon,
+    icon: KaltoeMasterIcon,
     title: '칼퇴 마스터',
     subtitle: '#정시퇴근 #워라벨 마스터',
     description: (
@@ -72,7 +97,7 @@ export const PROFILECARD: ProfileCardItem[] = [
   },
   {
     id: 5,
-    icon: WlbIcon,
+    icon: FullOptionDreamerIcon,
     title: '풀옵션 드리머',
     subtitle: '#복지풀세트 #안정성추구',
     description: (
@@ -96,7 +121,7 @@ export const PROFILECARD: ProfileCardItem[] = [
   },
   {
     id: 7,
-    icon: WlbIcon,
+    icon: SkillMasterIcon,
     title: '스킬 마스터',
     subtitle: '#전문성강화  #스킬업',
     description: (
@@ -108,7 +133,7 @@ export const PROFILECARD: ProfileCardItem[] = [
   },
   {
     id: 8,
-    icon: WlbIcon,
+    icon: InHouseFoodLoverIcon,
     title: '사내밥 애호가',
     subtitle: '#든든식사 #실속러',
     description: (
@@ -132,9 +157,9 @@ export const PROFILECARD: ProfileCardItem[] = [
   },
   {
     id: 10,
-    icon: WlbIcon,
+    icon: PracticalChampionIcon,
     title: '실속 챔피언',
-    subtitle: ' #가성비중시 #합리적선택',
+    subtitle: '#가성비_중시 #합리적_선택',
     description: (
       <>
         합리적인 선택을 통해 <br />
@@ -144,7 +169,7 @@ export const PROFILECARD: ProfileCardItem[] = [
   },
   {
     id: 11,
-    icon: WlbIcon,
+    icon: RefreshExplorerIcon,
     title: '리프레시 탐험가',
     subtitle: '#마인드 리셋 #즉흥 여행',
     description: (
@@ -156,7 +181,7 @@ export const PROFILECARD: ProfileCardItem[] = [
   },
   {
     id: 12,
-    icon: WlbIcon,
+    icon: LevelUpCraftsmanIcon,
     title: '레벨업 장인',
     subtitle: '#빠른성장 #자기계발',
     description: (
@@ -168,7 +193,7 @@ export const PROFILECARD: ProfileCardItem[] = [
   },
   {
     id: 13,
-    icon: WlbIcon,
+    icon: LunchWorldTourerIcon,
     title: '점심 월드투어러',
     subtitle: '#맛집탐방 #점심여행',
     description: (
@@ -180,7 +205,7 @@ export const PROFILECARD: ProfileCardItem[] = [
   },
   {
     id: 14,
-    icon: WlbIcon,
+    icon: CommuterRacerIcon,
     title: '출퇴근 레이서',
     subtitle: '#빠른발걸음 #출퇴근 승부사',
     description: (
@@ -192,7 +217,7 @@ export const PROFILECARD: ProfileCardItem[] = [
   },
   {
     id: 15,
-    icon: WlbIcon,
+    icon: SurvivalMasterIcon,
     title: '생존 마스터',
     subtitle: '#적응의달인 #생존력최강',
     description: (
@@ -228,7 +253,7 @@ export const PROFILECARD: ProfileCardItem[] = [
   },
   {
     id: 18,
-    icon: WlbIcon,
+    icon: MealSupportersIcon,
     title: '식사 서포터즈',
     subtitle: '#팀밥문화 #밥친구',
     description: (
@@ -240,7 +265,7 @@ export const PROFILECARD: ProfileCardItem[] = [
   },
   {
     id: 19,
-    icon: WlbIcon,
+    icon: TeleportationArtisanIcon,
     title: '순간 이동 장인',
     subtitle: '#유연근무 #디지털노마드',
     description: (
@@ -276,7 +301,7 @@ export const PROFILECARD: ProfileCardItem[] = [
   },
   {
     id: 22,
-    icon: WlbIcon,
+    icon: SeminarTranscriptionIcon,
     title: '세미나 전사',
     subtitle: '#네트워킹러 #세미나러버',
     description: (
@@ -288,7 +313,7 @@ export const PROFILECARD: ProfileCardItem[] = [
   },
   {
     id: 23,
-    icon: WlbIcon,
+    icon: MenuAdventurerIcon,
     title: '메뉴 모험가',
     subtitle: '#도전정신 #점심개척자',
     description: (
@@ -300,7 +325,7 @@ export const PROFILECARD: ProfileCardItem[] = [
   },
   {
     id: 24,
-    icon: WlbIcon,
+    icon: CommutingGamblerIcon,
     title: '출근 겜블러',
     subtitle: '#스타트업라이프 #지옥철은Pass',
     description: (
@@ -313,7 +338,7 @@ export const PROFILECARD: ProfileCardItem[] = [
   },
   {
     id: 25,
-    icon: WlbIcon,
+    icon: ChallengeFanaticIcon,
     title: '도전광인러',
     subtitle: '#도전정신 #열정폭발',
     description: (
@@ -325,7 +350,7 @@ export const PROFILECARD: ProfileCardItem[] = [
   },
   {
     id: 26,
-    icon: WlbIcon,
+    icon: WorkationMasterIcon,
     title: '워케이션 마스터',
     subtitle: '#출장은싫어 #휴식모드ON',
     description: (
@@ -338,7 +363,7 @@ export const PROFILECARD: ProfileCardItem[] = [
   },
   {
     id: 27,
-    icon: WlbIcon,
+    icon: CareerChameleonIcon,
     title: '커리어 카멜레온',
     subtitle: '#커리어마스터  #어디서든적응완벽',
     description: (
@@ -351,7 +376,7 @@ export const PROFILECARD: ProfileCardItem[] = [
   },
   {
     id: 28,
-    icon: WlbIcon,
+    icon: BabsimInnovatorIcon,
     title: '밥심 혁신러',
     subtitle: '#점심파워  #점심이곧혁신',
     description: (
@@ -364,7 +389,7 @@ export const PROFILECARD: ProfileCardItem[] = [
   },
   {
     id: 29,
-    icon: WlbIcon,
+    icon: ShuttleJumperIcon,
     title: '셔틀 점핑러',
     subtitle: '#교통스트레스제로 #시간을버는자',
     description: (
@@ -377,7 +402,7 @@ export const PROFILECARD: ProfileCardItem[] = [
   },
   {
     id: 30,
-    icon: WlbIcon,
+    icon: FreeWorkerIcon,
     title: '프리워커',
     subtitle: '#일도삶도내맘대로 #자유로운워라밸인생',
     description: (
@@ -413,7 +438,7 @@ export const PROFILECARD: ProfileCardItem[] = [
   },
   {
     id: 33,
-    icon: WlbIcon,
+    icon: LunchPowererIcon,
     title: '점심 파워러',
     subtitle: '#칼퇴대신칼밥 #밥심파워',
     description: (
@@ -426,7 +451,7 @@ export const PROFILECARD: ProfileCardItem[] = [
   },
   {
     id: 34,
-    icon: WlbIcon,
+    icon: TranscendentCommuterIcon,
     title: '출퇴근 초월자',
     subtitle: '#교통마스터 #시간은내편',
     description: (
@@ -438,7 +463,7 @@ export const PROFILECARD: ProfileCardItem[] = [
   },
   {
     id: 35,
-    icon: WlbIcon,
+    icon: PioneerOfGreedIcon,
     title: '탐욕의 개척자',
     subtitle: '#욕심도스펙 #모든혜택은내것',
     description: (

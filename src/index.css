@@ -547,6 +547,22 @@ body {
 }
 
 {/* caption */}
+@utility caption-2xs-semibold {
+  /* Caption/2xs/semibold */
+  font-family: var(--font-family, Pretendard);
+  font-size: 8px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: var(--lh-caption-sm, 16px); /* 200% */
+}
+@utility caption-xs-medium {
+  /* Caption/2xs/semibold */
+  font-family: var(--font-family, Pretendard);
+  font-size: 10px;
+  font-style: normal;
+  font-weight: var(--weight-medium, 500);
+  line-height: var(--lh-caption-sm, 16px); /* 160% */
+}
 @utility caption-md-bold {
   /* Caption/md/bold */
   font-family: var(--font-family, Pretendard);
@@ -569,6 +585,14 @@ body {
   font-size: var(--scale-caption-md, 13px);
   font-style: normal;
   font-weight: var(--weight-medium, 500);
+  line-height: var(--lh-caption-md, 16px); /* 123.077% */
+}
+@utility caption-md-bold {
+  /* Caption/md/bold */
+  font-family: var(--font-family, Pretendard);
+  font-size: var(--scale-caption-md, 13px);
+  font-style: normal;
+  font-weight: var(--weight-bold, 700);
   line-height: var(--lh-caption-md, 16px); /* 123.077% */
 }
 @utility caption-sm-medium {

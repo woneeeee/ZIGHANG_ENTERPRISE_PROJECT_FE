@@ -1,5 +1,8 @@
 export { default as WlbIcon } from './WlbIcon'
 export { default as BackgroundIcon } from './BackgroundIcon'
+export { default as BookmarkIcon } from './BookmarkIcon'
+export { default as BusIcon } from './BusIcon'
+export { default as CarIcon } from './CarIcon'
 export { default as CheckIcon } from './CheckIcon'
 export { default as ChevronRightIcon } from './ChevronRightIcon'
 export { default as CjOliveYoungLogoIcon } from './CjOliveYoungLogoIcon'

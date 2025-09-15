@@ -1,12 +1,22 @@
 import type { Dispatch, SetStateAction } from 'react'
 import Card from '@/components/onboarding/test/Card.tsx'
+import { useOnboardingTestStore } from '@/stores/onboardingTestStore.ts'
 
 interface RewardChoiceCardProps {
   step: number
   setStep: Dispatch<SetStateAction<number>>
 }
 export default function RewardChoiceCard ({step, setStep}: RewardChoiceCardProps) {
-  const contentList = ['광속 귀환권', '지구 전통 요리 풀코스', '우주 아카데미 명예 졸업장', '행성 간 크루즈 휴가권']
+  const contentList: { kor: string; enum: string }[] = [
+    { kor: '광속 귀환권', enum: '출퇴근' },
+    { kor: '지구 전통 요리 풀코스', enum: '식대' },
+    { kor: '우주 아카데미 명예 졸업장', enum: '커리어성장' },
+    { kor: '행성 간 크루즈 휴가권', enum: '휴가' },
+  ]
+
+  const setState = useOnboardingTestStore((state) => state.setState)
+  const onboardingTestData = useOnboardingTestStore((state) => state.onboardingTestData)
+
   return (
     <Card step={step} setStep={setStep}>
       <div className="mt-[17px] flex flex-col items-center justify-center">
@@ -29,12 +39,16 @@ export default function RewardChoiceCard ({step, setStep}: RewardChoiceCardProps
             return (
               <button
                 onClick={() => {
+                  setState({
+                    ...onboardingTestData,
+                    onboardingTestData: { ...onboardingTestData, q6: content.enum },
+                  })
                   setStep(6)
                 }}
-                key={content}
+                key={content.enum}
                 className="bg-[#EEF0F9] hover:bg-purple-200 transition laptop:body-2xl-medium desktop:body-2xl-medium tablet:body-2xl-medium caption-md-medium desktop:h-[60px] laptop:h-[60px] tablet:h-[60px] desktop:px-[30px] desktop:py-[16px] laptop:px-[30px] laptop:py-[16px] tablet:px-[30px] tablet:py-[16px] flex h-[36px] w-full items-center rounded-[5px] px-[16px] py-[10px]"
               >
-                {content}
+                {content.kor}
               </button>
             )
           })}

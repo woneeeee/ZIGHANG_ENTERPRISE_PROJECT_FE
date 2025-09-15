@@ -1,12 +1,23 @@
 import type { Dispatch, SetStateAction } from 'react'
 import Card from '@/components/onboarding/test/Card.tsx'
+import { useOnboardingTestStore } from '@/stores/onboardingTestStore.ts'
 
 interface AfterWorkChoiceCardProps {
   step: number
   setStep: Dispatch<SetStateAction<number>>
 }
 export default function AfterWorkChoiceCard ({step, setStep}: AfterWorkChoiceCardProps) {
-  const contentList = ['우주 최고 전문가 컨퍼런스 초청권', '은하 리조트에서 즐기는 호화 휴가', '매일 열리는 미식 뷔페', '순식간에 지구로 귀환하는 패스권']
+  const contentList: { kor: string; enum: string }[] = [
+    { kor: '우주 최고 전문가 컨퍼런스 초청권', enum: '커리어성장' },
+    { kor: '은하 리조트에서 즐기는 호화 휴가', enum: '휴가' },
+    { kor: '매일 열리는 미식 뷔페', enum: '식대' },
+    { kor: '순식간에 지구로 귀환하는 패스권', enum: '출퇴근' },
+  ]
+
+  const setState = useOnboardingTestStore((state) => state.setState)
+  const onboardingTestData = useOnboardingTestStore((state) => state.onboardingTestData)
+
+
   return (
     <Card step={step} setStep={setStep}>
       <div className="mt-[17px] flex flex-col items-center justify-center">
@@ -29,12 +40,16 @@ export default function AfterWorkChoiceCard ({step, setStep}: AfterWorkChoiceCar
             return (
               <button
                 onClick={() => {
+                  setState({
+                    ...onboardingTestData,
+                    onboardingTestData: { ...onboardingTestData, q5: content.enum },
+                  })
                   setStep(6)
                 }}
-                key={content}
+                key={content.enum}
                 className="bg-[#EEF0F9] hover:bg-purple-200 transition laptop:body-2xl-medium desktop:body-2xl-medium tablet:body-2xl-medium caption-md-medium desktop:h-[60px] laptop:h-[60px] tablet:h-[60px] desktop:px-[30px] desktop:py-[16px] laptop:px-[30px] laptop:py-[16px] tablet:px-[30px] tablet:py-[16px] flex h-[36px] w-full items-center rounded-[5px] px-[16px] py-[10px]"
               >
-                {content}
+                {content.kor}
               </button>
             )
           })}

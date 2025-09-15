@@ -17,9 +17,12 @@ import { ChevronRightIcon } from '@/assets/svgComponents'
 import { useNavigate } from 'react-router-dom'
 import { getMyPageAll } from '@/apis/getOnboardingResultAll'
 import { adaptSearchToRecommend } from '@/constants/companyAssetMap'
+import { useOnboardingTestStore } from '@/stores/onboardingTestStore'
 
 const Card = () => {
-  const accessToken = localStorage.getItem('accessToken')
+  const accessToken = typeof window !== 'undefined' ? localStorage.getItem('accessToken') : null
+  const isLoggedIn = Boolean(accessToken)
+
   const nav = useNavigate()
   const ctaContainerRef = useRef<HTMLDivElement | null>(null)
   const ctaInView = useInView(ctaContainerRef, {
@@ -38,32 +41,35 @@ const Card = () => {
     nav('/job')
   }
 
+  const onboardingCharacterData = useOnboardingTestStore((state) => state.onboardingCharacterData)
+  const preSignupCharacterName = onboardingCharacterData?.characterName ?? null
+
   const [items, setItems] = useState<RecommendJobItem[]>([])
   const [ckey, setCkey] = useState<CharacterKey>('워라밸 신봉자')
+
   const description = ONBOARDINGRESULT[ckey]
   const OnboardingIcon =
     ICON_MAP[description.iconKey as keyof typeof ICON_MAP] ?? ICON_MAP.OnboardingWlbIcon
 
   useEffect(() => {
-    if (!accessToken) {
-      setItems(RECOMMENDJOBLIST)
-      setCkey('워라밸 신봉자')
+    if (isLoggedIn) {
+      ;(async () => {
+        try {
+          const data = await getMyPageAll()
+          setCkey(toCharacterKey(data.characterName))
+          const mapped = adaptSearchToRecommend(data.searchResponses ?? [])
+          setItems(mapped.length ? mapped : RECOMMENDJOBLIST)
+        } catch (e) {
+          console.error('[my-page/all] failed:', e)
+          setCkey('워라밸 신봉자')
+          setItems(RECOMMENDJOBLIST)
+        }
+      })()
       return
     }
-    ;(async () => {
-      try {
-        const data = await getMyPageAll()
-        setCkey(toCharacterKey(data.characterName))
-
-        const mapped = adaptSearchToRecommend(data.searchResponses ?? [])
-        setItems(mapped.length ? mapped : RECOMMENDJOBLIST)
-      } catch (e) {
-        console.error('[my-page/all] failed:', e)
-        setItems(RECOMMENDJOBLIST)
-        setCkey('워라밸 신봉자')
-      }
-    })()
-  }, [accessToken])
+    setCkey(preSignupCharacterName ? toCharacterKey(preSignupCharacterName) : '워라밸 신봉자')
+    setItems([])
+  }, [isLoggedIn, preSignupCharacterName])
 
   return (
     <main

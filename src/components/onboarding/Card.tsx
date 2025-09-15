@@ -1,19 +1,22 @@
 import Button from './Button'
 import RecommendJobBox from './RecommendJobBox'
-import { RECOMMENDJOBLIST } from '@/constants/RecommendJob'
+import { RECOMMENDJOBLIST, type RecommendJobItem } from '@/constants/RecommendJob'
 import { cn } from '@/utils/cn'
 import { motion, AnimatePresence, useInView } from 'framer-motion'
-import { useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import GrowingTextButton from './GrowingTextButton'
-import { ICON_MAP, ONBOARDINGRESULT, type CharacterKey } from '@/constants/OnboardingResult'
+import {
+  ICON_MAP,
+  ONBOARDINGRESULT,
+  toCharacterKey,
+  type CharacterKey,
+} from '@/constants/OnboardingResult'
 import { renderWithHighlight } from '@/utils/renderWithHighlight'
 import { usePngExport } from '@/hooks/usePngExport'
 import { ChevronRightIcon } from '@/assets/svgComponents'
 import { useNavigate } from 'react-router-dom'
-
-const characterKey: CharacterKey = 'WLB'
-const description = ONBOARDINGRESULT[characterKey]
-const OnboardingIcon = ICON_MAP[description.iconKey]
+import { getMyPageAll } from '@/apis/getOnboardingResultAll'
+import { adaptSearchToRecommend } from '@/constants/companyAssetMap'
 
 const Card = () => {
   const accessToken = localStorage.getItem('accessToken')
@@ -34,6 +37,33 @@ const Card = () => {
   const handleEntire = () => {
     nav('/job')
   }
+
+  const [items, setItems] = useState<RecommendJobItem[]>([])
+  const [ckey, setCkey] = useState<CharacterKey>('워라밸 신봉자')
+  const description = ONBOARDINGRESULT[ckey]
+  const OnboardingIcon =
+    ICON_MAP[description.iconKey as keyof typeof ICON_MAP] ?? ICON_MAP.OnboardingWlbIcon
+
+  useEffect(() => {
+    if (!accessToken) {
+      setItems(RECOMMENDJOBLIST)
+      setCkey('워라밸 신봉자')
+      return
+    }
+    ;(async () => {
+      try {
+        const data = await getMyPageAll()
+        setCkey(toCharacterKey(data.characterName))
+
+        const mapped = adaptSearchToRecommend(data.searchResponses ?? [])
+        setItems(mapped.length ? mapped : RECOMMENDJOBLIST)
+      } catch (e) {
+        console.error('[my-page/all] failed:', e)
+        setItems(RECOMMENDJOBLIST)
+        setCkey('워라밸 신봉자')
+      }
+    })()
+  }, [accessToken])
 
   return (
     <main
@@ -85,7 +115,7 @@ const Card = () => {
         <div className="flex items-center justify-between">
           <span className="heading-md-semibold text-white">나와 딱 맞는 공고</span>
           <div
-            className="body-xl-semibold pointer-cursor inline-flex items-center whitespace-nowrap text-white"
+            className="caption-sm-medium tablet:body-xl-semibold inline-flex cursor-pointer items-center whitespace-nowrap text-white"
             onClick={handleEntire}
           >
             전체보기 <ChevronRightIcon className="fill-white" />
@@ -99,7 +129,7 @@ const Card = () => {
               !accessToken && 'blur-[7px]',
             )}
           >
-            {RECOMMENDJOBLIST.map((item) => (
+            {items.map((item) => (
               <RecommendJobBox key={item.id} item={item} />
             ))}
           </div>

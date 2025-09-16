@@ -38,7 +38,7 @@ export const category4Constants: {kor: string; enum: JobGroupEnumType}[] = [
   { kor: '영업', enum: '영업' },
   { kor: '무역·물류', enum: '무역_물류_유통' },
   { kor: '운송·배송', enum: '운송_배송' },
-  { kor: '회계·재무·세무', enum: '회계_재무_세무' },
+  { kor: '회계·재무·세무', enum: '회계_세무_재무' },
   { kor: 'HR·총무', enum: '인사_노무_HRD_총무' },
 ]
 

@@ -31,17 +31,17 @@ export default function JobCategory() {
         return ITConstants
       case 'AI_데이터':
         return AIConstants
-      case '엔지니어링_R&D':
+      case '엔지니어링_연구_RND':
         return engineeringConstants
       case '건설_건축':
         return architectureConstants
-      case '생산_기능직':
+      case '생산_기능':
         return manufacturingConstants
       case '법률_법무':
         return legalConstants
-      case '증권_운용':
+      case '증권_운영':
         return securitiesConstants
-      case '은행_카드_보험':
+      case '은행_보험_카드_캐피탈':
         return financeConstants
       case '의료_보건':
         return medicalConstants
@@ -51,7 +51,7 @@ export default function JobCategory() {
         return educationConstants
       case '식음료':
         return foodAndBeverageConstants
-      case '마케팅_광고':
+      case '마케팅_광고_홍보':
         return marketingConstants
       case '디자인':
         return designConstants
@@ -63,19 +63,19 @@ export default function JobCategory() {
         return customerServiceConstants
       case '서비스':
         return serviceConstants
-      case '기획_전략':
+      case '기획_전략_경영':
         return planningAndStrategyConstants
       case '상품기획_MD':
         return productPlanningAndMDConstants
       case '영업':
         return salesConstants
-      case '무역_물류':
+      case '무역_물류_유통':
         return tradeAndLogisticsConstants
       case '운송_배송':
         return transportationConstants
-      case '회계_재무_세무':
+      case '회계_세무_재무':
         return accountingConstants
-      case 'HR_총무':
+      case '인사_노무_HRD_총무':
         return hrConstants
     }
   }
@@ -86,17 +86,17 @@ export default function JobCategory() {
         return 'IT 개발'
       case 'AI_데이터':
         return 'AI 데이터'
-      case '엔지니어링_R&D':
+      case '엔지니어링_연구_RND':
         return '엔지니어링 R&D'
       case '건설_건축':
         return '건설 건축'
-      case '생산_기능직':
+      case '생산_기능':
         return '생산 기능직'
       case '법률_법무':
         return '법률 법무'
-      case '증권_운용':
-        return '증권 운용'
-      case '은행_카드_보험':
+      case '증권_운영':
+        return '증권 운영'
+      case '은행_보험_카드_캐피탈':
         return '은행 카드 보험'
       case '의료_보건':
         return '의료 보건'
@@ -106,7 +106,7 @@ export default function JobCategory() {
         return '교육'
       case '식음료':
         return '식음료'
-      case '마케팅_광고':
+      case '마케팅_광고_홍보':
         return '마케팅 광고'
       case '디자인':
         return '디자인'
@@ -118,19 +118,19 @@ export default function JobCategory() {
         return '고객상담 TM'
       case '서비스':
         return '서비스'
-      case '기획_전략':
+      case '기획_전략_경영':
         return '기획 전략'
       case '상품기획_MD':
         return '상품기획 MD'
       case '영업':
         return '영업'
-      case '무역_물류':
+      case '무역_물류_유통':
         return '무역 물류'
       case '운송_배송':
         return '운송 배송'
-      case '회계_재무_세무':
+      case '회계_세무_재무':
         return '회계 재무 세무'
-      case 'HR_총무':
+      case '인사_노무_HRD_총무':
         return 'HR 총무'
     }
   }

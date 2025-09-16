@@ -5,7 +5,7 @@ import type { EditMyInfoType } from '@/types/edit-mypage.ts'
 export const patchUsersMyPage = async (
   editMyInfoData: EditMyInfoType,
 ): Promise<ApiResponse<EditMyInfoType>> => {
-  const res = await api.post<ApiResponse<EditMyInfoType>>(
+  const res = await api.patch<ApiResponse<EditMyInfoType>>(
     `/users/my-page`,
     editMyInfoData,
   )

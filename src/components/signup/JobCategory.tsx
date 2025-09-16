@@ -21,7 +21,11 @@ import { useSignUpStore } from '@/store/signupStore.ts'
 import type { JobGroupEnumType, JobPositionEnumType } from '@/types/signup.ts'
 import { toast } from 'react-toastify'
 import { useEffect } from 'react'
-import { useEditMyInfoStore } from '@/stores/editMyInfoStore.ts' // 또는 사용하는 토스트 라이브러리
+import { useEditMyInfoStore } from '@/stores/editMyInfoStore.ts'
+import {
+  changeCategoryEnumToKor,
+  getDetailJobCategoryDisplay,
+} from '@/utils/sign-up.ts' // 또는 사용하는 토스트 라이브러리
 
 export default function JobCategory() {
   const setJobPositionState = useSignUpStore((state) => state.setState)
@@ -41,17 +45,17 @@ export default function JobCategory() {
         return ITConstants
       case 'AI_데이터':
         return AIConstants
-      case '엔지니어링_R&D':
+      case '엔지니어링_연구_RND':
         return engineeringConstants
       case '건설_건축':
         return architectureConstants
-      case '생산_기능직':
+      case '생산_기능':
         return manufacturingConstants
       case '법률_법무':
         return legalConstants
-      case '증권_운용':
+      case '증권_운영':
         return securitiesConstants
-      case '은행_카드_보험':
+      case '은행_보험_카드_캐피탈':
         return financeConstants
       case '의료_보건':
         return medicalConstants
@@ -61,7 +65,7 @@ export default function JobCategory() {
         return educationConstants
       case '식음료':
         return foodAndBeverageConstants
-      case '마케팅_광고':
+      case '마케팅_광고_홍보':
         return marketingConstants
       case '디자인':
         return designConstants
@@ -73,75 +77,20 @@ export default function JobCategory() {
         return customerServiceConstants
       case '서비스':
         return serviceConstants
-      case '기획_전략':
+      case '기획_전략_경영':
         return planningAndStrategyConstants
       case '상품기획_MD':
         return productPlanningAndMDConstants
       case '영업':
         return salesConstants
-      case '무역_물류':
+      case '무역_물류_유통':
         return tradeAndLogisticsConstants
       case '운송_배송':
         return transportationConstants
-      case '회계_재무_세무':
+      case '회계_세무_재무':
         return accountingConstants
-      case 'HR_총무':
+      case '인사_노무_HRD_총무':
         return hrConstants
-    }
-  }
-
-  const changeCategoryEnumToKor = (selectedCategory: JobGroupEnumType | undefined) => {
-    switch (selectedCategory) {
-      case 'IT_개발':
-        return 'IT 개발'
-      case 'AI_데이터':
-        return 'AI 데이터'
-      case '엔지니어링_R&D':
-        return '엔지니어링 R&D'
-      case '건설_건축':
-        return '건설 건축'
-      case '생산_기능직':
-        return '생산 기능직'
-      case '법률_법무':
-        return '법률 법무'
-      case '증권_운용':
-        return '증권 운용'
-      case '은행_카드_보험':
-        return '은행 카드 보험'
-      case '의료_보건':
-        return '의료 보건'
-      case '공공_복지':
-        return '공공 복지'
-      case '교육':
-        return '교육'
-      case '식음료':
-        return '식음료'
-      case '마케팅_광고':
-        return '마케팅 광고'
-      case '디자인':
-        return '디자인'
-      case '게임':
-        return '게임'
-      case '미디어_엔터':
-        return '미디어 엔터'
-      case '고객상담_TM':
-        return '고객상담 TM'
-      case '서비스':
-        return '서비스'
-      case '기획_전략':
-        return '기획 전략'
-      case '상품기획_MD':
-        return '상품기획 MD'
-      case '영업':
-        return '영업'
-      case '무역_물류':
-        return '무역 물류'
-      case '운송_배송':
-        return '운송 배송'
-      case '회계_재무_세무':
-        return '회계 재무 세무'
-      case 'HR_총무':
-        return 'HR 총무'
     }
   }
 
@@ -204,12 +153,11 @@ export default function JobCategory() {
 
   const isSelected = (jobCategory: JobPositionEnumType) => {
     if (editMyInfoData) {
-      return editMyInfoData.jobPositions.includes(jobCategory) || false
+      return editMyInfoData.jobPositions?.includes(getDetailJobCategoryDisplay(jobCategory) as JobPositionEnumType) || false;
     } else {
-      return signUpData?.jobPositionEnum?.includes(jobCategory) || false
+      return signUpData?.jobPositionEnum?.includes(jobCategory) || false;
     }
   }
-
 
   return (
     <main

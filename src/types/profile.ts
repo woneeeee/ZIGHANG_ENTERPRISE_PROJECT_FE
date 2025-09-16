@@ -1,4 +1,4 @@
-import type { EducationEnumType, JobGroupEnumType } from '@/types/signup.ts'
+import type { EducationEnumType, JobGroupEnumType, TransportEnumType } from '@/types/signup.ts'
 
 export type Job = {
   jobGroups: JobGroupEnumType

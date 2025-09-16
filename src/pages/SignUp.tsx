@@ -11,6 +11,8 @@ import { useSignUpStore } from '@/store/signupStore.ts'
 import { useEditMyInfoStore } from '@/stores/editMyInfoStore.ts'
 import { useProfileStore } from '@/stores/profileStore.ts'
 import { getProfileInfo } from '@/apis/users/getProfileInfo.tsx'
+import { changeEducationKorToEnum, getDetailJobCategory, getJobCategory } from '@/utils/sign-up.ts'
+import type { JobPositionEnumType } from '@/types/signup.ts'
 
 export default function SignUp() {
   const signUpData = useSignUpStore((state) => state.signUpData)
@@ -23,6 +25,7 @@ export default function SignUp() {
     ;(async () => {
       try {
         const me = await getProfileInfo()
+        console.log('me', me)
         setProfile(me)
       } catch (error) {
         console.error('프로필 정보를 불러오지 못했어요.', error)
@@ -34,10 +37,12 @@ export default function SignUp() {
     if (profile && !editMyInfoData) {
       setState({
         editMyInfoData: {
-          jobGroups: profile.mypageModifyResponse.jobGroups,
-          education: profile.mypageModifyResponse.education,
+          jobGroups: getJobCategory(profile.mypageModifyResponse.jobGroups),
+          education: changeEducationKorToEnum(profile.mypageModifyResponse.education),
           address: profile.mypageModifyResponse.address,
-          jobPositions: profile.mypageModifyResponse.jobPositions,
+          jobPositions: profile.mypageModifyResponse.jobPositions
+            .map((jobPosition) => getDetailJobCategory(jobPosition))
+            .filter(item => item !== undefined) as JobPositionEnumType[],
           maxCommuteMinutes: profile.mypageModifyResponse.maxCommuteMinutes,
           transport: profile.mypageModifyResponse.transport,
           workExperience: profile.mypageModifyResponse.workExperience,
@@ -47,10 +52,6 @@ export default function SignUp() {
       })
     }
   }, [profile])
-
-  useEffect(() => {
-    console.log('editMyInfoData', editMyInfoData)
-  }, [editMyInfoData])
 
   // 진행률 계산
   const progress = useMemo(() => {

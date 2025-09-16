@@ -7,10 +7,10 @@ import type {
 } from '@/types/signup.ts'
 
 export interface EditMyInfoType {
-  jobGroups: JobGroupEnumType
-  jobPositions: JobPositionEnumType[]
+  jobGroups: JobGroupEnumType | undefined
+  jobPositions: JobPositionEnumType[] | undefined
   companyTypes: CompanyEnumType[]
-  education: EducationEnumType
+  education: EducationEnumType | undefined
   workExperience: number | undefined
   address: string | undefined
   transport: TransportEnumType

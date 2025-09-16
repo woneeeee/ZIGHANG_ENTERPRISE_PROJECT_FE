@@ -17,5 +17,5 @@ export type Profile = {
   email: string
   characterId: number | null
   characterName: string | null
-  mypageModifyResponse: Job
+  mypageResponseDto: Job
 }

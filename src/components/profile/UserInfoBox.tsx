@@ -6,7 +6,7 @@ type Props = { profile: Profile }
 const sep = (arr: string[]) => (arr?.length ? arr.join(', ') : '-')
 
 const UserInfoBox = ({ profile }: Props) => {
-  const u = profile.mypageModifyResponse
+  const u = profile.mypageResponseDto
 
   const transportMapping: { [key: string]: string } = {
     CAR: '자가용',

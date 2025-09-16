@@ -1,13 +1,14 @@
-import { StartPlanetIcon } from '@/assets/svgComponents'
 import Button from '../Button'
 import { useNavigate } from 'react-router-dom'
+import Lottie from 'lottie-react'
+import StartPlanetIcon from '@/assets/lotties/onboarding_start.json'
 
 const Card = () => {
   const nav = useNavigate()
 
   return (
-    <main className="[border-image:linear-gradient(90deg, rgba(120,112,158,.8) 0%, rgba(96,65,255,0) 50%, rgba(113,104,144,.8) 100% )_1] tablet:w-[564px] tablet:gap-[74px] tablet:px-[90px] tablet:pt-[86px] tablet:pb-[70px] flex w-[287px] flex-col items-center justify-center gap-[64px] rounded-[30px] border border-solid border-transparent bg-[#c8c2e5]/[0.1] px-[14px] pt-[50px] pb-[48px] backdrop-blur-[15px] [border-image-slice:1]">
-      <StartPlanetIcon className="tablet:h-[345px] tablet:w-[384px] h-[212px] w-[258px]" />
+    <main className="[border-image:linear-gradient(90deg, rgba(120,112,158,.8) 0%, rgba(96,65,255,0) 50%, rgba(113,104,144,.8) 100% )_1] tablet:w-[564px] tablet:gap-[65px] tablet:px-[90px] tablet:pt-[86px] tablet:pb-[70px] flex w-[287px] flex-col items-center justify-center gap-[64px] rounded-[30px] border border-solid border-transparent bg-[#c8c2e5]/[0.1] px-[14px] pt-[50px] pb-[48px] backdrop-blur-[15px] [border-image-slice:1]">
+      <Lottie animationData={StartPlanetIcon} loop={true} autoplay={true} />
       <div className="flex flex-col items-center gap-[36px]">
         <div className="flex flex-col gap-[9px] text-center">
           <p className="mobile:hidden tablet:flex body-lg-bold tablet:heading-md-bold text-white">

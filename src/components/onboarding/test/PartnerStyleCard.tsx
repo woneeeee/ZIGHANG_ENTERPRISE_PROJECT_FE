@@ -1,14 +1,14 @@
 import type { Dispatch, SetStateAction } from 'react'
 import Card from '@/components/onboarding/test/Card.tsx'
-import type { CompanyType } from '@/types/onboarding-test.ts'
 import { useOnboardingTestStore } from '@/stores/onboardingTestStore.ts'
+import type { CompanyEnumType } from '@/types/signup.ts'
 
 interface PartnerStyleCardProps {
   step: number
   setStep: Dispatch<SetStateAction<number>>
 }
 export default function PartnerStyleCard({ step, setStep }: PartnerStyleCardProps) {
-  const contentList: { kor: string; enum: CompanyType }[] = [
+  const contentList: { kor: string; enum: CompanyEnumType }[] = [
     { kor: '열정적으로 밤낮없이 일하는 크루', enum: 'STARTUP' },
     { kor: '규율과 절차를 꼼꼼히 지키는 크루', enum: 'MAJOR' },
     { kor: '자유롭고 캐주얼하게 일하는 크루', enum: 'FOREIGN' },

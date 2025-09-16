@@ -11,21 +11,21 @@ export const levelOfEducationConstants: {kor: string; enum: EducationEnumType}[]
 export const category1Constants: {kor: string; enum: JobGroupEnumType}[] = [
   { kor: 'IT·개발', enum: 'IT_개발' },
   { kor: 'AI·데이터', enum: 'AI_데이터' },
-  { kor: '엔지니어링·R&D', enum: '엔지니어링_R&D' },
+  { kor: '엔지니어링·R&D', enum: '엔지니어링_연구_RND' },
   { kor: '건설·건축', enum: '건설_건축' },
-  { kor: '생산·기능직', enum: '생산_기능직' },
+  { kor: '생산·기능직', enum: '생산_기능' },
 ]
 export const category2Constants: {kor: string; enum: JobGroupEnumType}[] = [
   { kor: '법률·법무', enum: '법률_법무' },
-  { kor: '증권·운용', enum: '증권_운용' },
-  { kor: '은행·카드·보험', enum: '은행_카드_보험' },
+  { kor: '증권·운용', enum: '증권_운영' },
+  { kor: '은행·카드·보험', enum: '은행_보험_카드_캐피탈' },
   { kor: '의료·보건', enum: '의료_보건' },
   { kor: '공공·복지', enum: '공공_복지' },
   { kor: '교육', enum: '교육' },
   { kor: '식음료', enum: '식음료' },
 ]
 export const category3Constants: {kor: string; enum: JobGroupEnumType}[] = [
-  { kor: '마케팅·광고', enum: '마케팅_광고' },
+  { kor: '마케팅·광고', enum: '마케팅_광고_홍보' },
   { kor: '디자인', enum: '디자인' },
   { kor: '게임', enum: '게임' },
   { kor: '미디어·엔터', enum: '미디어_엔터' },
@@ -33,13 +33,13 @@ export const category3Constants: {kor: string; enum: JobGroupEnumType}[] = [
   { kor: '서비스', enum: '서비스' },
 ]
 export const category4Constants: {kor: string; enum: JobGroupEnumType}[] = [
-  { kor: '기획·전략', enum: '기획_전략' },
+  { kor: '기획·전략', enum: '기획_전략_경영' },
   { kor: '상품기획·MD', enum: '상품기획_MD' },
   { kor: '영업', enum: '영업' },
-  { kor: '무역·물류', enum: '무역_물류' },
+  { kor: '무역·물류', enum: '무역_물류_유통' },
   { kor: '운송·배송', enum: '운송_배송' },
-  { kor: '회계·재무·세무', enum: '회계_재무_세무' },
-  { kor: 'HR·총무', enum: 'HR_총무' },
+  { kor: '회계·재무·세무', enum: '회계_세무_재무' },
+  { kor: 'HR·총무', enum: '인사_노무_HRD_총무' },
 ]
 
 // 직무 선택
@@ -61,14 +61,14 @@ export const ITConstants: {kor: string; enum: JobPositionEnumType}[] = [
     { kor: '시스템소프트웨어', enum: '시스템소프트웨어' },
     { kor: '소프트웨어 엔지니어', enum: '소프트웨어_엔지니어' },
     { kor: '정보보호·보안', enum: '정보보호_보안' },
-    { kor: '임베디드 소프트웨어', enum: '임베디드_소프트웨어' },
+    { kor: '임베디드 소프트웨어', enum: '임베디드소프트웨어' },
     { kor: '로봇SW', enum: '로봇SW' },
     { kor: 'QA·테스트', enum: 'QA_테스트' },
-    { kor: '사물인터넷(IoT)', enum: '사물인터넷(IoT)' },
+    { kor: '사물인터넷(IoT)', enum: '사물인터넷_IoT' },
     { kor: '응용 프로그램', enum: '응용_프로그램' },
     { kor: '블록체인', enum: '블록체인' },
     { kor: '개발PM', enum: '개발PM' },
-    { kor: '웹 퍼블리싱', enum: '웹_퍼블리싱' },
+    { kor: '웹 퍼블리싱', enum: '웹퍼블리싱' },
     { kor: 'VR·AR·3D', enum: 'VR_AR_3D' },
     { kor: 'ERP·SAP', enum: 'ERP_SAP' },
     { kor: '그래픽스', enum: '그래픽스' },
@@ -85,7 +85,7 @@ export const AIConstants: {kor: string; enum: JobPositionEnumType}[] = [
     { kor: '생성형AI', enum: '생성형AI' },
     { kor: '영상·음성AI', enum: '영상_음성AI' },
     { kor: '자율주행', enum: '자율주행' },
-    { kor: '컴퓨터 비전', enum: '컴퓨터_비전' },
+    { kor: '컴퓨터 비전', enum: '컴퓨터비전' },
     { kor: 'AI 비즈니스', enum: 'AI_비즈니스' },
     { kor: 'AI 서비스 기획', enum: 'AI_서비스_기획' },
     { kor: 'AI리서치', enum: 'AI리서치' },
@@ -111,7 +111,7 @@ export const engineeringConstants: {kor: string; enum: JobPositionEnumType}[] = 
     { kor: '식품', enum: '식품' },
     { kor: '에너지', enum: '에너지' },
     { kor: '환경', enum: '환경' },
-    { kor: '기타엔지니어링·R&D', enum: '기타엔지니어링_R&D' },
+    { kor: '기타엔지니어링·R&D', enum: '기타엔지니어링_RnD' },
   ]
 export const architectureConstants: {kor: string; enum: JobPositionEnumType}[] = [
     { kor: '전체', enum: '전체' },
@@ -277,7 +277,7 @@ export const marketingConstants: {kor: string; enum: JobPositionEnumType}[] = [
   { kor: '브랜드 마케팅', enum: '브랜드마케팅' },
   { kor: 'CRM마케팅', enum: 'CRM마케팅' },
   { kor: '글로벌 마케팅', enum: '글로벌마케팅' },
-  { kor: '광고기획(AE)', enum: '광고기획(AE)' },
+  { kor: '광고기획(AE)', enum: '광고기획_AE' },
   { kor: '홍보·PR', enum: '홍보_PR' },
   { kor: '전시·행사 마케팅', enum: '전시_행사마케팅' },
   { kor: '기타마케팅', enum: '기타마케팅' },
@@ -295,11 +295,11 @@ export const designConstants: {kor: string; enum: JobPositionEnumType}[] = [
   { kor: '일러스트레이터', enum: '일러스트레이터' },
   { kor: '브랜딩·BIBX', enum: '브랜딩_BIBX' },
   { kor: '공간·실내·VMD', enum: '공간_실내_VMD' },
-  { kor: '산업(제품)', enum: '산업(제품)' },
+  { kor: '산업(제품)', enum: '산업_제품' },
   { kor: '패키지', enum: '패키지' },
   { kor: '광고·콘텐츠', enum: '광고_콘텐츠' },
   { kor: '영상·모션', enum: '영상_모션' },
-  { kor: '3D·VFX', enum: '3D_VFX' },
+  { kor: '3D·VFX', enum: 'VFX_3D' },
   { kor: '출판·편집', enum: '출판_편집' },
   { kor: '건축·공공·조경디자인', enum: '건축_공공_조경디자인' },
   { kor: '패션·텍스타일', enum: '패션_텍스타일' },
@@ -314,9 +314,9 @@ export const gameConstants: {kor: string; enum: JobPositionEnumType}[] = [
   { kor: '게임기획·PM', enum: '게임기획_PM' },
   { kor: '게임운영', enum: '게임운영' },
   { kor: '게임QA', enum: '게임QA' },
-  { kor: '게임개발(클라이언트)', enum: '게임개발(클라이언트)' },
-  { kor: '게임개발(서버)', enum: '게임개발(서버)' },
-  { kor: '게임개발(모바일)', enum: '게임개발(모바일)' },
+  { kor: '게임개발(클라이언트)', enum: '게임개발_클라이언트' },
+  { kor: '게임개발(서버)', enum: '게임개발_서버' },
+  { kor: '게임개발(모바일)', enum: '게임개발_모바일' },
   { kor: '테크니컬아티스트', enum: '테크니컬아티스트' },
   { kor: '게임아트', enum: '게임아트' },
   { kor: '게임3D모델링', enum: '게임3D모델링' },
@@ -354,7 +354,7 @@ export const mediaAndEntertainmentConstants: {kor: string; enum: JobPositionEnum
   { kor: '웹툰·웹소설', enum: '웹툰_웹소설' },
   { kor: '출판', enum: '출판' },
   { kor: '통·번역', enum: '통_번역' },
-  { kor: '기타 미디어·엔터', enum: '기타_미디어_엔터' },
+  { kor: '기타 미디어·엔터', enum: '기타미디어_엔터' },
 ]
 
 /**
@@ -429,7 +429,7 @@ export const planningAndStrategyConstants: {kor: string; enum: JobPositionEnumTy
   { kor: '기술기획', enum: '기술기획' },
   { kor: '사업개발·분석', enum: '사업개발_분석' },
   { kor: '프로젝트 매니저', enum: '프로젝트_매니저' },
-  { kor: '운영관리(OM)', enum: '운영관리(OM)' },
+  { kor: '운영관리(OM)', enum: '운영관리_OM' },
   { kor: '경영지원', enum: '경영지원' },
   { kor: '기타기획·전략·경영', enum: '기타기획_전략_경영' },
 ]
@@ -462,7 +462,7 @@ export const salesConstants: {kor: string; enum: JobPositionEnumType}[] = [
   { kor: '금융·보험영업', enum: '금융_보험영업' },
   { kor: '해외영업', enum: '해외영업' },
   { kor: '제약·의료영업', enum: '제약_의료영업' },
-  { kor: '기타 영업', enum: '기타_영업' },
+  { kor: '기타 영업', enum: '기타영업' },
 ]
 
 /**
@@ -545,7 +545,7 @@ export const hrConstants: {kor: string; enum: JobPositionEnumType}[] = [
   { kor: '리크루터·헤드헌터', enum: '리크루터_헤드헌터' },
   { kor: '노무관리', enum: '노무관리' },
   { kor: '총무·비서', enum: '총무_비서' },
-  { kor: '기타 HR·총무', enum: '기타_HR_총무' },
+  { kor: '기타 HR·총무', enum: '기타HR_총무' },
 ]
 
 

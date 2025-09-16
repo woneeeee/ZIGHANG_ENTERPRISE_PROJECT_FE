@@ -16,6 +16,10 @@ const UserInfo = ({ profile }: UserProps) => {
     }
   }
 
+  const handleEditSignUp = () => {
+    nav('/sign-up')
+  }
+
   return (
     <div className="flex flex-col gap-[14px] text-start">
       <span className="heading-lg-bold">유저 정보</span>
@@ -24,7 +28,7 @@ const UserInfo = ({ profile }: UserProps) => {
         <Button bg="#F3F4F6" color="black" onClick={handleClick}>
           회원탈퇴
         </Button>
-        <Button bg="#7A51FF" color="white" onClick={() => {}}>
+        <Button bg="#7A51FF" color="white" onClick={handleEditSignUp}>
           수정하기
         </Button>
       </div>

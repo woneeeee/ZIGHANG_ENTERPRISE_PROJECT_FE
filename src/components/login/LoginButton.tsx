@@ -1,9 +1,12 @@
 import { KakaoLoginIcon, NaverLoginIcon, GoogleLoginIcon } from '@/assets/svgComponents'
+import { useLocation } from 'react-router-dom'
 
 const CLIENT_ID = import.meta.env.VITE_KAKAO_CLIENT_ID
 const KAKAO_REDIRECT_URI = import.meta.env.VITE_KAKAO_REDIRECT_URI
 
 const LoginButton = ({ type = 'space' }) => {
+  const loc = useLocation()
+
   const baseClasses =
     'body-lg-medium flex items-center gap-[17px] rounded-[8px] px-[240px] py-[13px] cursor-pointer'
   const themeClasses =
@@ -19,6 +22,7 @@ const LoginButton = ({ type = 'space' }) => {
       <button
         className={buttonClasses}
         onClick={() => {
+          localStorage.setItem('loginFrom', loc.pathname)
           window.location.href = kakaoURL
         }}
       >

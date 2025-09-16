@@ -40,7 +40,6 @@ function CustomAddressSearch() {
       setAddressState({...signUpData, signUpData: {...signUpData, address: editMyInfoData?.address}})
     }
   }, [editMyInfoData])
-  const nav = useNavigate()
 
   const [keyword, setKeyword] = useState('')
   const [results, setResults] = useState<AddressType[]>([])

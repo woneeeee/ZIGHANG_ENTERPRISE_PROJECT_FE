@@ -64,10 +64,10 @@
 
   --toast-translucent-bg:         #060810BF;
 
-  --ui-transparent-dark:          #070A1314; 
-  --ui-transparent-darker:        #06081033;
-  --ui-transparent-light:         #FFFFFF1F;
-  --ui-transparent-lighter:       #FFFFFF80;
+  --color-ui-transparent-dark:          #070A1314;
+  --color-ui-transparent-darker:        #06081033;
+  --color-ui-transparent-light:         #FFFFFF1F;
+  --color-ui-transparent-lighter:       #FFFFFF80;
 
   --shadow-middlemodal: 0px 4px 50px 0px #0000000d;
   --shadow-location-search: 0px 4px 28px 0px #0000000d;

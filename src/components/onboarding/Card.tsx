@@ -16,7 +16,7 @@ import { ChevronRightIcon } from '@/assets/svgComponents'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { getMyPageAll } from '@/apis/getOnboardingResultAll'
 import { adaptSearchToRecommend } from '@/constants/companyAssetMap'
-import { useOnboardingTestStore } from '@/stores/onboardingTestStore'
+import { useOnboardingTestStore, useReOnboardingTestStore } from '@/stores/onboardingTestStore'
 import { usePngExport } from '@/hooks/usePngExport'
 import { PROFILECARD_BY_TITLE } from '@/utils/profileCards'
 import ProfileCard from '../profile/Card'
@@ -36,6 +36,9 @@ const Card = () => {
   })
 
   const { state: navState } = useLocation() as { state?: { focus?: 'jobs' | 'bottom' } }
+  const { state: State } = useLocation() as {
+    state?: { from?: 'mypage' | 'retest' | 'onboarding' }
+  }
 
   const [items, setItems] = useState<RecommendJobItem[]>([])
   const [ckey, setCkey] = useState<CharacterKey>('워라밸 신봉자')
@@ -70,34 +73,55 @@ const Card = () => {
   }
 
   const onboardingCharacterData = useOnboardingTestStore((state) => state.onboardingCharacterData)
-  const preSignupCharacterName = onboardingCharacterData?.characterName ?? null
+  const reonboardingCharacterData = useReOnboardingTestStore(
+    (state) => state.reonboardingCharacterData,
+  )
 
   const description = ONBOARDINGRESULT[ckey]
   const OnboardingIcon =
     ICON_MAP[description.iconKey as keyof typeof ICON_MAP] ?? ICON_MAP.OnboardingWlbIcon
 
   useEffect(() => {
-    if (isLoggedIn) {
-      ;(async () => {
+    const fetchData = async () => {
+      // Scenario 1: Navigated from My Page
+      if (State?.from === 'mypage' && isLoggedIn) {
         try {
           const data = await getMyPageAll()
           setCkey(toCharacterKey(data.characterName))
           setProfileName(data.characterName)
-
           const mapped = adaptSearchToRecommend(data.searchResponses ?? [])
           setItems(mapped.length ? mapped : RECOMMENDJOBLIST)
         } catch (e) {
           console.error('[my-page/all] failed:', e)
           setCkey('워라밸 신봉자')
-          setProfileName(preSignupCharacterName)
+          setProfileName('워라밸 신봉자')
           setItems(RECOMMENDJOBLIST)
         }
-      })()
-      return
+      }
+      // Scenario 2: Just completed a re-test
+      else if (State?.from === 'retest' && isLoggedIn && reonboardingCharacterData) {
+        setCkey(toCharacterKey(reonboardingCharacterData.characterName))
+        console.log(reonboardingCharacterData.characterName)
+        setProfileName(reonboardingCharacterData.characterName)
+        const mapped = adaptSearchToRecommend(reonboardingCharacterData.searchResponses ?? [])
+        setItems(mapped.length ? mapped : RECOMMENDJOBLIST)
+      }
+      // Scenario 3: Just completed a new onboarding test
+      else if (onboardingCharacterData) {
+        setCkey(toCharacterKey(onboardingCharacterData.characterName))
+        setProfileName(onboardingCharacterData.characterName)
+        setItems(RECOMMENDJOBLIST)
+      }
+      // Scenario 4: No data found (fallback)
+      else {
+        setCkey('워라밸 신봉자')
+        setProfileName('워라밸 신봉자')
+        setItems(RECOMMENDJOBLIST)
+      }
     }
-    setCkey(preSignupCharacterName ? toCharacterKey(preSignupCharacterName) : '워라밸 신봉자')
-    setItems(RECOMMENDJOBLIST)
-  }, [isLoggedIn, preSignupCharacterName])
+
+    fetchData()
+  }, [isLoggedIn, navState, onboardingCharacterData, reonboardingCharacterData])
 
   const profileCardItem = useMemo(() => {
     if (!profileName) return undefined

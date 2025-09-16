@@ -1,12 +1,22 @@
 // import JobCard from '@/components/job/JobCard.tsx'
 import Header from '@/components/common/Header.tsx'
+import MobileRocketAssistant from '@/components/rocket/MobileRocketAssistant'
 import RocketAssistant from '@/components/rocket/RocketAssistant'
-import { useEffect } from 'react'
+import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { useEffect, useState } from 'react'
 
 export default function Category() {
+  const isMobile = useMediaQuery('(max-width: 767px)')
+  const [showRocket, setShowRocket] = useState(false)
+
   useEffect(() => {
     const el = document.querySelector('#filter-itdev')
     el?.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'auto' })
+  }, [])
+
+  useEffect(() => {
+    const timer = setTimeout(() => setShowRocket(true), 1000)
+    return () => clearTimeout(timer)
   }, [])
 
   return (
@@ -30,12 +40,22 @@ export default function Category() {
           {/*<JobCard hasTag={false} />*/}
         </section>
       </div>
-      <RocketAssistant
-        waypointSelector="#filter-itdev"
-        endLeft={50}
-        endBottom={60}
-        autoLaunch={true}
-      />
+      {showRocket &&
+        (isMobile ? (
+          <MobileRocketAssistant
+            amplitude={3}
+            size={230}
+            period={1.6}
+            className="fixed bottom-[30px] -left-[30px] z-40"
+          />
+        ) : (
+          <RocketAssistant
+            waypointSelector="#filter-itdev"
+            endLeft={50}
+            endBottom={60}
+            autoLaunch={true}
+          />
+        ))}
     </main>
   )
 }

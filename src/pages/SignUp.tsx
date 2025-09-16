@@ -37,17 +37,16 @@ export default function SignUp() {
     if (profile && !editMyInfoData) {
       setState({
         editMyInfoData: {
-          jobGroups: getJobCategory(profile.mypageModifyResponse.jobGroups),
-          education: changeEducationKorToEnum(profile.mypageModifyResponse.education),
-          address: profile.mypageModifyResponse.address,
-          jobPositions: profile.mypageModifyResponse.jobPositions
+          jobGroups: getJobCategory(profile.mypageModifyResponse?.jobGroups),
+          education: changeEducationKorToEnum(profile.mypageModifyResponse?.education),
+          address: profile.mypageModifyResponse?.address,
+          jobPositions: profile.mypageModifyResponse?.jobPositions
             .map((jobPosition) => getDetailJobCategory(jobPosition))
             .filter(item => item !== undefined) as JobPositionEnumType[],
-          maxCommuteMinutes: profile.mypageModifyResponse.maxCommuteMinutes,
-          transport: profile.mypageModifyResponse.transport,
-          workExperience: profile.mypageModifyResponse.workExperience,
-          companyTypes: profile.mypageModifyResponse.companyTypes,
-          receivingEmail: null,
+          maxCommuteMinutes: profile.mypageModifyResponse?.maxCommuteMinutes,
+          transport: profile.mypageModifyResponse?.transport,
+          workExperience: profile.mypageModifyResponse?.workExperience,
+          companyTypes: profile.mypageModifyResponse?.companyTypes,
         },
       })
     }

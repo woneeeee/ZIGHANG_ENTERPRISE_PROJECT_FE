@@ -15,5 +15,4 @@ export interface EditMyInfoType {
   address: string | undefined
   transport: TransportEnumType
   maxCommuteMinutes: number
-  receivingEmail: string | null
 }

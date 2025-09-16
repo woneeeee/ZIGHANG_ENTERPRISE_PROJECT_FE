@@ -5,7 +5,6 @@ import { postOnboardingSignUp } from '@/apis/sign-up/postOnboardingSignUp.ts'
 import { useOnboardingTestStore } from '@/stores/onboardingTestStore.ts'
 import { useEditMyInfoStore } from '@/stores/editMyInfoStore.ts'
 import { patchUsersMyPage } from '@/apis/edit-myinfo/patchUsersMyPage.ts'
-import { useNavigate } from 'react-router-dom'
 
 export default function Address() {
   return (

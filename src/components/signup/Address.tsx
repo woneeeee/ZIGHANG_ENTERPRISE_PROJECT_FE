@@ -5,6 +5,7 @@ import { postOnboardingSignUp } from '@/apis/sign-up/postOnboardingSignUp.ts'
 import { useOnboardingTestStore } from '@/stores/onboardingTestStore.ts'
 import { useEditMyInfoStore } from '@/stores/editMyInfoStore.ts'
 import { patchUsersMyPage } from '@/apis/edit-myinfo/patchUsersMyPage.ts'
+import { useNavigate } from 'react-router-dom'
 
 export default function Address() {
   return (
@@ -28,15 +29,19 @@ interface AddressType {
 }
 
 function CustomAddressSearch() {
+  const nav = useNavigate()
   const setAddressState = useSignUpStore((state) => state.setState)
   const signUpData = useSignUpStore((state) => state.signUpData)
-  const onboardingCharacterData = useOnboardingTestStore((state) =>state.onboardingCharacterData)
+  const onboardingCharacterData = useOnboardingTestStore((state) => state.onboardingCharacterData)
   const editMyInfoData = useEditMyInfoStore((state) => state.editMyInfoData)
   const setEditMyInfoData = useEditMyInfoStore((state) => state.setState)
 
   useEffect(() => {
     if (editMyInfoData) {
-      setAddressState({...signUpData, signUpData: {...signUpData, address: editMyInfoData?.address}})
+      setAddressState({
+        ...signUpData,
+        signUpData: { ...signUpData, address: editMyInfoData?.address },
+      })
     }
   }, [editMyInfoData])
 
@@ -123,8 +128,9 @@ function CustomAddressSearch() {
                   setEditMyInfoData({
                     ...editMyInfoData,
                     editMyInfoData: {
-                      ...editMyInfoData, address: undefined
-                    }
+                      ...editMyInfoData,
+                      address: undefined,
+                    },
                   })
                 } else {
                   setAddressState({
@@ -160,8 +166,9 @@ function CustomAddressSearch() {
                             setEditMyInfoData({
                               ...editMyInfoData,
                               editMyInfoData: {
-                                ...editMyInfoData, address: address.roadAddr
-                              }
+                                ...editMyInfoData,
+                                address: address.roadAddr,
+                              },
                             })
                           } else {
                             setAddressState({
@@ -199,8 +206,9 @@ function CustomAddressSearch() {
                             setEditMyInfoData({
                               ...editMyInfoData,
                               editMyInfoData: {
-                                ...editMyInfoData, address: address.roadAddr
-                              }
+                                ...editMyInfoData,
+                                address: address.roadAddr,
+                              },
                             })
                           } else {
                             setAddressState({
@@ -230,8 +238,9 @@ function CustomAddressSearch() {
                         setEditMyInfoData({
                           ...editMyInfoData,
                           editMyInfoData: {
-                            ...editMyInfoData, address: address.roadAddr
-                          }
+                            ...editMyInfoData,
+                            address: address.roadAddr,
+                          },
                         })
                       } else {
                         setAddressState({
@@ -269,8 +278,9 @@ function CustomAddressSearch() {
                         setEditMyInfoData({
                           ...editMyInfoData,
                           editMyInfoData: {
-                            ...editMyInfoData, address: address.roadAddr
-                          }
+                            ...editMyInfoData,
+                            address: address.roadAddr,
+                          },
                         })
                       } else {
                         setAddressState({
@@ -375,7 +385,7 @@ function CustomAddressSearch() {
                   const response = await postOnboardingSignUp(finalSignUpData)
                   console.log('회원가입 성공:', response)
                 }
-
+                nav('/job')
                 // 성공 시 추가 처리 (예: 페이지 이동, 성공 메시지 등)
                 // 예: navigate('/success') 또는 다른 성공 처리 로직
               } catch (error) {

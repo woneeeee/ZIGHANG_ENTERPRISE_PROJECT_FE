@@ -6,12 +6,17 @@ const Card = () => {
   const nav = useNavigate()
 
   return (
-    <main className="[border-image:linear-gradient(90deg, rgba(120,112,158,.8) 0%, rgba(96,65,255,0) 50%, rgba(113,104,144,.8) 100% )_1] tablet:w-[650px] tablet:gap-[134px] tablet:px-[116px] tablet:pt-[112px] tablet:pb-[88px] flex w-[287px] flex-col items-center justify-center gap-[64px] rounded-[30px] border border-solid border-transparent bg-[#c8c2e5]/[0.1] px-[14px] pt-[50px] pb-[48px] backdrop-blur-[15px] [border-image-slice:1]">
-      <StartPlanetIcon className="tablet:h-[374px] tablet:w-[418px] h-[212px] w-[258px]" />
-      <div className="flex flex-col items-center gap-[40px]">
-        <div className="flex flex-col gap-[12px] text-center">
-          <p className="body-lg-bold tablet:heading-md-bold text-white">
+    <main className="[border-image:linear-gradient(90deg, rgba(120,112,158,.8) 0%, rgba(96,65,255,0) 50%, rgba(113,104,144,.8) 100% )_1] tablet:w-[564px] tablet:gap-[74px] tablet:px-[90px] tablet:pt-[86px] tablet:pb-[70px] flex w-[287px] flex-col items-center justify-center gap-[64px] rounded-[30px] border border-solid border-transparent bg-[#c8c2e5]/[0.1] px-[14px] pt-[50px] pb-[48px] backdrop-blur-[15px] [border-image-slice:1]">
+      <StartPlanetIcon className="tablet:h-[345px] tablet:w-[384px] h-[212px] w-[258px]" />
+      <div className="flex flex-col items-center gap-[36px]">
+        <div className="flex flex-col gap-[9px] text-center">
+          <p className="mobile:hidden tablet:flex body-lg-bold tablet:heading-md-bold text-white">
             우주처럼 넓은 취업시장에서 길을 잃었나요?
+          </p>
+          <p className="mobile:flex tablet:hidden body-lg-bold text-white">
+            우주처럼 넓은 취업시장에서
+            <br />
+            길을 잃었나요?
           </p>
           <p className="caption-md-medium tablet:heading-sm-medium text-neutral-100">
             몇 가지 질문만 답하면, 내 커리어 가치관과

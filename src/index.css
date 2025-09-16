@@ -227,7 +227,7 @@ body {
   font-family: var(--font-family, Pretendard);
   font-size: var(--scale-2xl, 32px);
   font-style: normal;
-  font-weight: var(--weight-semibold, 700);
+  font-weight: var(--weight-semibold, 600);
   line-height: var(--lh-heading-2xl, 48px); /* 150% */
 }
 @utility heading-2xl-medium {
@@ -601,6 +601,14 @@ body {
   font-size: var(--scale-caption-sm, 12px);
   font-style: normal;
   font-weight: var(--weight-medium, 400);
+  line-height: var(--lh-caption-sm, 16px); /* 133.333% */
+}
+@utility caption-sm2-medium {
+  /* Caption/sm/medium */
+  font-family: var(--font-family, Pretendard);
+  font-size: var(--scale-caption-sm, 11px);
+  font-style: normal;
+  font-weight: var(--weight-medium, 500);
   line-height: var(--lh-caption-sm, 16px); /* 133.333% */
 }
 

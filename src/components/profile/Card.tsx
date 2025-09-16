@@ -1,12 +1,13 @@
 import { deleteReOnboarding } from '@/apis/deleteMypageTest'
 import { type ProfileCardItem } from '@/constants/ProfileCard'
+import { forwardRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 type CardProps = {
   item: ProfileCardItem
 }
 
-const Card = ({ item }: CardProps) => {
+const ProfileCard = forwardRef<HTMLDivElement, CardProps>(({ item }, ref) => {
   const CharacterIcon = item.icon
   const nav = useNavigate()
 
@@ -22,7 +23,10 @@ const Card = ({ item }: CardProps) => {
   }
 
   return (
-    <div className="bg-profile-card tablet:w-[298px] tablet:h-[530px] tablet:rounded-[14px] h-[400px] w-[224px] rounded-[10px] text-center shadow-[0_0_20px_0_rgba(0,0,0,0.12)]">
+    <div
+      ref={ref}
+      className="bg-profile-card tablet:rounded-[14px] rounded-[10px] text-center shadow-[0_0_20px_0_rgba(0,0,0,0.12)]"
+    >
       <div className="tablet:w-[298px] tablet:h-[274px] h-[200px] w-[224px] object-cover">
         <CharacterIcon className="h-full w-full" />
       </div>
@@ -39,7 +43,10 @@ const Card = ({ item }: CardProps) => {
           {item.description}
         </div>
       </div>
-      <div className="tablet:h-[54px] tablet:py-[17px] tablet:px-[36px] tablet:gap-[30px] tablet:rounded-[14px] tablet:rounded-t-none flex h-[41px] items-center justify-center gap-[18px] rounded-[10px] rounded-t-none bg-white py-[12px]">
+      <div
+        data-skip-export
+        className="tablet:h-[54px] tablet:py-[17px] tablet:px-[36px] tablet:gap-[30px] tablet:rounded-[14px] tablet:rounded-t-none flex h-[41px] items-center justify-center gap-[18px] rounded-[10px] rounded-t-none bg-white py-[12px]"
+      >
         <p
           className="caption-sm-medium tablet:body-sm-medium cursor-pointer whitespace-nowrap text-purple-500"
           onClick={() => {
@@ -58,6 +65,6 @@ const Card = ({ item }: CardProps) => {
       </div>
     </div>
   )
-}
+})
 
-export default Card
+export default ProfileCard

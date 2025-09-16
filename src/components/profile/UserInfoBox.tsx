@@ -6,7 +6,12 @@ type Props = { profile: Profile }
 const sep = (arr: string[]) => (arr?.length ? arr.join(', ') : '-')
 
 const UserInfoBox = ({ profile }: Props) => {
-  const u = profile.mypageModifyResponse
+  const u = profile.mypageResponseDto
+
+  const transportMapping: { [key: string]: string } = {
+    CAR: '자가용',
+    TRANSIT: '대중교통',
+  }
 
   return (
     <div className="flex flex-col gap-[12px]">
@@ -25,39 +30,35 @@ const UserInfoBox = ({ profile }: Props) => {
       <div className="tablet:w-[702px] laptop:w-[929px] desktop:w-[866px] flex w-[288px] flex-col gap-[23px] rounded-[10px] border-1 border-neutral-200 px-[16px] py-[12px]">
         <div className="tablet:flex-row flex flex-col">
           <div className="body-md-bold w-[99px] gap-[10px] pr-[60px]">직군</div>
-          <div className="body-md-medium text-neutral-700">{u.jobGroups || '-'}</div>
+          <div className="body-md-medium text-neutral-700">{u?.jobGroups || '-'}</div>
         </div>
         <div className="tablet:flex-row flex flex-col">
           <div className="body-md-bold w-[99px] gap-[10px] pr-[60px]">직무</div>
-          <div className="body-md-medium text-neutral-700">{sep(u.jobPositions)}</div>
-        </div>
-        <div className="tablet:flex-row flex flex-col">
-          <div className="body-md-bold w-[99px] gap-[10px] pr-[60px]">규모</div>
-          <div className="body-md-medium text-neutral-700">{sep(u.companyTypes)}</div>
+          <div className="body-md-medium text-neutral-700">{sep(u?.jobPositions)}</div>
         </div>
         <div className="tablet:flex-row flex flex-col">
           <div className="body-md-bold w-[99px] gap-[10px]">학력 조건</div>
-          <div className="body-md-medium text-neutral-700">{u.education || '-'}</div>
+          <div className="body-md-medium text-neutral-700">{u?.education || '-'}</div>
         </div>
         <div className="tablet:flex-row flex flex-col">
           <div className="body-md-bold w-[99px] gap-[10px]">경력 조건</div>
-          <div className="body-md-medium text-neutral-700">{u.workExperience || '-'}</div>
+          <div className="body-md-medium text-neutral-700">{u?.workExperience || '-'}</div>
         </div>
         <div className="tablet:flex-row flex flex-col">
           <div className="body-md-bold w-[99px] gap-[10px]">주소</div>
-          <div className="body-md-medium text-neutral-700">{u.address || '-'}</div>
+          <div className="body-md-medium text-neutral-700">{u?.address || '-'}</div>
         </div>
         <div className="tablet:flex-row flex flex-col">
           <div className="body-md-bold w-[99px] gap-[10px]">선호 거리</div>
-          <div className="body-md-medium text-neutral-700">{u.maxCommuteMinutes || '-'}분 이내</div>
+          <div className="body-md-medium text-neutral-700">
+            {u?.maxCommuteMinutes || '-'}분 이내
+          </div>
         </div>
         <div className="tablet:flex-row flex flex-col">
           <div className="body-md-bold w-[99px] gap-[10px]">교통 수단</div>
-          <div className="body-md-medium text-neutral-700">{u.transport || '-'}</div>
-        </div>
-        <div className="tablet:flex-row flex flex-col">
-          <div className="body-md-bold w-[99px] gap-[10px]">수신 이메일</div>
-          <div className="body-md-medium text-neutral-700">{u.receivingEmail || '-'}</div>
+          <div className="body-md-medium text-neutral-700">
+            {transportMapping[u?.transport] || '-'}
+          </div>
         </div>
       </div>
       <div className="tablet:w-[702px] laptop:w-[929px] desktop:w-[866px] flex gap-[7px] rounded-[10px] border-1 border-neutral-200 px-[16px] py-[12px]">

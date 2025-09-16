@@ -9,7 +9,6 @@ export type Job = {
   address: string
   transport: TransportEnumType
   maxCommuteMinutes: number
-  receivingEmail: string
 }
 
 export type Profile = {
@@ -18,5 +17,5 @@ export type Profile = {
   email: string
   characterId: number | null
   characterName: string | null
-  mypageModifyResponse: Job
+  mypageResponseDto: Job
 }

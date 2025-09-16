@@ -22,6 +22,7 @@ const Profile = () => {
       try {
         const me = await getProfileInfo()
         setProfile(me)
+        console.log('me', me)
       } catch (error) {
         console.error('프로필 정보를 불러오지 못했어요.', error)
       } finally {

@@ -1,19 +1,39 @@
 import { commutingTimeConstants } from '@/constants/SignUp.ts'
 import { useSignUpStore } from '@/store/signupStore.ts'
+import { useEffect } from 'react'
+import { useEditMyInfoStore } from '@/stores/editMyInfoStore.ts'
 
 export default function CommutingTime() {
-  const setState = useSignUpStore((state) => state.setState)
+  const setMaxCommuteMinutesState = useSignUpStore((state) => state.setState)
   const signUpData = useSignUpStore((state) => state.signUpData)
+  const editMyInfoData = useEditMyInfoStore((state) => state.editMyInfoData)
+  const setEditMyInfoDataState = useEditMyInfoStore((state) => state.setState)
+
+  useEffect(() => {
+    if (editMyInfoData) {
+      setMaxCommuteMinutesState({...signUpData, signUpData: {...signUpData, maxCommuteMinutes: editMyInfoData?.maxCommuteMinutes}})
+    }
+  }, [editMyInfoData])
 
   const handleCommutingTimeClick = (commutingTime: number) => {
     // 1. 상태 저장
-    setState({
-      ...signUpData,
-      signUpData: {
+    if (editMyInfoData) {
+      setEditMyInfoDataState({
+        ...editMyInfoData,
+        editMyInfoData: {
+          ...editMyInfoData, maxCommuteMinutes: commutingTime
+        }
+      })
+    } else {
+      setMaxCommuteMinutesState({
         ...signUpData,
-        maxCommuteMinutes: commutingTime, // 객체가 아닌 commute 값 직접 할당
-      },
-    })
+        signUpData: {
+          ...signUpData,
+          maxCommuteMinutes: commutingTime, // 객체가 아닌 commute 값 직접 할당
+        },
+      })
+    }
+
 
     // 2. Category 섹션으로 부드러운 스크롤
     const categorySection = document.getElementById('address-section')
@@ -38,7 +58,7 @@ export default function CommutingTime() {
             <button
               onClick={() => handleCommutingTimeClick(commutingTime.enum)}
               key={commutingTime.kor}
-              className={`${signUpData?.maxCommuteMinutes === commutingTime.enum ? 'bg-purple-500 text-white' : 'border border-neutral-400'} desktop:body-md-medium laptop:body-md-medium tablet:body-md-medium caption-sm-medium flex h-[36px] cursor-pointer items-center justify-center rounded-[6px] px-[12px] py-[10px] hover:border-purple-300 hover:bg-purple-50`}
+              className={`${editMyInfoData ? (editMyInfoData.maxCommuteMinutes === commutingTime.enum ? 'bg-purple-500 text-white' : 'border border-neutral-400') : signUpData?.maxCommuteMinutes === commutingTime.enum ? 'bg-purple-500 text-white' : 'border border-neutral-400'} desktop:body-md-medium laptop:body-md-medium tablet:body-md-medium caption-sm-medium flex h-[36px] cursor-pointer items-center justify-center rounded-[6px] px-[12px] py-[10px] hover:border-purple-300 hover:bg-purple-50`}
             >
               {commutingTime.kor}
             </button>

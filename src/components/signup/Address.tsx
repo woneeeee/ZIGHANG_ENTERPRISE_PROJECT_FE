@@ -1,9 +1,10 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useSignUpStore } from '@/store/signupStore.ts'
 import { AnimatedSpeechBubble } from '@/components/signup/AnimatedSpeechBubble.tsx'
 import { postOnboardingSignUp } from '@/apis/sign-up/postOnboardingSignUp.ts'
 import { useOnboardingTestStore } from '@/stores/onboardingTestStore.ts'
-import { useNavigate } from 'react-router-dom'
+import { useEditMyInfoStore } from '@/stores/editMyInfoStore.ts'
+import { patchUsersMyPage } from '@/apis/edit-myinfo/patchUsersMyPage.ts'
 
 export default function Address() {
   return (
@@ -27,11 +28,17 @@ interface AddressType {
 }
 
 function CustomAddressSearch() {
-  const nav = useNavigate()
-
-  const setState = useSignUpStore((state) => state.setState)
+  const setAddressState = useSignUpStore((state) => state.setState)
   const signUpData = useSignUpStore((state) => state.signUpData)
-  const onboardingCharacterData = useOnboardingTestStore((state) => state.onboardingCharacterData)
+  const onboardingCharacterData = useOnboardingTestStore((state) =>state.onboardingCharacterData)
+  const editMyInfoData = useEditMyInfoStore((state) => state.editMyInfoData)
+  const setEditMyInfoData = useEditMyInfoStore((state) => state.setState)
+
+  useEffect(() => {
+    if (editMyInfoData) {
+      setAddressState({...signUpData, signUpData: {...signUpData, address: editMyInfoData?.address}})
+    }
+  }, [editMyInfoData])
 
   const [keyword, setKeyword] = useState('')
   const [results, setResults] = useState<AddressType[]>([])
@@ -39,17 +46,29 @@ function CustomAddressSearch() {
   // 모든 필수 값이 입력되었는지 확인하는 함수
   const isFormComplete = () => {
     if (!signUpData) return false
-
-    return (
-      signUpData.workExperience !== undefined &&
-      signUpData.education !== undefined &&
-      signUpData.jobGroupEnum !== undefined &&
-      signUpData.jobPositionEnum !== undefined &&
-      signUpData.jobPositionEnum.length > 0 &&
-      signUpData.maxCommuteMinutes !== undefined &&
-      signUpData.transport !== undefined &&
-      signUpData.address !== undefined
-    )
+    if (editMyInfoData) {
+      return (
+        editMyInfoData.workExperience !== undefined &&
+        editMyInfoData.education !== undefined &&
+        editMyInfoData.jobGroups !== undefined &&
+        editMyInfoData.jobPositions !== undefined &&
+        editMyInfoData.jobPositions.length > 0 &&
+        editMyInfoData.maxCommuteMinutes !== undefined &&
+        editMyInfoData.transport !== undefined &&
+        editMyInfoData.address !== undefined
+      )
+    } else {
+      return (
+        signUpData.workExperience !== undefined &&
+        signUpData.education !== undefined &&
+        signUpData.jobGroupEnum !== undefined &&
+        signUpData.jobPositionEnum !== undefined &&
+        signUpData.jobPositionEnum.length > 0 &&
+        signUpData.maxCommuteMinutes !== undefined &&
+        signUpData.transport !== undefined &&
+        signUpData.address !== undefined
+      )
+    }
   }
 
   const formComplete = isFormComplete()
@@ -100,7 +119,19 @@ function CustomAddressSearch() {
             </div>
             <button
               onClick={() => {
-                setState({ ...signUpData, signUpData: { ...signUpData, address: undefined } })
+                if (editMyInfoData) {
+                  setEditMyInfoData({
+                    ...editMyInfoData,
+                    editMyInfoData: {
+                      ...editMyInfoData, address: undefined
+                    }
+                  })
+                } else {
+                  setAddressState({
+                    ...signUpData,
+                    signUpData: { ...signUpData, address: undefined },
+                  })
+                }
               }}
               className="desktop:body-md-medium laptop:body-md-medium tablet:body-md-medium caption-sm-medium desktop:h-[48px] laptop:h-[48px] tablet:h-[48px] desktop:rounded-[6px] laptop:rounded-[6px] tablet:rounded-[6px] desktop:px-3 laptop:px-3 tablet:px-3 h-[32px] w-fit cursor-pointer rounded-[4px] border border-neutral-300 bg-neutral-100 px-2"
             >
@@ -125,10 +156,19 @@ function CustomAddressSearch() {
                       <div
                         className="flex cursor-pointer flex-col gap-y-4"
                         onClick={() => {
-                          setState({
-                            ...signUpData,
-                            signUpData: { ...signUpData, address: address.roadAddr },
-                          })
+                          if (editMyInfoData) {
+                            setEditMyInfoData({
+                              ...editMyInfoData,
+                              editMyInfoData: {
+                                ...editMyInfoData, address: address.roadAddr
+                              }
+                            })
+                          } else {
+                            setAddressState({
+                              ...signUpData,
+                              signUpData: { ...signUpData, address: address.roadAddr },
+                            })
+                          }
                         }}
                       >
                         <div className="desktop:body-xl-medium laptop:body-xl-medium tablet:body-xl-medium caption-sm-medium">
@@ -155,10 +195,19 @@ function CustomAddressSearch() {
                       </div>
                       <button
                         onClick={() => {
-                          setState({
-                            ...signUpData,
-                            signUpData: { ...signUpData, address: address.roadAddr },
-                          })
+                          if (editMyInfoData) {
+                            setEditMyInfoData({
+                              ...editMyInfoData,
+                              editMyInfoData: {
+                                ...editMyInfoData, address: address.roadAddr
+                              }
+                            })
+                          } else {
+                            setAddressState({
+                              ...signUpData,
+                              signUpData: { ...signUpData, address: address.roadAddr },
+                            })
+                          }
                         }}
                         className="desktop:body-md-medium laptop:body-md-medium tablet:body-md-medium caption-sm-medium desktop:h-[28px] laptop:h-[28px] tablet:h-[28px] desktop:rounded-[4px] laptop:rounded-[4px] tablet:rounded-[4px] desktop:px-[10px] laptop:px-[10px] tablet:px-[10px] h-[24px] cursor-pointer rounded-[2px] bg-purple-200 px-[6px] whitespace-nowrap"
                       >
@@ -177,10 +226,19 @@ function CustomAddressSearch() {
                   <div
                     className="flex cursor-pointer flex-col gap-y-4"
                     onClick={() => {
-                      setState({
-                        ...signUpData,
-                        signUpData: { ...signUpData, address: address.roadAddr },
-                      })
+                      if (editMyInfoData) {
+                        setEditMyInfoData({
+                          ...editMyInfoData,
+                          editMyInfoData: {
+                            ...editMyInfoData, address: address.roadAddr
+                          }
+                        })
+                      } else {
+                        setAddressState({
+                          ...signUpData,
+                          signUpData: { ...signUpData, address: address.roadAddr },
+                        })
+                      }
                     }}
                   >
                     <div className="desktop:body-xl-medium laptop:body-xl-medium tablet:body-xl-medium caption-sm-medium">
@@ -207,10 +265,19 @@ function CustomAddressSearch() {
                   </div>
                   <button
                     onClick={() => {
-                      setState({
-                        ...signUpData,
-                        signUpData: { ...signUpData, address: address.roadAddr },
-                      })
+                      if (editMyInfoData) {
+                        setEditMyInfoData({
+                          ...editMyInfoData,
+                          editMyInfoData: {
+                            ...editMyInfoData, address: address.roadAddr
+                          }
+                        })
+                      } else {
+                        setAddressState({
+                          ...signUpData,
+                          signUpData: { ...signUpData, address: address.roadAddr },
+                        })
+                      }
                     }}
                     className="desktop:body-md-medium laptop:body-md-medium tablet:body-md-medium caption-sm-medium desktop:h-[28px] laptop:h-[28px] tablet:h-[28px] desktop:rounded-[4px] laptop:rounded-[4px] tablet:rounded-[4px] desktop:px-[10px] laptop:px-[10px] tablet:px-[10px] h-[24px] cursor-pointer rounded-[2px] bg-purple-200 px-[6px] whitespace-nowrap"
                   >
@@ -293,7 +360,7 @@ function CustomAddressSearch() {
                 }
 
                 // 상태 저장
-                setState({
+                setAddressState({
                   ...signUpData,
                   signUpData: finalSignUpData,
                 })
@@ -301,10 +368,16 @@ function CustomAddressSearch() {
                 console.log('전송할 데이터:', finalSignUpData)
 
                 // API 호출
-                const response = await postOnboardingSignUp(finalSignUpData)
+                if (editMyInfoData) {
+                  const response = await patchUsersMyPage(editMyInfoData)
+                  console.log('회원 정보 수정', response)
+                } else {
+                  const response = await postOnboardingSignUp(finalSignUpData)
+                  console.log('회원가입 성공:', response)
+                }
 
-                console.log('회원가입 성공:', response)
-                nav('/job')
+                // 성공 시 추가 처리 (예: 페이지 이동, 성공 메시지 등)
+                // 예: navigate('/success') 또는 다른 성공 처리 로직
               } catch (error) {
                 console.error('회원가입 실패:', error)
                 // 에러 처리 (예: 에러 메시지 표시)

@@ -1,10 +1,13 @@
+import type { EducationEnumType, JobGroupEnumType, TransportEnumType } from '@/types/signup.ts'
+
 export type Job = {
-  jobGroups: string
+  jobGroups: JobGroupEnumType
   jobPositions: []
-  education: string
+  companyTypes: []
+  education: EducationEnumType
   workExperience: number
   address: string
-  transport: string
+  transport: TransportEnumType
   maxCommuteMinutes: number
 }
 

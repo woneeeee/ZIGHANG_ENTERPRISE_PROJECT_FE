@@ -6,14 +6,29 @@ import {
 } from '@/constants/SignUp.ts'
 import { useSignUpStore } from '@/store/signupStore.ts'
 import type { JobGroupEnumType } from '@/types/signup.ts'
+import { useEffect } from 'react'
+import { useEditMyInfoStore } from '@/stores/editMyInfoStore.ts'
 
 export default function Category () {
-  const setState = useSignUpStore((state) => state.setState)
+  const setJobGroupEumState = useSignUpStore((state) => state.setState)
   const signUpData = useSignUpStore((state) => state.signUpData)
+  const setEditMyInfoDataState = useEditMyInfoStore((state) => state.setState)
+  const editMyInfoData = useEditMyInfoStore((state) => state.editMyInfoData)
+
+  useEffect(() => {
+    if (editMyInfoData) {
+      setJobGroupEumState({...signUpData, signUpData: {...signUpData, jobGroupEnum: editMyInfoData?.jobGroups}})
+    }
+  }, [editMyInfoData])
 
   const handleCategoryClick = (category: JobGroupEnumType) => {
     // 1. 상태 저장
-    setState({ ...signUpData, signUpData: { ...signUpData, jobGroupEnum: category, jobPositionEnum: undefined } })
+    if (editMyInfoData) {
+      setEditMyInfoDataState({...editMyInfoData, editMyInfoData: {...editMyInfoData, jobGroups: category}})
+    } else {
+      setJobGroupEumState({ ...signUpData, signUpData: { ...signUpData, jobGroupEnum: category, jobPositionEnum: undefined } })
+    }
+
     // 2. Category 섹션으로 부드러운 스크롤
     const categorySection = document.getElementById('job-category-section')
     if (categorySection) {
@@ -37,7 +52,7 @@ export default function Category () {
             <button
               onClick={() => handleCategoryClick(category1.enum)}
               key={category1.kor}
-                    className={`${signUpData?.jobGroupEnum === category1.enum ? 'bg-purple-500 text-white' : 'border border-neutral-400'} desktop:body-md-medium laptop:body-md-medium tablet:body-md-medium caption-sm-medium flex h-[36px] cursor-pointer items-center justify-center rounded-[6px] px-[12px] py-[10px] hover:border-purple-300 hover:bg-purple-50`}>
+                    className={`${editMyInfoData ? (editMyInfoData.jobGroups === category1.enum ? 'bg-purple-500 text-white' : 'border border-neutral-400') : signUpData?.jobGroupEnum === category1.enum ? 'bg-purple-500 text-white' : 'border border-neutral-400'} desktop:body-md-medium laptop:body-md-medium tablet:body-md-medium caption-sm-medium flex h-[36px] cursor-pointer items-center justify-center rounded-[6px] px-[12px] py-[10px] hover:border-purple-300 hover:bg-purple-50`}>
               {category1.kor}
             </button>
           )
@@ -49,7 +64,7 @@ export default function Category () {
             <button
               onClick={() => handleCategoryClick(category2.enum)}
               key={category2.kor}
-                    className={`${signUpData?.jobGroupEnum === category2.enum ? 'bg-purple-500 text-white' : 'border border-neutral-400'} caption-sm-medium flex h-[36px] cursor-pointer items-center justify-center rounded-[6px] px-[12px] py-[10px] hover:border-purple-300 hover:bg-purple-50`}>
+                    className={`${editMyInfoData ? (editMyInfoData.jobGroups === category2.enum ? 'bg-purple-500 text-white' : 'border border-neutral-400') : signUpData?.jobGroupEnum === category2.enum ? 'bg-purple-500 text-white' : 'border border-neutral-400'} desktop:body-md-medium laptop:body-md-medium tablet:body-md-medium caption-sm-medium flex h-[36px] cursor-pointer items-center justify-center rounded-[6px] px-[12px] py-[10px] hover:border-purple-300 hover:bg-purple-50`}>
               {category2.kor}
             </button>
           )
@@ -61,7 +76,7 @@ export default function Category () {
             <button
               onClick={() => handleCategoryClick(category3.enum)}
               key={category3.kor}
-                    className={`${signUpData?.jobGroupEnum === category3.enum ? 'bg-purple-500 text-white' : 'border border-neutral-400'} caption-sm-medium flex h-[36px] cursor-pointer items-center justify-center rounded-[6px] px-[12px] py-[10px] hover:border-purple-300 hover:bg-purple-50`}>
+                    className={`${editMyInfoData ? (editMyInfoData.jobGroups === category3.enum ? 'bg-purple-500 text-white' : 'border border-neutral-400') : signUpData?.jobGroupEnum === category3.enum ? 'bg-purple-500 text-white' : 'border border-neutral-400'} desktop:body-md-medium laptop:body-md-medium tablet:body-md-medium caption-sm-medium flex h-[36px] cursor-pointer items-center justify-center rounded-[6px] px-[12px] py-[10px] hover:border-purple-300 hover:bg-purple-50`}>
               {category3.kor}
             </button>
           )
@@ -74,7 +89,7 @@ export default function Category () {
             <button
               onClick={() => handleCategoryClick(category4.enum)}
               key={category4.kor}
-                    className={`${signUpData?.jobGroupEnum === category4.enum ? 'bg-purple-500 text-white' : 'border border-neutral-400'} caption-sm-medium flex h-[36px] cursor-pointer items-center justify-center rounded-[6px] px-[12px] py-[10px] hover:border-purple-300 hover:bg-purple-50`}>
+                    className={`${editMyInfoData ? (editMyInfoData.jobGroups === category4.enum ? 'bg-purple-500 text-white' : 'border border-neutral-400') : signUpData?.jobGroupEnum === category4.enum ? 'bg-purple-500 text-white' : 'border border-neutral-400'} desktop:body-md-medium laptop:body-md-medium tablet:body-md-medium caption-sm-medium flex h-[36px] cursor-pointer items-center justify-center rounded-[6px] px-[12px] py-[10px] hover:border-purple-300 hover:bg-purple-50`}>
               {category4.kor}
             </button>
           )

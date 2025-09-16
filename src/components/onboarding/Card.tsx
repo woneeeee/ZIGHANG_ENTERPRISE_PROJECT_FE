@@ -3,7 +3,7 @@ import RecommendJobBox from './RecommendJobBox'
 import { RECOMMENDJOBLIST, type RecommendJobItem } from '@/constants/RecommendJob'
 import { cn } from '@/utils/cn'
 import { motion, AnimatePresence, useInView } from 'framer-motion'
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import GrowingTextButton from './GrowingTextButton'
 import {
   ICON_MAP,
@@ -14,7 +14,7 @@ import {
 import { renderWithHighlight } from '@/utils/renderWithHighlight'
 import { usePngExport } from '@/hooks/usePngExport'
 import { ChevronRightIcon } from '@/assets/svgComponents'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { getMyPageAll } from '@/apis/getOnboardingResultAll'
 import { adaptSearchToRecommend } from '@/constants/companyAssetMap'
 import { useOnboardingTestStore } from '@/stores/onboardingTestStore'
@@ -31,6 +31,32 @@ const Card = () => {
     once: true,
   })
 
+  const { state: navState } = useLocation() as { state?: { focus?: 'jobs' | 'bottom' } }
+
+  const [items, setItems] = useState<RecommendJobItem[]>([])
+  const [ckey, setCkey] = useState<CharacterKey>('워라밸 신봉자')
+
+  const scrollToJobs = useCallback(() => {
+    const el = ctaContainerRef.current
+    if (!el) return
+    const headerOffset = 160
+    const y = el.getBoundingClientRect().top + window.scrollY - headerOffset
+    window.scrollTo({ top: y, behavior: 'auto' })
+  }, [])
+
+  useEffect(() => {
+    if (navState?.focus === 'jobs' && items.length > 0) {
+      scrollToJobs()
+
+      const t1 = setTimeout(scrollToJobs, 0)
+      const t2 = setTimeout(scrollToJobs, 200)
+      return () => {
+        clearTimeout(t1)
+        clearTimeout(t2)
+      }
+    }
+  }, [navState?.focus, items.length, scrollToJobs])
+
   const wrapperRef = useRef<HTMLDivElement | null>(null)
   const handleSave = usePngExport(wrapperRef, {
     filename: 'onboarding-card.png',
@@ -43,9 +69,6 @@ const Card = () => {
 
   const onboardingCharacterData = useOnboardingTestStore((state) => state.onboardingCharacterData)
   const preSignupCharacterName = onboardingCharacterData?.characterName ?? null
-
-  const [items, setItems] = useState<RecommendJobItem[]>([])
-  const [ckey, setCkey] = useState<CharacterKey>('워라밸 신봉자')
 
   const description = ONBOARDINGRESULT[ckey]
   const OnboardingIcon =

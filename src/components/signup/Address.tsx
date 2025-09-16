@@ -3,12 +3,13 @@ import { useSignUpStore } from '@/store/signupStore.ts'
 import { AnimatedSpeechBubble } from '@/components/signup/AnimatedSpeechBubble.tsx'
 import { postOnboardingSignUp } from '@/apis/sign-up/postOnboardingSignUp.ts'
 import { useOnboardingTestStore } from '@/stores/onboardingTestStore.ts'
+import { useNavigate } from 'react-router-dom'
 
 export default function Address() {
   return (
     <main
       id="address-section"
-      className="tablet:bg-[#FAFBFE] laptop:bg-[#FAFBFE] desktop:bg-[#FAFBFE] flex min-h-screen flex-col gap-y-4 px-4 desktop:pt-[220px] laptop:pt-[220px] tablet:pt-[180px] pt-[150px]"
+      className="tablet:bg-[#FAFBFE] laptop:bg-[#FAFBFE] desktop:bg-[#FAFBFE] desktop:pt-[220px] laptop:pt-[220px] tablet:pt-[180px] flex min-h-screen flex-col gap-y-4 px-4 pt-[150px]"
     >
       <h1 className="body-md-semibold tablet:heading-md-semibold desktop:heading-md-semibold laptop:heading-md-semibold">
         더 정확한 맞춤 공고를 위해, 거주하시는 곳을 알려주세요
@@ -26,9 +27,11 @@ interface AddressType {
 }
 
 function CustomAddressSearch() {
+  const nav = useNavigate()
+
   const setState = useSignUpStore((state) => state.setState)
   const signUpData = useSignUpStore((state) => state.signUpData)
-  const onboardingCharacterData = useOnboardingTestStore((state) =>state.onboardingCharacterData)
+  const onboardingCharacterData = useOnboardingTestStore((state) => state.onboardingCharacterData)
 
   const [keyword, setKeyword] = useState('')
   const [results, setResults] = useState<AddressType[]>([])
@@ -99,7 +102,7 @@ function CustomAddressSearch() {
               onClick={() => {
                 setState({ ...signUpData, signUpData: { ...signUpData, address: undefined } })
               }}
-              className="desktop:body-md-medium laptop:body-md-medium tablet:body-md-medium caption-sm-medium desktop:h-[48px] laptop:h-[48px] tablet:h-[48px] h-[32px] w-fit cursor-pointer desktop:rounded-[6px] laptop:rounded-[6px] tablet:rounded-[6px] rounded-[4px] border border-neutral-300 bg-neutral-100 desktop:px-3 laptop:px-3 tablet:px-3 px-2"
+              className="desktop:body-md-medium laptop:body-md-medium tablet:body-md-medium caption-sm-medium desktop:h-[48px] laptop:h-[48px] tablet:h-[48px] desktop:rounded-[6px] laptop:rounded-[6px] tablet:rounded-[6px] desktop:px-3 laptop:px-3 tablet:px-3 h-[32px] w-fit cursor-pointer rounded-[4px] border border-neutral-300 bg-neutral-100 px-2"
             >
               초기화
             </button>
@@ -128,7 +131,9 @@ function CustomAddressSearch() {
                           })
                         }}
                       >
-                        <div className="desktop:body-xl-medium laptop:body-xl-medium tablet:body-xl-medium caption-sm-medium">{address.roadAddr}</div>
+                        <div className="desktop:body-xl-medium laptop:body-xl-medium tablet:body-xl-medium caption-sm-medium">
+                          {address.roadAddr}
+                        </div>
                         <div className="flex flex-col gap-y-1">
                           <div className="flex gap-x-[2px]">
                             <div className="desktop:body-md-regular laptop:body-md-regular tablet:body-md-regular caption-sm-medium desktop:px-1 laptop:px-1 tablet:px-1 w-fit rounded-[1.3px] border border-neutral-300 px-[2.68px] text-neutral-400">
@@ -142,7 +147,9 @@ function CustomAddressSearch() {
                             <div className="desktop:body-md-regular laptop:body-md-regular tablet:body-md-regular caption-sm-medium desktop:px-1 laptop:px-1 tablet:px-1 w-fit rounded-[1.3px] border border-neutral-300 px-[2.68px] text-neutral-400">
                               우편번호
                             </div>
-                            <p className="desktop:body-md-regular laptop:body-md-regular tablet:body-md-regular caption-sm-medium text-neutral-400">{address.zipNo}</p>
+                            <p className="desktop:body-md-regular laptop:body-md-regular tablet:body-md-regular caption-sm-medium text-neutral-400">
+                              {address.zipNo}
+                            </p>
                           </div>
                         </div>
                       </div>
@@ -260,24 +267,35 @@ function CustomAddressSearch() {
             if (formComplete) {
               try {
                 // onboardingCharacterData의 값들을 signUpData에 병합
-                const convertedCompanyRatio = onboardingCharacterData?.companyRatio ? {
-                  additionalProp1: onboardingCharacterData?.companyRatio.additionalProp1 === 0 ? 0 as const : undefined,
-                  additionalProp2: onboardingCharacterData?.companyRatio.additionalProp2 === 0 ? 0 as const : undefined,
-                  additionalProp3: onboardingCharacterData?.companyRatio.additionalProp3 === 0 ? 0 as const : undefined,
-                } : undefined
+                const convertedCompanyRatio = onboardingCharacterData?.companyRatio
+                  ? {
+                      additionalProp1:
+                        onboardingCharacterData?.companyRatio.additionalProp1 === 0
+                          ? (0 as const)
+                          : undefined,
+                      additionalProp2:
+                        onboardingCharacterData?.companyRatio.additionalProp2 === 0
+                          ? (0 as const)
+                          : undefined,
+                      additionalProp3:
+                        onboardingCharacterData?.companyRatio.additionalProp3 === 0
+                          ? (0 as const)
+                          : undefined,
+                    }
+                  : undefined
 
                 const finalSignUpData = {
                   ...signUpData,
                   characterId: onboardingCharacterData?.characterId,
                   companyList: onboardingCharacterData?.companyTypeEnumList,
                   welfareList: onboardingCharacterData?.welfareList,
-                  companyRatio: convertedCompanyRatio
+                  companyRatio: convertedCompanyRatio,
                 }
 
                 // 상태 저장
                 setState({
                   ...signUpData,
-                  signUpData: finalSignUpData
+                  signUpData: finalSignUpData,
                 })
 
                 console.log('전송할 데이터:', finalSignUpData)
@@ -286,10 +304,7 @@ function CustomAddressSearch() {
                 const response = await postOnboardingSignUp(finalSignUpData)
 
                 console.log('회원가입 성공:', response)
-
-                // 성공 시 추가 처리 (예: 페이지 이동, 성공 메시지 등)
-                // 예: navigate('/success') 또는 다른 성공 처리 로직
-
+                nav('/job')
               } catch (error) {
                 console.error('회원가입 실패:', error)
                 // 에러 처리 (예: 에러 메시지 표시)

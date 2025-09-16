@@ -101,7 +101,7 @@ export default function OnboardingTest() {
           transition={{
             duration: 2,
             ease: 'easeOut',
-            delay: 1,
+            delay: 0,
           }}
           className="fixed bottom-0 left-1/2 z-50 ml-[155px] flex h-[1500px] w-[1000px] -translate-x-1/2 transform flex-col items-center justify-center"
         >

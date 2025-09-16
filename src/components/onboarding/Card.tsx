@@ -3,7 +3,7 @@ import RecommendJobBox from './RecommendJobBox'
 import { RECOMMENDJOBLIST, type RecommendJobItem } from '@/constants/RecommendJob'
 import { cn } from '@/utils/cn'
 import { motion, AnimatePresence, useInView } from 'framer-motion'
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import GrowingTextButton from './GrowingTextButton'
 import {
   ICON_MAP,
@@ -12,12 +12,16 @@ import {
   type CharacterKey,
 } from '@/constants/OnboardingResult'
 import { renderWithHighlight } from '@/utils/renderWithHighlight'
-import { usePngExport } from '@/hooks/usePngExport'
 import { ChevronRightIcon } from '@/assets/svgComponents'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { getMyPageAll } from '@/apis/getOnboardingResultAll'
 import { adaptSearchToRecommend } from '@/constants/companyAssetMap'
 import { useOnboardingTestStore } from '@/stores/onboardingTestStore'
+import { usePngExport } from '@/hooks/usePngExport'
+import { PROFILECARD_BY_TITLE } from '@/utils/profileCards'
+import ProfileCard from '../profile/Card'
+
+const normalize = (s?: string | null) => (s ?? '').trim().toLowerCase().replace(/\s+/g, '')
 
 const Card = () => {
   const accessToken = typeof window !== 'undefined' ? localStorage.getItem('accessToken') : null
@@ -35,6 +39,8 @@ const Card = () => {
 
   const [items, setItems] = useState<RecommendJobItem[]>([])
   const [ckey, setCkey] = useState<CharacterKey>('워라밸 신봉자')
+
+  const [profileName, setProfileName] = useState<string | null>(null)
 
   const scrollToJobs = useCallback(() => {
     const el = ctaContainerRef.current
@@ -58,11 +64,7 @@ const Card = () => {
   }, [navState?.focus, items.length, scrollToJobs])
 
   const wrapperRef = useRef<HTMLDivElement | null>(null)
-  const handleSave = usePngExport(wrapperRef, {
-    filename: 'onboarding-card.png',
-    background: '#212642',
-    scale: 2,
-  })
+
   const handleEntire = () => {
     nav('/job')
   }
@@ -80,11 +82,14 @@ const Card = () => {
         try {
           const data = await getMyPageAll()
           setCkey(toCharacterKey(data.characterName))
+          setProfileName(data.characterName)
+
           const mapped = adaptSearchToRecommend(data.searchResponses ?? [])
           setItems(mapped.length ? mapped : RECOMMENDJOBLIST)
         } catch (e) {
           console.error('[my-page/all] failed:', e)
           setCkey('워라밸 신봉자')
+          setProfileName(preSignupCharacterName)
           setItems(RECOMMENDJOBLIST)
         }
       })()
@@ -94,11 +99,39 @@ const Card = () => {
     setItems(RECOMMENDJOBLIST)
   }, [isLoggedIn, preSignupCharacterName])
 
+  const profileCardItem = useMemo(() => {
+    if (!profileName) return undefined
+    return PROFILECARD_BY_TITLE.get(normalize(profileName))
+  }, [profileName])
+
+  const hiddenProfileRef = useRef<HTMLDivElement>(null)
+  const saveProfileCard = usePngExport(hiddenProfileRef, {
+    filename: 'profile-card.png',
+    background: '#212642',
+    scale: 2,
+  })
+
+  const handleSaveProfileCard = async () => {
+    if (!profileCardItem) {
+      console.warn('프로필 카드 정보를 찾지 못해 저장할 수 없어요.')
+      return
+    }
+    await saveProfileCard()
+  }
+
   return (
     <main
       ref={wrapperRef}
       className="[border-image:linear-gradient(90deg, rgba(120,112,158,.8) 0%, rgba(96,65,255,0) 50%, rgba(113,104,144,.8) 100% )_1] tablet:py-[60px] tablet:max-w-[702px] laptop:max-w-[894px] desktop:max-w-[900px] mx-auto flex max-w-[288px] flex-col justify-center gap-[60px] rounded-[30px] border-[1px] border-transparent bg-[#c8c2e5]/[0.07] py-[45px] backdrop-blur-[15px]"
     >
+      {profileCardItem && (
+        <div
+          style={{ position: 'fixed', left: -10000, top: 0, opacity: 0, pointerEvents: 'none' }}
+          aria-hidden="true"
+        >
+          <ProfileCard ref={hiddenProfileRef} item={profileCardItem} />
+        </div>
+      )}
       <div className="flex flex-col gap-[40px]">
         <section className="flex flex-col gap-[56px]">
           <div className="flex flex-col gap-[8px] text-center">
@@ -112,8 +145,8 @@ const Card = () => {
             <div className="flex flex-col items-center gap-[20px]">
               <OnboardingIcon className="tablet:w-[299px] h-[220px] w-[228px]" />
               <Button
-                className="caption-sm-medium tablet:caption-md-medium rounded-[4px] bg-[#fff]/[.12] p-[10px] text-white"
-                onClick={handleSave}
+                className="caption-sm-medium tablet:caption-md-medium rounded-[4px] bg-[#fff]/[.12] p-[10px] text-white hover:bg-[#fff]/[.5]"
+                onClick={handleSaveProfileCard}
               >
                 이미지 저장하기
               </Button>

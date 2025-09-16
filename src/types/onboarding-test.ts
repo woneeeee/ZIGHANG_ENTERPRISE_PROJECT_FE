@@ -1,14 +1,16 @@
+import type { CompanyEnumType } from '@/types/signup.ts'
+
 export interface OnboardingTestType {
-  q1?: CompanyType
-  q2?: CompanyType
-  q3?: CompanyType
+  q1?: CompanyEnumType
+  q2?: CompanyEnumType
+  q3?: CompanyEnumType
   q4?: string
   q5?: string
   q6?: string
 }
 
 export interface OnboardingCharacterType {
-  companyTypeEnumList: CompanyType[]
+  companyTypeEnumList: CompanyEnumType[]
   companyRatio: {
     additionalProp1: number
     additionalProp2: number
@@ -18,5 +20,3 @@ export interface OnboardingCharacterType {
   characterId: number
   characterName: string
 }
-
-export type CompanyType = 'MAJOR' | 'MID_SIZE' | 'FOREIGN' | 'UNICORN' | 'STARTUP' | 'SMALL_MEDIUM'

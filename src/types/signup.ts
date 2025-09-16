@@ -9,11 +9,23 @@ export interface SignUpDataType {
   characterId?: number
   companyList?: CompanyEnumType[]
   welfareList?: string[]
-  companyRatio?: {
-    additionalProp1?: 0
-    additionalProp2?: 0
-    additionalProp3?: 0
-  }
+  companyRatio?: { additionalProp1?: 0; additionalProp2?: 0; additionalProp3?: 0 } | undefined
+}
+
+export interface SignUpDataResponseType {
+  characterId: number
+  characterName: string
+  jobRecommends: JopRecommendType[]
+}
+
+export interface JopRecommendType{
+  title: string[]
+  companyName: string
+  companyAddress: string
+  jobPositions: string[]
+  jobGroups: string[]
+  companyType: string
+  commuteTimeMinutes: number
 }
 
 export type TransportEnumType = 'CAR' | 'TRANSIT'
@@ -365,6 +377,12 @@ export type JobPositionEnumType =
   | '리크루터_헤드헌터'
   | '노무관리'
   | '총무_비서'
-  | '기타_HR_총무';
+  | '기타_HR_총무'
 
-export type CompanyEnumType = 'MAJOR' | 'MID_SIZE' | 'FOREIGN' | 'UNICORN' | 'STARTUP' | 'SMALL_MEDIUM'
+export type CompanyEnumType =
+  | 'MAJOR'
+  | 'MID_SIZE'
+  | 'FOREIGN'
+  | 'UNICORN'
+  | 'STARTUP'
+  | 'SMALL_MEDIUM'

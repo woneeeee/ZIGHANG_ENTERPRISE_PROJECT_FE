@@ -1,7 +1,7 @@
 import type { Dispatch, SetStateAction } from 'react'
 import Card from '@/components/onboarding/test/Card.tsx'
 import { useOnboardingTestStore } from '@/stores/onboardingTestStore.ts'
-import type { CompanyType } from '@/types/onboarding-test.ts'
+import type { CompanyEnumType } from '@/types/signup.ts'
 
 interface CompanySizeCardProps {
   step: number
@@ -9,7 +9,7 @@ interface CompanySizeCardProps {
 }
 
 export default function CompanySizeCard({ step, setStep }: CompanySizeCardProps) {
-  const contentList: { kor: string; enum: CompanyType }[] = [
+  const contentList: { kor: string; enum: CompanyEnumType }[] = [
     { kor: '거대 정거장 탐사', enum: 'MAJOR' },
     { kor: '신기술 연구 탐사', enum: 'UNICORN' },
     { kor: '소형 정거장 관리', enum: 'SMALL_MEDIUM' },

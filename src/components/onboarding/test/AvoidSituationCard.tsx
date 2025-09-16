@@ -1,14 +1,14 @@
 import type { Dispatch, SetStateAction } from 'react'
 import Card from '@/components/onboarding/test/Card.tsx'
-import type { CompanyType } from '@/types/onboarding-test.ts'
 import { useOnboardingTestStore } from '@/stores/onboardingTestStore.ts'
+import type { CompanyEnumType } from '@/types/signup.ts'
 
 interface AvoidSituationCardProps {
   step: number
   setStep: Dispatch<SetStateAction<number>>
 }
 export default function AvoidSituationCard ({step, setStep}: AvoidSituationCardProps) {
-  const contentList: { kor: string; enum: CompanyType }[] = [
+  const contentList: { kor: string; enum: CompanyEnumType }[] = [
     { kor: '갑작스러운 장비 고장', enum: 'MID_SIZE' },
     { kor: '부족한 임무 정보', enum: 'SMALL_MEDIUM' },
     { kor: '예고 없는 궤도 변경', enum: 'UNICORN' },

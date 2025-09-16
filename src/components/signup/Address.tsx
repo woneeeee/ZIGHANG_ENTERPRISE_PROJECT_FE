@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { useSignUpStore } from '@/store/signupStore.ts'
 import { AnimatedSpeechBubble } from '@/components/signup/AnimatedSpeechBubble.tsx'
+import { postOnboardingSignUp } from '@/apis/sign-up/postOnboardingSignUp.ts'
+import { useOnboardingTestStore } from '@/stores/onboardingTestStore.ts'
 
 export default function Address() {
   return (
@@ -26,6 +28,7 @@ interface AddressType {
 function CustomAddressSearch() {
   const setState = useSignUpStore((state) => state.setState)
   const signUpData = useSignUpStore((state) => state.signUpData)
+  const onboardingCharacterData = useOnboardingTestStore((state) =>state.onboardingCharacterData)
 
   const [keyword, setKeyword] = useState('')
   const [results, setResults] = useState<AddressType[]>([])
@@ -253,10 +256,44 @@ function CustomAddressSearch() {
               : 'cursor-not-allowed bg-neutral-400'
           }`}
           disabled={!formComplete}
-          onClick={() => {
+          onClick={async () => {
             if (formComplete) {
-              // 완료 처리 로직
-              console.log('회원가입 완료!')
+              try {
+                // onboardingCharacterData의 값들을 signUpData에 병합
+                const convertedCompanyRatio = onboardingCharacterData?.companyRatio ? {
+                  additionalProp1: onboardingCharacterData?.companyRatio.additionalProp1 === 0 ? 0 as const : undefined,
+                  additionalProp2: onboardingCharacterData?.companyRatio.additionalProp2 === 0 ? 0 as const : undefined,
+                  additionalProp3: onboardingCharacterData?.companyRatio.additionalProp3 === 0 ? 0 as const : undefined,
+                } : undefined
+
+                const finalSignUpData = {
+                  ...signUpData,
+                  characterId: onboardingCharacterData?.characterId,
+                  companyList: onboardingCharacterData?.companyTypeEnumList,
+                  welfareList: onboardingCharacterData?.welfareList,
+                  companyRatio: convertedCompanyRatio
+                }
+
+                // 상태 저장
+                setState({
+                  ...signUpData,
+                  signUpData: finalSignUpData
+                })
+
+                console.log('전송할 데이터:', finalSignUpData)
+
+                // API 호출
+                const response = await postOnboardingSignUp(finalSignUpData)
+
+                console.log('회원가입 성공:', response)
+
+                // 성공 시 추가 처리 (예: 페이지 이동, 성공 메시지 등)
+                // 예: navigate('/success') 또는 다른 성공 처리 로직
+
+              } catch (error) {
+                console.error('회원가입 실패:', error)
+                // 에러 처리 (예: 에러 메시지 표시)
+              }
             }
           }}
         >

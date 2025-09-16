@@ -13,6 +13,8 @@ import OnboardingTest from '@/pages/onboarding/OnboardingTest.tsx'
 import Job from '@/pages/Job.tsx'
 import Category from '@/pages/Category.tsx'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import SignUp from '@/pages/SignUp.tsx'
+import OnboardingSignUp from '@/pages/onboarding/OnboardingSignUp.tsx'
 
 const queryClient = new QueryClient()
 
@@ -25,6 +27,7 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/login" element={<Login />} />
           <Route path="/job" element={<Job />} />
+          <Route path="/sign-up" element={<SignUp />} />
           <Route path="/kakao/oauth" element={<Redirect />} />
           <Route path="/auth/login/kakao" element={<Redirect />} />
           <Route element={<RootLayout />}>
@@ -33,6 +36,7 @@ function App() {
             <Route path="/onboarding/login" element={<OnboardingLogin />} />
             <Route path="/onboarding/result" element={<Result />} />
           </Route>
+          <Route path="/onboarding/sign-up" element={<OnboardingSignUp />} />
           <Route path="/:category" element={<Category />} />
         </Routes>
       </BrowserRouter>

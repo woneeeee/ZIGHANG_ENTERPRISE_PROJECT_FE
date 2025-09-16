@@ -1,5 +1,6 @@
-import { type ChangeEvent, useState } from 'react'
+import { type ChangeEvent, useEffect, useState } from 'react'
 import { useSignUpStore } from '@/store/signupStore.ts'
+import { useEditMyInfoStore } from '@/stores/editMyInfoStore.ts'
 
 export default function Experience() {
   return (
@@ -18,8 +19,17 @@ export default function Experience() {
 }
 
 function CustomRangeSlider () {
-  const setState = useSignUpStore((state) => state.setState)
+  const setWorkExperienceState = useSignUpStore((state) => state.setState)
   const signUpData = useSignUpStore((state) => state.signUpData)
+  const editMyInfoData = useEditMyInfoStore((state) => state.editMyInfoData)
+  const setEditMyInfoDataState = useEditMyInfoStore((state) => state.setState)
+
+  useEffect(() => {
+    if (editMyInfoData) {
+      setWorkExperienceState({...signUpData, signUpData: {...signUpData, workExperience: editMyInfoData?.workExperience}})
+    }
+  }, [editMyInfoData])
+
   // 단일 값으로 경력을 관리 (0: 신입, 1-10: N년, 11: 10년 이상)
   // const [experience, setExperience] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
@@ -52,12 +62,23 @@ function CustomRangeSlider () {
 
   const handleExperienceClick = (workExperience: number | undefined) => {
     // 1. 상태 저장 - setState 구조 수정
-    setState({
-      signUpData: {
-        ...signUpData,
-        workExperience: workExperience
-      }
-    })
+    if (editMyInfoData) {
+      setEditMyInfoDataState({
+        ...editMyInfoData,
+        editMyInfoData: {
+          ...editMyInfoData,
+          workExperience: workExperience
+        }
+      })
+    } else {
+      setWorkExperienceState({
+        signUpData: {
+          ...signUpData,
+          workExperience: workExperience
+        }
+      })
+    }
+
     // 2. Category 섹션으로 부드러운 스크롤
     const categorySection = document.getElementById('commute-section')
     if (categorySection) {
@@ -83,7 +104,7 @@ function CustomRangeSlider () {
 
   // 슬라이더 값 변경 - setState 구조 수정
   const handleSliderChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setState({
+    setWorkExperienceState({
       signUpData: {
         ...signUpData,
         workExperience: parseInt(e.target.value)
@@ -118,7 +139,7 @@ function CustomRangeSlider () {
           className="absolute top-[35px] desktop:body-sm-medium laptop:body-sm-medium tablet:body-sm-medium caption-md-medium transform -translate-x-1/2 transition-all duration-200 ease-out whitespace-nowrap"
           style={{ left: getThumbPosition() }}
         >
-          {getExperienceText(signUpData?.workExperience)}
+          {getExperienceText(editMyInfoData ? editMyInfoData.workExperience : signUpData?.workExperience)}
         </div>
       </div>
     </div>

@@ -19,11 +19,21 @@ import {
 } from '@/constants/SignUp.ts'
 import { useSignUpStore } from '@/store/signupStore.ts'
 import type { JobGroupEnumType, JobPositionEnumType } from '@/types/signup.ts'
-import { toast } from 'react-toastify' // 또는 사용하는 토스트 라이브러리
+import { toast } from 'react-toastify'
+import { useEffect } from 'react'
+import { useEditMyInfoStore } from '@/stores/editMyInfoStore.ts' // 또는 사용하는 토스트 라이브러리
 
 export default function JobCategory() {
-  const setState = useSignUpStore((state) => state.setState)
+  const setJobPositionState = useSignUpStore((state) => state.setState)
   const signUpData = useSignUpStore((state) => state.signUpData)
+  const editMyInfoData = useEditMyInfoStore((state) => state.editMyInfoData)
+  const setEditMyInfoDataState = useEditMyInfoStore((state) => state.setState)
+
+  useEffect(() => {
+    if (editMyInfoData) {
+      setJobPositionState({...signUpData, signUpData: {...signUpData, jobPositionEnum: editMyInfoData?.jobPositions}})
+    }
+  }, [editMyInfoData])
 
   const changeCategoryToJobCategory = (selectedCategory: JobGroupEnumType | undefined) => {
     switch (selectedCategory) {
@@ -160,12 +170,22 @@ export default function JobCategory() {
     }
 
     // 상태 업데이트
-    setState({
-      signUpData: {
-        ...signUpData,
-        jobPositionEnum: updatedJobPositions
-      }
-    })
+    if (editMyInfoData) {
+      setEditMyInfoDataState({
+        ...editMyInfoData,
+        editMyInfoData: {
+          ...editMyInfoData,
+          jobPositions: updatedJobPositions
+        }
+      })
+    } else {
+      setJobPositionState({
+        signUpData: {
+          ...signUpData,
+          jobPositionEnum: updatedJobPositions
+        }
+      })
+    }
 
     // 2개가 모두 선택되었을 때만 스크롤
     if (updatedJobPositions.length === 2) {
@@ -183,7 +203,11 @@ export default function JobCategory() {
   }
 
   const isSelected = (jobCategory: JobPositionEnumType) => {
-    return signUpData?.jobPositionEnum?.includes(jobCategory) || false
+    if (editMyInfoData) {
+      return editMyInfoData.jobPositions.includes(jobCategory) || false
+    } else {
+      return signUpData?.jobPositionEnum?.includes(jobCategory) || false
+    }
   }
 
 
@@ -195,7 +219,7 @@ export default function JobCategory() {
         className="body-md-semibold tablet:heading-md-semibold desktop:heading-md-semibold laptop:heading-md-semibold"><span className="text-purple-500">{changeCategoryEnumToKor(signUpData?.jobGroupEnum)}</span> 분야의 희망하는 직무를 선택해주세요</h1>
 
       <section className="gap-[6px] flex flex-wrap">
-        {(changeCategoryToJobCategory(signUpData?.jobGroupEnum) || []).map((jobCategory) => {
+        {(changeCategoryToJobCategory(editMyInfoData ? editMyInfoData.jobGroups : signUpData?.jobGroupEnum) || []).map((jobCategory) => {
           const selected = isSelected(jobCategory.enum)
 
           return (

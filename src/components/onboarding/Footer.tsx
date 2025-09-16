@@ -38,14 +38,13 @@ const Footer = () => {
           <div className="tablet:gap-[18px] flex h-[108px] items-center justify-center gap-[14px]">
             <Button
               onClick={handleRefresh}
-              className="tablet:h-[48px] tablet:w-[48px] flex h-[40px] w-[40px] items-center justify-center rounded-full border border-neutral-200 bg-neutral-100"
+              className="tablet:h-[48px] tablet:w-[48px] flex h-[40px] w-[40px] items-center justify-center rounded-full bg-neutral-50 hover:bg-purple-100"
             >
               <RefreshIcon className="h-[24px] w-[24px]" />
             </Button>
-
             <Button
               onClick={handleShare}
-              className="tablet:px-[60px] tablet:py-[12px] tablet:w-[240px] tablet:h-[46px] body-sm-semibold flex h-[39px] w-[210px] items-center gap-[8px] rounded-[6px] border border-purple-500 bg-neutral-50 px-[50px] py-[10px] text-purple-500"
+              className="tablet:px-[60px] tablet:py-[12px] tablet:w-[240px] tablet:h-[46px] body-sm-semibold flex h-[39px] w-[210px] items-center gap-[8px] rounded-[6px] bg-neutral-50 px-[50px] py-[10px] text-purple-500 hover:bg-purple-100"
             >
               <DownloadIcon className="h-[21px] w-[21px]" />
               테스트 공유하기

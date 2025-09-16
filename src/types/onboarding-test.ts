@@ -1,3 +1,4 @@
+import type { SearchItem } from '@/apis/getOnboardingResultAll'
 import type { CompanyEnumType } from '@/types/signup.ts'
 
 export interface OnboardingTestType {
@@ -19,4 +20,11 @@ export interface OnboardingCharacterType {
   welfareList: string[]
   characterId: number
   characterName: string
+}
+
+export interface ReOnboardingCharacterType {
+  id: number
+  characterId: number
+  characterName: string
+  searchResponses: SearchItem[]
 }

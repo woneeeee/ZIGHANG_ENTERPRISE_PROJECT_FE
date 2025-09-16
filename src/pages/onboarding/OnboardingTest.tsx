@@ -5,8 +5,11 @@ import AvoidSituationCard from '@/components/onboarding/test/AvoidSituationCard.
 import MotivationCard from '@/components/onboarding/test/MotivationCard.tsx'
 import AfterWorkChoiceCard from '@/components/onboarding/test/AfterWorkChoiceCard.tsx'
 import RewardChoiceCard from '@/components/onboarding/test/RewardChoiceCard.tsx'
-import { useOnboardingTestStore } from '@/stores/onboardingTestStore.ts'
-import { postOnboardingCharacter } from '@/apis/onboarding-test/postOnboardingCharacter.ts'
+import { useOnboardingTestStore, useReOnboardingTestStore } from '@/stores/onboardingTestStore.ts'
+import {
+  postOnboardingCharacter,
+  repostOnboardingCharacter,
+} from '@/apis/onboarding-test/postOnboardingCharacter.ts'
 import Header from '@/components/common/Header.tsx'
 import { useNavigate } from 'react-router-dom'
 import ResultCard from '@/components/onboarding/test/ResultCard'
@@ -24,32 +27,59 @@ export default function OnboardingTest() {
     navigate('/onboarding/result')
   }
 
+  const setState = useOnboardingTestStore((state) => state.setState)
+  const setStateReOnboarding = useReOnboardingTestStore((state) => state.setState)
+
   const onboardingTestData = useOnboardingTestStore((state) => state.onboardingTestData)
   const onboardingCharacterData = useOnboardingTestStore((state) => state.onboardingCharacterData)
-
-  const setState = useOnboardingTestStore((state) => state.setState)
+  const reonboardingCharacterData = useReOnboardingTestStore(
+    (state) => state.reonboardingCharacterData,
+  )
 
   useEffect(() => {
     console.log('onboardingCharacterData', onboardingCharacterData)
-  }, [onboardingCharacterData])
+    console.log('reonboardingCharacterData', reonboardingCharacterData)
+  }, [onboardingCharacterData, reonboardingCharacterData])
 
   useEffect(() => {
     if (onboardingTestData && onboardingTestData.q6 !== undefined) {
-      setShowRocket(true)
+      console.log('onboardingTestData: ', onboardingTestData)
+      console.log('onboardingTestData.q6: ', onboardingTestData.q6)
 
-      postOnboardingCharacter(onboardingTestData).then((result) => {
-        if (result.isSuccess) {
-          setState({
-            ...onboardingCharacterData,
-            onboardingCharacterData: result.result,
-          })
-          setTimeout(() => {
-            handleNavigation()
-          }, 3000)
-        }
-      })
+      const hasOnboarded = localStorage.getItem('accessToken')
+
+      if (hasOnboarded) {
+        repostOnboardingCharacter(onboardingTestData).then((result) => {
+          setShowRocket(true)
+
+          if (result.isSuccess) {
+            setStateReOnboarding({
+              ...reonboardingCharacterData,
+              reonboardingCharacterData: result.result,
+            })
+            localStorage.removeItem('onboarding_done')
+            setTimeout(() => {
+              navigate('/onboarding/result', { state: { from: 'retest' } })
+            }, 3000)
+          }
+        })
+      } else {
+        postOnboardingCharacter(onboardingTestData).then((result) => {
+          setShowRocket(true)
+
+          if (result.isSuccess) {
+            setState({
+              ...onboardingCharacterData,
+              onboardingCharacterData: result.result,
+            })
+            setTimeout(() => {
+              handleNavigation()
+            }, 3000)
+          }
+        })
+      }
     }
-  }, [onboardingTestData, navigate, setState, onboardingCharacterData])
+  }, [onboardingTestData, navigate, setState, setStateReOnboarding])
 
   return (
     <main className="flex flex-col items-center justify-center">

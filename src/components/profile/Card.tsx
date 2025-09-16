@@ -1,5 +1,6 @@
 import { deleteReOnboarding } from '@/apis/deleteMypageTest'
 import { type ProfileCardItem } from '@/constants/ProfileCard'
+import { useOnboardingTestStore, useReOnboardingTestStore } from '@/stores/onboardingTestStore'
 import { forwardRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 
@@ -16,6 +17,9 @@ const ProfileCard = forwardRef<HTMLDivElement, CardProps>(({ item }, ref) => {
       const res = await deleteReOnboarding()
       if (res.name) {
         nav('/onboarding/start')
+        useOnboardingTestStore.getState().reset()
+        useReOnboardingTestStore.getState().reset()
+        localStorage.setItem('onboarding_done', 'true')
       }
     } catch (e) {
       console.error(e)
@@ -50,7 +54,7 @@ const ProfileCard = forwardRef<HTMLDivElement, CardProps>(({ item }, ref) => {
         <p
           className="caption-sm-medium tablet:body-sm-medium cursor-pointer whitespace-nowrap text-purple-500"
           onClick={() => {
-            nav('/onboarding/result')
+            nav('/onboarding/result', { state: { from: 'mypage' } })
           }}
         >
           결과 전체보기

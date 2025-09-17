@@ -2,7 +2,7 @@ import { commuteConstants } from '@/constants/SignUp.ts'
 import { useSignUpStore } from '@/store/signupStore.ts'
 import type { TransportEnumType } from '@/types/signup.ts'
 
-export default function Commute() {
+export default function Transport() {
   const setState = useSignUpStore((state) => state.setState)
   const signUpData = useSignUpStore((state) => state.signUpData)
   const handleCommuteClick = (commute: TransportEnumType) => {

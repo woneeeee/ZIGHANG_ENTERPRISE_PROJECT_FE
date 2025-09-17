@@ -1,7 +1,7 @@
 import { commutingTimeConstants } from '@/constants/SignUp.ts'
 import { useSignUpStore } from '@/store/signupStore.ts'
 
-export default function CommutingTime() {
+export default function MaxCommuteMinutes() {
   const setState = useSignUpStore((state) => state.setState)
   const signUpData = useSignUpStore((state) => state.signUpData)
 

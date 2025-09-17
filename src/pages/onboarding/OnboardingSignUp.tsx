@@ -2,11 +2,11 @@ import Header from '@/components/common/Header.tsx'
 import { useSignUpStore } from '@/store/signupStore.ts'
 import { useEffect, useMemo } from 'react'
 import Education from '@/components/onboarding/sign-up/Education.tsx'
-import Category from '@/components/onboarding/sign-up/Category.tsx'
-import JobCategory from '@/components/onboarding/sign-up/JobCategory.tsx'
+import JobGroup from '@/components/onboarding/sign-up/JobGroup.tsx'
+import JobPositions from '@/components/onboarding/sign-up/JobPositions.tsx'
 import Experience from '@/components/onboarding/sign-up/Experience.tsx'
-import Commute from '@/components/onboarding/sign-up/Commute.tsx'
-import CommutingTime from '@/components/onboarding/sign-up/CommutingTime.tsx'
+import Transport from '@/components/onboarding/sign-up/Transport.tsx'
+import MaxCommuteMinutes from '@/components/onboarding/sign-up/MaxCommuteMinutes.tsx'
 import Address from '@/components/onboarding/sign-up/Address.tsx'
 import { Background2Icon } from '@/assets/svgComponents'
 
@@ -78,11 +78,11 @@ export default function OnboardingSignUp() {
           </div>
 
           <Education />
-          <Category />
-          <JobCategory />
+          <JobGroup />
+          <JobPositions />
           <Experience />
-          <Commute />
-          <CommutingTime />
+          <Transport />
+          <MaxCommuteMinutes />
           <Address />
         </div>
       </div>

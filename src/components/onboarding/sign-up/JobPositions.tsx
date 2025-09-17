@@ -29,7 +29,7 @@ import { useSignUpStore } from '@/store/signupStore.ts'
 import type { JobGroupEnumType, JobPositionEnumType } from '@/types/signup.ts'
 import { toast } from 'react-toastify' // 또는 사용하는 토스트 라이브러리
 
-export default function JobCategory() {
+export default function JobPositions() {
   const setState = useSignUpStore((state) => state.setState)
   const signUpData = useSignUpStore((state) => state.signUpData)
 

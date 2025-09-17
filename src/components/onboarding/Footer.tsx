@@ -1,12 +1,24 @@
 import { DownloadIcon, RefreshIcon } from '@/assets/svgComponents'
 import Button from './Button'
 import { useNavigate } from 'react-router-dom'
+import { deleteReOnboarding } from '@/apis/deleteMypageTest'
+import { useOnboardingTestStore, useReOnboardingTestStore } from '@/stores/onboardingTestStore'
 
 const Footer = () => {
   const nav = useNavigate()
 
-  const handleRefresh = () => {
-    nav('/onboarding/start')
+  const handleRefresh = async () => {
+    try {
+      const res = await deleteReOnboarding()
+      if (res.name) {
+        useOnboardingTestStore.getState().reset()
+        useReOnboardingTestStore.getState().reset()
+        localStorage.setItem('onboarding_done', 'true')
+        nav('/onboarding/start')
+      }
+    } catch (e) {
+      console.error(e)
+    }
   }
 
   const handleShare = async () => {

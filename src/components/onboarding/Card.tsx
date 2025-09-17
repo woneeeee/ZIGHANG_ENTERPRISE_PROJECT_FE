@@ -69,7 +69,7 @@ const Card = () => {
   const wrapperRef = useRef<HTMLDivElement | null>(null)
 
   const handleEntire = () => {
-    nav('/job')
+    nav('/custom')
   }
 
   const onboardingCharacterData = useOnboardingTestStore((state) => state.onboardingCharacterData)

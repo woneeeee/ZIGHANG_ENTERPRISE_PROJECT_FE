@@ -29,9 +29,12 @@ const ProfileCard = forwardRef<HTMLDivElement, CardProps>(({ item }, ref) => {
   return (
     <div
       ref={ref}
-      className="bg-profile-card tablet:rounded-[14px] rounded-[10px] text-center shadow-[0_0_20px_0_rgba(0,0,0,0.12)]"
+      className="bg-profile-card tablet:rounded-[14px] flex flex-col items-center justify-center rounded-[10px] text-center shadow-[0_0_20px_0_rgba(0,0,0,0.12)]"
     >
-      <div className="tablet:w-[298px] tablet:h-[274px] h-[200px] w-[224px] object-cover">
+      <div
+        style={{ boxSizing: 'border-box' }}
+        className="tablet:w-[298px] tablet:h-[274px] flex h-[200px] w-[224px] items-center justify-center object-cover"
+      >
         <CharacterIcon className="h-full w-full" />
       </div>
       <div className="tablet:px-[16px] tablet:pb-[31px] tablet:gap-[20px] flex flex-col gap-[15px] px-[12px] pb-[23px]">

@@ -8,16 +8,22 @@ const Footer = () => {
   const nav = useNavigate()
 
   const handleRefresh = async () => {
-    try {
-      const res = await deleteReOnboarding()
-      if (res.name) {
-        useOnboardingTestStore.getState().reset()
-        useReOnboardingTestStore.getState().reset()
-        localStorage.setItem('onboarding_done', 'true')
-        nav('/onboarding/start')
+    const accessToken = localStorage.getItem('accessToken')
+
+    if (accessToken) {
+      try {
+        const res = await deleteReOnboarding()
+        if (res.name) {
+          useOnboardingTestStore.getState().reset()
+          useReOnboardingTestStore.getState().reset()
+          localStorage.setItem('onboarding_done', 'true')
+          nav('/onboarding/start')
+        }
+      } catch (e) {
+        console.error(e)
       }
-    } catch (e) {
-      console.error(e)
+    } else {
+      nav('/onboarding/start')
     }
   }
 

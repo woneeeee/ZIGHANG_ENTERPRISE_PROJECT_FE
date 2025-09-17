@@ -3,7 +3,7 @@ import api from '@/apis/api'
 const logout = async (): Promise<boolean> => {
   try {
     const res = await api.post('/auth/sign-out')
-    if (res.data?.isSuccess) {
+    if (res.data?.code === '200') {
       localStorage.clear()
       delete api.defaults.headers.common.Authorization
       return true

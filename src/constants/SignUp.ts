@@ -48,7 +48,6 @@ export const category4Constants: {kor: string; enum: JobGroupEnumType}[] = [
  * IT_개발
  */
 export const ITConstants: {kor: string; enum: JobPositionEnumType}[] = [
-    { kor: '전체', enum: '전체' },
     { kor: '서버·백엔드', enum: '서버_백엔드' },
     { kor: '프론트엔드', enum: '프론트엔드' },
     { kor: '웹풀스택', enum: '웹풀스택' },
@@ -76,7 +75,6 @@ export const ITConstants: {kor: string; enum: JobPositionEnumType}[] = [
     { kor: '기타IT·개발', enum: '기타IT_개발' },
   ]
 export const AIConstants: {kor: string; enum: JobPositionEnumType}[] = [
-    { kor: '전체', enum: '전체' },
     { kor: '데이터 분석가', enum: '데이터_분석가' },
     { kor: '데이터 사이언티스트', enum: '데이터_사이언티스트' },
     { kor: '데이터 엔지니어', enum: '데이터_엔지니어' },
@@ -96,7 +94,6 @@ export const AIConstants: {kor: string; enum: JobPositionEnumType}[] = [
     { kor: '기타AI·데이터', enum: '기타AI_데이터' },
   ]
 export const engineeringConstants: {kor: string; enum: JobPositionEnumType}[] = [
-    { kor: '전체', enum: '전체' },
     { kor: '반도체·디스플레이', enum: '반도체_디스플레이' },
     { kor: '전기·전자·제어', enum: '전기_전자_제어' },
     { kor: '통신기술·네트워크구축', enum: '통신기술_네트워크구축' },
@@ -114,7 +111,6 @@ export const engineeringConstants: {kor: string; enum: JobPositionEnumType}[] = 
     { kor: '기타엔지니어링·R&D', enum: '기타엔지니어링_RnD' },
   ]
 export const architectureConstants: {kor: string; enum: JobPositionEnumType}[] = [
-    { kor: '전체', enum: '전체' },
     { kor: '건축설계·시공', enum: '건축설계_시공' },
     { kor: '토목·측량·조경·환경', enum: '토목_측량_조경_환경' },
     { kor: '기계·전기·소방·설비', enum: '기계_전기_소방_설비' },
@@ -128,7 +124,6 @@ export const architectureConstants: {kor: string; enum: JobPositionEnumType}[] =
  * 생산·기능직
  */
 export const manufacturingConstants: {kor: string; enum: JobPositionEnumType}[] = [
-  { kor: '전체', enum: '전체' },
   { kor: '생산', enum: '생산' },
   { kor: '공무', enum: '공무' },
   { kor: '설비', enum: '설비' },
@@ -145,7 +140,6 @@ export const manufacturingConstants: {kor: string; enum: JobPositionEnumType}[] 
  * 법률·법무
  */
 export const legalConstants: {kor: string; enum: JobPositionEnumType}[] = [
-  { kor: '전체', enum: '전체' },
   { kor: '변호사', enum: '변호사' },
   { kor: '변리사', enum: '변리사' },
   { kor: '법무', enum: '법무' },
@@ -160,7 +154,6 @@ export const legalConstants: {kor: string; enum: JobPositionEnumType}[] = [
  * 증권·운용
  */
 export const securitiesConstants: {kor: string; enum: JobPositionEnumType}[] = [
-  { kor: '전체', enum: '전체' },
   { kor: '운용·트레이딩', enum: '운용_트레이딩' },
   { kor: '리스크·준법·심사', enum: '리스크_준법_심사' },
   { kor: 'VC·PE', enum: 'VC_PE' },
@@ -176,7 +169,6 @@ export const securitiesConstants: {kor: string; enum: JobPositionEnumType}[] = [
  * 은행·카드·보험
  */
 export const financeConstants: {kor: string; enum: JobPositionEnumType}[] = [
-  { kor: '전체', enum: '전체' },
   { kor: '은행', enum: '은행' },
   { kor: '카드사', enum: '카드사' },
   { kor: '캐피탈', enum: '캐피탈' },
@@ -193,7 +185,6 @@ export const financeConstants: {kor: string; enum: JobPositionEnumType}[] = [
  * 의료·보건
  */
 export const medicalConstants: {kor: string; enum: JobPositionEnumType}[] = [
-  { kor: '전체', enum: '전체' },
   { kor: '의사', enum: '의사' },
   { kor: '한의사', enum: '한의사' },
   { kor: '수의사', enum: '수의사' },
@@ -217,7 +208,6 @@ export const medicalConstants: {kor: string; enum: JobPositionEnumType}[] = [
  * 공공·복지
  */
 export const publicServiceConstants: {kor: string; enum: JobPositionEnumType}[] = [
-  { kor: '전체', enum: '전체' },
   { kor: '행정·사무·운영', enum: '행정_사무_운영' },
   { kor: '기술·전산·시설', enum: '기술_전산_시설' },
   { kor: '복지·사회서비스', enum: '복지_사회서비스' },
@@ -235,7 +225,6 @@ export const publicServiceConstants: {kor: string; enum: JobPositionEnumType}[] 
  * 교육
  */
 export const educationConstants: {kor: string; enum: JobPositionEnumType}[] = [
-  { kor: '전체', enum: '전체' },
   { kor: '유치원·보육교사', enum: '유치원_보육교사' },
   { kor: '기간제·사립교사', enum: '기간제_사립교사' },
   { kor: '방과후·사립교사', enum: '방과후_사립교사' },
@@ -254,7 +243,6 @@ export const educationConstants: {kor: string; enum: JobPositionEnumType}[] = [
  * 식음료
  */
 export const foodAndBeverageConstants: {kor: string; enum: JobPositionEnumType}[] = [
-  { kor: '전체', enum: '전체' },
   { kor: '식품가공·개발', enum: '식품가공_개발' },
   { kor: '주방조리', enum: '주방조리' },
   { kor: '제과·제빵', enum: '제과_제빵' },
@@ -269,7 +257,6 @@ export const foodAndBeverageConstants: {kor: string; enum: JobPositionEnumType}[
  * 마케팅·광고
  */
 export const marketingConstants: {kor: string; enum: JobPositionEnumType}[] = [
-  { kor: '전체', enum: '전체' },
   { kor: '마케팅기획·전략', enum: '마케팅기획_전략' },
   { kor: '퍼포먼스 마케팅', enum: '퍼포먼스마케팅' },
   { kor: '콘텐츠마케팅', enum: '콘텐츠마케팅' },
@@ -287,7 +274,6 @@ export const marketingConstants: {kor: string; enum: JobPositionEnumType}[] = [
  * 디자인
  */
 export const designConstants: {kor: string; enum: JobPositionEnumType}[] = [
-  { kor: '전체', enum: '전체' },
   { kor: 'UIUX·프로덕트', enum: 'UIUX_프로덕트' },
   { kor: '웹디자인', enum: '웹디자인' },
   { kor: '디자인리서치', enum: '디자인리서치' },
@@ -310,7 +296,6 @@ export const designConstants: {kor: string; enum: JobPositionEnumType}[] = [
  * 게임
  */
 export const gameConstants: {kor: string; enum: JobPositionEnumType}[] = [
-  { kor: '전체', enum: '전체' },
   { kor: '게임기획·PM', enum: '게임기획_PM' },
   { kor: '게임운영', enum: '게임운영' },
   { kor: '게임QA', enum: '게임QA' },
@@ -332,7 +317,6 @@ export const gameConstants: {kor: string; enum: JobPositionEnumType}[] = [
  * 미디어·엔터
  */
 export const mediaAndEntertainmentConstants: {kor: string; enum: JobPositionEnumType}[] = [
-  { kor: '전체', enum: '전체' },
   { kor: 'PD·감독', enum: 'PD_감독' },
   { kor: '콘텐츠기획·에디터', enum: '콘텐츠기획_에디터' },
   { kor: '방송작가', enum: '방송작가' },
@@ -361,7 +345,6 @@ export const mediaAndEntertainmentConstants: {kor: string; enum: JobPositionEnum
  * 고객상담·TM
  */
 export const customerServiceConstants: {kor: string; enum: JobPositionEnumType}[] = [
-  { kor: '전체', enum: '전체' },
   { kor: '직행수집', enum: '직행수집' },
   { kor: '원티드', enum: '원티드' },
   { kor: '그룹바이', enum: '그룹바이' },
@@ -397,7 +380,6 @@ export const customerServiceConstants: {kor: string; enum: JobPositionEnumType}[
  * 서비스
  */
 export const serviceConstants: {kor: string; enum: JobPositionEnumType}[] = [
-  { kor: '전체', enum: '전체' },
   { kor: '설치·수리기사', enum: '설치_수리기사' },
   { kor: '주차·주유', enum: '주차_주유' },
   { kor: '가사도우미', enum: '가사도우미' },
@@ -421,7 +403,6 @@ export const serviceConstants: {kor: string; enum: JobPositionEnumType}[] = [
  * 기획·전략
  */
 export const planningAndStrategyConstants: {kor: string; enum: JobPositionEnumType}[] = [
-  { kor: '전체', enum: '전체' },
   { kor: 'PM·PO', enum: 'PM_PO' },
   { kor: '서비스·상품기획', enum: '서비스_상품기획' },
   { kor: '사업·전략기획', enum: '사업_전략기획' },
@@ -438,7 +419,6 @@ export const planningAndStrategyConstants: {kor: string; enum: JobPositionEnumTy
  * 상품기획·MD
  */
 export const productPlanningAndMDConstants: {kor: string; enum: JobPositionEnumType}[] = [
-  { kor: '전체', enum: '전체' },
   { kor: '상품기획', enum: '상품기획' },
   { kor: '온라인MD', enum: '온라인MD' },
   { kor: '식품MD', enum: '식품MD' },
@@ -453,7 +433,6 @@ export const productPlanningAndMDConstants: {kor: string; enum: JobPositionEnumT
  * 영업
  */
 export const salesConstants: {kor: string; enum: JobPositionEnumType}[] = [
-  { kor: '전체', enum: '전체' },
   { kor: 'B2C영업', enum: 'B2C영업' },
   { kor: 'B2B영업', enum: 'B2B영업' },
   { kor: '영업관리·지원', enum: '영업관리_지원' },
@@ -469,7 +448,6 @@ export const salesConstants: {kor: string; enum: JobPositionEnumType}[] = [
  * 무역·물류
  */
 export const tradeAndLogisticsConstants: {kor: string; enum: JobPositionEnumType}[] = [
-  { kor: '전체', enum: '전체' },
   { kor: '해외·상사영업', enum: '해외_상사영업' },
   { kor: '수출입관리·사무', enum: '수출입관리_사무' },
   { kor: '관세사', enum: '관세사' },
@@ -489,7 +467,6 @@ export const tradeAndLogisticsConstants: {kor: string; enum: JobPositionEnumType
  * 운송·배송
  */
 export const transportationConstants: {kor: string; enum: JobPositionEnumType}[] = [
-  { kor: '전체', enum: '전체' },
   { kor: '배송·배달', enum: '배송_배달' },
   { kor: '승객운송', enum: '승객운송' },
   { kor: '물류운송', enum: '물류운송' },
@@ -502,7 +479,6 @@ export const transportationConstants: {kor: string; enum: JobPositionEnumType}[]
  * 회계·재무·세무
  */
 export const accountingConstants: {kor: string; enum: JobPositionEnumType}[] = [
-  { kor: '전체', enum: '전체' },
   { kor: '직행수집', enum: '직행수집' },
   { kor: '원티드', enum: '원티드' },
   { kor: '그룹바이', enum: '그룹바이' },
@@ -538,7 +514,6 @@ export const accountingConstants: {kor: string; enum: JobPositionEnumType}[] = [
  * HR·총무
  */
 export const hrConstants: {kor: string; enum: JobPositionEnumType}[] = [
-  { kor: '전체', enum: '전체' },
   { kor: '인사기획', enum: '인사기획' },
   { kor: '평가·보상', enum: '평가_보상' },
   { kor: 'HRD·조직문화', enum: 'HRD_조직문화' },

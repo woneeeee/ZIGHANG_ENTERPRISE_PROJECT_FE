@@ -66,7 +66,6 @@ export type JobGroupEnumType =
   | '인사_노무_HRD_총무'
 
 export type JobPositionEnumType =
-  | '전체'
   | '서버_백엔드'
   | '프론트엔드'
   | '웹풀스택'

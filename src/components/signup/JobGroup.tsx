@@ -24,9 +24,9 @@ export default function JobGroup () {
   const handleCategoryClick = (category: JobGroupEnumType) => {
     // 1. 상태 저장
     if (editMyInfoData) {
-      setEditMyInfoDataState({...editMyInfoData, editMyInfoData: {...editMyInfoData, jobGroups: editMyInfoData.jobGroups === category ? null : category }})
+      setEditMyInfoDataState({...editMyInfoData, editMyInfoData: {...editMyInfoData, jobGroups: editMyInfoData.jobGroups === category ? undefined : category, jobPositions: undefined }})
     } else {
-      setJobGroupEumState({ ...signUpData, signUpData: { ...signUpData, jobGroups: signUpData?.jobGroups === category ? null : category, jobPositions: undefined } })
+      setJobGroupEumState({ ...signUpData, signUpData: { ...signUpData, jobGroups: signUpData?.jobGroups === category ? undefined : category, jobPositions: undefined } })
     }
 
     // 2. JobGroup 섹션으로 부드러운 스크롤

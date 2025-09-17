@@ -46,9 +46,14 @@ function CustomAddressSearch() {
   const [keyword, setKeyword] = useState('')
   const [results, setResults] = useState<AddressType[]>([])
 
+  useEffect(() => {
+    console.log('editMyInfoData', editMyInfoData)
+  }, [editMyInfoData])
+
   // 모든 필수 값이 입력되었는지 확인하는 함수
   const isFormComplete = () => {
     if (!signUpData) return false
+
     if (editMyInfoData) {
       return (
         editMyInfoData.workExperience !== undefined &&

@@ -9,10 +9,10 @@ import type {
 export interface EditMyInfoType {
   jobGroups: JobGroupEnumType | undefined | null
   jobPositions: JobPositionEnumType[] | undefined | null
-  companyTypes: CompanyEnumType[] | null
+  companyTypes: CompanyEnumType[] | undefined | null
   education: EducationEnumType | undefined | null
   workExperience: number | undefined | null
   address: string | undefined | null
-  transport: TransportEnumType | null
-  maxCommuteMinutes: number | null
+  transport: TransportEnumType | undefined | null
+  maxCommuteMinutes: number | undefined | null
 }

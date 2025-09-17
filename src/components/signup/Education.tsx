@@ -24,11 +24,11 @@ export default function Education() {
       //마이페이지 정보가 있으면
       setEditMyInfoDataState({
         ...editMyInfoData,
-        editMyInfoData: { ...editMyInfoData, education: editMyInfoData.education === education ? null : education },
+        editMyInfoData: { ...editMyInfoData, education: editMyInfoData.education === education ? undefined : education },
       })
     } else {
       //마이페이지 정보가 없어 새로 회원가입 하는 경우
-      setSignUpState({ ...signUpData, signUpData: { ...signUpData, education: signUpData?.education === education ? null : education } })
+      setSignUpState({ ...signUpData, signUpData: { ...signUpData, education: signUpData?.education === education ? undefined : education } })
     }
 
     // 2. JobGroup 섹션으로 부드러운 스크롤

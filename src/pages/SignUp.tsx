@@ -40,7 +40,7 @@ export default function SignUp() {
   }, [profile])
 
   // 진행률 계산
-  const progress = useMemo(() => {
+  const progressSignUpData = useMemo(() => {
     let completedSteps = 0
     const totalSteps = 7
 
@@ -55,6 +55,22 @@ export default function SignUp() {
 
     return (completedSteps / totalSteps) * 100
   }, [signUpData])
+
+  const progressEditMyInfoData = useMemo(() => {
+    let completedSteps = 0
+    const totalSteps = 7
+
+    // 각 필드가 완료되었는지 확인
+    if (editMyInfoData?.education) completedSteps++
+    if (editMyInfoData?.jobGroups) completedSteps++
+    if (editMyInfoData?.jobPositions && editMyInfoData.jobPositions.length > 0) completedSteps++
+    if (editMyInfoData?.workExperience !== undefined) completedSteps++
+    if (editMyInfoData?.transport) completedSteps++
+    if (editMyInfoData?.maxCommuteMinutes !== undefined) completedSteps++
+    if (editMyInfoData?.address) completedSteps++
+
+    return (completedSteps / totalSteps) * 100
+  }, [editMyInfoData])
 
   useEffect(() => {
     // 브라우저의 스크롤 복원 기능 비활성화
@@ -92,7 +108,7 @@ export default function SignUp() {
             className="desktop:top-45 laptop:top-45 tablet:top-37 desktop:left-[34px] laptop:left-[34px] tablet:left-[34px] desktop:w-[906px] laptop:w-[calc(100%-68px)] tablet:w-[calc(100%-68px)] fixed top-27 left-0 w-full">
             <div
               className="tablet:h-[6px] absolute z-30 h-[2px] bg-purple-500 transition-all duration-300 ease-out"
-              style={{ width: `${progress}%` }}
+              style={{ width: editMyInfoData ? `${progressEditMyInfoData}%` : `${progressSignUpData}%` }}
             />
             <div className="tablet:h-[6px] absolute z-20 h-[2px] w-full bg-neutral-100" />
           </div>

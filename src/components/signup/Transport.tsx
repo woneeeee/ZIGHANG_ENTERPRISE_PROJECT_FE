@@ -26,7 +26,7 @@ export default function Transport() {
         ...editMyInfoData,
         editMyInfoData: {
           ...editMyInfoData,
-          transport: editMyInfoData.transport === commute ? null : commute,
+          transport: editMyInfoData.transport === commute ? undefined : commute,
         },
       })
     } else {
@@ -34,7 +34,7 @@ export default function Transport() {
         ...signUpData,
         signUpData: {
           ...signUpData,
-          transport: signUpData?.transport === commute ? null : commute,
+          transport: signUpData?.transport === commute ? undefined : commute,
         },
       })
     }

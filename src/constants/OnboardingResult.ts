@@ -101,7 +101,7 @@ export type CharacterKey =
   | '세미나 전사'
   | '메뉴 모험가'
   | '출근 겜블러'
-  | '도전 광인러'
+  | '도전광인러'
   | '워케이션 마스터'
   | '커리어 카멜레온'
   | '밥심 혁신러'
@@ -541,10 +541,10 @@ export const ONBOARDINGRESULT: Record<CharacterKey, CharacterCopy> = {
       ],
     },
   },
-  '도전 광인러': {
-    key: '도전 광인러',
+  도전광인러: {
+    key: '도전광인러',
     iconKey: 'ResultChallengeFanaticIcon',
-    title: '도전 광인러',
+    title: '도전광인러',
     hashtag: '#도전정신 #열정폭발',
     bullets: [
       '매일이 새로운 도전이라 여기는 [[광인 같은 열정러]]입니다.',

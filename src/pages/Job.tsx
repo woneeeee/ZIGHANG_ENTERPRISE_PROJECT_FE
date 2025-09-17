@@ -2,7 +2,7 @@ import Banner from '@/components/job/Banner.tsx'
 import Header from '@/components/common/Header.tsx'
 import JobCard from '@/components/job/JobCard.tsx'
 import { useIntersectionObserver } from '@/hooks/useIntersectionObserver.tsx'
-import { useCallback } from 'react'
+import { useCallback, useEffect } from 'react'
 import { useInfiniteJobPostings } from '@/apis/job/useInfiniteJobPostings.tsx'
 import { ShiningStarIcon } from '@/assets/svgComponents'
 import { useOnboardingTestStore } from '@/stores/onboardingTestStore.ts'
@@ -27,6 +27,10 @@ export default function Job () {
       fetchNextPage().then(r => console.log('r', r))
     }
   }, [hasNextPage, isFetchingNextPage, fetchNextPage])
+
+  useEffect(() => {
+    console.log('jobs', jobs)
+  }, [jobs])
 
   // Intersection Observer로 무한스크롤 트리거
   const loadMoreRef = useIntersectionObserver(loadMore)

@@ -24,6 +24,7 @@ const Footer = () => {
       }
     } else {
       localStorage.clear()
+      useOnboardingTestStore.getState().reset()
       nav('/onboarding/start')
     }
   }

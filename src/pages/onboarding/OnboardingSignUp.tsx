@@ -19,8 +19,8 @@ export default function OnboardingSignUp() {
 
     // 각 필드가 완료되었는지 확인
     if (signUpData?.education) completedSteps++
-    if (signUpData?.jobGroupEnum) completedSteps++
-    if (signUpData?.jobPositionEnum && signUpData.jobPositionEnum.length > 0) completedSteps++
+    if (signUpData?.jobGroups) completedSteps++
+    if (signUpData?.jobPositions && signUpData.jobPositions.length > 0) completedSteps++
     if (signUpData?.workExperience !== undefined) completedSteps++
     if (signUpData?.transport) completedSteps++
     if (signUpData?.maxCommuteMinutes !== undefined) completedSteps++

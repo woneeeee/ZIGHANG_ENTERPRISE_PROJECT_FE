@@ -9,10 +9,14 @@ type UserProps = { profile: Profile }
 const UserInfo = ({ profile }: UserProps) => {
   const nav = useNavigate()
 
-  const handleClick = () => {
-    const check = void logout
-    if (check) {
-      nav('/', { replace: true })
+  const handleClick = async () => {
+    try {
+      const isLoggedOut = await logout()
+      if (isLoggedOut) {
+        nav('/', { replace: true })
+      }
+    } catch (e) {
+      console.error(e)
     }
   }
 

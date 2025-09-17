@@ -10,7 +10,6 @@ import { useEffect, useMemo } from 'react'
 import { useSignUpStore } from '@/store/signupStore.ts'
 import { useEditMyInfoStore } from '@/stores/editMyInfoStore.ts'
 import { useProfileStore } from '@/stores/profileStore.ts'
-// import { getProfileInfo } from '@/apis/users/getProfileInfo.tsx'
 import { changeEducationKorToEnum, getDetailJobCategory, getJobCategory } from '@/utils/sign-up.ts'
 import type { JobPositionEnumType } from '@/types/signup.ts'
 
@@ -20,18 +19,6 @@ export default function SignUp() {
   const setState = useEditMyInfoStore((state) => state.setState)
 
   const { profile } = useProfileStore()
-
-  // useEffect(() => {
-  //   ;(async () => {
-  //     try {
-  //       const me = await getProfileInfo()
-  //       console.log('me', me)
-  //       setProfile(me)
-  //     } catch (error) {
-  //       console.error('프로필 정보를 불러오지 못했어요.', error)
-  //     }
-  //   })()
-  // }, [setProfile])
 
   useEffect(() => {
     if (profile && !editMyInfoData) {
@@ -87,34 +74,38 @@ export default function SignUp() {
   }, [])
 
   return (
-    <main className="relative">
+    <main className="flex flex-col items-center justify-center">
       <Header variant={'white'}></Header>
       {/* 안내 문구 */}
-      <div className="desktop:flex laptop:flex tablet:flex desktop:pt-[40px] desktop:pb-[30px] desktop:px-[30px] laptop:pt-[40px] laptop:pb-[30px] laptop:px-[30px] tablet:py-[20px] tablet:px-[30px] tablet:heading-lg-semibold laptop:heading-lg-semibold desktop:heading-lg-semibold caption-md-semibold fixed z-40 w-full bg-white px-4 pt-[18px] pb-[10px]">
-        <p>몇 가지 정보만 알려주시면, </p>
-        <p>
-          <span className="text-purple-500">딱 맞는 공고</span>를 추천 받을 수 있어요!
-        </p>
-      </div>
-
-      {/* 진행바 */}
-      <div className="tablet:px-[34px] laptop:px-[34px] desktop:px-[34px] px-0">
-        <div className="desktop:top-45 laptop:top-45 tablet:top-37 desktop:left-[34px] laptop:left-[34px] tablet:left-[34px] desktop:w-[calc(100%-68px)] laptop:w-[calc(100%-68px)] tablet:w-[calc(100%-68px)] fixed top-27 left-0 w-full">
-          <div
-            className="tablet:h-[6px] absolute z-30 h-[2px] bg-purple-500 transition-all duration-300 ease-out"
-            style={{ width: `${progress}%` }}
-          />
-          <div className="tablet:h-[6px] absolute z-20 h-[2px] w-full bg-neutral-100" />
+      <div className="relative desktop:w-[906px] laptop:w-full tablet:w-full w-full">
+        <div
+          className="desktop:flex laptop:flex tablet:flex tablet:heading-lg-semibold laptop:heading-lg-semibold desktop:heading-lg-semibold caption-md-semibold fixed z-40 w-full bg-white px-4 pt-[18px] pb-[10px]">
+          <p>몇 가지 정보만 알려주시면, </p>
+          <p>
+            <span className="text-purple-500">딱 맞는 공고</span>를 추천 받을 수 있어요!
+          </p>
         </div>
 
-        {/* 회원가입 정보 입력 */}
-        <Education />
-        <JobGroup />
-        <JobPosition />
-        <Experience />
-        <Transport />
-        <MaxCommuteMinutes />
-        <Address />
+        {/* 진행바 */}
+        <div className="tablet:px-[34px] laptop:px-[34px] desktop:px-[34px] px-0">
+          <div
+            className="desktop:top-45 laptop:top-45 tablet:top-37 desktop:left-[34px] laptop:left-[34px] tablet:left-[34px] desktop:w-[906px] laptop:w-[calc(100%-68px)] tablet:w-[calc(100%-68px)] fixed top-27 left-0 w-full">
+            <div
+              className="tablet:h-[6px] absolute z-30 h-[2px] bg-purple-500 transition-all duration-300 ease-out"
+              style={{ width: `${progress}%` }}
+            />
+            <div className="tablet:h-[6px] absolute z-20 h-[2px] w-full bg-neutral-100" />
+          </div>
+
+          {/* 회원가입 정보 입력 */}
+          <Education />
+          <JobGroup />
+          <JobPosition />
+          <Experience />
+          <Transport />
+          <MaxCommuteMinutes />
+          <Address />
+        </div>
       </div>
     </main>
   )

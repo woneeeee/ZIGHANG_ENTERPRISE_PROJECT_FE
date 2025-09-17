@@ -1,21 +1,29 @@
 import {
   accountingConstants,
   AIConstants,
-  architectureConstants, customerServiceConstants,
+  architectureConstants,
+  customerServiceConstants,
   designConstants,
   educationConstants,
   engineeringConstants,
   financeConstants,
   foodAndBeverageConstants,
-  gameConstants, hrConstants,
+  gameConstants,
+  hrConstants,
   ITConstants,
   legalConstants,
   manufacturingConstants,
   marketingConstants,
   mediaAndEntertainmentConstants,
-  medicalConstants, planningAndStrategyConstants, productPlanningAndMDConstants,
-  publicServiceConstants, salesConstants,
-  securitiesConstants, serviceConstants, tradeAndLogisticsConstants, transportationConstants,
+  medicalConstants,
+  planningAndStrategyConstants,
+  productPlanningAndMDConstants,
+  publicServiceConstants,
+  salesConstants,
+  securitiesConstants,
+  serviceConstants,
+  tradeAndLogisticsConstants,
+  transportationConstants,
 } from '@/constants/SignUp.ts'
 import { useSignUpStore } from '@/store/signupStore.ts'
 import type { JobGroupEnumType, JobPositionEnumType } from '@/types/signup.ts'
@@ -25,7 +33,7 @@ export default function JobCategory() {
   const setState = useSignUpStore((state) => state.setState)
   const signUpData = useSignUpStore((state) => state.signUpData)
 
-  const changeCategoryToJobCategory = (selectedCategory: JobGroupEnumType | undefined) => {
+  const changeCategoryToJobCategory = (selectedCategory: JobGroupEnumType | undefined | null) => {
     switch (selectedCategory) {
       case 'IT_개발':
         return ITConstants
@@ -80,7 +88,7 @@ export default function JobCategory() {
     }
   }
 
-  const changeCategoryEnumToKor = (selectedCategory: JobGroupEnumType | undefined) => {
+  const changeCategoryEnumToKor = (selectedCategory: JobGroupEnumType | undefined | null) => {
     switch (selectedCategory) {
       case 'IT_개발':
         return 'IT 개발'
@@ -149,7 +157,7 @@ export default function JobCategory() {
         toast.error('최소 1개의 직무는 선택해야 합니다.')
         return
       }
-      updatedJobPositions = currentJobPositions.filter(item => item !== jobCategory)
+      updatedJobPositions = currentJobPositions.filter((item) => item !== jobCategory)
     } else {
       // 새로 선택 - 최대 2개까지만
       if (currentJobPositions.length >= 4) {
@@ -163,8 +171,8 @@ export default function JobCategory() {
     setState({
       signUpData: {
         ...signUpData,
-        jobPositions: updatedJobPositions
-      }
+        jobPositions: updatedJobPositions,
+      },
     })
 
     // 2개가 모두 선택되었을 때만 스크롤
@@ -175,7 +183,7 @@ export default function JobCategory() {
         if (categorySection) {
           categorySection.scrollIntoView({
             behavior: 'smooth',
-            block: 'start'
+            block: 'start',
           })
         }
       }, 100)
@@ -186,15 +194,17 @@ export default function JobCategory() {
     return signUpData?.jobPositions?.includes(jobCategory) || false
   }
 
-
   return (
     <main
       id="job-category-section"
-      className="flex flex-col desktop:pt-[220px] laptop:pt-[220px] tablet:pt-[180px] pt-[150px] px-4 gap-y-4 min-h-screen">
-      <h1
-        className="body-md-semibold tablet:heading-md-semibold desktop:heading-md-semibold laptop:heading-md-semibold text-white"><span className="text-purple-400">{changeCategoryEnumToKor(signUpData?.jobGroups)}</span> 분야의 희망하는 직무를 선택해주세요</h1>
+      className="desktop:pt-[220px] laptop:pt-[220px] tablet:pt-[180px] flex min-h-screen flex-col gap-y-4 px-4 pt-[150px]"
+    >
+      <h1 className="body-md-semibold tablet:heading-md-semibold desktop:heading-md-semibold laptop:heading-md-semibold text-white">
+        <span className="text-purple-400">{changeCategoryEnumToKor(signUpData?.jobGroups)}</span>{' '}
+        분야의 희망하는 직무를 선택해주세요
+      </h1>
 
-      <section className="gap-[6px] flex flex-wrap">
+      <section className="flex flex-wrap gap-[6px]">
         {(changeCategoryToJobCategory(signUpData?.jobGroups) || []).map((jobCategory) => {
           const selected = isSelected(jobCategory.enum)
 
@@ -202,11 +212,12 @@ export default function JobCategory() {
             <button
               onClick={() => handleJobCategoryClick(jobCategory.enum)}
               key={jobCategory.kor}
-              className={`text-white flex items-center justify-center h-[36px] py-[10px] px-[12px] desktop:body-md-medium laptop:body-md-medium tablet:body-md-medium caption-sm-medium rounded-[6px] border cursor-pointer transition-colors
-                ${selected
-                ? 'bg-purple-400 text-white border-0'
-                : 'border-neutral-400 hover:border-purple-300 hover:bg-ui-transparent-light'
-              }`}>
+              className={`desktop:body-md-medium laptop:body-md-medium tablet:body-md-medium caption-sm-medium flex h-[36px] cursor-pointer items-center justify-center rounded-[6px] border px-[12px] py-[10px] text-white transition-colors ${
+                selected
+                  ? 'border-0 bg-purple-400 text-white'
+                  : 'hover:bg-ui-transparent-light border-neutral-400 hover:border-purple-300'
+              }`}
+            >
               {jobCategory.kor}
             </button>
           )

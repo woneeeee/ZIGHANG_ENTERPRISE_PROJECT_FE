@@ -1,14 +1,14 @@
 export interface SignUpDataType {
-  workExperience?: number
-  education?: EducationEnumType
-  jobGroups?: JobGroupEnumType
-  jobPositions?: JobPositionEnumType[]
-  maxCommuteMinutes?: number
-  transport?: TransportEnumType
-  address?: string
-  characterId?: number
-  companyList?: CompanyEnumType[]
-  welfareList?: string[]
+  workExperience?: number | null | undefined
+  education?: EducationEnumType | null | undefined
+  jobGroups?: JobGroupEnumType | null | undefined
+  jobPositions?: JobPositionEnumType[] | null | undefined
+  maxCommuteMinutes?: number | null | undefined
+  transport?: TransportEnumType | null | undefined
+  address?: string | null | undefined
+  characterId?: number | null | undefined
+  companyList?: CompanyEnumType[] | null | undefined
+  welfareList?: string[] | null | undefined
   companyRatio?: { additionalProp1?: 0; additionalProp2?: 0; additionalProp3?: 0 } | undefined
 }
 
@@ -66,7 +66,6 @@ export type JobGroupEnumType =
   | '인사_노무_HRD_총무'
 
 export type JobPositionEnumType =
-  | '전체'
   | '서버_백엔드'
   | '프론트엔드'
   | '웹풀스택'

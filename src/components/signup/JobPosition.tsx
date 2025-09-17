@@ -20,12 +20,11 @@ import {
 import { useSignUpStore } from '@/store/signupStore.ts'
 import type { JobGroupEnumType, JobPositionEnumType } from '@/types/signup.ts'
 import { toast } from 'react-toastify'
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { useEditMyInfoStore } from '@/stores/editMyInfoStore.ts'
 import {
   changeCategoryEnumToKor,
-  getDetailJobCategoryDisplay,
-} from '@/utils/sign-up.ts' // 또는 사용하는 토스트 라이브러리
+} from '@/utils/sign-up.ts'
 
 export default function JobPosition() {
   const setJobPositionState = useSignUpStore((state) => state.setState)
@@ -33,13 +32,25 @@ export default function JobPosition() {
   const editMyInfoData = useEditMyInfoStore((state) => state.editMyInfoData)
   const setEditMyInfoDataState = useEditMyInfoStore((state) => state.setState)
 
+  // 자동 스크롤을 위한 타이머 ref
+  const autoScrollTimeoutRef = useRef<number | null>(null)
+
   useEffect(() => {
     if (editMyInfoData) {
       setJobPositionState({...signUpData, signUpData: {...signUpData, jobPositions: editMyInfoData?.jobPositions}})
     }
   }, [editMyInfoData])
 
-  const changeCategoryToJobCategory = (selectedCategory: JobGroupEnumType | undefined) => {
+  // 컴포넌트 언마운트 시 타이머 정리
+  useEffect(() => {
+    return () => {
+      if (autoScrollTimeoutRef.current) {
+        clearTimeout(autoScrollTimeoutRef.current)
+      }
+    }
+  }, [])
+
+  const changeCategoryToJobCategory = (selectedCategory: JobGroupEnumType | undefined | null) => {
     switch (selectedCategory) {
       case 'IT_개발':
         return ITConstants
@@ -91,11 +102,46 @@ export default function JobPosition() {
         return accountingConstants
       case '인사_노무_HRD_총무':
         return hrConstants
+      default:
+        return []
     }
   }
 
+  // 현재 선택된 직무 목록을 가져오는 함수
+  const getCurrentJobPositions = (): JobPositionEnumType[] => {
+    if (editMyInfoData) {
+      return editMyInfoData.jobPositions || []
+    } else {
+      return signUpData?.jobPositions || []
+    }
+  }
+
+  // // 자동 스크롤 함수
+  // const scheduleAutoScroll = () => {
+  //   // 기존 타이머가 있으면 취소
+  //   if (autoScrollTimeoutRef.current) {
+  //     clearTimeout(autoScrollTimeoutRef.current)
+  //   }
+  //
+  //   // 직무가 1개 이상 선택되었을 때만 자동 스크롤 예약
+  //   const currentPositions = getCurrentJobPositions()
+  //   if (currentPositions.length > 0) {
+  //     const delay = currentPositions.length === 4 ? 500 : 2000 // 4개면 0.5초, 나머지는 2초
+  //
+  //     autoScrollTimeoutRef.current = setTimeout(() => {
+  //       const categorySection = document.getElementById('experience-section')
+  //       if (categorySection) {
+  //         categorySection.scrollIntoView({
+  //           behavior: 'smooth',
+  //           block: 'start'
+  //         })
+  //       }
+  //     }, delay)
+  //   }
+  // }
+
   const handleJobCategoryClick = (jobCategory: JobPositionEnumType) => {
-    const currentJobPositions = signUpData?.jobPositions || []
+    const currentJobPositions = getCurrentJobPositions()
 
     // 이미 선택된 항목인지 확인 (토글 기능)
     const isAlreadySelected = currentJobPositions.includes(jobCategory)
@@ -103,14 +149,10 @@ export default function JobPosition() {
     let updatedJobPositions: JobPositionEnumType[]
 
     if (isAlreadySelected) {
-      // 선택 해제 - 최소 1개는 유지해야 함
-      if (currentJobPositions.length <= 1) {
-        toast.error('최소 1개의 직무는 선택해야 합니다.')
-        return
-      }
+      // 선택 해제 - 0개까지 허용 (최소 제한 제거)
       updatedJobPositions = currentJobPositions.filter(item => item !== jobCategory)
     } else {
-      // 새로 선택 - 최대 2개까지만
+      // 새로 선택 - 최대 4개까지만
       if (currentJobPositions.length >= 4) {
         toast.error('최대 4개의 직무만 선택할 수 있습니다.')
         return
@@ -121,9 +163,15 @@ export default function JobPosition() {
     // 상태 업데이트
     if (editMyInfoData) {
       setEditMyInfoDataState({
-        ...editMyInfoData,
         editMyInfoData: {
           ...editMyInfoData,
+          jobPositions: updatedJobPositions
+        }
+      })
+      // signUpData도 동기화
+      setJobPositionState({
+        signUpData: {
+          ...signUpData,
           jobPositions: updatedJobPositions
         }
       })
@@ -136,49 +184,77 @@ export default function JobPosition() {
       })
     }
 
-    // 2개가 모두 선택되었을 때만 스크롤
-    if (updatedJobPositions.length === 4) {
-      // 약간의 지연을 주어 상태 업데이트 후 스크롤
-      setTimeout(() => {
-        const categorySection = document.getElementById('experience-section')
-        if (categorySection) {
-          categorySection.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          })
+    // 상태 업데이트 후 자동 스크롤 예약 (현재 업데이트된 길이로 판단)
+    setTimeout(() => {
+      // 현재 업데이트된 선택 개수에 따라 스크롤 스케줄링
+      if (updatedJobPositions.length > 0) {
+        // 기존 타이머가 있으면 취소
+        if (autoScrollTimeoutRef.current) {
+          clearTimeout(autoScrollTimeoutRef.current)
         }
-      }, 100)
-    }
+
+        const delay = updatedJobPositions.length === 4 ? 500 : 2000 // 4개면 0.5초, 나머지는 2초
+
+        autoScrollTimeoutRef.current = setTimeout(() => {
+          const categorySection = document.getElementById('experience-section')
+          if (categorySection) {
+            categorySection.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            })
+          }
+        }, delay)
+      }
+    }, 100) // 상태 업데이트가 완료된 후 스케줄링
   }
 
   const isSelected = (jobCategory: JobPositionEnumType) => {
-    if (editMyInfoData) {
-      return editMyInfoData.jobPositions?.includes(getDetailJobCategoryDisplay(jobCategory) as JobPositionEnumType) || false;
-    } else {
-      return signUpData?.jobPositions?.includes(jobCategory) || false;
-    }
+    const currentJobPositions = getCurrentJobPositions()
+    return currentJobPositions.includes(jobCategory)
   }
 
   return (
     <main
       id="job-category-section"
-      className="flex flex-col desktop:pt-[220px] laptop:pt-[220px] tablet:pt-[180px] pt-[150px] px-4 gap-y-4 tablet:bg-[#FAFBFE] laptop:bg-[#FAFBFE] desktop:bg-[#FAFBFE] min-h-screen">
-      <h1
-        className="body-md-semibold tablet:heading-md-semibold desktop:heading-md-semibold laptop:heading-md-semibold"><span className="text-purple-500">{changeCategoryEnumToKor(signUpData?.jobGroups)}</span> 분야의 희망하는 직무를 선택해주세요</h1>
+      className="desktop:pt-[220px] laptop:pt-[220px] tablet:pt-[180px] tablet:bg-[#FAFBFE] laptop:bg-[#FAFBFE] desktop:bg-[#FAFBFE] flex min-h-screen flex-col gap-y-4 px-4 pt-[150px]"
+    >
+      <div className="flex flex-col gap-y-[2px]">
+        <h1 className="body-md-semibold tablet:heading-md-semibold desktop:heading-md-semibold laptop:heading-md-semibold">
+          <span className="text-purple-500">
+            {changeCategoryEnumToKor(
+              editMyInfoData ? editMyInfoData.jobGroups : signUpData?.jobGroups,
+            )}
+          </span>{' '}
+          분야의 희망하는 직무를 선택해주세요
+        </h1>
 
-      <section className="gap-[6px] flex flex-wrap">
-        {(changeCategoryToJobCategory(editMyInfoData ? editMyInfoData.jobGroups : signUpData?.jobGroups) || []).map((jobCategory) => {
+        {/* 선택된 개수 표시 */}
+        <div className="flex gap-x-2 desktop:body-lg-medium laptop:body-lg-medium tablet:body-lg-medium caption-sm-medium text-neutral-700">
+          <div>
+            최대 4개 선택 가능
+          </div>
+          <p>({getCurrentJobPositions().length}/4)</p>
+        </div>
+      </div>
+
+      <section className="flex flex-wrap gap-[6px]">
+        {(
+          changeCategoryToJobCategory(
+            editMyInfoData ? editMyInfoData.jobGroups : signUpData?.jobGroups,
+          ) || []
+        ).map((jobCategory) => {
           const selected = isSelected(jobCategory.enum)
 
           return (
             <button
               onClick={() => handleJobCategoryClick(jobCategory.enum)}
               key={jobCategory.kor}
-              className={`flex items-center justify-center h-[36px] py-[10px] px-[12px] desktop:body-md-medium laptop:body-md-medium tablet:body-md-medium caption-sm-medium rounded-[6px] border cursor-pointer transition-colors
-                ${selected
-                ? 'bg-purple-500 text-white'
-                : 'border-neutral-400 hover:border-purple-300 hover:bg-purple-50'
-              }`}>
+              className={`desktop:body-md-medium laptop:body-md-medium tablet:body-md-medium caption-sm-medium flex h-[36px] cursor-pointer items-center justify-center rounded-[6px] border px-[12px] py-[10px] transition-colors ${
+                selected
+                  ? 'border-purple-500 bg-purple-500 text-white'
+                  : 'border-neutral-400 hover:border-purple-300 hover:bg-purple-50'
+              }`}
+            >
               {jobCategory.kor}
             </button>
           )

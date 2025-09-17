@@ -129,7 +129,7 @@ export function getITJobCategory(category: string) {
   }
 }
 
-export const changeCategoryEnumToKor = (selectedCategory: JobGroupEnumType | undefined) => {
+export const changeCategoryEnumToKor = (selectedCategory: JobGroupEnumType | undefined | null) => {
   switch (selectedCategory) {
     case 'IT_개발':
       return 'IT 개발'

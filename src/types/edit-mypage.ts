@@ -7,12 +7,12 @@ import type {
 } from '@/types/signup.ts'
 
 export interface EditMyInfoType {
-  jobGroups: JobGroupEnumType | undefined
-  jobPositions: JobPositionEnumType[] | undefined
-  companyTypes: CompanyEnumType[]
-  education: EducationEnumType | undefined
-  workExperience: number | undefined
-  address: string | undefined
-  transport: TransportEnumType
-  maxCommuteMinutes: number
+  jobGroups: JobGroupEnumType | undefined | null
+  jobPositions: JobPositionEnumType[] | undefined | null
+  companyTypes: CompanyEnumType[] | null
+  education: EducationEnumType | undefined | null
+  workExperience: number | undefined | null
+  address: string | undefined | null
+  transport: TransportEnumType | null
+  maxCommuteMinutes: number | null
 }

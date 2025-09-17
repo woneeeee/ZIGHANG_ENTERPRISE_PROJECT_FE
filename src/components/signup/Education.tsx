@@ -24,11 +24,11 @@ export default function Education() {
       //마이페이지 정보가 있으면
       setEditMyInfoDataState({
         ...editMyInfoData,
-        editMyInfoData: { ...editMyInfoData, education: education },
+        editMyInfoData: { ...editMyInfoData, education: editMyInfoData.education === education ? null : education },
       })
     } else {
       //마이페이지 정보가 없어 새로 회원가입 하는 경우
-      setSignUpState({ ...signUpData, signUpData: { ...signUpData, education: education } })
+      setSignUpState({ ...signUpData, signUpData: { ...signUpData, education: signUpData?.education === education ? null : education } })
     }
 
     // 2. JobGroup 섹션으로 부드러운 스크롤
@@ -55,7 +55,7 @@ export default function Education() {
             <button
               onClick={() => handleEducationClick(education.enum)}
               key={education.kor}
-              className={`${editMyInfoData ? (editMyInfoData.education === education.enum ? 'bg-purple-500 text-white' : 'border border-neutral-400') : signUpData?.education === education.enum ? 'bg-purple-500 text-white' : 'border border-neutral-400'} desktop:body-md-medium laptop:body-md-medium tablet:body-md-medium caption-sm-medium desktop:px-[24px] desktop:py-[12px] laptop:px-[24px] laptop:py-[12px] tablet:px-[24px] tablet:py-[12px] flex h-[36px] cursor-pointer items-center justify-center rounded-[6px] px-[12px] py-[10px] hover:border-purple-300 hover:bg-purple-50`}
+              className={`${editMyInfoData ? (editMyInfoData.education === education.enum ? 'bg-purple-500 text-white' : 'border border-neutral-400') : signUpData?.education === education.enum ? 'bg-purple-500 text-white' : 'border border-neutral-400 hover:border-purple-300 hover:bg-purple-50'} desktop:body-md-medium laptop:body-md-medium tablet:body-md-medium caption-sm-medium desktop:px-[24px] desktop:py-[12px] laptop:px-[24px] laptop:py-[12px] tablet:px-[24px] tablet:py-[12px] flex h-[36px] cursor-pointer items-center justify-center rounded-[6px] px-[12px] py-[10px]`}
             >
               {education.kor}
             </button>

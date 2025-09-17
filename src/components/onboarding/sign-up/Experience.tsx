@@ -25,7 +25,7 @@ function CustomRangeSlider () {
   const [isDragging, setIsDragging] = useState(false);
 
   // 경력 값을 텍스트로 변환하는 함수
-  const getExperienceText = (value: number | undefined) => {
+  const getExperienceText = (value: number | undefined | null) => {
     const safeValue = value ?? 0;
 
     if (safeValue === 0) return "신입";
@@ -50,7 +50,7 @@ function CustomRangeSlider () {
   };
 
 
-  const handleExperienceClick = (workExperience: number | undefined) => {
+  const handleExperienceClick = (workExperience: number | undefined | null) => {
     // 1. 상태 저장 - setState 구조 수정
     setState({
       signUpData: {

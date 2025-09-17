@@ -45,7 +45,7 @@ api.interceptors.request.use(
       newHeaders.set('Authorization', `Bearer ${accessToken}`)
     }
     if (refreshToken) {
-      newHeaders.set('Authorization_refresh', `Bearer ${refreshToken}`)
+      newHeaders.set('Authorization', `Bearer ${refreshToken}`)
     }
 
     const modifiedConfig = { ...config, headers: newHeaders }
@@ -61,7 +61,8 @@ api.interceptors.response.use(
   async (error) => {
     const originalRequest = error.config
 
-    if (error.response?.status === '401' && !originalRequest._retry) {
+    console.log(originalRequest)
+    if (error.response?.code === '401' && !originalRequest._retry) {
       originalRequest._retry = true
 
       try {

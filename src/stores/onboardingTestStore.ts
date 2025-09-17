@@ -4,6 +4,7 @@ import type {
   OnboardingTestType,
   ReOnboardingCharacterType,
 } from '@/types/onboarding-test.ts'
+import { persist } from 'zustand/middleware'
 
 interface SetOnboardingTestStoreType {
   onboardingTestData?: OnboardingTestType
@@ -29,22 +30,32 @@ interface ReOnboardingTestStoreType {
   reset: () => void
 }
 
-export const useOnboardingTestStore = create<OnboardingTestStoreType>((set) => ({
-  onboardingTestData: undefined,
-  onboardingCharacterData: undefined,
-  setState: (params: SetOnboardingTestStoreType) => {
-    set((state) => ({
-      ...state,
-      ...params,
-    }))
-  },
-  reset: () => {
-    set({
+export const useOnboardingTestStore = create<OnboardingTestStoreType>()(
+  persist(
+    (set) => ({
       onboardingTestData: undefined,
       onboardingCharacterData: undefined,
-    })
-  },
-}))
+      setState: (params: SetOnboardingTestStoreType) => {
+        set((state) => ({
+          ...state,
+          ...params,
+        }))
+      },
+      reset: () => {
+        set({
+          onboardingTestData: undefined,
+          onboardingCharacterData: undefined,
+        })
+      },
+    }),
+    {
+      name: 'onboarding-test-storage', // localStorage 키 이름
+      partialize: (state) => ({
+        onboardingCharacterData: state.onboardingCharacterData
+      }), // onboardingCharacterData만 저장
+    }
+  )
+)
 
 export const useReOnboardingTestStore = create<ReOnboardingTestStoreType>((set) => ({
   reonboardingTestData: undefined,

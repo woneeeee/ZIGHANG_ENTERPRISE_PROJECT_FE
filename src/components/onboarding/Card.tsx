@@ -83,7 +83,6 @@ const Card = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      // Scenario 1: Navigated from My Page
       if (State?.from === 'mypage' && isLoggedIn) {
         try {
           const data = await getMyPageAll()
@@ -97,23 +96,17 @@ const Card = () => {
           setProfileName('워라밸 신봉자')
           setItems(RECOMMENDJOBLIST)
         }
-      }
-      // Scenario 2: Just completed a re-test
-      else if (State?.from === 'retest' && isLoggedIn && reonboardingCharacterData) {
+      } else if (State?.from === 'retest' && isLoggedIn && reonboardingCharacterData) {
         setCkey(toCharacterKey(reonboardingCharacterData.characterName))
         console.log(reonboardingCharacterData.characterName)
         setProfileName(reonboardingCharacterData.characterName)
         const mapped = adaptSearchToRecommend(reonboardingCharacterData.searchResponses ?? [])
         setItems(mapped.length ? mapped : RECOMMENDJOBLIST)
-      }
-      // Scenario 3: Just completed a new onboarding test
-      else if (onboardingCharacterData) {
+      } else if (onboardingCharacterData) {
         setCkey(toCharacterKey(onboardingCharacterData.characterName))
         setProfileName(onboardingCharacterData.characterName)
         setItems(RECOMMENDJOBLIST)
-      }
-      // Scenario 4: No data found (fallback)
-      else {
+      } else {
         setCkey('워라밸 신봉자')
         setProfileName('워라밸 신봉자')
         setItems(RECOMMENDJOBLIST)
@@ -160,10 +153,16 @@ const Card = () => {
         <section className="flex flex-col gap-[56px]">
           <div className="flex flex-col gap-[8px] text-center">
             <p className="flex flex-col">
-              <span className="heading-sm-medium text-purple-200">당신은</span>
-              <span className="title-sm-bold text-white">{description.title}</span>
+              <span className="caption-sm-medium tablet:heading-sm-medium text-purple-200">
+                당신은
+              </span>
+              <span className="heading-lg-bold tablet:title-sm-bold text-white">
+                {description.title}
+              </span>
             </p>
-            <span className="body-2xl-medium text-white">{description.hashtag}</span>
+            <span className="caption-sm-medium tablet:body-2xl-medium text-white">
+              {description.hashtag}
+            </span>
           </div>
           <div className="laptop:flex-row flex flex-col items-center justify-center gap-[37px]">
             <div className="flex flex-col items-center gap-[20px]">

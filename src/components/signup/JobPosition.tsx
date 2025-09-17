@@ -27,7 +27,7 @@ import {
   getDetailJobCategoryDisplay,
 } from '@/utils/sign-up.ts' // 또는 사용하는 토스트 라이브러리
 
-export default function JobCategory() {
+export default function JobPosition() {
   const setJobPositionState = useSignUpStore((state) => state.setState)
   const signUpData = useSignUpStore((state) => state.signUpData)
   const editMyInfoData = useEditMyInfoStore((state) => state.editMyInfoData)

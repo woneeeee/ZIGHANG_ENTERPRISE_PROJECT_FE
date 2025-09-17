@@ -9,7 +9,7 @@ import type { JobGroupEnumType } from '@/types/signup.ts'
 import { useEffect } from 'react'
 import { useEditMyInfoStore } from '@/stores/editMyInfoStore.ts'
 
-export default function Category () {
+export default function JobGroup () {
   const setJobGroupEumState = useSignUpStore((state) => state.setState)
   const signUpData = useSignUpStore((state) => state.signUpData)
   const setEditMyInfoDataState = useEditMyInfoStore((state) => state.setState)
@@ -29,7 +29,7 @@ export default function Category () {
       setJobGroupEumState({ ...signUpData, signUpData: { ...signUpData, jobGroupEnum: category, jobPositionEnum: undefined } })
     }
 
-    // 2. Category 섹션으로 부드러운 스크롤
+    // 2. JobGroup 섹션으로 부드러운 스크롤
     const categorySection = document.getElementById('job-category-section')
     if (categorySection) {
       categorySection.scrollIntoView({

@@ -4,7 +4,7 @@ import type { TransportEnumType } from '@/types/signup.ts'
 import { useEffect } from 'react'
 import { useEditMyInfoStore } from '@/stores/editMyInfoStore.ts'
 
-export default function Commute() {
+export default function Transport() {
   const setTransportState = useSignUpStore((state) => state.setState)
   const signUpData = useSignUpStore((state) => state.signUpData)
   const editMyInfoData = useEditMyInfoStore((state) => state.editMyInfoData)
@@ -38,7 +38,7 @@ export default function Commute() {
     }
 
 
-    // 2. Category 섹션으로 부드러운 스크롤
+    // 2. JobGroup 섹션으로 부드러운 스크롤
     const categorySection = document.getElementById('commuting-time-section')
     if (categorySection) {
       categorySection.scrollIntoView({

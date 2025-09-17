@@ -15,7 +15,7 @@ export default function Commute() {
       }
     })
 
-    // 2. Category 섹션으로 부드러운 스크롤
+    // 2. JobGroup 섹션으로 부드러운 스크롤
     const categorySection = document.getElementById('commuting-time-section')
     if (categorySection) {
       categorySection.scrollIntoView({

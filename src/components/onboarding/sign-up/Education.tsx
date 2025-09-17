@@ -8,7 +8,8 @@ export default function Education() {
 
   const handleEducationClick = (education: EducationEnumType) => {
     // 1. 상태 저장
-    setState({ ...signUpData, signUpData: { ...signUpData, education: education } })
+    setState({ ...signUpData, signUpData: { ...signUpData, education: signUpData?.education === education ? undefined : education } })
+
     // 2. JobGroup 섹션으로 부드러운 스크롤
     const categorySection = document.getElementById('category-section')
     if (categorySection) {
@@ -32,7 +33,7 @@ export default function Education() {
             <button
               onClick={() => handleEducationClick(education.enum)}
               key={education.kor}
-              className={`${signUpData?.education === education.enum ? 'bg-purple-400 text-white' : 'border border-neutral-400'} text-white desktop:body-md-medium laptop:body-md-medium tablet:body-md-medium caption-sm-medium flex h-[36px] cursor-pointer items-center justify-center rounded-[6px] desktop:px-[24px] desktop:py-[12px] laptop:px-[24px] laptop:py-[12px] tablet:px-[24px] tablet:py-[12px] px-[12px] py-[10px] hover:border-purple-300 hover:bg-ui-transparent-light`}
+              className={`${signUpData?.education === education.enum ? 'bg-purple-400 text-white' : 'border border-neutral-400 hover:border-purple-300 hover:bg-ui-transparent-light'} text-white desktop:body-md-medium laptop:body-md-medium tablet:body-md-medium caption-sm-medium flex h-[36px] cursor-pointer items-center justify-center rounded-[6px] desktop:px-[24px] desktop:py-[12px] laptop:px-[24px] laptop:py-[12px] tablet:px-[24px] tablet:py-[12px] px-[12px] py-[10px]`}
             >
               {education.kor}
             </button>

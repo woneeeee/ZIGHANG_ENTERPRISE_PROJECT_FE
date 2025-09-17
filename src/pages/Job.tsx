@@ -24,7 +24,7 @@ export default function Job () {
   // 다음 페이지 로드 함수
   const loadMore = useCallback(() => {
     if (hasNextPage && !isFetchingNextPage) {
-      fetchNextPage().then(r => console.log('r', r))
+      fetchNextPage()
     }
   }, [hasNextPage, isFetchingNextPage, fetchNextPage])
 

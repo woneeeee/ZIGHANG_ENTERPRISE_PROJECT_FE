@@ -9,7 +9,7 @@ interface MotivationCardProps {
 export default function MotivationCard ({step, setStep}: MotivationCardProps) {
   const contentList: { kor: string; enum: string }[] = [
     { kor: '무한 리필 우주식 자동 배달', enum: '식대' },
-    { kor: '최신 우주 과학 강의 패스', enum: '커리어성장' },
+    { kor: '최신 우주 과학 강의 패스', enum: '커리어' },
     { kor: '초광속 지구 셔틀권', enum: '출퇴근' },
     { kor: '즉시 발동 휴식 모드', enum: '휴가' },
   ]

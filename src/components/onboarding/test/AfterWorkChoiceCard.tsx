@@ -8,7 +8,7 @@ interface AfterWorkChoiceCardProps {
 }
 export default function AfterWorkChoiceCard ({step, setStep}: AfterWorkChoiceCardProps) {
   const contentList: { kor: string; enum: string }[] = [
-    { kor: '우주 최고 전문가 컨퍼런스 초청권', enum: '커리어성장' },
+    { kor: '우주 최고 전문가 컨퍼런스 초청권', enum: '커리어' },
     { kor: '은하 리조트에서 즐기는 호화 휴가', enum: '휴가' },
     { kor: '매일 열리는 미식 뷔페', enum: '식대' },
     { kor: '순식간에 지구로 귀환하는 패스권', enum: '출퇴근' },

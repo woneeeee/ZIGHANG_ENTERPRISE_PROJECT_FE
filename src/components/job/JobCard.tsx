@@ -8,38 +8,62 @@ interface JobCardProps {
   job: JobPostingType
 }
 export default function JobCard({ hasTag = true, hasViewCount = false, job }: JobCardProps) {
+  /**
+   * 분(minute)을 "X시간 Y분" 형식으로 변환하는 함수
+   * @param minutes - 변환할 분 수
+   * @returns "X시간 Y분" 형식의 문자열
+   */
+  function convertMinutesToHoursAndMinutes(minutes: number): string {
+    if (minutes < 0) {
+      throw new Error('분은 음수일 수 없습니다.')
+    }
+
+    const hours = Math.floor(minutes / 60)
+    const remainingMinutes = minutes % 60
+
+    if (hours === 0) {
+      return `${remainingMinutes}분`
+    }
+
+    if (remainingMinutes === 0) {
+      return `${hours}시간`
+    }
+
+    return `${hours}시간 ${remainingMinutes}분`
+  }
+
   return (
     <div className="tablet:rounded-[26px] laptop:rounded-[26px] desktop:rounded-[26px] flex w-full rounded-[10px] shadow-[0_0_12.733px_0_rgba(0,0,0,0.08)]">
-      <section className="tablet:gap-x-[24px] desktop:gap-x-[24px] laptop:gap-x-[24px] desktop:py-[16px] desktop:px-6 laptop:py-[16px] laptop:px-6 tablet:py-[16px] tablet:px-6 tablet:rounded-l-[26px] laptop:rounded-l-[26px] desktop:rounded-l-[26px] flex w-full items-center gap-x-[10px] rounded-l-[10px] border-y border-l border-neutral-200 bg-white py-[14px] pl-[10px]">
-        <div className="tablet:h-[80px] tablet:w-[80px] caption-md-medium flex h-[40px] w-[40px] items-center justify-center truncate rounded-[12px] bg-purple-400 px-3 py-8 text-white">
-          <div className="truncate">
-            {job.companyName}
-          </div>
+      <section className="desktop:h-[160px] laptop:h-[160px] h-[104px] tablet:gap-x-[24px] desktop:gap-x-[24px] laptop:gap-x-[24px] desktop:py-[16px] desktop:px-6 laptop:py-[16px] laptop:px-6 tablet:py-[16px] tablet:px-6 tablet:rounded-l-[26px] laptop:rounded-l-[26px] desktop:rounded-l-[26px] flex w-full items-center gap-x-[10px] rounded-l-[10px] border-y border-l border-neutral-200 bg-white py-[14px] pl-[10px]">
+        <div className="tablet:h-[80px] tablet:w-[80px] laptop:w-[70px] laptop:h-[70px] caption-md-medium tablet:min-w-[80px] laptop:min-w-[70px] desktop:min-w-[80px] tablet:min-h-[80px] laptop:min-h-[70px] desktop:min-h-[80px] flex min-h-[55px] min-w-[55px] w-[55px] h-[55px] items-center justify-center truncate rounded-[12px] bg-purple-400 desktop:px-3 laptop:px-3 tablet:px-3 px-2  text-white">
+          <div className="truncate">{job.companyName}</div>
         </div>
-        <div className="tablet:gap-y-2 laptop:gap-y-2 desktop:gap-y-2 desktop:w-[60%] laptop:w-[50%] flex flex-col gap-y-[6px]">
+        <div className="tablet:gap-y-2 laptop:gap-y-2 desktop:gap-y-2 desktop:w-[60%] laptop:w-[80%] flex flex-col gap-y-[6px]">
           <section className="tablet:gap-x-2 laptop:gap-x-2 desktop:gap-x-2 flex gap-x-1">
-            <p className="tablet:body-lg-semibold laptop:body-lg-semibold desktop:body-lg-semibold caption-xs-medium text-neutral-500">
+            <div
+              className={`${job.companyName.length > 4 ? 'laptop:w-[70px] w-[40px]' : 'w-fit'} tablet:body-lg-semibold laptop:body-lg-semibold desktop:body-lg-semibold caption-xs-medium truncate text-neutral-500`}
+            >
               {job.companyName}
-            </p>
+            </div>
             {hasTag ? (
               <>
-                <div className="flex w-fit items-center gap-x-1 rounded-[2px] bg-[#F0F5FF] p-1 h-fit">
+                <div className="flex h-fit w-fit items-center gap-x-1 rounded-[2px] bg-[#F0F5FF] px-[2px] desktop:p-1 laptop:p-1 tablet:p-1">
                   <BusIcon width={14} height={14} />
                   <p className="caption-xs-semibold tablet:body-caption-sm-medium laptop:body-caption-sm-medium desktop:body-caption-sm-medium text-[#0057FF]">
-                    {job.commuteMinutes}
+                    {convertMinutesToHoursAndMinutes(job.commuteMinutes)}
                   </p>
                 </div>
-                <div className="caption-xs-semibold tablet:body-caption-sm-medium laptop:body-caption-sm-medium desktop:body-caption-sm-medium flex w-fit items-center justify-center desktop:rounded-1 laptop:rounded-1 tablet:rounded-1 rounded-[2px] bg-[#FFF2DA] px-[2px] text-[#D17700] h-fit desktop:p-1 laptop:p-1 tablet:p-1 px-[2px]">
+                <div className="caption-xs-semibold tablet:body-caption-sm-medium laptop:body-caption-sm-medium desktop:body-caption-sm-medium desktop:rounded-1 laptop:rounded-1 tablet:rounded-1 desktop:p-1 laptop:p-1 tablet:p-1 flex h-fit w-fit items-center justify-center rounded-[2px] bg-[#FFF2DA] px-[2px] text-[#D17700]">
                   {job.welfare}
                 </div>
               </>
             ) : null}
           </section>
-          <p className="caption-md-semibold tablet:heading-sm-bold laptop:heading-sm-bold desktop:heading-sm-bold line-clamp-2">
+          <div className="body-caption-md-semibold tablet:heading-sm-bold laptop:heading-sm-bold desktop:heading-sm-bold line-clamp-2">
             {job.jobPostingTitle}
-          </p>
+          </div>
           <div className="flex items-center">
-            <p className="caption-xs-medium tablet:body-lg-semibold laptop:body-lg-semibold desktop:body-lg-semibold truncate text-neutral-500">
+            <p className="body-caption-xs-medium tablet:body-lg-semibold laptop:body-lg-semibold desktop:body-lg-semibold truncate text-neutral-500">
               {job.workExperience} ·{' '}
               {job.recruitmentType.map((recruitment) =>
                 changeRecruitmentTypeEnumToKor(recruitment),
@@ -77,17 +101,20 @@ export default function JobCard({ hasTag = true, hasViewCount = false, job }: Jo
           </div>
         </div>
       </section>
-      <section className="tablet:rounded-r-[26px] laptop:rounded-r-[26px] desktop:rounded-r-[26px] desktop:px-[30px] flex items-center justify-center rounded-r-[10px] border border-neutral-200">
-        <BookmarkIcon
-          width={14}
-          height={14}
-          className="tablet:hidden laptop:hidden desktop:hidden block"
-        />
-        <BookmarkIcon
-          width={30}
-          height={30}
-          className="tablet:block laptop:block desktop:block hidden"
-        />
+
+      <section className="tablet:rounded-r-[26px] laptop:rounded-r-[26px] desktop:rounded-r-[26px] flex items-center justify-center rounded-r-[10px] border-y border-r border-neutral-200">
+        <div className="desktop:h-[134px] laptop:h-[134px] tablet:h-[134px] h-[88px] desktop:px-[30px] laptop:px-[30px] tablet:px-[30px] px-[15px] flex items-center justify-center border-l border-neutral-200">
+          <BookmarkIcon
+            width={20}
+            height={20}
+            className="tablet:hidden laptop:hidden desktop:hidden block"
+          />
+          <BookmarkIcon
+            width={30}
+            height={30}
+            className="tablet:block laptop:block desktop:block hidden"
+          />
+        </div>
       </section>
     </div>
   )

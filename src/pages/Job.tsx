@@ -58,7 +58,7 @@ export default function Job () {
   return (
     <main className="flex flex-col items-center justify-center" >
       <Header />
-      <div className="relative desktop:w-[1230px] laptop:w-[930px] tablet:w-[700px] flex w-[300px] flex-col items-start px-5 desktop:mt-[28px] laptop:mt-[28px] tablet:mt-[28px] mt-[16px]">
+      <div className="relative desktop:w-[1230px] laptop:w-[930px] tablet:w-[700px] flex w-[320px] flex-col items-start desktop:px-0 laptop:px-0 tablet:px-0 px-5 desktop:mt-[28px] laptop:mt-[28px] tablet:mt-[28px] mt-[16px]">
         <Banner />
         {/* 1순위: accessToken이 없으면 회원가입 유도 */}
         {!accessToken ? (
@@ -111,7 +111,7 @@ export default function Job () {
         {/* 더 이상 데이터가 없을 때 */}
         {!hasNextPage && jobs.length > 0 && (
           <div className="flex justify-center items-center py-8 w-full">
-            <div className="text-gray-500">모든 채용공고를 확인했습니다.</div>
+            <div className="body-md-medium text-neutral-500 desktop:body-2xl-medium laptop:body-2xl-medium tablet:body-2xl-medium">모든 채용공고를 확인했습니다.</div>
           </div>
         )}
       </div>

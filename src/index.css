@@ -555,6 +555,23 @@ body {
   line-height: var(--lh-caption-sm, 16px); /* 133.333% */
 }
 
+@utility body-caption-md-semibold {
+  /* Body/Caption/md/semibold */
+  font-family: var(--font-family, Pretendard);
+  font-size: var(--scale-caption-md, 13px);
+  font-style: normal;
+  font-weight: var(--weight-semibold, 700);
+  line-height: var(--lh-caption-md, 16px); /* 123.077% */
+}
+@utility body-caption-xs-medium {
+  /* Body/Caption/md/semibold */
+  font-family: var(--font-family, Pretendard);
+  font-size: 10px;
+  font-style: normal;
+  font-weight: var(--weight-medium, 500);
+  line-height: var(--lh-caption-sm, 16px); /* 160% */
+}
+
 {/* caption */}
 @utility caption-xs-semibold {
   /* Caption/2xs/semibold */

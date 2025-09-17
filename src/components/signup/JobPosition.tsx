@@ -111,8 +111,8 @@ export default function JobPosition() {
       updatedJobPositions = currentJobPositions.filter(item => item !== jobCategory)
     } else {
       // 새로 선택 - 최대 2개까지만
-      if (currentJobPositions.length >= 2) {
-        toast.error('최대 2개의 직무만 선택할 수 있습니다.')
+      if (currentJobPositions.length >= 4) {
+        toast.error('최대 4개의 직무만 선택할 수 있습니다.')
         return
       }
       updatedJobPositions = [...currentJobPositions, jobCategory]
@@ -137,7 +137,7 @@ export default function JobPosition() {
     }
 
     // 2개가 모두 선택되었을 때만 스크롤
-    if (updatedJobPositions.length === 2) {
+    if (updatedJobPositions.length === 4) {
       // 약간의 지연을 주어 상태 업데이트 후 스크롤
       setTimeout(() => {
         const categorySection = document.getElementById('experience-section')

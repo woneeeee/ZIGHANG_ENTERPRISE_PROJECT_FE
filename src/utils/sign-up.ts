@@ -18,6 +18,23 @@ export const changeEducationKorToEnum = (education: string) => {
   }
 }
 
+export const changeEducationEnumToKor = (education: string) => {
+  switch (education) {
+    case 'BACHELOR':
+      return '학사'
+    case 'MASTER':
+      return '석사'
+    case 'HIGH_SCHOOL':
+      return '고졸'
+    case 'JUNIOR_COLLEGE':
+      return '초대졸'
+    case 'DOCTOR':
+      return '박사'
+    case 'IRRELEVANT':
+      return '무관'
+  }
+}
+
 export function getJobCategory(category: string) {
   switch(category) {
     case "IT/개발":

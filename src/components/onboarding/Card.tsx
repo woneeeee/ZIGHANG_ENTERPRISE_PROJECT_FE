@@ -71,7 +71,6 @@ const Card = () => {
   const handleEntire = () => {
     nav('/custom')
   }
-
   const onboardingCharacterData = useOnboardingTestStore((state) => state.onboardingCharacterData)
   const reonboardingCharacterData = useReOnboardingTestStore(
     (state) => state.reonboardingCharacterData,

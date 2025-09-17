@@ -546,6 +546,15 @@ body {
   line-height: var(--lh-body-sm, 20px); /* 142.857% */
 }
 
+@utility body-caption-sm-medium {
+  /* Body/Caption/sm/medium */
+  font-family: var(--font-family, Pretendard);
+  font-size: var(--scale-caption-sm, 12px);
+  font-style: normal;
+  font-weight: var(--weight-medium, 500);
+  line-height: var(--lh-caption-sm, 16px); /* 133.333% */
+}
+
 {/* caption */}
 @utility caption-xs-semibold {
   /* Caption/2xs/semibold */

@@ -10,7 +10,7 @@ const api = axios.create({
 const getRefreshToken = async () => {
   try {
     const response = await api.post(`/auth/refresh-token`)
-    if (response.data.code === 200) {
+    if (response.data.code === '200') {
       const newAccessToken = response.data.result.accessToken
       const newRefreshToken = response.data.result.refreshToken
       localStorage.setItem('accessToken', newAccessToken)
@@ -51,7 +51,7 @@ api.interceptors.response.use(
   async (error) => {
     const originalRequest = error.config
 
-    if (error.response?.status === 401 && !originalRequest._retry) {
+    if (error.response?.status === '401' && !originalRequest._retry) {
       originalRequest._retry = true
 
       try {

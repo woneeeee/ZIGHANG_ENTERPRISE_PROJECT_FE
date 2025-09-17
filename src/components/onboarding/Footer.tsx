@@ -23,6 +23,7 @@ const Footer = () => {
         console.error(e)
       }
     } else {
+      localStorage.clear()
       nav('/onboarding/start')
     }
   }

@@ -3,7 +3,7 @@ import { useSignUpStore } from '@/store/signupStore.ts'
 import { useEffect } from 'react'
 import { useEditMyInfoStore } from '@/stores/editMyInfoStore.ts'
 
-export default function CommutingTime() {
+export default function MaxCommuteMinutes() {
   const setMaxCommuteMinutesState = useSignUpStore((state) => state.setState)
   const signUpData = useSignUpStore((state) => state.signUpData)
   const editMyInfoData = useEditMyInfoStore((state) => state.editMyInfoData)
@@ -35,7 +35,7 @@ export default function CommutingTime() {
     }
 
 
-    // 2. Category 섹션으로 부드러운 스크롤
+    // 2. JobGroup 섹션으로 부드러운 스크롤
     const categorySection = document.getElementById('address-section')
     if (categorySection) {
       categorySection.scrollIntoView({

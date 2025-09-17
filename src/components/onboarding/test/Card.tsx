@@ -50,11 +50,11 @@ function ProcessBar({ step }: { step: number }) {
     <div className="relative flex w-full flex-col gap-y-[10px]">
       <div className="h-[6px] rounded-full bg-purple-50"></div>
       <div
-        className="absolute top-0 z-10 h-[6px] rounded-full bg-purple-300"
+        className="absolute top-0 z-10 h-[6px] rounded-full bg-purple-400"
         style={{ width: `${(step / 6) * 100}%` }}
       />
       <div className="flex w-full justify-end">
-        <p className="caption-sm-medium text-white">{step}/6</p>
+        <p className="desktop:body-xl-medium laptop:body-xl-medium tablet:body-xl-medium caption-sm-medium text-white">{step}/6</p>
       </div>
     </div>
   )

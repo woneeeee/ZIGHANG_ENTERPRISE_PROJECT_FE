@@ -1,9 +1,9 @@
 import Education from '@/components/signup/Education.tsx'
-import Category from '@/components/signup/Category.tsx'
-import JobCategory from '@/components/signup/JobCategory.tsx'
+import JobGroup from '@/components/signup/JobGroup.tsx'
+import JobPosition from '@/components/signup/JobPosition.tsx'
 import Experience from '@/components/signup/Experience.tsx'
-import Commute from '@/components/signup/Commute.tsx'
-import CommutingTime from '@/components/signup/CommutingTime.tsx'
+import Transport from '@/components/signup/Transport.tsx'
+import MaxCommuteMinutes from '@/components/signup/MaxCommuteMinutes.tsx'
 import Address from '@/components/signup/Address.tsx'
 import Header from '@/components/common/Header.tsx'
 import { useEffect, useMemo } from 'react'
@@ -109,11 +109,11 @@ export default function SignUp() {
 
         {/* 회원가입 정보 입력 */}
         <Education />
-        <Category />
-        <JobCategory />
+        <JobGroup />
+        <JobPosition />
         <Experience />
-        <Commute />
-        <CommutingTime />
+        <Transport />
+        <MaxCommuteMinutes />
         <Address />
       </div>
     </main>

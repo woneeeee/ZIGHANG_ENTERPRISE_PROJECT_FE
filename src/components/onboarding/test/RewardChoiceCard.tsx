@@ -10,7 +10,7 @@ export default function RewardChoiceCard({ step, setStep }: RewardChoiceCardProp
   const contentList: { kor: string; enum: string }[] = [
     { kor: '광속 귀환권', enum: '출퇴근' },
     { kor: '지구 전통 요리 풀코스', enum: '식대' },
-    { kor: '우주 아카데미 명예 졸업장', enum: '커리어성장' },
+    { kor: '우주 아카데미 명예 졸업장', enum: '커리어' },
     { kor: '행성 간 크루즈 휴가권', enum: '휴가' },
   ]
 

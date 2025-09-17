@@ -9,7 +9,7 @@ export default function Education() {
   const handleEducationClick = (education: EducationEnumType) => {
     // 1. 상태 저장
     setState({ ...signUpData, signUpData: { ...signUpData, education: education } })
-    // 2. Category 섹션으로 부드러운 스크롤
+    // 2. JobGroup 섹션으로 부드러운 스크롤
     const categorySection = document.getElementById('category-section')
     if (categorySection) {
       categorySection.scrollIntoView({

@@ -7,13 +7,15 @@ export default function MaxCommuteMinutes() {
 
   const handleCommutingTimeClick = (commutingTime: number) => {
     // 1. 상태 저장
-    setState({
-      ...signUpData,
-      signUpData: {
+    if (signUpData) {
+      setState({
         ...signUpData,
-        maxCommuteMinutes: commutingTime, // 객체가 아닌 commute 값 직접 할당
-      },
-    })
+        signUpData: {
+          ...signUpData,
+          maxCommuteMinutes: signUpData?.maxCommuteMinutes === commutingTime ? undefined : commutingTime, // 객체가 아닌 commute 값 직접 할당
+        },
+      })
+    }
 
     // 2. JobGroup 섹션으로 부드러운 스크롤
     const categorySection = document.getElementById('address-section')
@@ -38,7 +40,7 @@ export default function MaxCommuteMinutes() {
             <button
               onClick={() => handleCommutingTimeClick(commutingTime.enum)}
               key={commutingTime.kor}
-              className={`${signUpData?.maxCommuteMinutes === commutingTime.enum ? 'bg-purple-400 text-white' : 'border border-neutral-400'} text-white desktop:body-md-medium laptop:body-md-medium tablet:body-md-medium caption-sm-medium flex h-[36px] cursor-pointer items-center justify-center rounded-[6px] px-[12px] py-[10px] hover:border-purple-300 hover:bg-ui-transparent-light`}
+              className={`${signUpData?.maxCommuteMinutes === commutingTime.enum ? 'bg-purple-400 text-white' : 'border border-neutral-400 hover:border-purple-300 hover:bg-ui-transparent-light'} text-white desktop:body-md-medium laptop:body-md-medium tablet:body-md-medium caption-sm-medium flex h-[36px] cursor-pointer items-center justify-center rounded-[6px] px-[12px] py-[10px]`}
             >
               {commutingTime.kor}
             </button>

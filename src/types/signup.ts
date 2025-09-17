@@ -9,7 +9,9 @@ export interface SignUpDataType {
   characterId?: number | null | undefined
   companyList?: CompanyEnumType[] | null | undefined
   welfareList?: string[] | null | undefined
-  companyRatio?: { additionalProp1?: 0; additionalProp2?: 0; additionalProp3?: 0 } | undefined
+  companyRatio?:
+    | { FOREIGN?: number; MAJOR?: number; MID_SIZE?: number; SMALL_MEDIUM?: number; STARTUP?: number; UNICORN?: number }
+    | undefined
 }
 
 export interface SignUpDataResponseType {

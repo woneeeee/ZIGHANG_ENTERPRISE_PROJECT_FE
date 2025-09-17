@@ -1,6 +1,7 @@
 // 1. 커스텀 훅: 무한스크롤 로직
 import { getRecommendJobPosting } from '@/apis/job/getRecommendJobPosting.tsx'
 import { type QueryFunctionContext, useInfiniteQuery } from '@tanstack/react-query'
+import type { RecruitmentTypeEnum } from '@/types/job.ts'
 
 // API 응답 타입 정의
 export interface ApiResponse<T> {
@@ -15,7 +16,7 @@ export interface JobPostingListType {
   companyName: string
   jobPostingTitle: string
   workExperience: string
-  recruitmentType: string[]
+  recruitmentType: RecruitmentTypeEnum[]
   education: string
   commuteMinutes: number
   welfare: string

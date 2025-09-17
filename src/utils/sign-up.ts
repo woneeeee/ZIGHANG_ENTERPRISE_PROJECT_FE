@@ -1,4 +1,5 @@
 import type { JobGroupEnumType } from '@/types/signup.ts'
+import type { RecruitmentTypeEnum, RecruitmentTypeKor } from '@/types/job.ts'
 
 export const changeEducationKorToEnum = (education: string) => {
   switch (education) {
@@ -1599,5 +1600,41 @@ export function getDetailJobCategoryDisplay(enumValue: string) {
       return "식음컨설팅·지원";
     case "기타식음료":
       return "기타식음료";
+  }
+}
+export function changeRecruitmentTypeKorToEnum (recruitmentType: RecruitmentTypeKor) {
+  switch (recruitmentType) {
+    case '정규직':
+      return 'FULL_TIME'
+    case '계약직':
+      return 'CONTRACT'
+    case '일용직':
+          return 'DAY_WORKER'
+    case '전환형 인턴':
+      return 'CONVERTIBLE_INTERN'
+    case '체험형 인턴':
+      return 'EXPERIENTIAL_INTERN'
+    case '프리랜서':
+      return 'FREELANCER'
+    case '산업기능요원':
+      return 'ALTERNATIVE_MILITARY_SERVICE'
+  }
+}
+export function changeRecruitmentTypeEnumToKor (recruitmentType: RecruitmentTypeEnum)  {
+  switch (recruitmentType) {
+    case 'FULL_TIME':
+      return '정규직'
+    case 'CONTRACT':
+      return '계약직'
+    case 'DAY_WORKER':
+      return '일용직'
+    case 'CONVERTIBLE_INTERN':
+      return '전환형 인턴'
+    case 'EXPERIENTIAL_INTERN':
+      return '체험형 인턴'
+    case 'FREELANCER':
+      return '프리랜서'
+    case 'ALTERNATIVE_MILITARY_SERVICE':
+      return '산업기능요원'
   }
 }

@@ -53,6 +53,7 @@ export default function OnboardingTest() {
           setShowRocket(true)
 
           if (result.isSuccess) {
+            console.log('result1', result)
             setStateReOnboarding({
               ...reonboardingCharacterData,
               reonboardingCharacterData: result.result,
@@ -68,8 +69,8 @@ export default function OnboardingTest() {
           setShowRocket(true)
 
           if (result.isSuccess) {
+            console.log('result2', result)
             setState({
-              ...onboardingCharacterData,
               onboardingCharacterData: result.result,
             })
             setTimeout(() => {

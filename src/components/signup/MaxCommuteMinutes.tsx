@@ -21,7 +21,7 @@ export default function MaxCommuteMinutes() {
       setEditMyInfoDataState({
         ...editMyInfoData,
         editMyInfoData: {
-          ...editMyInfoData, maxCommuteMinutes: editMyInfoData.maxCommuteMinutes === commutingTime ? null : commutingTime
+          ...editMyInfoData, maxCommuteMinutes: editMyInfoData.maxCommuteMinutes === commutingTime ? undefined : commutingTime
         }
       })
     } else {
@@ -29,7 +29,7 @@ export default function MaxCommuteMinutes() {
         ...signUpData,
         signUpData: {
           ...signUpData,
-          maxCommuteMinutes: signUpData?.maxCommuteMinutes === commutingTime ? null : commutingTime, // 객체가 아닌 commute 값 직접 할당
+          maxCommuteMinutes: signUpData?.maxCommuteMinutes === commutingTime ? undefined : commutingTime, // 객체가 아닌 commute 값 직접 할당
         },
       })
     }

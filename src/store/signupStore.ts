@@ -11,7 +11,7 @@ interface SignUpStoreType {
 }
 
 export const useSignUpStore = create<SignUpStoreType>((set) => ({
-  signUpData: undefined,
+  signUpData: {workExperience: 0},
   setState: (params: SetSignUpStoreType) => {
     set((state) => ({
       ...state,

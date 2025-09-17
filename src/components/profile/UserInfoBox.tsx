@@ -42,7 +42,7 @@ const UserInfoBox = ({ profile }: Props) => {
         </div>
         <div className="tablet:flex-row flex flex-col">
           <div className="body-md-bold w-[99px] gap-[10px]">경력 조건</div>
-          <div className="body-md-medium text-neutral-700">{u?.workExperience || '-'}</div>
+          <div className="body-md-medium text-neutral-700">{u?.workExperience || '-'}년</div>
         </div>
         <div className="tablet:flex-row flex flex-col">
           <div className="body-md-bold w-[99px] gap-[10px]">주소</div>

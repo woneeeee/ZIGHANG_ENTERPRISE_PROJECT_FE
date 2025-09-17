@@ -9,7 +9,17 @@ const api = axios.create({
 
 const getRefreshToken = async () => {
   try {
-    const response = await api.post(`/auth/refresh-token`)
+    const refreshToken = localStorage.getItem('refreshToken')
+
+    const response = await api.post(
+      `/auth/refresh-token`,
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${refreshToken}`,
+        },
+      },
+    )
     if (response.data.code === '200') {
       const newAccessToken = response.data.result.accessToken
       const newRefreshToken = response.data.result.refreshToken

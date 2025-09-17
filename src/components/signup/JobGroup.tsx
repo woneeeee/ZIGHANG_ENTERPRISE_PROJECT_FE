@@ -17,7 +17,7 @@ export default function JobGroup () {
 
   useEffect(() => {
     if (editMyInfoData) {
-      setJobGroupEumState({...signUpData, signUpData: {...signUpData, jobGroupEnum: editMyInfoData?.jobGroups}})
+      setJobGroupEumState({...signUpData, signUpData: {...signUpData, jobGroups: editMyInfoData?.jobGroups}})
     }
   }, [editMyInfoData])
 
@@ -26,7 +26,7 @@ export default function JobGroup () {
     if (editMyInfoData) {
       setEditMyInfoDataState({...editMyInfoData, editMyInfoData: {...editMyInfoData, jobGroups: category}})
     } else {
-      setJobGroupEumState({ ...signUpData, signUpData: { ...signUpData, jobGroupEnum: category, jobPositionEnum: undefined } })
+      setJobGroupEumState({ ...signUpData, signUpData: { ...signUpData, jobGroups: category, jobPositions: undefined } })
     }
 
     // 2. JobGroup 섹션으로 부드러운 스크롤
@@ -52,7 +52,7 @@ export default function JobGroup () {
             <button
               onClick={() => handleCategoryClick(category1.enum)}
               key={category1.kor}
-                    className={`${editMyInfoData ? (editMyInfoData.jobGroups === category1.enum ? 'bg-purple-500 text-white' : 'border border-neutral-400') : signUpData?.jobGroupEnum === category1.enum ? 'bg-purple-500 text-white' : 'border border-neutral-400'} desktop:body-md-medium laptop:body-md-medium tablet:body-md-medium caption-sm-medium flex h-[36px] cursor-pointer items-center justify-center rounded-[6px] px-[12px] py-[10px] hover:border-purple-300 hover:bg-purple-50`}>
+                    className={`${editMyInfoData ? (editMyInfoData.jobGroups === category1.enum ? 'bg-purple-500 text-white' : 'border border-neutral-400') : signUpData?.jobGroups === category1.enum ? 'bg-purple-500 text-white' : 'border border-neutral-400'} desktop:body-md-medium laptop:body-md-medium tablet:body-md-medium caption-sm-medium flex h-[36px] cursor-pointer items-center justify-center rounded-[6px] px-[12px] py-[10px] hover:border-purple-300 hover:bg-purple-50`}>
               {category1.kor}
             </button>
           )
@@ -64,7 +64,7 @@ export default function JobGroup () {
             <button
               onClick={() => handleCategoryClick(category2.enum)}
               key={category2.kor}
-                    className={`${editMyInfoData ? (editMyInfoData.jobGroups === category2.enum ? 'bg-purple-500 text-white' : 'border border-neutral-400') : signUpData?.jobGroupEnum === category2.enum ? 'bg-purple-500 text-white' : 'border border-neutral-400'} desktop:body-md-medium laptop:body-md-medium tablet:body-md-medium caption-sm-medium flex h-[36px] cursor-pointer items-center justify-center rounded-[6px] px-[12px] py-[10px] hover:border-purple-300 hover:bg-purple-50`}>
+                    className={`${editMyInfoData ? (editMyInfoData.jobGroups === category2.enum ? 'bg-purple-500 text-white' : 'border border-neutral-400') : signUpData?.jobGroups === category2.enum ? 'bg-purple-500 text-white' : 'border border-neutral-400'} desktop:body-md-medium laptop:body-md-medium tablet:body-md-medium caption-sm-medium flex h-[36px] cursor-pointer items-center justify-center rounded-[6px] px-[12px] py-[10px] hover:border-purple-300 hover:bg-purple-50`}>
               {category2.kor}
             </button>
           )
@@ -76,7 +76,7 @@ export default function JobGroup () {
             <button
               onClick={() => handleCategoryClick(category3.enum)}
               key={category3.kor}
-                    className={`${editMyInfoData ? (editMyInfoData.jobGroups === category3.enum ? 'bg-purple-500 text-white' : 'border border-neutral-400') : signUpData?.jobGroupEnum === category3.enum ? 'bg-purple-500 text-white' : 'border border-neutral-400'} desktop:body-md-medium laptop:body-md-medium tablet:body-md-medium caption-sm-medium flex h-[36px] cursor-pointer items-center justify-center rounded-[6px] px-[12px] py-[10px] hover:border-purple-300 hover:bg-purple-50`}>
+                    className={`${editMyInfoData ? (editMyInfoData.jobGroups === category3.enum ? 'bg-purple-500 text-white' : 'border border-neutral-400') : signUpData?.jobGroups === category3.enum ? 'bg-purple-500 text-white' : 'border border-neutral-400'} desktop:body-md-medium laptop:body-md-medium tablet:body-md-medium caption-sm-medium flex h-[36px] cursor-pointer items-center justify-center rounded-[6px] px-[12px] py-[10px] hover:border-purple-300 hover:bg-purple-50`}>
               {category3.kor}
             </button>
           )
@@ -89,7 +89,7 @@ export default function JobGroup () {
             <button
               onClick={() => handleCategoryClick(category4.enum)}
               key={category4.kor}
-                    className={`${editMyInfoData ? (editMyInfoData.jobGroups === category4.enum ? 'bg-purple-500 text-white' : 'border border-neutral-400') : signUpData?.jobGroupEnum === category4.enum ? 'bg-purple-500 text-white' : 'border border-neutral-400'} desktop:body-md-medium laptop:body-md-medium tablet:body-md-medium caption-sm-medium flex h-[36px] cursor-pointer items-center justify-center rounded-[6px] px-[12px] py-[10px] hover:border-purple-300 hover:bg-purple-50`}>
+                    className={`${editMyInfoData ? (editMyInfoData.jobGroups === category4.enum ? 'bg-purple-500 text-white' : 'border border-neutral-400') : signUpData?.jobGroups === category4.enum ? 'bg-purple-500 text-white' : 'border border-neutral-400'} desktop:body-md-medium laptop:body-md-medium tablet:body-md-medium caption-sm-medium flex h-[36px] cursor-pointer items-center justify-center rounded-[6px] px-[12px] py-[10px] hover:border-purple-300 hover:bg-purple-50`}>
               {category4.kor}
             </button>
           )

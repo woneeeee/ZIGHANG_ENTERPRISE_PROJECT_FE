@@ -35,7 +35,7 @@ export default function JobPosition() {
 
   useEffect(() => {
     if (editMyInfoData) {
-      setJobPositionState({...signUpData, signUpData: {...signUpData, jobPositionEnum: editMyInfoData?.jobPositions}})
+      setJobPositionState({...signUpData, signUpData: {...signUpData, jobPositions: editMyInfoData?.jobPositions}})
     }
   }, [editMyInfoData])
 
@@ -95,7 +95,7 @@ export default function JobPosition() {
   }
 
   const handleJobCategoryClick = (jobCategory: JobPositionEnumType) => {
-    const currentJobPositions = signUpData?.jobPositionEnum || []
+    const currentJobPositions = signUpData?.jobPositions || []
 
     // 이미 선택된 항목인지 확인 (토글 기능)
     const isAlreadySelected = currentJobPositions.includes(jobCategory)
@@ -131,7 +131,7 @@ export default function JobPosition() {
       setJobPositionState({
         signUpData: {
           ...signUpData,
-          jobPositionEnum: updatedJobPositions
+          jobPositions: updatedJobPositions
         }
       })
     }
@@ -155,7 +155,7 @@ export default function JobPosition() {
     if (editMyInfoData) {
       return editMyInfoData.jobPositions?.includes(getDetailJobCategoryDisplay(jobCategory) as JobPositionEnumType) || false;
     } else {
-      return signUpData?.jobPositionEnum?.includes(jobCategory) || false;
+      return signUpData?.jobPositions?.includes(jobCategory) || false;
     }
   }
 
@@ -164,10 +164,10 @@ export default function JobPosition() {
       id="job-category-section"
       className="flex flex-col desktop:pt-[220px] laptop:pt-[220px] tablet:pt-[180px] pt-[150px] px-4 gap-y-4 tablet:bg-[#FAFBFE] laptop:bg-[#FAFBFE] desktop:bg-[#FAFBFE] min-h-screen">
       <h1
-        className="body-md-semibold tablet:heading-md-semibold desktop:heading-md-semibold laptop:heading-md-semibold"><span className="text-purple-500">{changeCategoryEnumToKor(signUpData?.jobGroupEnum)}</span> 분야의 희망하는 직무를 선택해주세요</h1>
+        className="body-md-semibold tablet:heading-md-semibold desktop:heading-md-semibold laptop:heading-md-semibold"><span className="text-purple-500">{changeCategoryEnumToKor(signUpData?.jobGroups)}</span> 분야의 희망하는 직무를 선택해주세요</h1>
 
       <section className="gap-[6px] flex flex-wrap">
-        {(changeCategoryToJobCategory(editMyInfoData ? editMyInfoData.jobGroups : signUpData?.jobGroupEnum) || []).map((jobCategory) => {
+        {(changeCategoryToJobCategory(editMyInfoData ? editMyInfoData.jobGroups : signUpData?.jobGroups) || []).map((jobCategory) => {
           const selected = isSelected(jobCategory.enum)
 
           return (

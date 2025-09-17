@@ -10,7 +10,7 @@ import { useEffect, useMemo } from 'react'
 import { useSignUpStore } from '@/store/signupStore.ts'
 import { useEditMyInfoStore } from '@/stores/editMyInfoStore.ts'
 import { useProfileStore } from '@/stores/profileStore.ts'
-import { getProfileInfo } from '@/apis/users/getProfileInfo.tsx'
+// import { getProfileInfo } from '@/apis/users/getProfileInfo.tsx'
 import { changeEducationKorToEnum, getDetailJobCategory, getJobCategory } from '@/utils/sign-up.ts'
 import type { JobPositionEnumType } from '@/types/signup.ts'
 
@@ -19,19 +19,19 @@ export default function SignUp() {
   const editMyInfoData = useEditMyInfoStore((state) => state.editMyInfoData)
   const setState = useEditMyInfoStore((state) => state.setState)
 
-  const { profile, setProfile } = useProfileStore()
+  const { profile } = useProfileStore()
 
-  useEffect(() => {
-    ;(async () => {
-      try {
-        const me = await getProfileInfo()
-        console.log('me', me)
-        setProfile(me)
-      } catch (error) {
-        console.error('프로필 정보를 불러오지 못했어요.', error)
-      }
-    })()
-  }, [setProfile])
+  // useEffect(() => {
+  //   ;(async () => {
+  //     try {
+  //       const me = await getProfileInfo()
+  //       console.log('me', me)
+  //       setProfile(me)
+  //     } catch (error) {
+  //       console.error('프로필 정보를 불러오지 못했어요.', error)
+  //     }
+  //   })()
+  // }, [setProfile])
 
   useEffect(() => {
     if (profile && !editMyInfoData) {
@@ -59,8 +59,8 @@ export default function SignUp() {
 
     // 각 필드가 완료되었는지 확인
     if (signUpData?.education) completedSteps++
-    if (signUpData?.jobGroupEnum) completedSteps++
-    if (signUpData?.jobPositionEnum && signUpData.jobPositionEnum.length > 0) completedSteps++
+    if (signUpData?.jobGroups) completedSteps++
+    if (signUpData?.jobPositions && signUpData.jobPositions.length > 0) completedSteps++
     if (signUpData?.workExperience !== undefined) completedSteps++
     if (signUpData?.transport) completedSteps++
     if (signUpData?.maxCommuteMinutes !== undefined) completedSteps++

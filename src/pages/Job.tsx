@@ -5,13 +5,15 @@ import { useIntersectionObserver } from '@/hooks/useIntersectionObserver.tsx'
 import { useCallback, useEffect } from 'react'
 import { useInfiniteJobPostings } from '@/apis/job/useInfiniteJobPostings.tsx'
 import { ShiningStarIcon } from '@/assets/svgComponents'
-import { useOnboardingTestStore } from '@/stores/onboardingTestStore.ts'
+import { useOnboardingTestStore, useReOnboardingTestStore } from '@/stores/onboardingTestStore.ts'
 import { useNavigate } from 'react-router-dom'
 
 export default function Job () {
   const navigate = useNavigate()
   const accessToken = localStorage.getItem('accessToken')
   const onboardingCharacterData = useOnboardingTestStore((state) => state.onboardingCharacterData)
+  const reonboardingCharacterData = useReOnboardingTestStore((state) => state.reonboardingCharacterData)
+
   const {
     jobs,
     fetchNextPage,
@@ -30,7 +32,9 @@ export default function Job () {
 
   useEffect(() => {
     console.log('jobs', jobs)
-  }, [jobs])
+    console.log('onboardingCharacterData', onboardingCharacterData)
+    console.log('reonboardingCharacterData', reonboardingCharacterData)
+  }, [jobs, onboardingCharacterData, reonboardingCharacterData])
 
   // Intersection Observer로 무한스크롤 트리거
   const loadMoreRef = useIntersectionObserver(loadMore)
@@ -67,7 +71,7 @@ export default function Job () {
             </div>
           ) :
           /* 2순위: accessToken은 있지만 onboardingCharacterData가 없으면 테스트 유도 */
-          !onboardingCharacterData ? (
+          !(onboardingCharacterData || reonboardingCharacterData) ? (
             <div className="flex items-center justify-center absolute desktop:top-35 laptop:top-35 tablet:top-35 top-22 backdrop-blur-sm bg-white/10 h-[calc(100vh-200px)] left-5 right-5">
               <button
                 onClick={() => navigate('/onboarding/start')}

@@ -1,8 +1,8 @@
 export interface SignUpDataType {
   workExperience?: number
   education?: EducationEnumType
-  jobGroupEnum?: JobGroupEnumType
-  jobPositionEnum?: JobPositionEnumType[]
+  jobGroups?: JobGroupEnumType
+  jobPositions?: JobPositionEnumType[]
   maxCommuteMinutes?: number
   transport?: TransportEnumType
   address?: string

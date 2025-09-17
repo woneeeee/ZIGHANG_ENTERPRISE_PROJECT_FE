@@ -13,7 +13,7 @@ export default function Category () {
 
   const handleCategoryClick = (category: JobGroupEnumType) => {
     // 1. 상태 저장
-    setState({ ...signUpData, signUpData: { ...signUpData, jobGroupEnum: category, jobPositionEnum: undefined } })
+    setState({ ...signUpData, signUpData: { ...signUpData, jobGroups: category, jobPositions: undefined } })
     // 2. JobGroup 섹션으로 부드러운 스크롤
     const categorySection = document.getElementById('job-category-section')
     if (categorySection) {
@@ -37,7 +37,7 @@ export default function Category () {
             <button
               onClick={() => handleCategoryClick(category1.enum)}
               key={category1.kor}
-              className={`${signUpData?.jobGroupEnum === category1.enum ? 'bg-purple-400 text-white' : 'border border-neutral-400'} text-white desktop:body-md-medium laptop:body-md-medium tablet:body-md-medium caption-sm-medium flex h-[36px] cursor-pointer items-center justify-center rounded-[6px] px-[12px] py-[10px] hover:border-purple-300 hover:bg-ui-transparent-light`}>
+              className={`${signUpData?.jobGroups === category1.enum ? 'bg-purple-400 text-white' : 'border border-neutral-400'} text-white desktop:body-md-medium laptop:body-md-medium tablet:body-md-medium caption-sm-medium flex h-[36px] cursor-pointer items-center justify-center rounded-[6px] px-[12px] py-[10px] hover:border-purple-300 hover:bg-ui-transparent-light`}>
               {category1.kor}
             </button>
           )
@@ -49,7 +49,7 @@ export default function Category () {
             <button
               onClick={() => handleCategoryClick(category2.enum)}
               key={category2.kor}
-              className={`${signUpData?.jobGroupEnum === category2.enum ? 'bg-purple-400 text-white' : 'border border-neutral-400'} text-white caption-sm-medium flex h-[36px] cursor-pointer items-center justify-center rounded-[6px] px-[12px] py-[10px] hover:border-purple-300 hover:bg-ui-transparent-light`}>
+              className={`${signUpData?.jobGroups === category2.enum ? 'bg-purple-400 text-white' : 'border border-neutral-400'} text-white caption-sm-medium flex h-[36px] cursor-pointer items-center justify-center rounded-[6px] px-[12px] py-[10px] hover:border-purple-300 hover:bg-ui-transparent-light`}>
               {category2.kor}
             </button>
           )
@@ -61,7 +61,7 @@ export default function Category () {
             <button
               onClick={() => handleCategoryClick(category3.enum)}
               key={category3.kor}
-              className={`${signUpData?.jobGroupEnum === category3.enum ? 'bg-purple-400 text-white' : 'border border-neutral-400'} text-white caption-sm-medium flex h-[36px] cursor-pointer items-center justify-center rounded-[6px] px-[12px] py-[10px] hover:border-purple-300 hover:bg-ui-transparent-light`}>
+              className={`${signUpData?.jobGroups === category3.enum ? 'bg-purple-400 text-white' : 'border border-neutral-400'} text-white caption-sm-medium flex h-[36px] cursor-pointer items-center justify-center rounded-[6px] px-[12px] py-[10px] hover:border-purple-300 hover:bg-ui-transparent-light`}>
               {category3.kor}
             </button>
           )
@@ -74,7 +74,7 @@ export default function Category () {
             <button
               onClick={() => handleCategoryClick(category4.enum)}
               key={category4.kor}
-              className={`${signUpData?.jobGroupEnum === category4.enum ? 'bg-purple-400 text-white' : 'border border-neutral-400'} text-white caption-sm-medium flex h-[36px] cursor-pointer items-center justify-center rounded-[6px] px-[12px] py-[10px] hover:border-purple-300 hover:bg-ui-transparent-light`}>
+              className={`${signUpData?.jobGroups === category4.enum ? 'bg-purple-400 text-white' : 'border border-neutral-400'} text-white caption-sm-medium flex h-[36px] cursor-pointer items-center justify-center rounded-[6px] px-[12px] py-[10px] hover:border-purple-300 hover:bg-ui-transparent-light`}>
               {category4.kor}
             </button>
           )

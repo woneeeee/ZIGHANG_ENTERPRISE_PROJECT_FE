@@ -79,6 +79,7 @@ function CustomAddressSearch() {
       signUpData.education !== undefined &&
       signUpData.jobGroups !== undefined &&
       signUpData.jobPositions !== undefined &&
+      signUpData.jobPositions !== null &&
       signUpData.jobPositions.length > 0 &&
       signUpData.maxCommuteMinutes !== undefined &&
       signUpData.transport !== undefined &&

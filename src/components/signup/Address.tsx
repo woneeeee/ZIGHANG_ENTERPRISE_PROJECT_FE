@@ -55,6 +55,7 @@ function CustomAddressSearch() {
         editMyInfoData.education !== undefined &&
         editMyInfoData.jobGroups !== undefined &&
         editMyInfoData.jobPositions !== undefined &&
+        editMyInfoData.jobPositions !== null &&
         editMyInfoData.jobPositions.length > 0 &&
         editMyInfoData.maxCommuteMinutes !== undefined &&
         editMyInfoData.transport !== undefined &&
@@ -66,6 +67,7 @@ function CustomAddressSearch() {
         signUpData.education !== undefined &&
         signUpData.jobGroups !== undefined &&
         signUpData.jobPositions !== undefined &&
+        signUpData.jobPositions !== null &&
         signUpData.jobPositions.length > 0 &&
         signUpData.maxCommuteMinutes !== undefined &&
         signUpData.transport !== undefined &&

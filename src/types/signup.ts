@@ -1,14 +1,14 @@
 export interface SignUpDataType {
-  workExperience?: number
-  education?: EducationEnumType
-  jobGroups?: JobGroupEnumType
-  jobPositions?: JobPositionEnumType[]
-  maxCommuteMinutes?: number
-  transport?: TransportEnumType
-  address?: string
-  characterId?: number
-  companyList?: CompanyEnumType[]
-  welfareList?: string[]
+  workExperience?: number | null | undefined
+  education?: EducationEnumType | null | undefined
+  jobGroups?: JobGroupEnumType | null | undefined
+  jobPositions?: JobPositionEnumType[] | null | undefined
+  maxCommuteMinutes?: number | null | undefined
+  transport?: TransportEnumType | null | undefined
+  address?: string | null | undefined
+  characterId?: number | null | undefined
+  companyList?: CompanyEnumType[] | null | undefined
+  welfareList?: string[] | null | undefined
   companyRatio?: { additionalProp1?: 0; additionalProp2?: 0; additionalProp3?: 0 } | undefined
 }
 

@@ -21,7 +21,7 @@ export default function MaxCommuteMinutes() {
       setEditMyInfoDataState({
         ...editMyInfoData,
         editMyInfoData: {
-          ...editMyInfoData, maxCommuteMinutes: commutingTime
+          ...editMyInfoData, maxCommuteMinutes: editMyInfoData.maxCommuteMinutes === commutingTime ? null : commutingTime
         }
       })
     } else {
@@ -29,7 +29,7 @@ export default function MaxCommuteMinutes() {
         ...signUpData,
         signUpData: {
           ...signUpData,
-          maxCommuteMinutes: commutingTime, // 객체가 아닌 commute 값 직접 할당
+          maxCommuteMinutes: signUpData?.maxCommuteMinutes === commutingTime ? null : commutingTime, // 객체가 아닌 commute 값 직접 할당
         },
       })
     }
@@ -58,7 +58,7 @@ export default function MaxCommuteMinutes() {
             <button
               onClick={() => handleCommutingTimeClick(commutingTime.enum)}
               key={commutingTime.kor}
-              className={`${editMyInfoData ? (editMyInfoData.maxCommuteMinutes === commutingTime.enum ? 'bg-purple-500 text-white' : 'border border-neutral-400') : signUpData?.maxCommuteMinutes === commutingTime.enum ? 'bg-purple-500 text-white' : 'border border-neutral-400'} desktop:body-md-medium laptop:body-md-medium tablet:body-md-medium caption-sm-medium flex h-[36px] cursor-pointer items-center justify-center rounded-[6px] px-[12px] py-[10px] hover:border-purple-300 hover:bg-purple-50`}
+              className={`${editMyInfoData ? (editMyInfoData.maxCommuteMinutes === commutingTime.enum ? 'bg-purple-500 text-white' : 'border border-neutral-400 hover:border-purple-300 hover:bg-purple-50') : signUpData?.maxCommuteMinutes === commutingTime.enum ? 'bg-purple-500 text-white' : 'border border-neutral-400 hover:border-purple-300 hover:bg-purple-50'} desktop:body-md-medium laptop:body-md-medium tablet:body-md-medium caption-sm-medium flex h-[36px] cursor-pointer items-center justify-center rounded-[6px] px-[12px] py-[10px]`}
             >
               {commutingTime.kor}
             </button>

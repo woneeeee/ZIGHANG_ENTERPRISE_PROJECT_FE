@@ -154,27 +154,27 @@ function CustomAddressSearch() {
                 <div className="flex h-[194px] flex-col overflow-y-scroll">
                   {results.map((address, index) => (
                     <div
-                      className="desktop:w-[477px] laptop:w-[477px] tablet:w-[477px] flex items-start justify-between gap-x-[14px]"
+                      onClick={() => {
+                        if (editMyInfoData) {
+                          setEditMyInfoData({
+                            ...editMyInfoData,
+                            editMyInfoData: {
+                              ...editMyInfoData,
+                              address: address.roadAddr,
+                            },
+                          })
+                        } else {
+                          setAddressState({
+                            ...signUpData,
+                            signUpData: { ...signUpData, address: address.roadAddr },
+                          })
+                        }
+                      }}
+                      className="cursor-pointer desktop:w-[477px] laptop:w-[477px] tablet:w-[477px] flex items-start justify-between gap-x-[14px]"
                       key={index}
                     >
                       <div
-                        className="flex cursor-pointer flex-col gap-y-4"
-                        onClick={() => {
-                          if (editMyInfoData) {
-                            setEditMyInfoData({
-                              ...editMyInfoData,
-                              editMyInfoData: {
-                                ...editMyInfoData,
-                                address: address.roadAddr,
-                              },
-                            })
-                          } else {
-                            setAddressState({
-                              ...signUpData,
-                              signUpData: { ...signUpData, address: address.roadAddr },
-                            })
-                          }
-                        }}
+                        className="flex flex-col gap-y-4"
                       >
                         <div className="desktop:body-xl-medium laptop:body-xl-medium tablet:body-xl-medium caption-sm-medium">
                           {address.roadAddr}
@@ -226,27 +226,27 @@ function CustomAddressSearch() {
             ) : results.length !== 0 ? (
               results.map((address, index) => (
                 <div
-                  className="desktop:w-[477px] laptop:w-[477px] tablet:w-[477px] flex items-start justify-between gap-x-[14px]"
+                  onClick={() => {
+                    if (editMyInfoData) {
+                      setEditMyInfoData({
+                        ...editMyInfoData,
+                        editMyInfoData: {
+                          ...editMyInfoData,
+                          address: address.roadAddr,
+                        },
+                      })
+                    } else {
+                      setAddressState({
+                        ...signUpData,
+                        signUpData: { ...signUpData, address: address.roadAddr },
+                      })
+                    }
+                  }}
+                  className="desktop:w-[477px] laptop:w-[477px] tablet:w-[477px] flex items-start justify-between gap-x-[14px] cursor-pointer"
                   key={index}
                 >
                   <div
-                    className="flex cursor-pointer flex-col gap-y-4"
-                    onClick={() => {
-                      if (editMyInfoData) {
-                        setEditMyInfoData({
-                          ...editMyInfoData,
-                          editMyInfoData: {
-                            ...editMyInfoData,
-                            address: address.roadAddr,
-                          },
-                        })
-                      } else {
-                        setAddressState({
-                          ...signUpData,
-                          signUpData: { ...signUpData, address: address.roadAddr },
-                        })
-                      }
-                    }}
+                    className="flex flex-col gap-y-4"
                   >
                     <div className="desktop:body-xl-medium laptop:body-xl-medium tablet:body-xl-medium caption-sm-medium">
                       {address.roadAddr}

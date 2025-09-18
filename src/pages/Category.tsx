@@ -9,7 +9,6 @@ import { mockJobs } from '@/constants/mockJobs'
 export default function Category() {
   const isMobile = useMediaQuery('(max-width: 767px)')
   const [showRocket, setShowRocket] = useState(false)
-  const [isTestDone, setIsTestDone] = useState(false)
 
   useEffect(() => {
     const el = document.querySelector('#filter-itdev')
@@ -17,11 +16,6 @@ export default function Category() {
   }, [])
 
   useEffect(() => {
-    const onboardingTestStorage = localStorage.getItem('onboarding-test-storage')
-    if (onboardingTestStorage) {
-      setIsTestDone(true)
-    }
-
     const timer = setTimeout(() => setShowRocket(true), 1000)
     return () => clearTimeout(timer)
   }, [])
@@ -46,7 +40,6 @@ export default function Category() {
         </section>
       </div>
       {showRocket &&
-        !isTestDone &&
         (isMobile ? (
           <MobileRocketAssistant
             amplitude={3}

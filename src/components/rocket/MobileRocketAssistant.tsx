@@ -3,6 +3,7 @@ import Lottie from 'lottie-react'
 import rocketClickTakeoff from '@/assets/lotties/rocket_click_takeoff.json'
 import RocketText from './RocketText'
 import { useNavigate } from 'react-router-dom'
+import { useOnboardingTestStore, useReOnboardingTestStore } from '@/stores/onboardingTestStore'
 
 type Props = {
   size?: number
@@ -31,6 +32,9 @@ export default function MobileRocketAssistant({
         ease: 'easeInOut',
       }}
       onClick={() => {
+        localStorage.removeItem('onboarding-test-storage')
+        useOnboardingTestStore.getState().reset()
+        useReOnboardingTestStore.getState().reset()
         nav('/onboarding/start')
       }}
       className={`flex cursor-pointer flex-col items-center justify-center ${className}`}

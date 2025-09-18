@@ -66,7 +66,12 @@ function MainHeader({ className }: { className?: string }) {
       )}
     >
       <div className="flex items-center gap-[25px]">
-        <LogoIcon width={0} height={0} className="h-[56px] w-[101px]" onClick={() => nav('/')} />
+        <LogoIcon
+          width={0}
+          height={0}
+          className="tablet:h-[56px] tablet:w-[101px] h-[26px] w-[71px]"
+          onClick={() => nav('/')}
+        />
         <NavMenu className="tablet:flex hidden" />
       </div>
       {accessToken ? (
@@ -81,7 +86,7 @@ function MainHeader({ className }: { className?: string }) {
             <NavSide />
           </div>
           <div className="tablet:hidden flex items-center gap-4">
-            <UserProfileIcon className="h-[48px] w-[48px]" onClick={() => nav('/profile')} />
+            <UserProfileIcon className="h-[28px] w-[28px]" onClick={() => nav('/profile')} />
             <NavSide />
           </div>
         </>

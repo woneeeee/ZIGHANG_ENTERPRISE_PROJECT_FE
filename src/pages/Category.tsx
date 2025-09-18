@@ -1,13 +1,15 @@
-// import JobCard from '@/components/job/JobCard.tsx'
+import JobCard from '@/components/job/JobCard.tsx'
 import Header from '@/components/common/Header.tsx'
 import MobileRocketAssistant from '@/components/rocket/MobileRocketAssistant'
 import RocketAssistant from '@/components/rocket/RocketAssistant'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { useEffect, useState } from 'react'
+import { mockJobs } from '@/constants/mockJobs'
 
 export default function Category() {
   const isMobile = useMediaQuery('(max-width: 767px)')
   const [showRocket, setShowRocket] = useState(false)
+  const [isTestDone, setIsTestDone] = useState(false)
 
   useEffect(() => {
     const el = document.querySelector('#filter-itdev')
@@ -15,6 +17,11 @@ export default function Category() {
   }, [])
 
   useEffect(() => {
+    const onboardingTestStorage = localStorage.getItem('onboarding-test-storage')
+    if (onboardingTestStorage) {
+      setIsTestDone(true)
+    }
+
     const timer = setTimeout(() => setShowRocket(true), 1000)
     return () => clearTimeout(timer)
   }, [])
@@ -27,20 +34,18 @@ export default function Category() {
         <MainFilter />
         <SecondFilter />
         <section className="desktop:grid-cols-2 desktop:mt-[32px] laptop:mt-[16px] grid w-full gap-4">
-          {/*<JobCard hasTag={false} />*/}
-          {/*<JobCard hasTag={false} />*/}
-          {/*<JobCard hasTag={false} />*/}
-          {/*<JobCard hasTag={false} />*/}
-          {/*<JobCard hasTag={false} />*/}
-          {/*<JobCard hasTag={false} />*/}
-          {/*<JobCard hasTag={false} />*/}
-          {/*<JobCard hasTag={false} />*/}
-          {/*<JobCard hasTag={false} />*/}
-          {/*<JobCard hasTag={false} />*/}
-          {/*<JobCard hasTag={false} />*/}
+          {mockJobs.map((job) => (
+            <JobCard
+              key={job.jobPostingId}
+              job={job}
+              hasTag={Boolean(job.commuteMinutes != null || job.welfare)}
+              hasViewCount
+            />
+          ))}
         </section>
       </div>
       {showRocket &&
+        !isTestDone &&
         (isMobile ? (
           <MobileRocketAssistant
             amplitude={3}

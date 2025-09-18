@@ -48,7 +48,7 @@ export default function OnboardingSignUp() {
 
 
   return (
-    <main className="relative min-h-screen">
+    <main className="relative flex flex-col items-center justify-center min-h-screen">
       {/* 배경 이미지 */}
       <div className="fixed inset-0 z-0">
         <Background2Icon
@@ -56,34 +56,46 @@ export default function OnboardingSignUp() {
           preserveAspectRatio="xMidYMid slice"
         />
       </div>
-      <div className="relative z-10">
+
+      <div className="relative z-10 w-full flex flex-col items-center">
         <Header variant={'space'}></Header>
 
-        {/* 안내 문구 */}
-        <div
-          className="z-40 fixed text-white w-full desktop:flex laptop:flex tablet:flex desktop:pt-[40px] desktop:pb-[30px] desktop:px-[30px] laptop:pt-[40px] laptop:pb-[30px] laptop:px-[30px] tablet:py-[20px] tablet:px-[30px] pt-[18px] pb-[10px] px-4 tablet:heading-lg-semibold laptop:heading-lg-semibold desktop:heading-lg-semibold caption-md-semibold">
-          <p>몇 가지 정보만 알려주시면, </p>
-          <p><span className="text-purple-400">딱 맞는 공고</span>를 추천 받을 수 있어요!</p>
+        {/* 첫 번째 코드의 크기와 구조를 적용 */}
+        <div className="relative desktop:w-[906px] laptop:w-[906px] tablet:w-[702px] w-full">
+          {/* 안내 문구 및 진행바 */}
+          <div
+            className="tablet:heading-lg-semibold laptop:heading-lg-semibold desktop:heading-lg-semibold caption-md-semibold fixed desktop:top-20 laptop:top-20 tablet:top-20 z-40 bg-white/10 backdrop-blur-md desktop:w-[906px] laptop:w-[906px] tablet:w-[702px] w-full">
+            <p
+              className="desktop:px-[30px] laptop:px-[30px] tablet:px-[30px] px-[16px] desktop:pt-[40px] laptop:pt-[40px] tablet:pt-[40px] pt-[18px] desktop:pb-[20px] laptop:pb-[20px] tablet:pb-[20px] pb-[10px] text-white">
+              몇 가지 정보만 알려주시면,{' '}
+              <br className="desktop:hidden laptop:hidden tablet:hidden block" />{' '}
+              <span className="text-purple-400">딱 맞는 공고</span>를 추천 받을 수 있어요!
+            </p>
+
+            {/* 진행바를 안내 문구 바로 아래에 추가 */}
+            <div
+              className="relative desktop:mt-[20px] laptop:mt-[20px] tablet:mt-[20px] mt-[10px] desktop:w-[906px] laptop:w-[906px] tablet:w-[702px] w-full">
+              <div
+                className="tablet:h-[6px] absolute z-30 h-[2px] bg-purple-400 transition-all duration-300 ease-out"
+                style={{ width: `${progress}%` }}
+              />
+              <div className="tablet:h-[6px] absolute z-20 h-[2px] w-full bg-neutral-100" />
+            </div>
+          </div>
         </div>
 
-        {/* 진행바 */}
-        <div className="px-0 tablet:px-[34px] laptop:px-[34px] desktop:px-[34px]">
-          <div
-            className="fixed desktop:top-45 laptop:top-45 tablet:top-37 top-27 desktop:left-[34px] laptop:left-[34px] tablet:left-[34px] left-0 desktop:w-[calc(100%-68px)] laptop:w-[calc(100%-68px)] tablet:w-[calc(100%-68px)] w-full">
-            <div
-              className="absolute z-30 tablet:h-[6px] h-[2px] bg-purple-400 transition-all duration-300 ease-out"
-              style={{ width: `${progress}%` }}
-            />
-            <div className="absolute z-20 w-full tablet:h-[6px] h-[2px] bg-neutral-100" />
+        {/* 컨텐츠 영역 - 첫 번째 코드의 크기 구조 적용 */}
+        <div
+          className="bg-white/10 backdrop-blur-md flex flex-col items-center justify-center desktop:w-[906px] laptop:w-[906px] tablet:w-[702px] w-full relative desktop:mt-[100px] laptop:mt-[100px] tablet:mt-[100px] mt-[62px]">
+          <div className="desktop:w-[906px] laptop:w-[906px] tablet:w-[702px] w-full desktop:px-[12px] laptop:px-[12px] tablet:px-[12px]">
+            <Education />
+            <JobGroup />
+            <JobPositions />
+            <Experience />
+            <Transport />
+            <MaxCommuteMinutes />
+            <Address />
           </div>
-
-          <Education />
-          <JobGroup />
-          <JobPositions />
-          <Experience />
-          <Transport />
-          <MaxCommuteMinutes />
-          <Address />
         </div>
       </div>
     </main>

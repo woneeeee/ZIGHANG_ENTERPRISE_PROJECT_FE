@@ -23,7 +23,7 @@ export default function Education() {
   return (
     <main
       id={"education-section"}
-      className="flex min-h-screen flex-col gap-y-4 px-4 desktop:pt-[150px] laptop:pt-[150px] tablet:pt-[120px] pt-[84px]">
+      className="flex min-h-screen flex-col gap-y-4 px-4 desktop:pt-[50px] laptop:pt-[50px] tablet:pt-[50px] pt-[40px]">
       <h1 className="text-white body-md-semibold tablet:heading-md-semibold desktop:heading-md-semibold laptop:heading-md-semibold">
         최종학력이 어떻게 되시나요?
       </h1>

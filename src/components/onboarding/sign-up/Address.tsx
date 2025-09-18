@@ -9,7 +9,7 @@ export default function Address() {
   return (
     <main
       id="address-section"
-      className="desktop:pt-[220px] laptop:pt-[220px] tablet:pt-[180px] flex min-h-screen flex-col gap-y-4 px-4 pt-[150px]"
+      className="desktop:pt-[220px] laptop:pt-[220px] tablet:pt-[220px] flex min-h-screen flex-col gap-y-4 px-4 pt-[150px]"
     >
       <h1 className="body-md-semibold tablet:heading-md-semibold desktop:heading-md-semibold laptop:heading-md-semibold text-white">
         더 정확한 맞춤 공고를 위해, 거주하시는 곳을 알려주세요

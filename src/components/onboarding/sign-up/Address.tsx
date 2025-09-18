@@ -3,15 +3,7 @@ import { useSignUpStore } from '@/store/signupStore.ts'
 import { AnimatedSpeechBubble } from '@/components/signup/AnimatedSpeechBubble.tsx'
 import { useNavigate } from 'react-router-dom'
 import { postOnboardingTestSignUp } from '@/apis/sign-up/postOnboardingTestSignUp.ts'
-import type { OnboardingCharacterType } from '@/types/onboarding-test.ts'
-
-// localStorage 데이터 구조 타입 정의
-interface OnboardingStorageData {
-  state: {
-    onboardingCharacterData: OnboardingCharacterType
-  }
-  version: number
-}
+import { useOnboardingTestStore } from '@/stores/onboardingTestStore.ts'
 
 export default function Address() {
   return (
@@ -39,29 +31,7 @@ function CustomAddressSearch() {
 
   const setState = useSignUpStore((state) => state.setState)
   const signUpData = useSignUpStore((state) => state.signUpData)
-  // 타입이 지정된 onboarding 데이터
-  const [onboardingCharacterData, setOnboardingCharacterData] = useState<OnboardingCharacterType | null>(null)
-
-  useEffect(() => {
-    const data = getOnboardingCharacterData()
-    setOnboardingCharacterData(data)
-    console.log('onboardingCharacterData', data)
-  }, [])
-
-
-  // localStorage에서 타입 안전하게 데이터 가져오는 함수
-  const getOnboardingCharacterData = (): OnboardingCharacterType | null => {
-    try {
-      const stored = localStorage.getItem("onboarding-test-storage")
-      if (!stored) return null
-
-      const parsed: OnboardingStorageData = JSON.parse(stored)
-      return parsed?.state?.onboardingCharacterData || null
-    } catch (error) {
-      console.error('localStorage 데이터 파싱 실패:', error)
-      return null
-    }
-  }
+  const onboardingCharacterData = useOnboardingTestStore((state) => state.onboardingCharacterData)
 
   useEffect(() => {
     console.log('onboardingCharacterData', onboardingCharacterData)
@@ -313,22 +283,34 @@ function CustomAddressSearch() {
 
               // Step 2: companyRatio 변환
               console.log('Step 2: companyRatio 변환 중...')
-              const convertedCompanyRatio = onboardingCharacterData.companyRatio
-                ? {
-                  additionalProp1:
-                    onboardingCharacterData.companyRatio.additionalProp1 === 0
-                      ? (0 as const)
-                      : undefined,
-                  additionalProp2:
-                    onboardingCharacterData.companyRatio.additionalProp2 === 0
-                      ? (0 as const)
-                      : undefined,
-                  additionalProp3:
-                    onboardingCharacterData.companyRatio.additionalProp3 === 0
-                      ? (0 as const)
-                      : undefined,
-                }
-                : undefined
+              // const convertedCompanyRatio = onboardingCharacterData.companyRatio
+              //   ? {
+              //     FOREIGN:
+              //       onboardingCharacterData.companyRatio.FOREIGN === 0
+              //         ? (0 as const)
+              //         : undefined,
+              //     MAJOR:
+              //       onboardingCharacterData.companyRatio.MAJOR === 0
+              //         ? (0 as const)
+              //         : undefined,
+              //     MID_SIZE:
+              //       onboardingCharacterData.companyRatio.MID_SIZE === 0
+              //         ? (0 as const)
+              //         : undefined,
+              //     SMALL_MEDIUM:
+              //       onboardingCharacterData.companyRatio.SMALL_MEDIUM === 0
+              //         ? (0 as const)
+              //         : undefined,
+              //     STARTUP:
+              //       onboardingCharacterData.companyRatio.STARTUP === 0
+              //         ? (0 as const)
+              //         : undefined,
+              //     UNICORN:
+              //       onboardingCharacterData.companyRatio.UNICORN === 0
+              //         ? (0 as const)
+              //         : undefined,
+              //   }
+              //   : undefined
 
               // Step 3: 최종 데이터 구성
               console.log('Step 3: 최종 데이터 구성 중...')
@@ -337,7 +319,7 @@ function CustomAddressSearch() {
                 characterId: onboardingCharacterData.characterId,
                 companyList: onboardingCharacterData.companyTypeEnumList,
                 welfareList: onboardingCharacterData.welfareList,
-                companyRatio: convertedCompanyRatio,
+                companyRatio: onboardingCharacterData.companyRatio,
               }
 
               console.log('최종 데이터 완성:', finalSignUpData)

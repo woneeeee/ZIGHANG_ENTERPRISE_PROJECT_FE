@@ -13,9 +13,12 @@ export interface OnboardingTestType {
 export interface OnboardingCharacterType {
   companyTypeEnumList: CompanyEnumType[]
   companyRatio: {
-    additionalProp1: number
-    additionalProp2: number
-    additionalProp3: number
+    FOREIGN: number
+    MAJOR: number
+    MID_SIZE: number
+    SMALL_MEDIUM: number
+    STARTUP: number
+    UNICORN: number
   }
   welfareList: string[]
   characterId: number

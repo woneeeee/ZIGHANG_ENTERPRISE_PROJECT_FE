@@ -2,6 +2,7 @@
 import { getRecommendJobPosting } from '@/apis/job/getRecommendJobPosting.tsx'
 import { type QueryFunctionContext, useInfiniteQuery } from '@tanstack/react-query'
 import type { RecruitmentTypeEnum } from '@/types/job.ts'
+import type { TransportEnumType } from '@/types/signup.ts'
 
 // API 응답 타입 정의
 export interface ApiResponse<T> {
@@ -15,6 +16,7 @@ export interface JobPostingListType {
   jobPostingId: number
   companyName: string
   jobPostingTitle: string
+  transport: TransportEnumType
   workExperience: string
   recruitmentType: RecruitmentTypeEnum[]
   education: string

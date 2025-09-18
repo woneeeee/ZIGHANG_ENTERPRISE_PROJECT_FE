@@ -1,3 +1,5 @@
+import type { TransportEnumType } from '@/types/signup.ts'
+
 export interface JobPostingListType {
   jobs: JobPostingType[]
   hasNext: boolean
@@ -10,6 +12,7 @@ export interface JobPostingType {
   recruitmentType: RecruitmentTypeEnum[] //계약직
   education: string
   commuteMinutes: number
+  transport: TransportEnumType
   welfare: string //복지
 }
 export type RecruitmentTypeKor =

@@ -6,7 +6,7 @@ export default function Experience() {
   return (
     <main
       id="experience-section"
-      className="flex flex-col justify-start desktop:pt-[220px] laptop:pt-[220px] tablet:pt-[180px] pt-[150px] px-4 gap-y-4 tablet:bg-[#FAFBFE] laptop:bg-[#FAFBFE] desktop:bg-[#FAFBFE] min-h-screen">
+      className="flex flex-col justify-start desktop:pt-[220px] laptop:pt-[220px] tablet:pt-[220px] pt-[150px] px-4 gap-y-4 tablet:bg-[#FAFBFE] laptop:bg-[#FAFBFE] desktop:bg-[#FAFBFE] min-h-screen">
       <h1
         className="body-md-semibold tablet:heading-md-semibold desktop:heading-md-semibold laptop:heading-md-semibold">
         현재까지의 경력을 알려주세요</h1>

@@ -83,17 +83,27 @@ export default function OnboardingTest() {
   }, [onboardingTestData, navigate, setState, setStateReOnboarding])
 
   return (
-    <main className="flex flex-col items-center justify-center">
-      <Header variant={'space'} />
-      <div className="desktop:mt-[80px] laptop:mt-[80px] mt-1 px-[16px]">
-        {/*<Header />*/}
-        {step === 1 ? <CompanySizeCard setStep={setStep} step={step} /> : null}
-        {step === 2 ? <PartnerStyleCard setStep={setStep} step={step} /> : null}
-        {step === 3 ? <AvoidSituationCard setStep={setStep} step={step} /> : null}
-        {step === 4 ? <MotivationCard setStep={setStep} step={step} /> : null}
-        {step === 5 ? <AfterWorkChoiceCard setStep={setStep} step={step} /> : null}
-        {step === 6 ? <RewardChoiceCard setStep={setStep} step={step} /> : null}
-        {step === 7 ? <ResultCard /> : null}
+    <main
+      className="min-h-screen"
+      style={{
+        backgroundImage: "url('/onboarding/test-background.png')",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundAttachment: 'fixed'
+      }}
+    >
+      <div className="flex flex-col">
+        <Header variant={'space'} />
+        <div className="flex flex-col items-center justify-center desktop:mt-[80px] laptop:mt-[80px] mt-1 px-[16px]">
+          {step === 1 ? <CompanySizeCard setStep={setStep} step={step} /> : null}
+          {step === 2 ? <PartnerStyleCard setStep={setStep} step={step} /> : null}
+          {step === 3 ? <AvoidSituationCard setStep={setStep} step={step} /> : null}
+          {step === 4 ? <MotivationCard setStep={setStep} step={step} /> : null}
+          {step === 5 ? <AfterWorkChoiceCard setStep={setStep} step={step} /> : null}
+          {step === 6 ? <RewardChoiceCard setStep={setStep} step={step} /> : null}
+          {step === 7 ? <ResultCard /> : null}
+        </div>
       </div>
       {showRocket && (
         <motion.div

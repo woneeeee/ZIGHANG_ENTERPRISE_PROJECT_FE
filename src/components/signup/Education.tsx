@@ -44,7 +44,7 @@ export default function Education() {
   return (
     <main
       id={'education-section'}
-      className="tablet:bg-[#FAFBFE] laptop:bg-[#FAFBFE] desktop:bg-[#FAFBFE] desktop:pt-[150px] laptop:pt-[150px] tablet:pt-[120px] flex min-h-screen flex-col gap-y-4 px-4 pt-[84px]"
+      className="tablet:bg-[#FAFBFE] laptop:bg-[#FAFBFE] desktop:bg-[#FAFBFE] desktop:pt-[150px] laptop:pt-[150px] tablet:pt-[150px] flex min-h-screen flex-col gap-y-4 px-4 pt-[84px]"
     >
       <h1 className="body-md-semibold tablet:heading-md-semibold desktop:heading-md-semibold laptop:heading-md-semibold">
         최종학력이 어떻게 되시나요?

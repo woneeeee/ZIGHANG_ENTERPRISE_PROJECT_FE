@@ -9,7 +9,7 @@ export function NoMatchingJobs({ isResult = false }: NoMatchingJobsProps) {
   const [isClicked, setIsClicked] = useState<boolean | undefined>(undefined)
   const neutral600 = isResult ? 'text-white' : 'text-neutral-600'
   const neutral700 = isResult ? 'text-white' : 'text-neutral-700'
-  const purple600 = isResult ? 'text-purple-400' : 'text-purple-600'
+  const purple600 = isResult ? 'text-purple-200' : 'text-purple-600'
 
   return (
     <div className="desktop:gap-y-[24px] laptop:gap-y-[24px] tablet:gap-y-[24px] flex flex-col gap-y-[10px]">

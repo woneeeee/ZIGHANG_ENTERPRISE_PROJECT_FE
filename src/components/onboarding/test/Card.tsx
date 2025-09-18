@@ -33,8 +33,12 @@ export default function Card({ children, step, setStep }: CardProps) {
         />
       </div>
       <div
-
-        className="tablet:w-[503px] desktop:px-[50px] laptop:px-[50px] desktop:py-[40px] laptop:py-[40px] tablet:py-[29px] tablet:px-[51px] desktop:gap-x-[90px] laptop:gap-x-[90px] flex w-[286px] items-center justify-center rounded-[30px] border bg-[#C8C2E512] border-[#78709E] px-[29px] py-[15px] ">
+        style={{
+          backgroundColor: 'rgba(200, 194, 229, 0.07)',
+          backdropFilter: 'blur(12px)',
+          WebkitBackdropFilter: 'blur(12px)'
+        }}
+        className="desktop:w-[503px] laptop:w-[503px] tablet:w-[503px] desktop:px-[50px] laptop:px-[50px] desktop:py-[40px] laptop:py-[40px] tablet:py-[29px] tablet:px-[51px] desktop:gap-x-[90px] laptop:gap-x-[90px] flex w-[286px] items-center justify-center desktop:rounded-[30px] laptop:rounded-[30px] tablet:rounded-[30px] rounded-[20px] border bg-[#C8C2E512] border-[#78709E] px-[29px] py-[15px] ">
         <div className="tablet:w-[401px] laptop:w-[401px] desktop:w-[401px] w-[230px]">
           <ProcessBar step={step} />
           {children}
@@ -74,7 +78,7 @@ function BottomButton({
           onClick={() => {
             setStep(step - 1)
           }}
-          className="body-sm-medium rounded-[6px] bg-neutral-600 p-3 text-white"
+          className="desktop:body-sm-medium laptop:body-sm-medium tablet:body-sm-medium body-caption-sm-medium rounded-[6px] bg-neutral-600 p-3 text-white hover:bg-ui-transparent-lighter transition desktop:p-3 laptop:p-3 tablet:p-3 py-[6px] px-2"
         >
           이전으로
         </button>

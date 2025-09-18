@@ -20,8 +20,7 @@ export default function CompanySizeCard({ step, setStep }: CompanySizeCardProps)
 
   return (
     <Card step={step} setStep={setStep}>
-      <div
-        className="mt-[17px] flex flex-col items-center justify-center">
+      <div className="mt-[17px] flex flex-col items-center justify-center">
         {/* 그래픽 */}
         <div className="laptop:hidden desktop:hidden tablet:w-[400px] tablet:h-[385px] relative h-[192px] w-[200px]">
           <img
@@ -30,14 +29,14 @@ export default function CompanySizeCard({ step, setStep }: CompanySizeCardProps)
             src={'/onboarding/company-size.png'}
           />
         </div>
-        <h1
-          className="desktop:mt-[46px] laptop:mt-[46px] body-sm-semibold tablet:heading-md-semibold laptop:heading-md-semibold desktop:heading-md-semibold mt-[21px] text-center text-white">
-          Q. 모든 임무를 마친 뒤, 당신이 바라는{' '}
-          <br className="tablet:hidden laptop:hidden desktop:hidden" />
-          보상은?
-        </h1>
-        <div
-          className="desktop:mt-[46px] desktop:mb-[30px] laptop:mt-[46px] laptop:mb-[30px] tablet:my-[38px] desktop:gap-y-6 laptop:gap-y-6 tablet:gap-y-6 my-[14px] flex w-full flex-col gap-y-3">
+        <div className="desktop:mt-[46px] laptop:mt-[46px] mt-[21px] flex items-center justify-center h-[64px]">
+          <h1 className="body-sm-semibold tablet:heading-md-semibold laptop:heading-md-semibold desktop:heading-md-semibold text-center text-white">
+            Q. 당신은 탐사대의 일원이 되었습니다.
+            <br />
+            어떤 임무로 여정을 시작해볼까요?
+          </h1>
+        </div>
+        <div className="desktop:mt-[46px] desktop:mb-[30px] laptop:mt-[46px] laptop:mb-[30px] tablet:my-[38px] desktop:gap-y-6 laptop:gap-y-6 tablet:gap-y-6 my-[14px] flex w-full flex-col gap-y-3">
           {contentList.map((content) => {
             return (
               <button
@@ -49,7 +48,7 @@ export default function CompanySizeCard({ step, setStep }: CompanySizeCardProps)
                   setStep(2)
                 }}
                 key={content.enum}
-                className="laptop:body-2xl-medium desktop:body-2xl-medium tablet:body-2xl-medium caption-md-medium desktop:h-[60px] laptop:h-[60px] tablet:h-[60px] desktop:px-[30px] desktop:py-[16px] laptop:px-[30px] laptop:py-[16px] tablet:px-[30px] tablet:py-[16px] flex h-[36px] w-full items-center rounded-[5px] bg-[#EEF0F9] px-[16px] py-[10px] transition hover:bg-purple-200"
+                className="focus:bg-purple-400 focus:text-white laptop:body-2xl-medium desktop:body-2xl-medium tablet:body-2xl-medium caption-md-medium desktop:h-[60px] laptop:h-[60px] tablet:h-[60px] desktop:px-[30px] desktop:py-[16px] laptop:px-[30px] laptop:py-[16px] tablet:px-[30px] tablet:py-[16px] flex h-[36px] w-full items-center rounded-[5px] bg-[#EEF0F9] px-[16px] py-[10px] transition hover:bg-purple-200"
               >
                 {content.kor}
               </button>
@@ -57,7 +56,6 @@ export default function CompanySizeCard({ step, setStep }: CompanySizeCardProps)
           })}
         </div>
       </div>
-
     </Card>
   )
 }

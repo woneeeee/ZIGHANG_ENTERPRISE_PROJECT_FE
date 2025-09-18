@@ -31,12 +31,12 @@ function App() {
           <Route path="/kakao/oauth" element={<Redirect />} />
           <Route path="/auth/login/kakao" element={<Redirect />} />
           <Route element={<RootLayout />}>
-            <Route path="/onboarding/test" element={<OnboardingTest />}></Route>
             <Route path="/onboarding/start" element={<Start />} />
             <Route path="/onboarding/login" element={<OnboardingLogin />} />
             <Route path="/onboarding/result" element={<Result />} />
           </Route>
           <Route path="/onboarding/sign-up" element={<OnboardingSignUp />} />
+          <Route path="/onboarding/test" element={<OnboardingTest />} />
           <Route path="/:category" element={<Category />} />
         </Routes>
       </BrowserRouter>

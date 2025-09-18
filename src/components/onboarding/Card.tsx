@@ -20,6 +20,7 @@ import { useOnboardingTestStore, useReOnboardingTestStore } from '@/stores/onboa
 import { usePngExport } from '@/hooks/usePngExport'
 import { PROFILECARD_BY_TITLE } from '@/utils/profileCards'
 import ProfileCard from '../profile/Card'
+import { NoMatchingJobs } from '../job/NoMatchingJobs'
 
 const normalize = (s?: string | null) => (s ?? '').trim().toLowerCase().replace(/\s+/g, '')
 
@@ -88,27 +89,27 @@ const Card = () => {
           setCkey(toCharacterKey(data.characterName))
           setProfileName(data.characterName)
           const mapped = adaptSearchToRecommend(data.searchResponses ?? [])
-          setItems(mapped.length ? mapped : RECOMMENDJOBLIST)
+          setItems(mapped.length ? mapped : [])
         } catch (e) {
           console.error('[my-page/all] failed:', e)
           setCkey('워라밸 신봉자')
           setProfileName('워라밸 신봉자')
-          setItems(RECOMMENDJOBLIST)
+          setItems([])
         }
       } else if (State?.from === 'retest' && isLoggedIn && reonboardingCharacterData) {
         setCkey(toCharacterKey(reonboardingCharacterData.characterName))
         console.log(reonboardingCharacterData.characterName)
         setProfileName(reonboardingCharacterData.characterName)
         const mapped = adaptSearchToRecommend(reonboardingCharacterData.searchResponses ?? [])
-        setItems(mapped.length ? mapped : RECOMMENDJOBLIST)
+        setItems(mapped.length ? mapped : [])
       } else if (onboardingCharacterData) {
         setCkey(toCharacterKey(onboardingCharacterData.characterName))
         setProfileName(onboardingCharacterData.characterName)
-        setItems(RECOMMENDJOBLIST)
+        setItems([])
       } else {
         setCkey('워라밸 신봉자')
         setProfileName('워라밸 신봉자')
-        setItems(RECOMMENDJOBLIST)
+        setItems([])
       }
     }
 
@@ -209,31 +210,50 @@ const Card = () => {
           )}
         </div>
         <div className="tablet:rounded-[16px] relative overflow-hidden rounded-[8px]">
-          <div
-            ref={ctaContainerRef}
-            className={cn(
-              'laptop:grid-cols-3 tablet:grid-cols-2 tablet:grid tablet:gap-x-[10px] tablet:gap-y-[24px] flex flex-col gap-[10px]',
-              !accessToken && 'blur-[7px]',
-            )}
-          >
-            {items.map((item) => (
-              <RecommendJobBox key={item.id} item={item} />
-            ))}
-          </div>
-          <AnimatePresence>
-            {!accessToken && (
-              <motion.div
-                key="cta"
-                className="absolute inset-0 z-20 grid place-items-center bg-white/20"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.25 }}
+          {isLoggedIn ? (
+            items.length > 0 ? (
+              <div
+                ref={ctaContainerRef}
+                className={cn(
+                  'laptop:grid-cols-3 tablet:grid-cols-2 tablet:grid tablet:gap-x-[10px] tablet:gap-y-[24px] flex flex-col gap-[10px]',
+                )}
               >
-                <GrowingTextButton open={ctaInView} />
-              </motion.div>
-            )}
-          </AnimatePresence>
+                {items.map((item) => (
+                  <RecommendJobBox key={item.id} item={item} />
+                ))}
+              </div>
+            ) : (
+              <p className="w-full py-5 text-center text-white">
+                <NoMatchingJobs isResult />
+              </p>
+            )
+          ) : (
+            <>
+              <div
+                ref={ctaContainerRef}
+                className={cn(
+                  'laptop:grid-cols-3 tablet:grid-cols-2 tablet:grid tablet:gap-x-[10px] tablet:gap-y-[24px] flex flex-col gap-[10px]',
+                  'blur-[7px]',
+                )}
+              >
+                {RECOMMENDJOBLIST.map((item) => (
+                  <RecommendJobBox key={item.id} item={item} />
+                ))}
+              </div>
+              <AnimatePresence>
+                <motion.div
+                  key="cta"
+                  className="absolute inset-0 z-20 grid place-items-center bg-white/20"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.25 }}
+                >
+                  <GrowingTextButton open={ctaInView} />
+                </motion.div>
+              </AnimatePresence>
+            </>
+          )}
         </div>
       </div>
     </main>

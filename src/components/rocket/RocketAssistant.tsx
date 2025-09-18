@@ -8,6 +8,7 @@ import rocketIdle from '@/assets/lotties/rocket_idle_float.json'
 import rocketHover from '@/assets/lotties/rocket_hover_blink.json'
 import rocketFlying from '@/assets/lotties/rocket_flying.json'
 import RocketText from './RocketText'
+import { useOnboardingTestStore, useReOnboardingTestStore } from '@/stores/onboardingTestStore'
 
 type Phase = 'flying' | 'idle' | 'hover'
 
@@ -66,6 +67,14 @@ export default function RocketAssistant({
   autoLaunch = true,
 }: Props) {
   const [phase, setPhase] = useState<Phase>('idle')
+  const [isTestDone, setIsTestDone] = useState(false)
+
+  useEffect(() => {
+    const onboardingTestStorage = localStorage.getItem('onboarding-test-storage')
+    if (onboardingTestStorage) {
+      setIsTestDone(true)
+    }
+  }, [])
 
   const launchedRef = useRef(false)
   const lottieRef = useRef<LottieRefCurrentProps>(null)
@@ -166,44 +175,87 @@ export default function RocketAssistant({
   const nav = useNavigate()
   const handleClick = () => nav('/onboarding/start')
 
-  return (
-    <motion.button
-      className="fixed z-40 cursor-pointer select-none"
-      onClick={handleClick}
-      style={{ left: startLeft, top: START_TOP, transformOrigin: '50% 50%' }}
-      aria-label="rocket assistant"
-      animate={animate}
-      transition={transition}
-      onAnimationComplete={() => {
-        if (phase === 'flying') setPhase('idle')
-      }}
-      onMouseEnter={() => {
-        if (phase === 'idle') setPhase('hover')
-      }}
-      onMouseLeave={() => {
-        if (phase === 'hover') setPhase('idle')
-      }}
-    >
-      {phase !== 'flying' && (
-        <div className="absolute -top-15 left-1/2 -translate-x-1/2">
-          <RocketText />
-        </div>
-      )}
-      {phase !== 'flying' && (
-        <div className="absolute -bottom-3 left-1 z-5 w-[140px] opacity-90">
-          <Lottie lottieRef={cloudRef} animationData={cloudDefault} loop autoplay />
-        </div>
-      )}
+  const handleReClick = () => {
+    localStorage.removeItem('onboarding-test-storage')
+    useOnboardingTestStore.getState().reset()
+    useReOnboardingTestStore.getState().reset()
+    nav('/onboarding/start')
+  }
 
-      <div className="relative h-[150px] w-[150px]">
-        <Lottie
-          lottieRef={lottieRef}
-          animationData={currentLottie}
-          loop={phase !== 'hover'}
-          autoplay
-          className="h-full w-full"
-        />
-      </div>
-    </motion.button>
+  return (
+    <>
+      {isTestDone ? (
+        <div
+          className="cursor-pointer"
+          onMouseEnter={() => setPhase('hover')}
+          onMouseLeave={() => setPhase('idle')}
+          onClick={handleReClick}
+        >
+          <div className="absolute -bottom-1 left-0 h-[150px] w-[150px]">
+            {phase === 'hover' ? (
+              <div className="absolute -bottom-3 left-1 z-5 w-[140px] opacity-90">
+                <Lottie
+                  lottieRef={lottieRef}
+                  animationData={rocketHover}
+                  autoplay
+                  className="h-full w-full"
+                />
+              </div>
+            ) : (
+              <div className="absolute -bottom-3 left-1 z-5 w-[140px] opacity-90">
+                <Lottie
+                  lottieRef={lottieRef}
+                  animationData={rocketIdle}
+                  autoplay
+                  className="h-full w-full"
+                />
+              </div>
+            )}
+          </div>
+          <div className="absolute -bottom-3 left-1 z-5 w-[140px] opacity-90">
+            <Lottie lottieRef={cloudRef} animationData={cloudDefault} loop autoplay />
+          </div>
+        </div>
+      ) : (
+        <motion.button
+          className="fixed z-40 cursor-pointer select-none"
+          onClick={handleClick}
+          style={{ left: startLeft, top: START_TOP, transformOrigin: '50% 50%' }}
+          aria-label="rocket assistant"
+          animate={animate}
+          transition={transition}
+          onAnimationComplete={() => {
+            if (phase === 'flying') setPhase('idle')
+          }}
+          onMouseEnter={() => {
+            if (phase === 'idle') setPhase('hover')
+          }}
+          onMouseLeave={() => {
+            if (phase === 'hover') setPhase('idle')
+          }}
+        >
+          {phase !== 'flying' && (
+            <div className="absolute -top-15 left-1/2 -translate-x-1/2">
+              <RocketText />
+            </div>
+          )}
+          {phase !== 'flying' && (
+            <div className="absolute -bottom-3 left-1 z-5 w-[140px] opacity-90">
+              <Lottie lottieRef={cloudRef} animationData={cloudDefault} loop autoplay />
+            </div>
+          )}
+
+          <div className="relative h-[150px] w-[150px]">
+            <Lottie
+              lottieRef={lottieRef}
+              animationData={currentLottie}
+              loop={phase !== 'hover'}
+              autoplay
+              className="h-full w-full"
+            />
+          </div>
+        </motion.button>
+      )}
+    </>
   )
 }

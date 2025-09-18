@@ -1,4 +1,4 @@
-import { BookmarkIcon, BusIcon } from '@/assets/svgComponents'
+import { BookmarkIcon, BusIcon, Car2Icon } from '@/assets/svgComponents'
 import type { JobPostingType } from '@/types/job.ts'
 import { changeEducationEnumToKor, changeRecruitmentTypeEnumToKor } from '@/utils/sign-up.ts'
 
@@ -53,7 +53,11 @@ export default function JobCard({ hasTag = true, hasViewCount = false, job, view
             {hasTag ? (
               <>
                 <div className="desktop:p-1 laptop:p-1 tablet:p-1 flex h-fit w-fit items-center gap-x-1 rounded-[2px] bg-[#F0F5FF] px-[2px]">
-                  <BusIcon width={14} height={14} />
+                  {job.transport === 'CAR' ? (
+                    <Car2Icon width={14} height={14} />
+                  ) : (
+                    <BusIcon width={14} height={14} />
+                  )}
                   <p
                     className={`${convertMinutesToHoursAndMinutes(job.commuteMinutes).length >= 6 ? 'desktop:w-[50px] laptop:w-[50px] tablet:w-fit w-[30px] truncate' : ''} caption-xs-semibold tablet:body-caption-sm-medium laptop:body-caption-sm-medium desktop:body-caption-sm-medium text-[#0057FF]`}
                   >

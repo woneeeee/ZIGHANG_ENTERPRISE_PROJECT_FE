@@ -9,6 +9,7 @@ export const mockJobs: JobPostingType[] = [
     recruitmentType: ['FULL_TIME'],
     education: 'BACHELOR',
     commuteMinutes: 60,
+    transport: 'CAR',
     welfare: '식대 지원'
   },
   {
@@ -19,6 +20,7 @@ export const mockJobs: JobPostingType[] = [
     recruitmentType: ['FULL_TIME'],
     education: 'BACHELOR',
     commuteMinutes: 60,
+    transport: 'CAR',
     welfare: '식대 지원'
   },
   {
@@ -29,6 +31,7 @@ export const mockJobs: JobPostingType[] = [
     recruitmentType: ['FULL_TIME'],
     education: 'BACHELOR',
     commuteMinutes: 60,
+    transport: 'CAR',
     welfare: '식대 지원'
   },
   {
@@ -39,6 +42,7 @@ export const mockJobs: JobPostingType[] = [
     recruitmentType: ['FULL_TIME'],
     education: 'BACHELOR',
     commuteMinutes: 60,
+    transport: 'CAR',
     welfare: '식대 지원'
   },
   {
@@ -49,6 +53,7 @@ export const mockJobs: JobPostingType[] = [
     recruitmentType: ['FULL_TIME'],
     education: 'BACHELOR',
     commuteMinutes: 60,
+    transport: 'CAR',
     welfare: '식대 지원'
   },
   {
@@ -59,6 +64,7 @@ export const mockJobs: JobPostingType[] = [
     recruitmentType: ['FULL_TIME'],
     education: 'BACHELOR',
     commuteMinutes: 60,
+    transport: 'CAR',
     welfare: '식대 지원'
   },
   {
@@ -69,6 +75,7 @@ export const mockJobs: JobPostingType[] = [
     recruitmentType: ['FULL_TIME'],
     education: '학력 무관',
     commuteMinutes: 60,
+    transport: 'CAR',
     welfare: '식대 지원'
   },
   {
@@ -79,6 +86,7 @@ export const mockJobs: JobPostingType[] = [
     recruitmentType: ['FULL_TIME'],
     education: '학력 무관',
     commuteMinutes: 60,
+    transport: 'CAR',
     welfare: '식대 지원'
   },
   {
@@ -89,6 +97,7 @@ export const mockJobs: JobPostingType[] = [
     recruitmentType: ['FULL_TIME'],
     education: 'BACHELOR',
     commuteMinutes: 60,
+    transport: 'CAR',
     welfare: '식대 지원'
   },
   {
@@ -99,6 +108,7 @@ export const mockJobs: JobPostingType[] = [
     recruitmentType: ['FULL_TIME'],
     education: 'BACHELOR',
     commuteMinutes: 60,
+    transport: 'CAR',
     welfare: '식대 지원'
   },
 ]

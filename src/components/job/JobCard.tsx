@@ -6,8 +6,9 @@ interface JobCardProps {
   hasTag?: boolean
   hasViewCount?: boolean
   job: JobPostingType
+  viewCount?: number
 }
-export default function JobCard({ hasTag = true, hasViewCount = false, job }: JobCardProps) {
+export default function JobCard({ hasTag = true, hasViewCount = false, job, viewCount }: JobCardProps) {
   /**
    * 분(minute)을 "X시간 Y분" 형식으로 변환하는 함수
    * @param minutes - 변환할 분 수
@@ -105,19 +106,19 @@ export default function JobCard({ hasTag = true, hasViewCount = false, job }: Jo
                   />
                 </span>
                 <span>
-                  <div className="mx-0 flex gap-0 text-[15px] text-[#71717A] md:mx-2">
+                  <div className="mx-0 flex items-center gap-0 text-[15px] text-[#71717A] md:mx-2">
                     <img
-                      alt="인기 게시물"
+                      alt="조회수 아이콘"
                       loading="lazy"
-                      width="16"
-                      height="16"
+                      width="0"
+                      height="0"
                       decoding="async"
                       data-nimg="1"
-                      className="pd:h-6 pd:w-6 h-3.5 w-3.5"
-                      src="https://zighang.com/icon/fire-red.svg"
+                      className="h-[20px] w-[20px] flex-shrink-0 md:h-[20px] md:w-[20px]"
+                      src="https://zighang.com/icon/visibility.svg"
                     />
-                    <div className="mx-[1px] flex items-center text-[11px] text-[#FF5757] md:mx-[4px] md:text-[16px]">
-                      32054
+                    <div className="body-caption-xs-medium tablet:body-lg-semibold laptop:body-lg-semibold desktop:body-lg-semibold mx-[1px] flex items-center text-neutral-500">
+                      {viewCount}
                     </div>
                   </div>
                 </span>

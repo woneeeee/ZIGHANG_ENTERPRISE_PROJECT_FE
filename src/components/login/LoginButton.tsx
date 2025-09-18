@@ -8,7 +8,7 @@ const LoginButton = ({ type = 'space' }) => {
   const loc = useLocation()
 
   const baseClasses =
-    'body-lg-medium flex items-center gap-[17px] rounded-[8px] px-[240px] py-[13px] cursor-pointer'
+    'body-caption-sm2-medium tablet:body-lg-medium flex items-center gap-[10px] tablet:gap-[17px] rounded-[8px] px-[40px] tablet:px-[240px] py-[10px] tablet:py-[13px] cursor-pointer'
   const themeClasses =
     type === 'white'
       ? 'bg-white border border-neutral-300 text-neutral-900'

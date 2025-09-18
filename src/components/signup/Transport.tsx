@@ -52,7 +52,7 @@ export default function Transport() {
   return (
     <main
       id="commute-section"
-      className="desktop:pt-[220px] laptop:pt-[220px] tablet:pt-[180px] tablet:bg-[#FAFBFE] laptop:bg-[#FAFBFE] desktop:bg-[#FAFBFE] flex min-h-screen flex-col gap-y-4 px-4 pt-[150px]"
+      className="desktop:pt-[220px] laptop:pt-[220px] tablet:pt-[220px] tablet:bg-[#FAFBFE] laptop:bg-[#FAFBFE] desktop:bg-[#FAFBFE] flex min-h-screen flex-col gap-y-4 px-4 pt-[150px]"
     >
       <h1 className="body-md-semibold tablet:heading-md-semibold desktop:heading-md-semibold laptop:heading-md-semibold">
         주로 어떤 방법으로 출퇴근하시나요?

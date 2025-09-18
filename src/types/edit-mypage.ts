@@ -13,6 +13,6 @@ export interface EditMyInfoType {
   education: EducationEnumType | undefined | null
   workExperience: number | undefined | null
   address: string | undefined | null
-  transport: TransportEnumType | undefined | null
-  maxCommuteMinutes: number | undefined | null
+  transport: TransportEnumType | undefined
+  maxCommuteMinutes: number | undefined
 }

@@ -23,15 +23,24 @@ const Redirect: React.FC = () => {
           params: { code, redirectUri: import.meta.env.VITE_KAKAO_REDIRECT_URI },
         })
         .then((res) => {
-          const { userId, accessToken, refreshToken } = res.data.result
+          const { userId, accessToken, refreshToken, first } = res.data.result
           localStorage.setItem('userId', userId)
 
-          const from = localStorage.getItem('loginFrom')
-
           if (res.data.code === '200') {
+            if (first === false) {
+              const onboardingTestStorage = localStorage.getItem('onboarding-test-storage')
+              if (onboardingTestStorage) {
+                navigate('/onboarding/result', { replace: true, state: { from: 'mypage' } })
+              } else {
+                navigate('/', { replace: true })
+              }
+            } else {
+              const from = localStorage.getItem('loginFrom')
+              navigate(resolveSignUpPath(from), { replace: true })
+            }
+
             localStorage.setItem('accessToken', accessToken)
             localStorage.setItem('refreshToken', refreshToken)
-            navigate(resolveSignUpPath(from), { replace: true })
           } else {
             navigate('/login')
           }

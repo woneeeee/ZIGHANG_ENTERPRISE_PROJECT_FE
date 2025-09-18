@@ -42,7 +42,7 @@ export default function JobCard({ hasTag = true, hasViewCount = false, job }: Jo
         <div className="tablet:h-[80px] tablet:w-[80px] laptop:w-[70px] laptop:h-[70px] caption-md-medium tablet:min-w-[80px] laptop:min-w-[70px] desktop:min-w-[80px] tablet:min-h-[80px] laptop:min-h-[70px] desktop:min-h-[80px] desktop:px-3 laptop:px-3 tablet:px-3 flex h-[55px] min-h-[55px] w-[55px] min-w-[55px] items-center justify-center truncate rounded-[12px] bg-purple-400 px-2 text-white">
           <div className="truncate">{job.companyName}</div>
         </div>
-        <div className="tablet:gap-y-2 laptop:gap-y-2 desktop:gap-y-2 desktop:w-[60%] laptop:w-[80%] flex flex-col gap-y-[6px]">
+        <div className="tablet:gap-y-2 laptop:gap-y-2 desktop:gap-y-2 desktop:w-[80%] laptop:w-[80%] flex flex-col gap-y-[6px]">
           <section className="tablet:gap-x-2 laptop:gap-x-2 desktop:gap-x-2 flex gap-x-1">
             <div
               className={`${job.companyName.length > 4 ? 'laptop:w-[70px] w-[40px]' : 'w-fit'} tablet:body-lg-semibold laptop:body-lg-semibold desktop:body-lg-semibold caption-xs-medium truncate text-neutral-500`}

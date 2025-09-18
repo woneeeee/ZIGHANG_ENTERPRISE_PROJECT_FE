@@ -47,7 +47,7 @@ export default function MaxCommuteMinutes() {
   return (
     <main
       id="commuting-time-section"
-      className="tablet:bg-[#FAFBFE] laptop:bg-[#FAFBFE] desktop:bg-[#FAFBFE] flex min-h-screen flex-col gap-y-4 px-4 desktop:pt-[220px] laptop:pt-[220px] tablet:pt-[220px] pt-[150px]"
+      className="tablet:bg-[#FAFBFE] laptop:bg-[#FAFBFE] desktop:bg-[#FAFBFE] flex min-h-screen flex-col gap-y-4 desktop:px-8 laptop:px-8 tablet:px-8 px-4 desktop:pt-[220px] laptop:pt-[220px] tablet:pt-[220px] pt-[150px]"
     >
       <h1 className="body-md-semibold tablet:heading-md-semibold desktop:heading-md-semibold laptop:heading-md-semibold">
         출퇴근 시간은 어느정도가 괜찮으신가요?

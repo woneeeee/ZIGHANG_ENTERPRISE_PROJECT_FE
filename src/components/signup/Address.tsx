@@ -10,7 +10,7 @@ export default function Address() {
   return (
     <main
       id="address-section"
-      className="tablet:bg-[#FAFBFE] laptop:bg-[#FAFBFE] desktop:bg-[#FAFBFE] desktop:pt-[220px] laptop:pt-[220px] tablet:pt-[220px] flex min-h-screen flex-col gap-y-4 px-4 pt-[150px]"
+      className="tablet:bg-[#FAFBFE] laptop:bg-[#FAFBFE] desktop:bg-[#FAFBFE] desktop:pt-[220px] laptop:pt-[220px] tablet:pt-[220px] flex min-h-screen flex-col gap-y-4 desktop:px-8 laptop:px-8 tablet:px-8 px-4 pt-[150px]"
     >
       <h1 className="body-md-semibold tablet:heading-md-semibold desktop:heading-md-semibold laptop:heading-md-semibold">
         더 정확한 맞춤 공고를 위해, 거주하시는 곳을 알려주세요
@@ -332,7 +332,7 @@ function CustomAddressSearch() {
       <div className="fixed bottom-[30px] left-1/2 flex -translate-x-1/2 flex-col items-center justify-center">
         {formComplete ? (
           <AnimatedSpeechBubble floatingType="gentle">
-            <p className="desktop:caption-md-medium laptop:caption-md-medium tablet:caption-md-medium text-purple-500">
+            <p className="desktop:caption-md-medium laptop:caption-md-medium tablet:caption-md-medium caption-sm2-medium text-purple-500">
               프로필 정보에 맞는 맞춤 공고로 이동해요
             </p>
           </AnimatedSpeechBubble>

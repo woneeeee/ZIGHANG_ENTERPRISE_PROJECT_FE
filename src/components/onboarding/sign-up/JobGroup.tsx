@@ -61,7 +61,7 @@ export default function JobGroup() {
             <button
               onClick={() => handleCategoryClick(category2.enum)}
               key={category2.kor}
-              className={`${signUpData?.jobGroups === category2.enum ? 'bg-purple-400 text-white' : 'hover:bg-ui-transparent-light border border-neutral-400 hover:border-purple-300'} caption-sm-medium flex h-[36px] cursor-pointer items-center justify-center rounded-[6px] px-[12px] py-[10px] text-white`}
+              className={`${signUpData?.jobGroups === category2.enum ? 'bg-purple-400 text-white' : 'hover:bg-ui-transparent-light border border-neutral-400 hover:border-purple-300'} desktop:body-md-medium laptop:body-md-medium tablet:body-md-medium caption-sm-medium flex h-[36px] cursor-pointer items-center justify-center rounded-[6px] px-[12px] py-[10px] text-white`}
             >
               {category2.kor}
             </button>
@@ -74,7 +74,7 @@ export default function JobGroup() {
             <button
               onClick={() => handleCategoryClick(category3.enum)}
               key={category3.kor}
-              className={`${signUpData?.jobGroups === category3.enum ? 'bg-purple-400 text-white' : 'hover:bg-ui-transparent-light border border-neutral-400 hover:border-purple-300'} caption-sm-medium flex h-[36px] cursor-pointer items-center justify-center rounded-[6px] px-[12px] py-[10px] text-white`}
+              className={`${signUpData?.jobGroups === category3.enum ? 'bg-purple-400 text-white' : 'hover:bg-ui-transparent-light border border-neutral-400 hover:border-purple-300'} desktop:body-md-medium laptop:body-md-medium tablet:body-md-medium caption-sm-medium flex h-[36px] cursor-pointer items-center justify-center rounded-[6px] px-[12px] py-[10px] text-white`}
             >
               {category3.kor}
             </button>
@@ -88,7 +88,7 @@ export default function JobGroup() {
             <button
               onClick={() => handleCategoryClick(category4.enum)}
               key={category4.kor}
-              className={`${signUpData?.jobGroups === category4.enum ? 'bg-purple-400 text-white' : 'hover:bg-ui-transparent-light border border-neutral-400 hover:border-purple-300'} caption-sm-medium flex h-[36px] cursor-pointer items-center justify-center rounded-[6px] px-[12px] py-[10px] text-white`}
+              className={`${signUpData?.jobGroups === category4.enum ? 'bg-purple-400 text-white' : 'hover:bg-ui-transparent-light border border-neutral-400 hover:border-purple-300'} desktop:body-md-medium laptop:body-md-medium tablet:body-md-medium caption-sm-medium flex h-[36px] cursor-pointer items-center justify-center rounded-[6px] px-[12px] py-[10px] text-white`}
             >
               {category4.kor}
             </button>

@@ -6,17 +6,19 @@ import Transport from '@/components/signup/Transport.tsx'
 import MaxCommuteMinutes from '@/components/signup/MaxCommuteMinutes.tsx'
 import Address from '@/components/signup/Address.tsx'
 import Header from '@/components/common/Header.tsx'
-import { useEffect, useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useSignUpStore } from '@/store/signupStore.ts'
 import { useEditMyInfoStore } from '@/stores/editMyInfoStore.ts'
 import { useProfileStore } from '@/stores/profileStore.ts'
 import { changeEducationKorToEnum, getDetailJobCategory, getJobCategory } from '@/utils/sign-up.ts'
 import type { JobPositionEnumType } from '@/types/signup.ts'
+import SignUpEmptyErrorModal from '@/components/modal/SignUpEmptyErrorModal.tsx'
 
 export default function SignUp() {
   const signUpData = useSignUpStore((state) => state.signUpData)
   const editMyInfoData = useEditMyInfoStore((state) => state.editMyInfoData)
   const setState = useEditMyInfoStore((state) => state.setState)
+  const [isSignUpEmptyErrorModalOpen, setIsSignUpEmptyErrorModalOpen] = useState(false)
 
   const { profile } = useProfileStore()
 
@@ -91,34 +93,39 @@ export default function SignUp() {
 
   return (
     <main className="relative flex flex-col items-center justify-center">
-      <Header variant={'white'}></Header>
+      {isSignUpEmptyErrorModalOpen ? <SignUpEmptyErrorModal setIsSignUpEmptyErrorModalOpen={setIsSignUpEmptyErrorModalOpen} /> : null}
+      <Header onClick={() => setIsSignUpEmptyErrorModalOpen(true)} variant={'white'}></Header>
       {/* 안내 문구 */}
 
-      <div className="relative desktop:w-[906px] laptop:w-[906px] tablet:w-[702px] w-full border">
+      <div className="relative desktop:w-[906px] laptop:w-[906px] tablet:w-[702px] w-full">
         <div
-          className="w-full tablet:heading-lg-semibold laptop:heading-lg-semibold desktop:heading-lg-semibold caption-md-semibold desktop:px-[30px] laptop:px-[30px] tablet:px-[30px] desktop:pt-[40px] laptop:pt-[40px] tablet:pt-[40px] desktop:pb-[30px] laptop:pb-[30px] tablet:pb-[30px] fixed top-20 z-40  bg-white px-[16px] pt-[18px] pb-[10px]">
-          <p>
+          className="tablet:heading-lg-semibold laptop:heading-lg-semibold desktop:heading-lg-semibold caption-md-semibold fixed desktop:top-20 z-40 bg-white desktop:w-[906px] laptop:w-[906px] tablet:w-[702px] w-full">
+          <p className={"desktop:px-[30px] laptop:px-[30px] tablet:px-[30px] px-[16px] desktop:pt-[40px] laptop:pt-[40px] tablet:pt-[40px] pt-[18px] desktop:pb-[20px] laptop:pb-[20px] tablet:pb-[20px] pb-[10px]"}>
             몇 가지 정보만 알려주시면,{' '}
             <br className="desktop:hidden laptop:hidden tablet:hidden block" />{' '}
-            <span className="text-purple-500">딱 맞는 공고</span>를 추천 받을 수 있어요!
+            <span className="text-purple-400">딱 맞는 공고</span>를 추천 받을 수 있어요!
           </p>
-        </div>
-        {/* 진행바 */}
-        <div className="desktop:mt-[20px] laptop:mt-[20px] tablet:mt-[20px] mt-[10px]">
+
+          {/* 진행바를 안내 문구 바로 아래에 추가 */}
           <div
-            className="tablet:h-[6px] absolute z-30 h-[2px] bg-purple-500 transition-all duration-300 ease-out"
-            style={{
-              width: editMyInfoData ? `${progressEditMyInfoData}%` : `${progressSignUpData}%`,
-            }}
-          />
-          <div className="tablet:h-[6px] absolute z-20 h-[2px] w-full bg-neutral-100" />
+            className="relative desktop:mt-[20px] laptop:mt-[20px] tablet:mt-[20px] mt-[10px] desktop:w-[906px] laptop:w-[906px] tablet:w-[702px] w-full">
+            <div
+              className="tablet:h-[6px] absolute z-30 h-[2px] bg-purple-400 transition-all duration-300 ease-out"
+              style={{
+                width: editMyInfoData ? `${progressEditMyInfoData}%` : `${progressSignUpData}%`,
+              }}
+            />
+            <div className="tablet:h-[6px] absolute z-20 h-[2px] w-full bg-neutral-100" />
+          </div>
         </div>
+
+        {/* 기존 진행바 제거 */}
       </div>
 
 
-      <div className="desktop:w-[906px] laptop:w-full tablet:w-full relative w-full">
+      <div className="flex flex-col items-center justify-center desktop:w-[906px] tablet:w-[702px] laptop:w-[906px] tablet:w-full relative w-full">
         {/* 진행바 */}
-        <div className="">
+        <div className="desktop:w-[906px] laptop:w-[906px] tablet:w-[702px] w-full">
           {/* 회원가입 정보 입력 */}
           <Education />
           <JobGroup />

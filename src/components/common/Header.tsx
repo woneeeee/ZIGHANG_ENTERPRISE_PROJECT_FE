@@ -10,11 +10,12 @@ type HeaderVariant = 'main' | 'space' | 'white'
 type HeaderProps = {
   variant?: HeaderVariant
   className?: string
+  onClick?: () => void
 }
 
-export default function Header({ variant = 'main', className }: HeaderProps) {
+export default function Header({ variant = 'main', className, onClick }: HeaderProps) {
   if (variant === 'space') return <SpaceHeader className={className} />
-  if (variant === 'white') return <WhiteHeader className={className} />
+  if (variant === 'white') return <WhiteHeader className={className} onClick={onClick} />
   return <MainHeader className={className} />
 }
 
@@ -36,7 +37,7 @@ function SpaceHeader({ className }: { className?: string }) {
   )
 }
 
-function WhiteHeader({ className }: { className?: string }) {
+function WhiteHeader({ className, onClick }: { className?: string, onClick?: () => void }) {
   const nav = useNavigate()
 
   return (
@@ -48,7 +49,7 @@ function WhiteHeader({ className }: { className?: string }) {
     >
       <LogoIcon
         className="tablet:h-[36px] tablet:w-[81px] h-[21px] w-[47px]"
-        onClick={() => nav('/')}
+        onClick={onClick ? onClick : () => nav('/')}
       />
     </section>
   )

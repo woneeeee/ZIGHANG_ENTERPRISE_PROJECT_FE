@@ -52,7 +52,7 @@ const ProfileCard = forwardRef<HTMLDivElement, CardProps>(({ item }, ref) => {
       </div>
       <div
         data-skip-export
-        className="tablet:h-[54px] tablet:py-[17px] tablet:px-[36px] tablet:gap-[30px] tablet:rounded-[14px] tablet:rounded-t-none flex h-[41px] items-center justify-center gap-[18px] rounded-[10px] rounded-t-none bg-white py-[12px]"
+        className="tablet:h-[55px] tablet:w-[298px] tablet:py-[17px] tablet:px-[36px] tablet:gap-[30px] tablet:rounded-[13px] tablet:rounded-t-none flex h-[40px] w-[224px] items-center justify-center gap-[18px] rounded-[9px] rounded-t-none bg-neutral-50 py-[12px]"
       >
         <p
           className="caption-sm-medium tablet:body-sm-medium cursor-pointer whitespace-nowrap text-purple-500"

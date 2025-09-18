@@ -332,7 +332,7 @@ function CustomAddressSearch() {
       <div className="fixed bottom-[30px] left-1/2 flex -translate-x-1/2 flex-col items-center justify-center">
         {formComplete ? (
           <AnimatedSpeechBubble floatingType="gentle">
-            <p className="desktop:caption-md-medium laptop:caption-md-medium tablet:caption-md-medium text-purple-500">
+            <p className="desktop:caption-md-medium laptop:caption-md-medium tablet:caption-md-medium caption-sm2-medium text-purple-500">
               프로필 정보에 맞는 맞춤 공고로 이동해요
             </p>
           </AnimatedSpeechBubble>

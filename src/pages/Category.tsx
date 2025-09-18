@@ -40,6 +40,7 @@ export default function Category() {
               job={job}
               hasTag={Boolean(job.commuteMinutes != null || job.welfare)}
               hasViewCount
+              viewCount={1232}
             />
           ))}
         </section>
@@ -82,7 +83,7 @@ function Menu() {
 
 function MainFilter() {
   return (
-    <section className="desktop:w-[1150px] laptop:w-[850px] tablet:w-[630px] mt-[24px] flex w-[300px] items-center gap-2">
+    <section className="desktop:w-[1230px] laptop:w-[930px] tablet:w-[700px] mt-[24px] flex w-[300px] items-center gap-2">
       <section className="flex items-center gap-2">
         <button
           className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#EFEAFF] text-[#71717A] active:bg-[#E4DAFF] md:h-11 md:w-11 md:hover:bg-gray-100"
@@ -175,7 +176,7 @@ function MainFilter() {
             네카라쿠배.. 공고만
           </div>
         </div>
-        <div className="flex flex-shrink-0 flex-row items-center rounded-[10px] border border-purple-500 bg-purple-50 py-[10px] pr-3 pl-4">
+        <div className="desktop:px-4 desktop:py-[10px] laptop:px-4 laptop:py-[10px] flex h-fit flex-shrink-0 flex-row items-center rounded-[10px] border border-purple-500 bg-purple-50 px-2 py-[6px]">
           <div className="desktop:body-lg-regular laptop:body-lg-regular body-sm-regular text-purple-500">
             정규직
           </div>
@@ -220,7 +221,7 @@ function MainFilter() {
             src="https://zighang.com/icon/expand_more.svg"
           />
         </div>
-        <div className="bg-purple-50desktop:px-4 desktop:py-[10px] laptop:px-4 laptop:py-[10px] flex h-fit flex-shrink-0 flex-row items-center rounded-[10px] border border-purple-500 px-2 py-[6px]">
+        <div className="bg-purple-50desktop:px-4 desktop:py-[10px] laptop:px-4 laptop:py-[10px] flex h-fit flex-shrink-0 flex-row items-center rounded-[10px] border border-purple-500 bg-purple-50 px-2 py-[6px]">
           <div className="desktop:body-lg-regular laptop:body-lg-regular body-sm-regular text-purple-500">
             상시 채용 외 2건
           </div>

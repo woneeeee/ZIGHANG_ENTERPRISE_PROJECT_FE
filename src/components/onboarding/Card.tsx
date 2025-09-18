@@ -165,8 +165,8 @@ const Card = () => {
             </span>
           </div>
           <div className="laptop:flex-row flex flex-col items-center justify-center gap-[37px]">
-            <div className="flex flex-col items-center gap-[20px]">
-              <OnboardingIcon className="tablet:w-[299px] h-[220px] w-[228px]" />
+            <div className="flex flex-col items-center justify-center gap-[20px]">
+              <OnboardingIcon className="tablet:w-[299px] tablet:h-[248px] h-[220px] w-[228px]" />
               <Button
                 className="caption-sm-medium tablet:caption-md-medium rounded-[4px] bg-[#fff]/[.12] p-[10px] text-white hover:bg-[#fff]/[.5]"
                 onClick={handleSaveProfileCard}

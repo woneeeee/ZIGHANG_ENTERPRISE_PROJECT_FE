@@ -452,10 +452,10 @@ body {
 @utility body-lg-bold {
   /* Body/lg/bold */
   font-family: var(--font-family, Pretendard);
-  font-size: var(--scale-body-lg, 16px);
+  font-size: var(--scale-heading-lg, 24px);
   font-style: normal;
   font-weight: var(--weight-bold, 700);
-  line-height: var(--lh-body-lg, 24px); /* 150% */
+  line-height: var(--lh-body-2xl, 28px); /* 116.667% */
 }
 @utility body-lg-semibold {
   /* Body/lg/semibold */
@@ -569,6 +569,15 @@ body {
   font-size: 10px;
   font-style: normal;
   font-weight: var(--weight-medium, 500);
+  line-height: var(--lh-caption-sm, 16px); /* 160% */
+}
+
+@utility body-caption-xs-semibold {
+  /* Body/Caption/xs/semibold */
+  font-family: var(--font-family, Pretendard);
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 500;
   line-height: var(--lh-caption-sm, 16px); /* 160% */
 }
 

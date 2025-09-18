@@ -34,7 +34,7 @@ export default function JobCard({ hasTag = true, hasViewCount = false, job }: Jo
 
   return (
     <div className="tablet:rounded-[26px] laptop:rounded-[26px] desktop:rounded-[26px] flex w-full rounded-[10px] shadow-[0_0_12.733px_0_rgba(0,0,0,0.08)]">
-      <section className="desktop:h-[160px] laptop:h-[160px] h-[104px] tablet:gap-x-[24px] desktop:gap-x-[24px] laptop:gap-x-[24px] desktop:py-[16px] desktop:px-6 laptop:py-[16px] laptop:px-6 tablet:py-[16px] tablet:px-6 tablet:rounded-l-[26px] laptop:rounded-l-[26px] desktop:rounded-l-[26px] flex w-full items-center gap-x-[10px] rounded-l-[10px] border-y border-l border-neutral-200 bg-white py-[14px] pl-[10px]">
+      <section className="desktop:h-[160px] laptop:h-[160px] tablet:h-[160px] h-[104px] tablet:gap-x-[24px] desktop:gap-x-[24px] laptop:gap-x-[24px] desktop:py-[16px] desktop:px-6 laptop:py-[16px] laptop:px-6 tablet:py-[16px] tablet:px-6 tablet:rounded-l-[26px] laptop:rounded-l-[26px] desktop:rounded-l-[26px] flex w-full items-center gap-x-[10px] rounded-l-[10px] border-y border-l border-neutral-200 bg-white py-[14px] pl-[10px]">
         <div className="tablet:h-[80px] tablet:w-[80px] laptop:w-[70px] laptop:h-[70px] caption-md-medium tablet:min-w-[80px] laptop:min-w-[70px] desktop:min-w-[80px] tablet:min-h-[80px] laptop:min-h-[70px] desktop:min-h-[80px] flex min-h-[55px] min-w-[55px] w-[55px] h-[55px] items-center justify-center truncate rounded-[12px] bg-purple-400 desktop:px-3 laptop:px-3 tablet:px-3 px-2  text-white">
           <div className="truncate">{job.companyName}</div>
         </div>

@@ -63,8 +63,8 @@ export const useInfiniteJobPostings = (): UseInfiniteJobPostingsReturn => {
       },
       initialPageParam: null, // 첫 요청은 null로 시작
       // 추가 옵션들
-      staleTime: 5 * 60 * 1000, // 5분간 캐시 유지
-      gcTime: 10 * 60 * 1000, // 10분 후 가비지 컬렉션
+      staleTime: 0, // 항상 새로운 데이터 요청
+      gcTime: 1 * 60 * 1000, // 1분 후 가비지 컬렉션
     })
 
   // 모든 페이지의 데이터를 평탄화

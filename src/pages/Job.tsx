@@ -27,6 +27,23 @@ export default function Job() {
     }
   }, [hasNextPage, isFetchingNextPage, fetchNextPage])
 
+  // 오버레이 표시 여부 확인
+  const shouldShowOverlay = !accessToken || !(onboardingCharacterData || reonboardingCharacterData)
+
+  // 스크롤 제어 useEffect 추가
+  useEffect(() => {
+    if (shouldShowOverlay) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+
+    // 컴포넌트 언마운트 시 스크롤 복원
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
+  }, [shouldShowOverlay])
+
   useEffect(() => {
     console.log('jobs', jobs)
     console.log('onboardingCharacterData', onboardingCharacterData)
@@ -35,7 +52,6 @@ export default function Job() {
 
   // Intersection Observer로 무한스크롤 트리거
   const loadMoreRef = useIntersectionObserver(loadMore)
-
 
   if (error) {
     return (
@@ -77,7 +93,7 @@ export default function Job() {
             </div>
           ) : /* 2순위: accessToken은 있지만 onboardingCharacterData가 없으면 테스트 유도 */
           !(onboardingCharacterData || reonboardingCharacterData) ? (
-            <div className="desktop:top-35 laptop:top-35 tablet:top-35 absolute top-22 right-5 left-5 flex h-[calc(100vh-200px)] items-center justify-center bg-white/10 backdrop-blur-sm">
+            <div className="desktop:top-35 laptop:top-35 tablet:top-35 absolute top-22 w-full flex h-[calc(100vh-200px)] items-center justify-center bg-white/10 backdrop-blur-sm">
               <button
                 onClick={() => navigate('/onboarding/start')}
                 className="caption-md-semibold desktop:h-[60px] laptop:h-[60px] tablet:h-[60px] desktop:w-fit laptop:w-fit tablet:w-fit desktop:body-2xl-semibold laptop:body-2xl-semibold tablet:body-2xl-semibold z-10 flex cursor-pointer items-center gap-x-2 rounded-[8px] bg-purple-500 px-5 px-8 py-4 py-[12px] text-white"

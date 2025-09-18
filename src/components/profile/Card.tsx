@@ -35,7 +35,7 @@ const ProfileCard = forwardRef<HTMLDivElement, CardProps>(({ item }, ref) => {
         <CharacterIcon className="h-full w-full" />
       </div>
       <div className="tablet:px-[16px] tablet:pb-[31px] tablet:gap-[20px] flex flex-col items-center justify-center gap-[15px] px-[12px] pb-[23px]">
-        <div className="tablet:gap-[7px] tablet:px-[8px] flex flex-col gap-[5px] px-[31px]">
+        <div className="tablet:gap-[7px] tablet:px-[8px] flex flex-col gap-[5px] px-[8px]">
           <span className="body-xl-semibold tablet:heading-lg-semibold text-white">
             {item.title}
           </span>

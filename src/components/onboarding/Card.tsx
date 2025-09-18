@@ -168,7 +168,7 @@ const Card = () => {
             <div className="flex flex-col items-center justify-center gap-[20px]">
               <OnboardingIcon className="tablet:w-[299px] tablet:h-[248px] h-[220px] w-[228px]" />
               <Button
-                className="caption-sm-medium tablet:caption-md-medium rounded-[4px] bg-[#fff]/[.12] p-[10px] text-white hover:bg-[#fff]/[.5]"
+                className="caption-sm-medium tablet:caption-md-medium flex items-center justify-center rounded-[4px] bg-[#fff]/[.12] p-[10px] text-white hover:bg-[#fff]/[.5]"
                 onClick={handleSaveProfileCard}
               >
                 이미지 저장하기

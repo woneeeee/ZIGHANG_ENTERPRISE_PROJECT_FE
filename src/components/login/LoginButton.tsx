@@ -8,7 +8,7 @@ const LoginButton = ({ type = 'space' }) => {
   const loc = useLocation()
 
   const baseClasses =
-    'body-caption-sm2-medium tablet:body-lg-medium flex items-center gap-[10px] tablet:gap-[17px] rounded-[8px] px-[40px] tablet:px-[240px] py-[10px] tablet:py-[13px] cursor-pointer'
+    'body-caption-sm2-medium text-[11px] w-[253px] tablet:w-[658px] tablet:h-[54px] whitespace-nowrap h-[36px] tablet:body-lg-medium flex items-center justify-center gap-[10px] tablet:gap-[17px] rounded-[8px] px-[40px] py-[10px] tablet:py-[13px] cursor-pointer'
   const themeClasses =
     type === 'white'
       ? 'bg-white border border-neutral-300 text-neutral-900'
@@ -26,7 +26,8 @@ const LoginButton = ({ type = 'space' }) => {
           window.location.href = kakaoURL
         }}
       >
-        <KakaoLoginIcon className="h-[28px] w-[28px]" /> 카카오 계정으로 계속하기
+        <KakaoLoginIcon className="tablet:h-[28px] tablet:w-[28px] h-[15px] w-[15px]" /> 카카오
+        계정으로 계속하기
       </button>
       <button
         className={buttonClasses}
@@ -34,7 +35,8 @@ const LoginButton = ({ type = 'space' }) => {
           window.location.href = kakaoURL
         }}
       >
-        <NaverLoginIcon className="h-[28px] w-[28px]" /> 네이버 계정으로 계속하기
+        <NaverLoginIcon className="tablet:h-[28px] tablet:w-[28px] h-[15px] w-[15px]" /> 네이버
+        계정으로 계속하기
       </button>
       <button
         className={buttonClasses}
@@ -42,7 +44,8 @@ const LoginButton = ({ type = 'space' }) => {
           window.location.href = kakaoURL
         }}
       >
-        <GoogleLoginIcon className="h-[28px] w-[28px]" /> 구글 계정으로 계속하기
+        <GoogleLoginIcon className="tablet:h-[28px] tablet:w-[28px] h-[15px] w-[15px]" /> 구글
+        계정으로 계속하기
       </button>
     </div>
   )

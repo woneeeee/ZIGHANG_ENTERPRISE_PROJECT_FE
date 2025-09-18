@@ -8,6 +8,8 @@ export const mockJobs: JobPostingType[] = [
     workExperience: '신입~3년',
     recruitmentType: ['FULL_TIME'],
     education: 'BACHELOR',
+    commuteMinutes: 60,
+    welfare: '식대 지원'
   },
   {
     jobPostingId: 2,
@@ -16,6 +18,8 @@ export const mockJobs: JobPostingType[] = [
     workExperience: '3~7년',
     recruitmentType: ['FULL_TIME'],
     education: 'BACHELOR',
+    commuteMinutes: 60,
+    welfare: '식대 지원'
   },
   {
     jobPostingId: 3,
@@ -24,6 +28,8 @@ export const mockJobs: JobPostingType[] = [
     workExperience: '신입~2년',
     recruitmentType: ['FULL_TIME'],
     education: 'BACHELOR',
+    commuteMinutes: 60,
+    welfare: '식대 지원'
   },
   {
     jobPostingId: 4,
@@ -32,6 +38,8 @@ export const mockJobs: JobPostingType[] = [
     workExperience: '신입~1년차',
     recruitmentType: ['FULL_TIME'],
     education: 'BACHELOR',
+    commuteMinutes: 60,
+    welfare: '식대 지원'
   },
   {
     jobPostingId: 5,
@@ -40,6 +48,8 @@ export const mockJobs: JobPostingType[] = [
     workExperience: '신입',
     recruitmentType: ['FULL_TIME'],
     education: 'BACHELOR',
+    commuteMinutes: 60,
+    welfare: '식대 지원'
   },
   {
     jobPostingId: 6,
@@ -48,6 +58,8 @@ export const mockJobs: JobPostingType[] = [
     workExperience: '신입~10년차',
     recruitmentType: ['FULL_TIME'],
     education: 'BACHELOR',
+    commuteMinutes: 60,
+    welfare: '식대 지원'
   },
   {
     jobPostingId: 7,
@@ -56,6 +68,8 @@ export const mockJobs: JobPostingType[] = [
     workExperience: '신입',
     recruitmentType: ['FULL_TIME'],
     education: '학력 무관',
+    commuteMinutes: 60,
+    welfare: '식대 지원'
   },
   {
     jobPostingId: 8,
@@ -64,6 +78,8 @@ export const mockJobs: JobPostingType[] = [
     workExperience: '2~10년차',
     recruitmentType: ['FULL_TIME'],
     education: '학력 무관',
+    commuteMinutes: 60,
+    welfare: '식대 지원'
   },
   {
     jobPostingId: 9,
@@ -72,6 +88,8 @@ export const mockJobs: JobPostingType[] = [
     workExperience: '10년차 이상',
     recruitmentType: ['FULL_TIME'],
     education: 'BACHELOR',
+    commuteMinutes: 60,
+    welfare: '식대 지원'
   },
   {
     jobPostingId: 10,
@@ -80,5 +98,7 @@ export const mockJobs: JobPostingType[] = [
     workExperience: '신입',
     recruitmentType: ['FULL_TIME'],
     education: 'BACHELOR',
+    commuteMinutes: 60,
+    welfare: '식대 지원'
   },
 ]

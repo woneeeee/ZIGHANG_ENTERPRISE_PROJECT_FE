@@ -9,8 +9,8 @@ export interface JobPostingType {
   workExperience: string
   recruitmentType: RecruitmentTypeEnum[] //계약직
   education: string
-  commuteMinutes?: number
-  welfare?: string //복지
+  commuteMinutes: number
+  welfare: string //복지
 }
 export type RecruitmentTypeKor =
   | '정규직'

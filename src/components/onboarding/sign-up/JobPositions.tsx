@@ -243,7 +243,7 @@ export default function JobPositions() {
         </div>
       </div>
 
-      <section className="flex flex-wrap gap-[6px]">
+      <section className="flex flex-wrap gap-[8px] w-[80%]">
         {(changeCategoryToJobCategory(signUpData?.jobGroups) || []).map((jobCategory) => {
           const selected = isSelected(jobCategory.enum)
 

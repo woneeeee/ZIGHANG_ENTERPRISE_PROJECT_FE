@@ -237,7 +237,7 @@ export default function JobPosition() {
         </div>
       </div>
 
-      <section className="flex flex-wrap gap-[6px]">
+      <section className="flex flex-wrap gap-[8px] w-[80%]">
         {(
           changeCategoryToJobCategory(
             editMyInfoData ? editMyInfoData.jobGroups : signUpData?.jobGroups,

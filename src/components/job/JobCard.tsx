@@ -6,9 +6,8 @@ interface JobCardProps {
   hasTag?: boolean
   hasViewCount?: boolean
   job: JobPostingType
-  viewCount?: number
 }
-export default function JobCard({ hasTag = true, hasViewCount = false, job, viewCount }: JobCardProps) {
+export default function JobCard({ hasTag = true, hasViewCount = false, job }: JobCardProps) {
   /**
    * 분(minute)을 "X시간 Y분" 형식으로 변환하는 함수
    * @param minutes - 변환할 분 수
@@ -43,10 +42,10 @@ export default function JobCard({ hasTag = true, hasViewCount = false, job, view
         <div className="tablet:h-[80px] tablet:w-[80px] laptop:w-[70px] laptop:h-[70px] caption-md-medium tablet:min-w-[80px] laptop:min-w-[70px] desktop:min-w-[80px] tablet:min-h-[80px] laptop:min-h-[70px] desktop:min-h-[80px] desktop:px-3 laptop:px-3 tablet:px-3 flex h-[55px] min-h-[55px] w-[55px] min-w-[55px] items-center justify-center truncate rounded-[12px] bg-purple-400 px-2 text-white">
           <div className="truncate">{job.companyName}</div>
         </div>
-        <div className="tablet:gap-y-2 laptop:gap-y-2 desktop:gap-y-2 desktop:w-[80%] laptop:w-[80%] flex flex-col gap-y-[6px]">
+        <div className="tablet:gap-y-2 laptop:gap-y-2 desktop:gap-y-2 desktop:w-[60%] laptop:w-[80%] tablet:w-[80%] flex flex-col gap-y-[6px]">
           <section className="tablet:gap-x-2 laptop:gap-x-2 desktop:gap-x-2 flex gap-x-1">
             <div
-              className={`${job.companyName.length > 4 ? 'laptop:w-[70px] w-[40px]' : 'w-fit'} tablet:body-lg-semibold laptop:body-lg-semibold desktop:body-lg-semibold caption-xs-medium truncate text-neutral-500`}
+              className={`${job.companyName.length > 4 ? 'laptop:w-[70px] tablet:w-fit w-[40px]' : 'w-fit'} tablet:body-lg-semibold laptop:body-lg-semibold desktop:body-lg-semibold caption-xs-medium truncate text-neutral-500`}
             >
               {job.companyName}
             </div>
@@ -54,12 +53,18 @@ export default function JobCard({ hasTag = true, hasViewCount = false, job, view
               <>
                 <div className="desktop:p-1 laptop:p-1 tablet:p-1 flex h-fit w-fit items-center gap-x-1 rounded-[2px] bg-[#F0F5FF] px-[2px]">
                   <BusIcon width={14} height={14} />
-                  <p className="caption-xs-semibold tablet:body-caption-sm-medium laptop:body-caption-sm-medium desktop:body-caption-sm-medium text-[#0057FF]">
+                  <p
+                    className={`${convertMinutesToHoursAndMinutes(job.commuteMinutes).length >= 6 ? 'desktop:w-[50px] laptop:w-[50px] tablet:w-fit w-[30px] truncate' : ''} caption-xs-semibold tablet:body-caption-sm-medium laptop:body-caption-sm-medium desktop:body-caption-sm-medium text-[#0057FF]`}
+                  >
                     {convertMinutesToHoursAndMinutes(job.commuteMinutes)}
                   </p>
                 </div>
-                <div className="caption-xs-semibold tablet:body-caption-sm-medium laptop:body-caption-sm-medium desktop:body-caption-sm-medium desktop:rounded-1 laptop:rounded-1 tablet:rounded-1 desktop:p-1 laptop:p-1 tablet:p-1 flex h-fit w-fit items-center justify-center rounded-[2px] bg-[#FFF2DA] px-[2px] text-[#D17700]">
-                  {job.welfare}
+                <div
+                  className={`${job.welfare.length >= 7 ? 'desktop:w-[50px] laptop:w-[50px] tablet:w-fit w-[40px]' : 'w-fit'} caption-xs-semibold tablet:body-caption-sm-medium laptop:body-caption-sm-medium desktop:body-caption-sm-medium desktop:rounded-1 laptop:rounded-1 tablet:rounded-1 desktop:p-1 laptop:p-1 tablet:p-1 flex h-fit items-center justify-center rounded-[2px] bg-[#FFF2DA] px-[2px] text-[#D17700]`}
+                >
+                  <span className={`${job.welfare.length >= 7 ? 'block w-full truncate' : ''}`}>
+                    {job.welfare}
+                  </span>
                 </div>
               </>
             ) : null}
@@ -68,13 +73,28 @@ export default function JobCard({ hasTag = true, hasViewCount = false, job, view
             {job.jobPostingTitle}
           </div>
           <div className="flex items-center">
-            <p className="body-caption-xs-medium tablet:body-lg-semibold laptop:body-lg-semibold desktop:body-lg-semibold truncate text-neutral-500">
-              {job.workExperience} ·{' '}
-              {job.recruitmentType.map((recruitment) =>
-                changeRecruitmentTypeEnumToKor(recruitment),
-              )}{' '}
-              · {changeEducationEnumToKor(job.education)}{' '}
-            </p>
+            <div className="body-caption-xs-medium tablet:body-lg-semibold laptop:body-lg-semibold desktop:body-lg-semibold flex items-center gap-x-1 text-neutral-500">
+              <span>{job.workExperience}</span>
+              <span>·</span>
+              <div className="desktop:max-w-[60px] laptop:max-w-[60px] flex max-w-[60px] items-center">
+                {(() => {
+                  const fullRecruitmentText = job.recruitmentType
+                    .map((recruitment) => changeRecruitmentTypeEnumToKor(recruitment))
+                    .join('/')
+
+                  return (
+                    <span
+                      className={`${fullRecruitmentText.length > 3 ? 'laptop:inline-block laptop:w-full laptop:truncate desktop:inline-block desktop:w-full desktop:truncate inline-block w-full truncate' : ''}`}
+                      title={fullRecruitmentText}
+                    >
+                      {fullRecruitmentText}
+                    </span>
+                  )
+                })()}
+              </div>
+              <span>·</span>
+              <span>{changeEducationEnumToKor(job.education)}</span>
+            </div>
             {hasViewCount ? (
               <>
                 <span>
@@ -85,19 +105,19 @@ export default function JobCard({ hasTag = true, hasViewCount = false, job, view
                   />
                 </span>
                 <span>
-                  <div className="mx-0 flex items-center gap-0 text-[15px] text-[#71717A] md:mx-2">
+                  <div className="mx-0 flex gap-0 text-[15px] text-[#71717A] md:mx-2">
                     <img
-                      alt="조회수 아이콘"
+                      alt="인기 게시물"
                       loading="lazy"
-                      width="0"
-                      height="0"
+                      width="16"
+                      height="16"
                       decoding="async"
                       data-nimg="1"
-                      className="h-[16px] w-[16px] flex-shrink-0 md:h-[20px] md:w-[20px]"
-                      src="https://zighang.com/icon/visibility.svg"
+                      className="pd:h-6 pd:w-6 h-3.5 w-3.5"
+                      src="https://zighang.com/icon/fire-red.svg"
                     />
-                    <div className="body-caption-xs-medium tablet:body-lg-semibold laptop:body-lg-semibold desktop:body-lg-semibold mx-[1px] flex items-center text-neutral-500 md:mx-[4px]">
-                      {viewCount}
+                    <div className="mx-[1px] flex items-center text-[11px] text-[#FF5757] md:mx-[4px] md:text-[16px]">
+                      32054
                     </div>
                   </div>
                 </span>
